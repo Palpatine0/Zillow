@@ -1,0 +1,11 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://111.231.19.137:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+zillow:
+  banner:
+    nginx:
+      prefix: http://111.231.19.137:8888/
