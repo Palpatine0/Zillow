@@ -1,0 +1,87 @@
+server:
+  port: 4006
+spring:
+  application:
+    name: zillow-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lower-case-service-id: true
+      routes:
+        - id: banner
+          uri: lb://zillow-banner
+          predicates:
+#            - Path=/banner/getBanner
+            - Path=/banner
+
+        - id: trendy
+          uri: lb://zillow-trendy
+          predicates:
+            - Path=/trendy/getTrendy
+            # city arg have to include when sending request
+            - Query=city
+
+        - id: recommendation
+          uri: lb://zillow-recommendation
+          predicates:
+            - Path=/recommendation/getRecommendation
+            - Query=city
+
+        - id: details
+          uri: lb://zillow-details
+          predicates:
+            - Path=/detail/getDetail
+            - Query=id
+
+        - id: comment
+          uri: lb://zillow-comment
+          predicates:
+            - Path=/comment/addComment
+            - Query=id
+            - Query=page
+
+#        - id: search   #搜索路由
+#          uri: lb://zillow-search
+#          predicates:
+#            - Path=/search
+#            - Query=city
+#            - Query=content
+#            - Query=page
+#        - id: sendyzm   #发送验证码
+#          uri: lb://zillow-login
+#          predicates:
+#            - Path=/sendyzm
+#        - id: login   #登录
+#          uri: lb://zillow-login
+#          predicates:
+#            - Path=/login
+#        - id: buyaction   #预订
+#          uri: lb://zillow-buyaction
+#          predicates:
+#            - Path=/buyaction
+#        - id: buytime   #预订时间
+#          uri: lb://zillow-buytime
+#          predicates:
+#            - Path=/buytime
+#            - Query=id
+#        - id: order   #订单
+#          uri: lb://zillow-order
+#          predicates:
+#            - Path=/order
+#            - Query=user
+    config:
+      uri: http://localhost:9010
+      label: master
+      name: Zillow
+      profile: dev
+
+zillow:
+  banner:
+    nginx:
+      prefix: http://111.231.19.137:8888/
+
+logging:
+  pattern:
+    console: '%d{MM/dd HH:mm:ss.SSS} %clr(%-5level) ---  [%-15thread] %cyan(%-50logger{50}):%msg%n'

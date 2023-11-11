@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: zillow-buyaction-message-consumer
+#  profiles:
+#    active: itemCacheName,mongodb,redis
+  cloud:
+    config:
+      uri: http://localhost:9010
+      label: master
+      name: rabbit
+      profile: dev
+
+

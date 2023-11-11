@@ -1,0 +1,88 @@
+server:
+  port: 9004
+spring:
+  application:
+    name: zillow-detail
+  profiles:
+    active: mongodb,bannerNginx ,redis
+  cloud:
+    config:
+      uri: http://localhost:9010
+      label: master
+      name: zillow
+      profile: dev
+eureka:
+  client:
+    service-url:
+      defaultZone: http://111.231.19.137:8761/eureka/
+
+zillow:
+  banner:
+    nginx:
+      prefix: http://111.231.19.137:8888/
+
+logging:
+  pattern:
+    console: '%d{MM/dd HH:mm:ss.SSS} %clr(%-5level) ---  [%-15thread] %cyan(%-50logger{50}):%msg%n'
+
+
+##resilience4j配置
+#resilience4j.circuitbreaker:
+#  configs:
+#    default:
+#      registerHealthIndicator: true
+#      slidingWindowSize: 10   #配置滑动窗口的大小。
+#      minimumNumberOfCalls: 5     #断路器计算失败率或慢调用率之前所需的最小调用数（每个滑动窗口周期）。例如，如果minimumNumberOfCalls为10，则必须至少记录10个调用，然后才能计算失败率。如果只记录了9次调用，即使所有9次调用都失败，断路器也不会开启。
+#      permittedNumberOfCallsInHalfOpenState: 3    #断路器在半开状态下允许通过的调用次数。
+#      automaticTransitionFromOpenToHalfOpenEnabled: true      #如果设置为true，则意味着断路器将自动从开启状态过渡到半开状态，并且不需要调用来触发转换。创建一个线程来监视断路器的所有实例，以便在WaitDurationInOpenstate之后将它们转换为半开状态。但是，如果设置为false，则只有在发出调用时才会转换到半开，即使在waitDurationInOpenState之后也是如此。这里的优点是没有线程监视所有断路器的状态。
+#      waitDurationInOpenState: 5s     #断路器从开启过渡到半开应等待的时间。
+#      failureRateThreshold: 50    #以百分比配置失败率阈值。当失败率等于或大于阈值时，断路器状态并关闭变为开启，并进行服务降级。
+#      eventConsumerBufferSize: 10   #重试事件缓冲区大小
+#      recordExceptions:       #记录为失败并因此增加失败率的异常列表。除非通过ignoreExceptions显式忽略，否则与列表中某个匹配或继承的异常都将被视为失败
+#        - org.springframework.web.client.HttpServerErrorException
+#        - java.util.concurrent.TimeoutException
+#        - java.io.IOException
+#      ignoreExceptions:
+#        - com.livegoods.detail.exception.BusinessException
+#    shared:
+#      slidingWindowSize: 100
+#      permittedNumberOfCallsInHalfOpenState: 30
+#      waitDurationInOpenState: 1s
+#      failureRateThreshold: 50
+#      eventConsumerBufferSize: 10
+#      ignoreExceptions:
+#        - com.livegoods.detail.exception.BusinessException
+#  instances:
+#    backendA:
+#      baseConfig: default
+#    backendB:
+#      registerHealthIndicator: true
+#      slidingWindowSize: 10
+#      minimumNumberOfCalls: 10
+#      permittedNumberOfCallsInHalfOpenState: 3
+#      waitDurationInOpenState: 5s
+#      failureRateThreshold: 50
+#      eventConsumerBufferSize: 10
+#      recordFailurePredicate: com.livegoods.detail.exception.RecordFailurePredicate
+#
+##请求频率限制器
+#resilience4j.ratelimiter:
+#  configs:
+#    default:
+#      registerHealthIndicator: false
+#      limitForPeriod: 1	#在一个刷新周期内允许访问的最大次数（每秒X次）
+#      limitRefreshPeriod: 1s #限流器每隔limitRefreshPeriod刷新一次，将允许处理的最大请求数量重置为limitForPeriod
+#      timeoutDuration: 0	#线程等待权限的默认等待时间
+#      eventConsumerBufferSize: 100
+#  instances:
+#    backendA:
+#      baseConfig: default
+#    backendB:
+#      limitForPeriod: 1
+#      limitRefreshPeriod: 1s
+#      timeoutDuration: 3s
+#
+#
+#logging:
+#  pattern:
+#    console: '%d{MM/dd HH:mm:ss.SSS} %clr(%-5level) ---  [%-15thread] %cyan(%-50logger{50}):%msg%n'
