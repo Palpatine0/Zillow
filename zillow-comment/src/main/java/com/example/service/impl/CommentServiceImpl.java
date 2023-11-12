@@ -34,7 +34,7 @@ public class CommentServiceImpl implements CommentService {
 //            Order order= orderDao.findByid();
             Order order = new Order();
             order.setUsername("TESTTTTT");
-            order.setItemId("654e5a0e5522eb326f02d68d");
+            order.setItemId("655052c42f3787caf19f01d");
 
             Comment comment = new Comment();
             comment.setUsername(order.getUsername());

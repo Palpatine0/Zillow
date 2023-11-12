@@ -9,7 +9,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class ConfirmationCode {
+public class VerificationCode {
     private String phone;
-    private String validateCode;
+    private String verificationCode;
 }

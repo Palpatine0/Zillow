@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,7 @@ import java.util.Map;
 @ToString
 @NoArgsConstructor
 @Data
-public class Item {
+public class Item implements Serializable {
     private String id;
     private String title;
     private Long sales;
@@ -29,7 +30,9 @@ public class Item {
     private Date buytime;
     private Boolean isRented;
 
-
+public String getImg(){
+    return imgs.get(0);
+}
 
 }
 

@@ -28,6 +28,7 @@
         <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -53,12 +54,8 @@
             <groupId>com.example</groupId>
             <artifactId>zillow-mongodb-dao</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-mongodb</artifactId>
-        </dependency>
+
     </dependencies>
 
 </project>

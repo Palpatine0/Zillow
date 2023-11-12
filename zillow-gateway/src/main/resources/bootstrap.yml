@@ -9,12 +9,12 @@ spring:
         locator:
           enabled: false
           lower-case-service-id: true
+
       routes:
         - id: banner
           uri: lb://zillow-banner
           predicates:
-#            - Path=/banner/getBanner
-            - Path=/banner
+            - Path=/banner/getBanner
 
         - id: trendy
           uri: lb://zillow-trendy
@@ -29,8 +29,8 @@ spring:
             - Path=/recommendation/getRecommendation
             - Query=city
 
-        - id: details
-          uri: lb://zillow-details
+        - id: detail
+          uri: lb://zillow-detail
           predicates:
             - Path=/detail/getDetail
             - Query=id
@@ -38,17 +38,16 @@ spring:
         - id: comment
           uri: lb://zillow-comment
           predicates:
-            - Path=/comment/addComment
-            - Query=id
+            - Path=/comment/*
+
+        - id: search
+          uri: lb://zillow-search
+          predicates:
+            - Path=/search/getSearchResults
+            - Query=city
+            - Query=content
             - Query=page
 
-#        - id: search   #搜索路由
-#          uri: lb://zillow-search
-#          predicates:
-#            - Path=/search
-#            - Query=city
-#            - Query=content
-#            - Query=page
 #        - id: sendyzm   #发送验证码
 #          uri: lb://zillow-login
 #          predicates:
@@ -74,7 +73,7 @@ spring:
     config:
       uri: http://localhost:9010
       label: master
-      name: Zillow
+      name: zillow
       profile: dev
 
 zillow:

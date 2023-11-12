@@ -83,9 +83,9 @@ public class RecommendationServiceImpl implements RecommendationService {
         item.setAptType("150 ㎡");;
         item.setImgs(
                 Arrays.asList(
-                        "group1/M00/00/01/wKhZjF6_UkuAGCsJABLGy04UWBI573.png",
-                        "group1/M00/00/01/wKhZjF6_UlyANqRfAAjIoXS-cuE984.png",
-                        "group1/M00/00/01/wKhZjF6_UmmAQsntAAro96E3Lio262.png"
+                        "group1/M00/00/00/CgAEDGVQUviADlg-AAccr9iz7Ew746.png",
+                        "group1/M00/00/00/CgAEDGVQUrWANCPLABMCpJXCu_8377.png",
+                        "group1/M00/00/00/CgAEDGVQUrWANCPLABMCpJXCu_8377.png"
                 ));
         item.setPrice(12000L);
         item.setRecommendation(true);
