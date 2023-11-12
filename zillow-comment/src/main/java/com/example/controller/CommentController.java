@@ -12,12 +12,12 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
-    @GetMapping("/addComment")
+    @PostMapping("/addComment")
     public ZillowResult addComment(String orderId, String commentContent) {
         return commentService.addComment(orderId, commentContent);
     }
 
-    @PostMapping("/getComment")
+    @GetMapping("/getComment")
     public ZillowResult getCommentByItemId(
             @RequestParam(value = "id") String itemId,
             int page,

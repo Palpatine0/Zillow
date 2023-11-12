@@ -26,7 +26,7 @@ public class DetailServiceImpl implements DetailService {
 
 
     @Override
-    @Cacheable(cacheNames = "com:zillow:details", key = "'getDetails('+#id+')'")
+    @Cacheable(cacheNames = "com:example", key = "'getDetail('+#id+')'")
     public Item getDetail(String id) {
         Item items = detailDao.findItemById(id);
 

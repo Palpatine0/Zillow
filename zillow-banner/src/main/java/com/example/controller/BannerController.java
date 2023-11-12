@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-//@RequestMapping("/banner")
-
+@RequestMapping("banner")
 public class BannerController {
     @Autowired
     private BannerService bannerService;
 
-    //    @GetMapping("/getBanner")
-    @GetMapping("/banner")
+    @GetMapping("/getBanner")
     public ZillowResult banner() {
         return bannerService.getBanner();
     }
+
+
 }

@@ -5,6 +5,7 @@ import com.example.vo.ZillowResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -13,5 +14,15 @@ public class SearchController {
     @Autowired
     private SearchService searchService;
 
+    @GetMapping("/getSearchResults")
+    public ZillowResult search(String city, String content, int page, @RequestParam(defaultValue = "5") int rows) {
+        return searchService.search(city, content, page, rows);
+    }
+
+    @GetMapping("/ESReload")
+    public ZillowResult search() {
+        searchService.ESInit();
+        return ZillowResult.ok("Done");
+    }
 
 }
