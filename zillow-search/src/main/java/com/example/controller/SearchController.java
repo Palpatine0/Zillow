@@ -4,17 +4,17 @@ import com.example.service.SearchService;
 import com.example.vo.ZillowResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/search")
+//@RequestMapping("/search")
 public class SearchController {
     @Autowired
     private SearchService searchService;
 
-    @GetMapping("/getSearchResults")
+    //    @GetMapping("/getSearchResults")
+    @GetMapping("/search")
     public ZillowResult search(String city, String content, int page, @RequestParam(defaultValue = "5") int rows) {
         return searchService.search(city, content, page, rows);
     }

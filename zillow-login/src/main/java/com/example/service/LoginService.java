@@ -1,7 +1,9 @@
 package com.example.service;
 
-import com.example.entity.Item;
+import com.example.vo.ZillowResult;
 
 public interface LoginService {
-    Item getDetail(String id);
+    ZillowResult sendVerificationCode(String phone);
+
+    ZillowResult login(String phone, String verificationCode);
 }

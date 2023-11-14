@@ -14,49 +14,53 @@ spring:
         - id: banner
           uri: lb://zillow-banner
           predicates:
-            - Path=/banner/getBanner
+            - Path=/banner
 
         - id: trendy
           uri: lb://zillow-trendy
           predicates:
-            - Path=/trendy/getTrendy
-            # city arg have to include when sending request
+            - Path=/hotProduct
             - Query=city
 
         - id: recommendation
           uri: lb://zillow-recommendation
           predicates:
-            - Path=/recommendation/getRecommendation
+            - Path=/recommendation
             - Query=city
 
-        - id: detail
+        - id: details
           uri: lb://zillow-detail
           predicates:
-            - Path=/detail/getDetail
+            - Path=/details
             - Query=id
 
         - id: comment
           uri: lb://zillow-comment
           predicates:
-            - Path=/comment/*
+            - Path=/comment
+            - Query=id
+            - Query=page
 
         - id: search
           uri: lb://zillow-search
           predicates:
-            - Path=/search/getSearchResults
+            - Path=/search
             - Query=city
             - Query=content
             - Query=page
 
-#        - id: sendyzm   #发送验证码
-#          uri: lb://zillow-login
-#          predicates:
-#            - Path=/sendyzm
-#        - id: login   #登录
-#          uri: lb://zillow-login
-#          predicates:
-#            - Path=/login
-#        - id: buyaction   #预订
+        - id: sendyzm
+          uri: lb://zillow-login
+          predicates:
+            - Path=/sendyzm
+
+        - id: login
+          uri: lb://zillow-login
+          predicates:
+            - Path=/login
+
+
+    #        - id: buyaction   #预订
 #          uri: lb://zillow-buyaction
 #          predicates:
 #            - Path=/buyaction
@@ -70,6 +74,7 @@ spring:
 #          predicates:
 #            - Path=/order
 #            - Query=user
+
     config:
       uri: http://localhost:9010
       label: master

@@ -1,9 +1,13 @@
 package com.example.dao;
 
 
+import com.example.entity.VerificationCode;
+
 public interface VerificationDao {
     void setVerificationCode(String key,Object value);
-    void getVerificationCode(String key);
-    void deleteVerificationCode(String key);
+
+    VerificationCode getVerificationCode(String key);
+
+    Boolean deleteVerificationCode(String key);
 
 }

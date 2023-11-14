@@ -30,9 +30,16 @@ public class Item implements Serializable {
     private Date buytime;
     private Boolean isRented;
 
-public String getImg(){
-    return imgs.get(0);
-}
+    public String getImg() {
+        return imgs.get(0);
+    }
+
+    public String getLink() {
+        return "/details/" + id;
+    }
+
+    public void setLink() {
+    }
 
 }
 

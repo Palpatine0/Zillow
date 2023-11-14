@@ -1,19 +1,14 @@
 package com.example.service.impl;
 
 import com.example.dao.DetailDao;
-import com.example.entity.Banner;
 import com.example.entity.Item;
 import com.example.service.DetailService;
-import com.example.vo.ZillowResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class DetailServiceImpl implements DetailService {
@@ -26,7 +21,8 @@ public class DetailServiceImpl implements DetailService {
 
 
     @Override
-    @Cacheable(cacheNames = "com:example", key = "'getDetail('+#id+')'")
+//    @Cacheable(cacheNames = "com:example", key = "'getDetail('+#id+')'")
+    @Cacheable(cacheNames = "com:example", key = "'detail('+#id+')'")
     public Item getDetail(String id) {
         Item items = detailDao.findItemById(id);
 
