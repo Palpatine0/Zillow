@@ -1,0 +1,98 @@
+server:
+  port: 4006
+spring:
+  application:
+    name: zillow-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lower-case-service-id: true
+
+      routes:
+        - id: banner
+          uri: lb://zillow-banner
+          predicates:
+            - Path=/banner/getBanner
+
+        - id: trendy
+          uri: lb://zillow-trendy
+          predicates:
+            - Path=/trendy/getTrendy
+            - Query=city
+
+        - id: recommendation
+          uri: lb://zillow-recommendation
+          predicates:
+            - Path=/recommendation/getRecommendation
+            - Query=city
+
+        - id: details
+          uri: lb://zillow-detail
+          predicates:
+            - Path=/detail/getDetail
+            - Query=id
+
+        - id: comment-getComment
+          uri: lb://zillow-comment
+          predicates:
+            - Path=/comment/getComment
+            - Query=id
+            - Query=page
+
+        - id: comment-addComment
+          uri: lb://zillow-comment
+          predicates:
+            - Path=/comment/addComment
+
+
+        - id: search-searchByKeyWord
+          uri: lb://zillow-search
+          predicates:
+            - Path=/search/searchByKeyWord
+            - Query=city
+            - Query=content
+            - Query=page
+
+
+        - id: sendVerificationCode
+          uri: lb://zillow-login
+          predicates:
+            - Path=/sendVerificationCode
+        - id: login
+          uri: lb://zillow-login
+          predicates:
+            - Path=/login
+
+        - id: buyAction
+          uri: lb://zillow-buyaction
+          predicates:
+            - Path=/buyAction/buyAction
+
+        - id: buytime
+          uri: lb://zillow-buytime
+          predicates:
+            - Path=/buyTime/getBuyTime
+            - Query=id
+
+        - id: order
+          uri: lb://zillow-order
+          predicates:
+            - Path=/order/getOrder
+            - Query=user
+
+    config:
+      uri: http://localhost:9010
+      label: master
+      name: zillow
+      profile: dev
+
+zillow:
+  banner:
+    nginx:
+      prefix: http://111.231.19.137:8888/
+
+logging:
+  pattern:
+    console: '%d{MM/dd HH:mm:ss.SSS} %clr(%-5level) ---  [%-15thread] %cyan(%-50logger{50}):%msg%n'
