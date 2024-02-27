@@ -1,7 +1,7 @@
 package com.example.service;
 
+import com.example.dao.UserDao;
 import com.example.dao.VerificationDao;
-import com.example.entity.VerificationCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -18,21 +18,22 @@ public class DetailService implements UserDetailsService {
 
     @Autowired
     private VerificationDao verificationDao;
+    @Autowired
+    private UserDao userDao;
 
     @Override
-    public UserDetails loadUserByUsername(String phone) throws UsernameNotFoundException {
-        VerificationCode verificationCode = verificationDao.getVerificationCode(phone);
-        String vCode = "";
-        if (verificationCode == null) {
-
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        com.example.entity.User user = userDao.getUserByUsername(username);
+        String password = "";
+        if (user == null) {
         } else {
-            vCode = verificationCode.getVerificationCode();
+            password = user.getPassword();
         }
 
         ArrayList<GrantedAuthority> authorities = new ArrayList<>();
         User userDetail = new User(
-                phone,
-                "{noop}" + vCode,
+                username,
+                "{noop}" + password,
                 true,
                 true,
                 true,

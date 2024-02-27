@@ -1,5 +1,7 @@
 package com.example.service;
 
+import com.example.dao.UserDao;
+import com.example.dao.VerificationDao;
 import com.example.vo.ZillowResult;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +23,18 @@ public class AuthenticationService implements AuthenticationSuccessHandler, Auth
     @Autowired
     ObjectMapper objectMapper;
 
+    @Autowired
+    private UserDao userDao;
+    @Autowired
+    private VerificationDao verificationDao;
+
 
     // success handler
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         System.out.println("Processing after successful authentication");
         ZillowResult ok = ZillowResult.ok();
-        ok.setMsg("Successfully logged in");
+        ok.setMsg("Authentication passed");
 
         // set respond, set it as JSON type as it write out
         response.setContentType("application/json;charset=utf-8");
@@ -39,7 +46,7 @@ public class AuthenticationService implements AuthenticationSuccessHandler, Auth
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         System.out.println("Processing after a failed authentication");
         ZillowResult error = ZillowResult.error();
-
+        error.setMsg("Authentication failed");
         // set respond, set it as JSON type as it write out
         response.setContentType("application/json;charset=utf-8");
         response.getWriter().write(objectMapper.writeValueAsString(error));

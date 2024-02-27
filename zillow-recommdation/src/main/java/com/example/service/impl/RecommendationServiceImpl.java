@@ -38,15 +38,17 @@ public class RecommendationServiceImpl implements RecommendationService {
         // S2: pagination
         query.with(PageRequest.of(0, 4));
         List<Item> items = recommendationDao.selectRecommendation(query);
-        if (items.size() < 4) {
+        int sz = items.size();
+        if (sz < 4) {
+            int lack = 4 - sz;
             Query queryy = new Query();
             Criteria criteriaa = new Criteria();
             criteriaa.andOperator(
-                    Criteria.where("city").ne(city),
+                    Criteria.where("city").is(city),
                     Criteria.where("recommendation").is(true)
             );
             queryy.addCriteria(criteriaa);
-            queryy.with(PageRequest.of(0, 4));
+            queryy.with(PageRequest.of(0, lack));
             List<Item> itemm = recommendationDao.selectRecommendation(queryy);
 
             items.addAll(itemm);
@@ -90,7 +92,7 @@ public class RecommendationServiceImpl implements RecommendationService {
                 ));
         item.setPrice(12000L);
         item.setRecommendation(true);
-        item.setRecoSort((byte) 9);
+        item.setWeight((byte) 9);
         ;
         item.setRentType("Whole Rentle");
         item.setSales(100L);

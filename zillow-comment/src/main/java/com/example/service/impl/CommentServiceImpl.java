@@ -24,7 +24,7 @@ public class CommentServiceImpl implements CommentService {
     private OrderDao orderDao;
 
 
-    @Value("${zillow.banner.nginx.prefix}")
+    @Value("${zillow.fdfsBasePath.nginx.prefix}")
     private String nginxPrefix;
 
 
@@ -34,12 +34,12 @@ public class CommentServiceImpl implements CommentService {
             Order order = orderDao.getOrders(orderId);
 
             Comment comment = new Comment();
-            comment.setPhone(order.getPhone());
+            comment.setUsername(order.getPhone());
             comment.setComment(commentContent);
             comment.setItemId(order.getItemId());
             comment.setStar(3);
             commentDao.save(comment);
-            orderDao.updateCommentStatus(orderId, 2);
+            orderDao.updateCommentStatus(orderId, 0);
             return ZillowResult.ok("Comment added successfully");
         } catch (Exception e) {
             e.printStackTrace();
@@ -56,8 +56,8 @@ public class CommentServiceImpl implements CommentService {
         List<Comment> comments = commentDao.getCommentByItemId(query);
 
         for (Comment comment : comments) {
-            String username = comment.getPhone().replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2");
-            comment.setPhone(username);
+            String username = comment.getUsername().replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2");
+            comment.setUsername(username);
         }
         ZillowResult result = ZillowResult.ok(comments);
 

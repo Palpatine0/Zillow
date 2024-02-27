@@ -19,7 +19,7 @@ public class Item {
     private Long sales;
     private Boolean recommendation;
     // weight
-    private Byte recoSort;
+    private Byte weight;
     private Long price;
     private String city;
     // rent in whole/rent with ppl
@@ -92,12 +92,12 @@ public class Item {
         this.recommendation = recommendation;
     }
 
-    public Byte getRecoSort() {
-        return recoSort;
+    public Byte getWeight() {
+        return weight;
     }
 
-    public void setRecoSort(Byte recoSort) {
-        this.recoSort = recoSort;
+    public void setWeight(Byte weight) {
+        this.weight = weight;
     }
 
     public String getCity() {

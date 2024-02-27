@@ -31,7 +31,7 @@
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <configuration>
-                    <imageName>dev_zillow_svc_eureka:1.0.0</imageName>
+                    <imageName>prd_zillow_svc_eureka:1.0.0</imageName>
                     <dockerHost>http://111.231.19.137:2375</dockerHost>
 
                     <baseImage>openjdk:8</baseImage>

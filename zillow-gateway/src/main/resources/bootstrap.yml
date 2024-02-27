@@ -11,10 +11,11 @@ spring:
           lower-case-service-id: true
 
       routes:
-        - id: banner
-          uri: lb://zillow-banner
+
+        - id: file
+          uri: lb://zillow-file
           predicates:
-            - Path=/banner/getBanner
+            - Path=/file/getBanner
 
         - id: trendy
           uri: lb://zillow-trendy
@@ -55,15 +56,27 @@ spring:
             - Query=content
             - Query=page
 
-
-        - id: sendVerificationCode
-          uri: lb://zillow-login
+        - id: search-searchAll
+          uri: lb://zillow-search
           predicates:
-            - Path=/sendVerificationCode
+            - Path=/search/searchAll
+            - Query=city
+            - Query=page
+
+
+
         - id: login
           uri: lb://zillow-login
           predicates:
             - Path=/login
+        - id: register
+          uri: lb://zillow-login
+          predicates:
+            - Path=/register
+        - id: sendVerificationCode
+          uri: lb://zillow-login
+          predicates:
+            - Path=/sendVerificationCode
 
         - id: buyAction
           uri: lb://zillow-buyaction
@@ -89,7 +102,7 @@ spring:
       profile: dev
 
 zillow:
-  banner:
+  fdfsBasePath:
     nginx:
       prefix: http://111.231.19.137:8888/
 

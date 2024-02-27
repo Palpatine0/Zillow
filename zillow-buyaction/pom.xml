@@ -59,4 +59,37 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.6.3</version>
+            </plugin>
+
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <configuration>
+                    <imageName>prd_zillow_svc_buyaction:1.0.0</imageName>
+                    <dockerHost>http://111.231.19.137:9008</dockerHost>
+
+                    <baseImage>openjdk:8</baseImage>
+                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+                    <exposes>
+                        <expose>9008</expose>
+                    </exposes>
+                    <resources>
+                        <resources>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resources>
+                    </resources>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
 </project>

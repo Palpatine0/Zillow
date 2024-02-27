@@ -19,28 +19,38 @@ public class TrendyServiceImpl implements TrendyService {
     @Autowired
     private TrendyDao trendyDao;
 
-    @Value("${zillow.banner.nginx.prefix}")
+    @Value("${zillow.fdfsBasePath.nginx.prefix}")
     private String nginxPrefix;
 
     public ZillowResult getTrendy(String city) {
         // S1: get data
         Query query = new Query();
         // set cri: current city data
-        query.addCriteria(Criteria.where("city").is(city));
+        query.addCriteria(Criteria.where("city").is(city).and("weight").gt(5));
 
         // S2: pagination
         query.with(PageRequest.of(0, 4));
         List<Item> items = trendyDao.getTrendy(query);
-        // if current trendy items is less than 4. grab from other city
-        if (items.size() < 4) {
+        for (Item item : items) {
+            System.out.println(item);
+        }
+
+        // only if current trendy items is less than 4. grab from other city
+        int sz = items.size();
+        System.out.println("available trendies size: " + sz);
+        if (sz < 4) {
+            int lack = 4 - sz;
             Query queryy = new Query();
-            queryy.addCriteria(Criteria.where("city").ne(city));
-            queryy.with(PageRequest.of(0, 4));
-            List<Item> itemm = trendyDao.getTrendy(query);
+            queryy.addCriteria(Criteria.where("city").is(city));
+            queryy.with(PageRequest.of(0, lack));
+            List<Item> itemm = trendyDao.getTrendy(queryy);
             items.addAll(itemm);
         }
-        // fallback option, really have nothing to show, fill the remaining will all this
-        if(items.size() < 4){
+
+
+        // XXXXXX
+        // fallback option, if really have nothing to show, fill the remaining will all this
+        if (items.size() < 4) {
             for (int i = items.size(); i < 4; i++) {
                 items.add(fallbackItem());
             }
@@ -52,10 +62,10 @@ public class TrendyServiceImpl implements TrendyService {
         return ZillowResult.ok(items);
     }
 
-    private List<Item> imgUrlAppend(List<Item> items){
-        for(Item item : items){
+    private List<Item> imgUrlAppend(List<Item> items) {
+        for (Item item : items) {
             List<String> newImgs = new ArrayList<>();
-            for(String img : item.getImgs()){
+            for (String img : item.getImgs()) {
                 newImgs.add(nginxPrefix + img);
             }
             item.setImgs(newImgs);
@@ -64,7 +74,7 @@ public class TrendyServiceImpl implements TrendyService {
     }
 
 
-    private Item fallbackItem(){
+    private Item fallbackItem() {
         Item item = new Item();
         item.setId("5ec1ec6b7f56a946fb7fdffa");
         item.setCity("B");
@@ -77,7 +87,7 @@ public class TrendyServiceImpl implements TrendyService {
                 ));
         item.setPrice(12000L);
         item.setRecommendation(true);
-        item.setRecoSort(((byte) 9));
+        item.setWeight(((byte) 9));
         item.setRentType("Whole Rentle");
         item.setSales(100L);
         item.setTitle("BVB");

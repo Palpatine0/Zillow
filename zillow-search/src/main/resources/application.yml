@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: mongodb,bannerNginx
+    active: mongodb,fdfsBasePathNginx
   application:
     name: zillow-search
   elasticsearch:
@@ -17,7 +17,7 @@ eureka:
     prefer-ip-address: true
 
 zillow:
-  banner:
+  fdfsBasePath:
     nginx:
       prefix: http://111.231.19.137:8888/
 

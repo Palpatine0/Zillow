@@ -16,16 +16,20 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    @PostMapping("/sendVerificationCode")
-//    @PostMapping("/sendyzm")
-    public ZillowResult sentVerificationCode(String phone) {
-        return loginService.sendVerificationCode(phone);
+    @PostMapping("/register")
+    public ZillowResult register(String username, String password, String phone) {
+        return loginService.register(username, password, phone);
     }
 
-    //    @PostMapping("/login")
     @PostMapping("/login")
-    public ZillowResult login(String phone, String verificationCode) {
-        return loginService.login(phone, verificationCode);
+    public ZillowResult login(String username, String password, String phone, String verificationCode) {
+        System.out.println();
+        return loginService.login(username, password, phone, verificationCode);
+    }
+
+    @PostMapping("/sendVerificationCode")
+    public ZillowResult sentVerificationCode(String phone) {
+        return loginService.sendVerificationCode(phone);
     }
 
     @GetMapping("/getLoggedInUser")

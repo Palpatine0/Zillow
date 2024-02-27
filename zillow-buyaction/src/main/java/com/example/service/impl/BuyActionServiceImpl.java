@@ -51,7 +51,7 @@ public class BuyActionServiceImpl implements BuyActionService {
             return ok;
         } else {
             ZillowResult error = ZillowResult.error();
-            error.setMsg("Late, it's occupied");
+            error.setMsg("Server error");
             return error;
         }
 

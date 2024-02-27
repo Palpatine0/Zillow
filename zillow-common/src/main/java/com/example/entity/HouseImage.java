@@ -5,13 +5,14 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class Comment {
-    private String username;
-    private String comment;
-    private int star;
-    private String itemId;
+public class HouseImage {
+    private String id;
+    private String url;
+    private Date createTime;
 }

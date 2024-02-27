@@ -22,15 +22,22 @@ public class SearchServiceImpl implements SearchService {
     @Autowired
     private SearchDao searchDao;
 
-    @Value("${zillow.banner.nginx.prefix}")
+    @Value("${zillow.fdfsBasePath.nginx.prefix}")
     private String nginxPrefix;
 
+
+    @Override
+    public ZillowResult searchAll(String city, int page, int rows) {
+        List<Item4ES> item4ESList = searchDao.searchAll(city, page, rows);
+        return ZillowResult.ok(item4ESList);
+    }
 
     @Override
     public ZillowResult searchByKeyWord(String city, String content, int page, int rows) {
         List<Item4ES> item4ESList = searchDao.searchByKeyWord(city, content, page, rows);
         return ZillowResult.ok(item4ESList);
     }
+
 
     @Override
     public void ESInit() {

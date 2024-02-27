@@ -12,9 +12,7 @@
     <description>Zillow</description>
 
     <modules>
-
         <module>zillow-eureka</module>
-        <module>zillow-banner</module>
         <module>zillow-config-server</module>
         <module>zillow-buyaction</module>
         <module>zillow-buyaction-message-consumer</module>
@@ -31,6 +29,7 @@
         <module>zillow-rabbit-publisher</module>
         <module>zillow-recommdation</module>
         <module>zillow-search</module>
+        <module>zillow-file</module>
     </modules>
 
 

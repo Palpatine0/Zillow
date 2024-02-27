@@ -9,9 +9,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class Comment {
+public class User {
     private String username;
-    private String comment;
-    private int star;
-    private String itemId;
+    private String password;
+    private String phone;
 }

@@ -4,7 +4,7 @@ spring:
   application:
     name: zillow-detail
   profiles:
-    active: mongodb,bannerNginx ,redis
+    active: mongodb, fdfsBasePathNginx ,redis
   cloud:
     config:
       uri: http://localhost:9010
@@ -18,7 +18,7 @@ eureka:
 #      defaultZone: http://111.231.19.137:8761/eureka/
 
 zillow:
-  banner:
+  fdfsBasePath:
     nginx:
       prefix: http://111.231.19.137:8888/
 
@@ -76,9 +76,9 @@ resilience4j.ratelimiter:
   configs:
     default:
       registerHealthIndicator: false
-      limitForPeriod: 1    #在一个刷新周期内允许访问的最大次数（每秒X次）
-      limitRefreshPeriod: 1s #限流器每隔limitRefreshPeriod刷新一次，将允许处理的最大请求数量重置为limitForPeriod
-      timeoutDuration: 0    #线程等待权限的默认等待时间
+      limitForPeriod: 1
+      limitRefreshPeriod: 1s
+      timeoutDuration: 0
       eventConsumerBufferSize: 100
   instances:
     backendA:

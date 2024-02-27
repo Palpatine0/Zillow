@@ -18,7 +18,7 @@ public class DetailServiceImpl implements DetailService {
     private DetailDao detailDao;
 
     // the IP address info that needs to append in blank image routes
-    @Value("${zillow.banner.nginx.prefix}")
+    @Value("${zillow.fdfsBasePath.nginx.prefix}")
     private String nginxPrefix;
 
     private static final String BACKEND_B = "backendB";

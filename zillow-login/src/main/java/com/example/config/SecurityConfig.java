@@ -56,7 +56,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/sendVerificationCode").permitAll() // Allow access to /sendyzm without authentication
+                .antMatchers("/sendVerificationCode").permitAll() // Allow access to /sendVerificationCode without authentication
+                .antMatchers("/register").permitAll() // Allow access to /--
                 //.antMatchers("/public/**").permitAll() // Allow access to resources under /public without authentication
                 .anyRequest().authenticated() // All other requests require authentication
                 .and()
