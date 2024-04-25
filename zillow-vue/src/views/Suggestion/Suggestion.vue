@@ -5,8 +5,8 @@ import Advise from "@/views/Suggestion/Suggestions/Advise.vue";
 </script>
 
 <template>
-  <div>
-    <Loan/>
-    <Advise/>
-  </div>
+    <div>
+        <Loan/>
+        <Advise/>
+    </div>
 </template>
