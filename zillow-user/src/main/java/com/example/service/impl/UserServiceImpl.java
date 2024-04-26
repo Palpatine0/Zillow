@@ -5,7 +5,7 @@ import com.example.dao.UserDao;
 import com.example.dao.VerificationDao;
 import com.example.entity.User;
 import com.example.entity.VerificationCode;
-import com.example.service.LoginService;
+import com.example.service.UserService;
 import com.example.vo.ZillowResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Query;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Random;
 
 @Service
-public class LoginServiceImpl implements LoginService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private VerificationDao verificationDao;

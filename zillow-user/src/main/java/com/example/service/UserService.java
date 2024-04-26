@@ -2,7 +2,7 @@ package com.example.service;
 
 import com.example.vo.ZillowResult;
 
-public interface LoginService {
+public interface UserService {
     ZillowResult sendVerificationCode(String phone);
 
     ZillowResult login(String username, String password, String phone, String verificationCode);

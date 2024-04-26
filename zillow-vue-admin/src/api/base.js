@@ -1,19 +1,40 @@
 // base.js
 const base = {
     baseUrl: "/api",
-    banner: '/file/getBanner',
-    trendy: '/trendy/getTrendy',
-    recommendation: "/recommendation/getRecommendation",
-    details: '/detail/getDetail',
+
+    // file
+    getBanner: '/file/getBanner',
+
+    // trendy
+    getTrendy: '/trendy/getTrendy',
+
+    // recommendation
+    getRecommendation: "/recommendation/getRecommendation",
+
+    // details
+    getDetail: '/detail/getDetail',
+
+    // comment
     comment: '/comment/getComment',
     feelback: "/comment/addComment",
-    search: "/search/searchByKeyWord",
-    searchAll: "/search/searchAll",
-    sendVerificationCode: '/sendVerificationCode',
-    login: '/login',
-    register: '/register',
+
+    // search
+    searchByKeyWord: "/search/searchByKeyWord",
+    search: "/search/search",
+
+    // user
+    sendVerificationCode: '/user/sendVerificationCode',
+    login: '/user/login',
+    register: '/user/register',
+    getUser: '/user/getUser',
+
+    // buyAction
     buyAction: "/buyAction/buyAction",
-    buytime: '/buyTime/getBuyTime',
+
+    // buytime
+    getBuyTime: '/buyTime/getBuyTime',
+
+    // order
     order: "/order/getOrder"
 }
 

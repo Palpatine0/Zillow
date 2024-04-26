@@ -77,7 +77,7 @@ public class RecommendationServiceImpl implements RecommendationService {
         return items;
     }
 
-    // really have nothing to show, fill the remaining will all this
+    // really have nothing to show, fill the remaining will all these
     private Item fallbackItem(){
         Item item = new Item();
         item.setId("5ec1ec6b7f56a946fb7fdffa");

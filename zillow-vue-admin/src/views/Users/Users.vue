@@ -1,21 +1,22 @@
 <template>
     <div class="team">
-        <h1 class="subheading grey--text">Team</h1>
+      <h1 class="subheading grey--text">Users</h1>
 
         <v-container class="my-5">
 
             <v-layout row wrap>
 
-                <v-flex xs12 sm6 md4 lg3 v-for="person in team" :key="person.name">
+              <v-flex v-for="user in users" :key="user.name" lg3 md4 sm6 xs12>
                     <v-card flat class="text-xs-center ma-3">
                         <v-responsive class="pt-4">
                             <v-avatar size="100" class="grey lighten-2">
-                                <img :src="person.avatar">
+                              <!--<img :src="user.avatar">-->
+                              <img src="/avatar-1.png">
                             </v-avatar>
                         </v-responsive>
                         <v-card-text>
-                            <div class="subheading">{{ person.name }}</div>
-                            <div class="grey--text">{{ person.role }}</div>
+                          <div class="subheading">{{ user.username }}</div>
+                          <div class="grey--text">{{ user.phone }}</div>
                         </v-card-text>
                         <v-card-actions>
                             <v-btn flat color="grey">
@@ -37,14 +38,19 @@
 export default {
     data() {
         return {
-            team: [
-                {name: 'The Net Ninja', role: 'Web developer', avatar: '/avatar-1.png'},
-                {name: 'Ryu', role: 'Graphic designer', avatar: '/avatar-2.png'},
-                {name: 'Chun Li', role: 'Web developer', avatar: '/avatar-3.png'},
-                {name: 'Gouken', role: 'Social media maverick', avatar: '/avatar-4.png'},
-                {name: 'Yoshi', role: 'Sales guru', avatar: '/avatar-5.png'}
-            ]
+          users: []
         }
-    }
+    },
+  mounted() {
+    this.$api.getUser()
+        .then(data => {
+          console.log("data---------------------------------")
+          console.log(data)
+          if (data.data.status) {
+            this.users = data.data.data
+          }
+        })
+
+  },
 }
 </script>

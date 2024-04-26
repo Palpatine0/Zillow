@@ -58,7 +58,7 @@ export default {
         return {
             curcity: 'Dallas',
             projects: [],
-            recommendation: []
+          recommendation: []
 
         }
     },
@@ -82,7 +82,6 @@ export default {
         })
         .then(data => {
             if (data.data.status) {
-                console.log("fuck yeahhhhhhh")
                 this.recommendation = data.data.data
             }
         })
@@ -100,6 +99,34 @@ export default {
                 }
             })
         })
+
+      // Fake data for recommendation
+      this.recommendation = [
+        {
+          id: '1',
+          title: 'Project 1',
+          description: 'This is a description for Project 1',
+          person: 'John Doe',
+          due: '2023-12-31',
+          status: 'ongoing'
+        },
+        {
+          id: '2',
+          title: 'Project 2',
+          description: 'This is a description for Project 2',
+          person: 'Jane Doe',
+          due: '2023-11-30',
+          status: 'complete'
+        },
+        {
+          id: '3',
+          title: 'Project 3',
+          description: 'This is a description for Project 3',
+          person: 'Bob Smith',
+          due: '2023-10-31',
+          status: 'overdue'
+        }
+      ]
     }
 }
 </script>

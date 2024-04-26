@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Dashboard from './views/Dashboard.vue'
 import Projects from './views/Projects.vue'
-import Users from './views/Users.vue'
+import Users from './views/Users/Users.vue'
 
 Vue.use(Router)
 

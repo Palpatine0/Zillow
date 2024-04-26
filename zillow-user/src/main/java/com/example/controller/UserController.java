@@ -1,7 +1,7 @@
 package com.example.controller;
 
 
-import com.example.service.LoginService;
+import com.example.service.UserService;
 import com.example.vo.ZillowResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -15,30 +15,30 @@ import javax.annotation.security.PermitAll;
 
 @RestController
 @RequestMapping("/user")
-public class LoginController {
+public class UserController {
     @Autowired
-    private LoginService loginService;
+    private UserService userService;
 
     @PostMapping("/register")
     public ZillowResult register(String username, String password, String phone) {
-        return loginService.register(username, password, phone);
+        return userService.register(username, password, phone);
     }
 
     @PostMapping("/login")
     public ZillowResult login(String username, String password, String phone, String verificationCode) {
         System.out.println();
-        return loginService.login(username, password, phone, verificationCode);
+        return userService.login(username, password, phone, verificationCode);
     }
 
     @PermitAll
     @GetMapping("/getUser")
     public ZillowResult getUser() {
-        return loginService.getUser();
+        return userService.getUser();
     }
 
     @PostMapping("/sendVerificationCode")
     public ZillowResult sentVerificationCode(String phone) {
-        return loginService.sendVerificationCode(phone);
+        return userService.sendVerificationCode(phone);
     }
 
     @GetMapping("/getLoggedInUser")

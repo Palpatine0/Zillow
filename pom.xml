@@ -30,6 +30,7 @@
         <module>zillow-recommdation</module>
         <module>zillow-search</module>
         <module>zillow-file</module>
+        <module>zillow-user</module>
     </modules>
 
 
