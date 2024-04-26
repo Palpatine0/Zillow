@@ -30,8 +30,6 @@ export default {
     },
     mounted() {
         this.globalData.deviceWidth = window.screen.width;
-        console.log("APP: globalData.deviceWidth")
-        console.log(this.globalData.deviceWidth)
     }
 };
 </script>
@@ -40,6 +38,7 @@ export default {
 * {
     font-family: Arial;
 }
+
 * {
     //outline: 1px solid red;
 }

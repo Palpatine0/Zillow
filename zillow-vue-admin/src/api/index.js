@@ -11,6 +11,7 @@ const api = {
         return axios.get(base.baseUrl + base.banner)
     },
     recommendation(params) {
+        console.log("YOoooooo")
         return axios.get(base.baseUrl + base.recommendation + "?city=" + params.city);
     },
     hotProduct(params) {

@@ -29,19 +29,20 @@ export default {
         this.$api.hotProduct({
             city: this.curcity
         })
-                .then(data => {
-                    if (data.data.status) {
-                        this.trendy = data.data.data
-                    }
-                })
+        .then(data => {
+            if (data.data.status) {
+                this.trendy = data.data.data
+            }
+        })
+
         this.$api.recommendation({
             city: this.curcity
         })
-                .then(data => {
-                    if (data.data.status) {
-                        this.recommendation = data.data.data
-                    }
-                })
+        .then(data => {
+            if (data.data.status) {
+                this.recommendation = data.data.data
+            }
+        })
     }
 };
 </script>
