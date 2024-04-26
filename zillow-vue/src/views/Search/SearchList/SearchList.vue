@@ -39,7 +39,7 @@ export default {
           })
     },
     http(keyword, city) {
-      return this.$api.getSearch({city: city, content: keyword, page: this.page})
+      return this.$api.searchByKeyWord({city: city, content: keyword, page: this.page})
     }
   },
   watch: {

@@ -8,4 +8,7 @@ public interface LoginService {
     ZillowResult login(String username, String password, String phone, String verificationCode);
 
     ZillowResult register(String username, String password, String phone);
+
+    ZillowResult getUser();
+
 }

@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home/Home.vue'
 import Life from '../views/Life/Life.vue'
 import Mine from '../views/Mine/Mine.vue'
-import Register from "@/views/register/Regiser.vue";
+import Register from "@/views/Register/Regiser.vue";
 import Login from '../views/Login/Login.vue'
 import Shop from '../views/Shop/Shop.vue'
 import Shopcar from '../views/Shopcar/Shopcar.vue'
@@ -42,7 +42,7 @@ const routes = [
         component: Login
     },
     {
-        path: '/register',
+        path: '/Register',
         name: 'register',
         component: Register
     },

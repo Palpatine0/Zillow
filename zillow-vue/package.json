@@ -23,6 +23,7 @@
         "vuex-persistedstate": "^4.1.0"
     },
     "devDependencies": {
+        "@vue/cli": "^5.0.8",
         "@vue/cli-plugin-babel": "^4.0.0",
         "@vue/cli-plugin-pwa": "^4.0.0",
         "@vue/cli-plugin-router": "^4.0.0",

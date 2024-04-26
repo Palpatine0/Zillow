@@ -8,8 +8,10 @@ import com.example.entity.VerificationCode;
 import com.example.service.LoginService;
 import com.example.vo.ZillowResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -94,7 +96,6 @@ public class LoginServiceImpl implements LoginService {
         return ok;
     }
 
-
     @Override
     public ZillowResult sendVerificationCode(String phone) {
 
@@ -122,5 +123,12 @@ public class LoginServiceImpl implements LoginService {
         result.setMsg("Verification code sent");
         System.out.println("phone: " + phone + " code: " + rawCode);
         return result;
+    }
+
+    @Override
+    public ZillowResult getUser() {
+        Query query = new Query();
+        List<User> users = userDao.selectUsers(query);
+        return ZillowResult.ok(users);
     }
 }

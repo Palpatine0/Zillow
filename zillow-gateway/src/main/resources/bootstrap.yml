@@ -11,43 +11,46 @@ spring:
           lower-case-service-id: true
 
       routes:
-
+        # file
         - id: file
           uri: lb://zillow-file
           predicates:
             - Path=/file/getBanner
 
+        # trendy
         - id: trendy
           uri: lb://zillow-trendy
           predicates:
             - Path=/trendy/getTrendy
             - Query=city
 
+        # recommendation
         - id: recommendation
           uri: lb://zillow-recommendation
           predicates:
             - Path=/recommendation/getRecommendation
             - Query=city
 
+        # detail
         - id: details
           uri: lb://zillow-detail
           predicates:
             - Path=/detail/getDetail
             - Query=id
 
+        # comment
         - id: comment-getComment
           uri: lb://zillow-comment
           predicates:
             - Path=/comment/getComment
             - Query=id
             - Query=page
-
         - id: comment-addComment
           uri: lb://zillow-comment
           predicates:
             - Path=/comment/addComment
 
-
+        # search
         - id: search-searchByKeyWord
           uri: lb://zillow-search
           predicates:
@@ -55,40 +58,46 @@ spring:
             - Query=city
             - Query=content
             - Query=page
-
-        - id: search-searchAll
+        - id: search-search
           uri: lb://zillow-search
           predicates:
-            - Path=/search/searchAll
+            - Path=/search/search
             - Query=city
             - Query=page
 
 
-
-        - id: login
-          uri: lb://zillow-login
+        # user
+        - id: user
+          uri: lb://zillow-user
           predicates:
-            - Path=/login
+            - Path=/user/login
         - id: register
-          uri: lb://zillow-login
+          uri: lb://zillow-user
           predicates:
-            - Path=/register
+            - Path=/user/register
         - id: sendVerificationCode
-          uri: lb://zillow-login
+          uri: lb://zillow-user
           predicates:
-            - Path=/sendVerificationCode
+            - Path=/user/sendVerificationCode
+        - id: getUser
+          uri: lb://zillow-user
+          predicates:
+            - Path=/user/getUser
 
+        # buyAction
         - id: buyAction
           uri: lb://zillow-buyaction
           predicates:
             - Path=/buyAction/buyAction
-
-        - id: buytime
+            -
+            # buyTime
+        - id: buyTime
           uri: lb://zillow-buytime
           predicates:
             - Path=/buyTime/getBuyTime
             - Query=id
 
+        # order
         - id: order
           uri: lb://zillow-order
           predicates:

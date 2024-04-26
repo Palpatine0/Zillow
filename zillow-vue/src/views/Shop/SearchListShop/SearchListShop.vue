@@ -42,7 +42,7 @@ export default {
     },
     http() {
 
-      return this.$api.getSearchAll({city: this.curcity, page: this.page})
+      return this.$api.search({city: this.curcity, page: this.page})
           .then((data) => {
             this.searchListData = this.searchListData.concat(data.data.data)
             return data;
