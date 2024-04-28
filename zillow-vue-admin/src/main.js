@@ -6,6 +6,8 @@ import qs from "querystring";
 
 import axios from "axios";
 import api from './api/index.js'
+import '@fortawesome/fontawesome-free/css/all.css'
+
 
 
 axios.interceptors.request.use(function (config) {

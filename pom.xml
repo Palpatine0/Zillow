@@ -31,6 +31,7 @@
         <module>zillow-search</module>
         <module>zillow-file</module>
         <module>zillow-user</module>
+        <module>zillow-item</module>
     </modules>
 
 

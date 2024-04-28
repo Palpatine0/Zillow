@@ -14,7 +14,6 @@ public class RecommendationController {
     private RecommendationService recommendationService;
 
     @GetMapping("/getRecommendation")
-//    @GetMapping("/recommendation")
     public ZillowResult getTrendy(String city) {
         return recommendationService.getRecommendation(city);
     }
