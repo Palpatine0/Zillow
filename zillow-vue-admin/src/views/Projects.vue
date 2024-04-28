@@ -23,11 +23,33 @@
 import db from '@/fb'
 
 export default {
-  data() {
-    return {
-      projects: []
-    }
-  },
+    data() {
+        return {
+            projects: [
+                {
+                    title: 'Project 1',
+                    due: '2023-12-31',
+                    content: 'This is the content for Project 1',
+                    person: 'The Net Ninja',
+                    status: 'in progress'
+                },
+                {
+                    title: 'Project 2',
+                    due: '2024-01-31',
+                    content: 'This is the content for Project 2',
+                    person: 'The Net Ninja',
+                    status: 'not started'
+                },
+                {
+                    title: 'Project 3',
+                    due: '2024-02-28',
+                    content: 'This is the content for Project 3',
+                    person: 'The Net Ninja',
+                    status: 'complete'
+                }
+            ]
+        }
+    },
   computed: {
     myProjects() {
       return this.projects.filter(project => {

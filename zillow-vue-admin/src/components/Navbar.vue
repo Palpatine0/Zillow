@@ -72,6 +72,7 @@ export default {
                 {icon: 'dashboard', text: 'Dashboard', route: '/'},
                 {icon: 'folder', text: 'My Projects', route: '/projects'},
                 {icon: 'person', text: 'Users', route: '/users'},
+                {icon: 'home', text: 'Test', route: '/test'},
             ],
             snackbar: false
         }

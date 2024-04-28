@@ -4,6 +4,7 @@
 
         <v-container class="my-5">
 
+
             <v-layout row justify-start class="mb-3">
                 <v-tooltip top>
                     <v-btn small flat color="grey" @click="sortBy('title')" slot="activator">
@@ -44,7 +45,6 @@
                 </v-layout>
                 <v-divider></v-divider>
             </v-card>
-
         </v-container>
 
     </div>
@@ -57,7 +57,32 @@ export default {
     data() {
         return {
             curcity: 'Dallas',
-            projects: [],
+            projects: [
+                {
+                    id: '1',
+                    title: 'Project 1',
+                    description: 'This is a description for Project 1',
+                    person: 'John Doe',
+                    due: '2023-12-31',
+                    status: 'ongoing'
+                },
+                {
+                    id: '2',
+                    title: 'Project 2',
+                    description: 'This is a description for Project 2',
+                    person: 'Jane Doe',
+                    due: '2023-11-30',
+                    status: 'complete'
+                },
+                {
+                    id: '3',
+                    title: 'Project 3',
+                    description: 'This is a description for Project 3',
+                    person: 'Bob Smith',
+                    due: '2023-10-31',
+                    status: 'overdue'
+                }
+            ],
           recommendation: []
 
         }
@@ -100,33 +125,6 @@ export default {
             })
         })
 
-      // Fake data for recommendation
-      this.recommendation = [
-        {
-          id: '1',
-          title: 'Project 1',
-          description: 'This is a description for Project 1',
-          person: 'John Doe',
-          due: '2023-12-31',
-          status: 'ongoing'
-        },
-        {
-          id: '2',
-          title: 'Project 2',
-          description: 'This is a description for Project 2',
-          person: 'Jane Doe',
-          due: '2023-11-30',
-          status: 'complete'
-        },
-        {
-          id: '3',
-          title: 'Project 3',
-          description: 'This is a description for Project 3',
-          person: 'Bob Smith',
-          due: '2023-10-31',
-          status: 'overdue'
-        }
-      ]
     }
 }
 </script>

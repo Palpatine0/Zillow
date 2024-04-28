@@ -89,8 +89,8 @@ spring:
           uri: lb://zillow-buyaction
           predicates:
             - Path=/buyAction/buyAction
-            -
-            # buyTime
+
+        # buyTime
         - id: buyTime
           uri: lb://zillow-buytime
           predicates:
