@@ -35,7 +35,7 @@ export default {
             }
         })
 
-      this.$api.getRecommendation({
+        this.$api.getRecommendation({
             city: this.curcity
         })
         .then(data => {
