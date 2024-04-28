@@ -1,6 +1,7 @@
 <!--SearchInput.vue-->
 <template>
-    <input v-model="msg" class='search-input' placeholder="Address, neighborhood, city, Zip" type="text" @keyup="search($event)">
+    <input v-model="msg" class='search-input' placeholder="Address, neighborhood, city, Zip" type="text"
+           @keyup="search($event)">
 </template>
 <script>
 export default {

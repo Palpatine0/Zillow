@@ -21,7 +21,7 @@
                     <span>Sort by project author</span>
                 </v-tooltip>
             </v-layout>
-            <v-card flat v-for="project in projects" :key="project.title"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 >
+            <v-card flat v-for="project in projects" :key="project.title">
                 <v-layout row wrap :class="`pa-3 project ${project.status}`">
                     <v-flex xs12 md6>
                         <div class="caption grey--text">Project title</div>
@@ -45,6 +45,7 @@
                 <v-divider></v-divider>
             </v-card>
 
+            <v-pagination :length="5" style="float: right"></v-pagination>
         </v-container>
 
     </div>
@@ -56,7 +57,8 @@ import db from '@/fb'
 export default {
     data() {
         return {
-            curcity: 'Dallas',
+            city: 'Dallas',
+            page:   0,
             projects: [
                 {
                     id: '1',
@@ -89,26 +91,20 @@ export default {
     methods: {
         sortBy(prop) {
             this.projects.sort((a, b) => a[prop] < b[prop] ? -1 : 1)
-        }
+        },
+
     },
     mounted() {
-        this.$api.hotProduct({
-            city: this.curcity
-        })
-        .then(data => {
-            if (data.data.status) {
-                this.trendy = data.data.data
-            }
+
+        this.$api.search({city: this.city, page: this.page})
+        .then((data) => {
+            console.log("datadatadatadata")
+            console.log(data)
+            this.searchListData = this.searchListData.concat(data.data.data)
+            return data;
         })
 
-        this.$api.recommendation({
-            city: this.curcity
-        })
-        .then(data => {
-            if (data.data.status) {
-                this.recommendation = data.data.data
-            }
-        })
+
     },
     created() {
         db.collection('projects').onSnapshot(res => {
