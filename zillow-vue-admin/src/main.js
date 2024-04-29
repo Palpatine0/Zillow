@@ -3,6 +3,7 @@ import './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
 import qs from "querystring";
+import vuetify from './plugins/vuetify'
 
 import axios from "axios";
 import api from './api/index.js'
@@ -28,6 +29,7 @@ Vue.prototype.$api = api;
 Vue.config.productionTip = false
 
 new Vue({
+    vuetify,
     router,
     render: h => h(App)
 }).$mount('#app')
