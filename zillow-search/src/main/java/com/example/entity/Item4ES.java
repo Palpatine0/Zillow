@@ -30,4 +30,6 @@ public class Item4ES {
     @Field(type= FieldType.Keyword)
     private String city;
 
+    private long totalCount;
+
 }

@@ -27,8 +27,8 @@ public class SearchServiceImpl implements SearchService {
 
 
     @Override
-    public ZillowResult searchAll(String city, int page, int rows) {
-        List<Item4ES> item4ESList = searchDao.searchAll(city, page, rows);
+    public ZillowResult searchByCity(String city, int page, int rows) {
+        List<Item4ES> item4ESList = searchDao.searchByCity(city, page, rows);
         return ZillowResult.ok(item4ESList);
     }
 

@@ -33,16 +33,19 @@ public class SearchDaoImpl implements SearchDao {
 
 
     @Override
-    public List<Item4ES> searchAll(String city, int page, int rows) {
+    public List<Item4ES> searchByCity(String city, int page, int rows) {
 
         // Create search condition object
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery().must(QueryBuilders.matchQuery("city", city));
+
 
         // Create search condition object
         NativeSearchQuery query = new NativeSearchQueryBuilder()
                 .withQuery(queryBuilder)
                 .withPageable(PageRequest.of(page, rows))
                 .build();
+
+        long totalCount = elasticsearchRestTemplate.count(query, Item4ES.class);
 
         // Perform search
         SearchHits<Item4ES> resultPage = elasticsearchRestTemplate.search(query, Item4ES.class);
@@ -59,6 +62,7 @@ public class SearchDaoImpl implements SearchDao {
             item4ES.setAptType(searchHit.getContent().getAptType());
             item4ES.setCity(searchHit.getContent().getCity());
             item4ES.setTitle(searchHit.getContent().getTitle());
+            item4ES.setTotalCount(totalCount);
             res.add(item4ES);
         }
 
@@ -121,10 +125,10 @@ public class SearchDaoImpl implements SearchDao {
         // insert
         elasticsearchRestTemplate.bulkIndex(list, Item4ES.class);
     }
+
     private void createIndex() {
         IndexOperations indexOperations = elasticsearchRestTemplate.indexOps(Item4ES.class);
     }
-
 
 
 }
