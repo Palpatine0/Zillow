@@ -58,10 +58,16 @@ spring:
             - Query=city
             - Query=content
             - Query=page
-        - id: search-search
+        - id: search-searchByCity
           uri: lb://zillow-search
           predicates:
-            - Path=/search/search
+            - Path=/search/searchByCity
+            - Query=city
+            - Query=page
+        - id: search-adminSearchByCity
+          uri: lb://zillow-search
+          predicates:
+            - Path=/search/adminSearchByCity
             - Query=city
             - Query=page
 

@@ -21,8 +21,11 @@ const api = {
     searchByKeyWord(params) {
         return axios.get(base.baseUrl + base.searchByKeyWord + "?" + qs.stringify(params));
     },
-    search(params) {
-        return axios.get(base.baseUrl + base.search + "?" + qs.stringify(params));
+    searchByCity(params) {
+        return axios.get(base.baseUrl + base.searchByCity + "?" + qs.stringify(params));
+    },
+    adminSearchByCity(params) {
+        return axios.get(base.baseUrl + base.adminSearchByCity + "?" + qs.stringify(params));
     },
 
     // detail
@@ -47,9 +50,6 @@ const api = {
 
 
     // user
-    getUser(params) {
-        return axios.get(base.baseUrl + base.getUser, params);
-    },
     sendVerificationCode(params) {
         return axios.post(base.baseUrl + base.sendVerificationCode, params)
     },
@@ -59,7 +59,9 @@ const api = {
     register(params) {
         return axios.post(base.baseUrl + base.register, params);
     },
-
+    getUser(params) {
+        return axios.get(base.baseUrl + base.getUser, params);
+    },
 
     // order
     getOrder(params) {
