@@ -1,24 +1,26 @@
 <template>
-  <v-app class="grey lighten-4">
-    <Navbar />
-
-    <v-content class="mx-4 mb-4">
-      <router-view></router-view>
-    </v-content>
-    
-  </v-app>
+    <v-app>
+        <NavBar/>
+        <v-main class="grey lighten-5" >
+            <HeadBar/>
+            <router-view class="grey lighten-5" />
+        </v-main>
+    </v-app>
 </template>
 
 <script>
-import Navbar from './components/Navbar.vue'
+import NavBar from './components/NavBar.vue';
+import HeadBar from "@/components/HeadBar.vue";
 
 export default {
-  components: { Navbar },
-  name: 'App',
-  data () {
-    return {
-      
-    }
-  }
-}
+    name: 'App',
+    components: {
+        HeadBar,
+        NavBar,
+    },
+    data: () => ({
+        //
+    }),
+};
+
 </script>
