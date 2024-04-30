@@ -16,8 +16,8 @@ public class SearchController {
     private SearchService searchService;
 
     @GetMapping("/search")
-    public ZillowResult searchByKeyWord(String city, int page, @RequestParam(defaultValue = "5") int rows) {
-        return searchService.searchAll(city, page, rows);
+    public ZillowResult searchByCity(String city, int page, @RequestParam(defaultValue = "5") int rows) {
+        return searchService.searchByCity(city, page, rows);
     }
 
     @GetMapping("/searchByKeyWord")
@@ -26,7 +26,7 @@ public class SearchController {
     }
 
     @GetMapping("/ESReload")
-    public ZillowResult searchByKeyWord() {
+    public ZillowResult esReload() {
         searchService.ESInit();
         return ZillowResult.ok("Done");
     }

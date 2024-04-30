@@ -1,17 +1,13 @@
 import Vue from 'vue'
-import './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
-import qs from "querystring";
-
+import store from './store'
+import vuetify from './plugins/vuetify'
 import axios from "axios";
 import api from './api/index.js'
-import '@fortawesome/fontawesome-free/css/all.css'
-
-
+import qs from "querystring";
 
 axios.interceptors.request.use(function (config) {
-    // console.log(config)
     // Do something before request is sent
     if (config.method == 'post') {
         console.log('posted')
@@ -29,5 +25,7 @@ Vue.config.productionTip = false
 
 new Vue({
     router,
+    store,
+    vuetify,
     render: h => h(App)
 }).$mount('#app')
