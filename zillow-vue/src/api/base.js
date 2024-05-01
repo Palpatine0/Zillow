@@ -20,12 +20,14 @@ const base = {
 
     // search
     searchByKeyWord: "/search/searchByKeyWord",
-    search: "/search/search",
+    searchByCity: "/search/searchByCity",
+    adminSearchByCity: "/search/adminSearchByCity",
 
     // user
     sendVerificationCode: '/user/sendVerificationCode',
     login: '/user/login',
     register: '/user/Register',
+    getUser: '/user/getUser',
 
     // buyAction
     buyAction: "/buyAction/buyAction",

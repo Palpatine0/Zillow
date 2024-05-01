@@ -15,8 +15,13 @@ public class SearchController {
     @Autowired
     private SearchService searchService;
 
-    @GetMapping("/search")
+    @GetMapping("/searchByCity")
     public ZillowResult searchByCity(String city, int page, @RequestParam(defaultValue = "5") int rows) {
+        return searchService.searchByCity(city, page, rows);
+    }
+
+    @GetMapping("/adminSearchByCity")
+    public ZillowResult adminSearchByCity(String city, int page, @RequestParam(defaultValue = "6") int rows) {
         return searchService.searchByCity(city, page, rows);
     }
 

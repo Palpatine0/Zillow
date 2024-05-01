@@ -1,10 +1,14 @@
 <template>
     <v-app style="padding: 20px">
         <v-subheader class="subheading grey--text" as="h1">Dashboard</v-subheader>
+
         <v-container>
+            <v-row justify="end">
+                <v-pagination class="float-right" :length="pagination" v-model="page" @input="adminSearchByCity" color="#156ff6"></v-pagination>
+            </v-row>
             <v-row>
                 <v-col cols="12" md="6" lg="4" v-for="(item, index) in searchListData" :key="index">
-                    <v-card class="mx-auto" max-width="400">
+                    <v-card class="mx-auto" max-width="400" :href="item.link">
                         <v-img class="white--text align-end" height="200px" :src="getFirstImageUrl(item.imgs)">
                             <v-card-title>{{ getHeadAddr(item.title) }}</v-card-title>
                         </v-img>
@@ -12,8 +16,10 @@
                             {{ getSubAddr(item.title) }}
                         </v-card-subtitle>
                         <v-card-text class="text--primary">
-                            <b><div>{{item.rentType}}</div></b>
-                            <div>{{item.aptType}}</div>
+                            <b>
+                                <div>{{ item.rentType }}</div>
+                            </b>
+                            <div>{{ item.aptType }}</div>
                         </v-card-text>
                         <v-card-actions>
                             <v-btn color="orange" text>
@@ -26,7 +32,7 @@
                     </v-card>
                 </v-col>
             </v-row>
-            <v-pagination :length="pagination" style="float: right" v-model="page" @input="search"></v-pagination>
+
         </v-container>
     </v-app>
 </template>
@@ -43,14 +49,17 @@ export default {
         }
     },
     methods: {
-        search() {
-            this.$api.search({city: this.city, page: this.page - 1})
+        adminSearchByCity() {
+            this.$api.adminSearchByCity({city: this.city, page: this.page - 1})
             .then((data) => {
+                console.log(data)
                 console.log("-------------------")
                 this.searchListData = []
                 this.totalCount_item = data.data.data[0].totalCount
-                this.pagination = Math.ceil(this.totalCount_item / 5); // Calculate the number of pages
+                this.pagination = Math.ceil(this.totalCount_item / 6);
                 this.searchListData = this.searchListData.concat(data.data.data)
+                console.log("this.pagination")
+                console.log(this.pagination)
                 console.log(this.searchListData)
                 return data;
             })
@@ -84,10 +93,9 @@ export default {
         }
 
 
-
     },
     mounted() {
-        this.search();
+        this.adminSearchByCity();
     },
 }
 </script>

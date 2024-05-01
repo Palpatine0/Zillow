@@ -16,9 +16,7 @@
                                 </router-link>
                             </div>
                             <div class="logo">
-                                <img alt="Zillow logo" class="" decoding="auto" focusable="false" height="25"
-                                     loading="eager" src="https://s.zillowstatic.com/pfs/static/z-logo-white.svg"
-                                     type="image/svg+xml" width="120">
+                                <img alt="Zillow logo" class="" decoding="auto" focusable="false" height="25" loading="eager" src="https://s.zillowstatic.com/pfs/static/z-logo-white.svg" type="image/svg+xml" width="120">
                             </div>
                         </div>
                     </div>

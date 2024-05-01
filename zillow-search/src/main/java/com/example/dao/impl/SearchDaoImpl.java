@@ -63,6 +63,8 @@ public class SearchDaoImpl implements SearchDao {
             item4ES.setCity(searchHit.getContent().getCity());
             item4ES.setTitle(searchHit.getContent().getTitle());
             item4ES.setTotalCount(totalCount);
+            String link = item4ES.getLink();
+            item4ES.setLink(link);
             res.add(item4ES);
         }
 
