@@ -35,8 +35,8 @@ const api = {
     buyaction(params) {
         return axios.get(base.baseUrl + base.buyAction + "?" + qs.stringify(params));
     },
-    getDetails(params) {
-        return axios.get(base.baseUrl + base.getDetail + "?" + qs.stringify(params));
+    getItem(params) {
+        return axios.get(base.baseUrl + base.getItem + "?" + qs.stringify(params));
     },
 
     // comment

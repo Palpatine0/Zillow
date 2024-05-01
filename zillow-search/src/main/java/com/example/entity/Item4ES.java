@@ -33,7 +33,7 @@ public class Item4ES {
     private long totalCount;
 
     public String getLink() {
-        return "/details/" + id;
+        return "/item/" + id;
     }
 
     public void setLink(String link) {

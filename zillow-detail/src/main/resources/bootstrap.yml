@@ -1,10 +1,10 @@
 server:
-  port: 9004
+  port: 9044
 spring:
   application:
     name: zillow-detail
   profiles:
-    active: mongodb, fdfsBasePathNginx ,redis
+    active: mongodb, fdfsBasePathNginx, redis
   cloud:
     config:
       uri: http://localhost:9010

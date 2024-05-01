@@ -1,14 +1,15 @@
 <template>
     <div class="comment-list">
+      <div v-if="commentData == ''">
+        <div class="center_h" style="color:gainsboro;">There's no comment.</div>
+      </div>
         <div v-for='(item,index) in commentData' :key='index' class="comment-item">
             <h3>
-                <!--<i class="icon-user"></i>-->
                 {{ item.username }}
             </h3>
             <Star :star='item.star'/>
             <p>{{ item.comment }}</p>
         </div>
-        <!--        <LoadMore @getMoreData='getMoreData'/>-->
     </div>
 </template>
 <script>
@@ -43,6 +44,9 @@ export default {
     mounted() {
         this.http()
         .then(data => {
+          console.log("comment")
+          console.log(data.data.data)
+          console.log("/comment")
             this.commentData = data.data.data
         })
     },
@@ -72,5 +76,12 @@ export default {
 
 .comment-list {
     padding: 20px;
+}
+
+.center_h {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin: 0 auto;
 }
 </style>

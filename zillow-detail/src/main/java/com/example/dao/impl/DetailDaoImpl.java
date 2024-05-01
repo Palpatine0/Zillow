@@ -15,4 +15,9 @@ public class DetailDaoImpl implements DetailDao {
     public Item findItemById(String id) {
         return mongoTemplate.findById(id,Item.class);
     }
+
+    @Override
+    public void saveItem(Item item) {
+        mongoTemplate.save(item);
+    }
 }
