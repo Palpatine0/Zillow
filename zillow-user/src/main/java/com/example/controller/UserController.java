@@ -29,9 +29,9 @@ public class UserController {
         return userService.login(username, password, phone, verificationCode);
     }
 
-    @PostMapping("/delete")
-    public ZillowResult delete(String id) {
-        return userService.delete(id);
+    @PostMapping("/deleteUser")
+    public ZillowResult deleteUser(String id) {
+        return userService.deleteUser(id);
     }
 
     @PermitAll

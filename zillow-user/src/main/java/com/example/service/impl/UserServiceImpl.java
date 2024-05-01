@@ -97,9 +97,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ZillowResult delete(String id) {
+    public ZillowResult deleteUser(String id) {
         userDao.deleteUserById(id);
-        ;
         ZillowResult ok = ZillowResult.ok();
         ok.setMsg("Successfully deleted");
         return ok;

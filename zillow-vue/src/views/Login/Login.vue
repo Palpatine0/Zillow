@@ -31,7 +31,7 @@
             <input v-model="pwd" placeholder="Password" type="text"/>
         </div>
         <button :disabled='!disableclick' :style="{background:!disableclick?'#156FF6':'#156FF6'}" class="btn-login"
-                @click="register">Sign In
+                @click="login">Sign In
         </button>
     </div>
 </template>
@@ -78,10 +78,7 @@ export default {
                 }
             }, 1000)
         },
-
-        register() {
-
-
+        login() {
             this.$api.login({
                 username: this.msg,
                 password: this.pwd
@@ -96,7 +93,6 @@ export default {
                 }
             })
         }
-
     },
 }
 </script>
