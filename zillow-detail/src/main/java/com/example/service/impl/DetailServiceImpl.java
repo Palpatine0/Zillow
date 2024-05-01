@@ -31,14 +31,11 @@ public class DetailServiceImpl implements DetailService {
     @Cacheable(cacheNames = "com:example", key = "'getDetails('+#id+')'")
     public Item getDetail(String id) {
         Item items = detailDao.findItemById(id);
-
         ArrayList<String> newImgs = new ArrayList<>();
         for (String img : items.getImgs()) {
             newImgs.add(nginxPrefix+img);
         }
         items.setImgs(newImgs);
-
-
         return items;
     }
 }

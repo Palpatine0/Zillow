@@ -28,6 +28,7 @@ const base = {
     login: '/user/login',
     register: '/user/Register',
     getUser: '/user/getUser',
+    deleteUser: '/user/deleteUser',
 
     // buyAction
     buyAction: "/buyAction/buyAction",

@@ -22,6 +22,13 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public void deleteUserById(String id) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("_id").is(id));
+        mongoTemplate.remove(query, User.class);
+    }
+
+    @Override
     public User getUserByUsername(String username) {
         Query query = new Query();
         query.addCriteria(Criteria.where("username").is(username));

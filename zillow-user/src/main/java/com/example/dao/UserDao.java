@@ -6,9 +6,11 @@ import org.springframework.data.mongodb.core.query.Query;
 import java.util.List;
 
 public interface UserDao {
+    User getUserByUsername(String username);
+
     void saveUser(User user);
 
-    User getUserByUsername(String username);
+    void deleteUserById(String id);
 
     List<User> selectUsers(Query query);
 

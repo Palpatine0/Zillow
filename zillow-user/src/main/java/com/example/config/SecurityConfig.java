@@ -57,6 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/user/login").permitAll() // Allow access to /login without authentication
+                .antMatchers("/user/delete").permitAll() // Allow access to /getUser without authentication
                 .antMatchers("/user/sendVerificationCode").permitAll() // Allow access to /sendVerificationCode without authentication
                 .antMatchers("/user/register").permitAll() // Allow access to /register without authentication
                 .antMatchers("/user/getUser").permitAll() // Allow access to /getUser without authentication

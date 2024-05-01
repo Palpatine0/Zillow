@@ -31,7 +31,7 @@
             <input v-model="pwd" placeholder="Password" type="text"/>
         </div>
         <button :disabled='!disableclick' :style="{background:!disableclick?'#156FF6':'#156FF6'}" class="btn-login"
-                @click="login">Sign Up
+                @click="register">Sign Up
         </button>
     </div>
 </template>
@@ -79,17 +79,12 @@ export default {
             }, 1000)
         },
 
-        login() {
-            console.log("Login method called");
-            console.log("Username:", this.msg);
-            console.log("Password:", this.pwd);
-
+        register() {
             this.$api.register({
                 username: this.msg,
                 password: this.pwd
             })
             .then(data => {
-                console.log("API Response:", data);
                 if (data.data.status == 200) {
                     this.setUserAction({data: this.msg})
                     window.history.back();
