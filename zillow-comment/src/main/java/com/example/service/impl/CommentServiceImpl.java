@@ -38,7 +38,7 @@ public class CommentServiceImpl implements CommentService {
             comment.setComment(commentContent);
             comment.setItemId(order.getItemId());
             comment.setStar(3);
-            commentDao.save(comment);
+            commentDao.saveComment(comment);
             orderDao.updateCommentStatus(orderId, 0);
             return ZillowResult.ok("Comment added successfully");
         } catch (Exception e) {

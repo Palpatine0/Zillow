@@ -9,7 +9,7 @@ import Login from '../views/Login/Login.vue'
 import Shop from '../views/Shop/Shop.vue'
 import Shopcar from '../views/Shopcar/Shopcar.vue'
 import City from '../views/City/City.vue'
-import Details from '../views/Details/Details.vue'
+import Item from '../views/Item/Item.vue'
 import Search from '../views/Search/Search.vue'
 import Buy from '../views/Buy/Buy'
 
@@ -62,9 +62,9 @@ const routes = [
         component: City
     },
     {
-        path: '/details/:id',
-        name: 'details',
-        component: Details
+        path: '/item/:id',
+        name: 'item',
+        component: Item
     },
     {
         path: '/search/:content',

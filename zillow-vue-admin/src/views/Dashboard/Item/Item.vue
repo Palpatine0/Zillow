@@ -7,23 +7,23 @@
         <Swiper :slides="swiperSlides" :title="title"></Swiper>
 
         <v-container style="float: right;display: flex">
-            <div v-if="detailsInfo.isRented!=true">
+          <div v-if="itemInfo.isRented!=true">
                 <v-chip class="ma-2">
                     For rent
                 </v-chip>
             </div>
-            <div v-else-if="detailsInfo.isRented==true">
+          <div v-else-if="itemInfo.isRented==true">
                 <v-chip class="ma-2" color="#156ff6" text-color="white">
                     <v-icon size="16">mdi-checkbox-marked-circle</v-icon>
                     &nbsp;Renting
                 </v-chip>
             </div>
-            <div v-if="detailsInfo.recommendation!=true">
+          <div v-if="itemInfo.recommendation!=true">
                 <v-chip class="ma-2">
                     Set Recommend
                 </v-chip>
             </div>
-            <div v-else-if="detailsInfo.recommendation==true">
+          <div v-else-if="itemInfo.recommendation==true">
                 <v-chip class="ma-2" color="#156ff6" text-color="white" close-icon="mdi-delete">
                     <v-icon size="16">mdi-checkbox-marked-circle</v-icon>
                     &nbsp;Recommending
@@ -34,7 +34,7 @@
         <v-container>
             <div>
                 <p style="font-weight: 700;font-size: 32px;line-height: 32px;">
-                    ${{ detailsInfo.price }} / mo
+                  ${{ itemInfo.price }} / mo
                 </p>
             </div>
         </v-container>
@@ -54,15 +54,18 @@ export default {
     data() {
         return {
             swiperSlides: [],
-            detailsInfo: {},
+          itemInfo: {},
             title: ''
         };
     },
     mounted() {
-        this.$api.getDetails({id: this.$route.params.id})
+      console.log("data")
+      this.$api.getItem({id: this.$route.params.id})
         .then(data => {
+
+          console.log(data)
             this.swiperSlides = data.data.imgs;
-            this.detailsInfo = data.data;
+          this.itemInfo = data.data;
             this.title = data.data.title;
         });
     }

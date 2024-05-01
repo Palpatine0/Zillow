@@ -11,8 +11,8 @@ const base = {
     // recommendation
     getRecommendation: "/recommendation/getRecommendation",
 
-    // details
-    getDetail: '/detail/getDetail',
+    //item
+    getItem: '/item/getItem',
 
     // comment
     comment: '/comment/getComment',

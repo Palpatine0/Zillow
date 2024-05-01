@@ -31,11 +31,11 @@ spring:
             - Path=/recommendation/getRecommendation
             - Query=city
 
-        # detail
-        - id: details
-          uri: lb://zillow-detail
+        # item
+        - id: item-getItem
+          uri: lb://zillow-item
           predicates:
-            - Path=/detail/getDetail
+            - Path=/item/getItem
             - Query=id
 
         # comment
@@ -57,6 +57,7 @@ spring:
             - Path=/search/searchByKeyWord
             - Query=city
             - Query=content
+            - Query=page
             - Query=page
         - id: search-searchByCity
           uri: lb://zillow-search

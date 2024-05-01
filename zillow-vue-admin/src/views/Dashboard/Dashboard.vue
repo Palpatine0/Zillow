@@ -52,15 +52,10 @@ export default {
         adminSearchByCity() {
             this.$api.adminSearchByCity({city: this.city, page: this.page - 1})
             .then((data) => {
-                console.log(data)
-                console.log("-------------------")
                 this.searchListData = []
                 this.totalCount_item = data.data.data[0].totalCount
                 this.pagination = Math.ceil(this.totalCount_item / 6);
                 this.searchListData = this.searchListData.concat(data.data.data)
-                console.log("this.pagination")
-                console.log(this.pagination)
-                console.log(this.searchListData)
                 return data;
             })
         },

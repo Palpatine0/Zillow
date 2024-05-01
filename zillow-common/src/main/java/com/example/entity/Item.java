@@ -70,7 +70,7 @@ public class Item {
     }
 
     public String getLink() {
-        return "/details/" + id;
+        return "/item/" + id;
     }
 
     public void setLink(String link) {

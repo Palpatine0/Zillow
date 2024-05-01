@@ -15,7 +15,7 @@ public class CommentDaoImpl implements CommentDao {
     private MongoTemplate mongoTemplate;
 
     @Override
-    public void save(Comment comment) {
+    public void saveComment(Comment comment) {
         mongoTemplate.save(comment);
     }
 

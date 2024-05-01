@@ -6,6 +6,6 @@ import org.springframework.data.mongodb.core.query.Query;
 import java.util.List;
 
 public interface CommentDao {
-    void save(Comment comment);
+    void saveComment(Comment comment);
     List<Comment> getCommentByItemId(Query query);
 }

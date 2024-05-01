@@ -1,11 +1,10 @@
 package com.example.dao;
 
-import com.example.entity.Item;
-import org.springframework.data.mongodb.core.query.Query;
 
-import java.util.List;
+import com.example.entity.Item;
 
 public interface ItemDao {
-    List<Item> selectItem(Query query);
-}
+    Item findItemById(String id);
 
+    void saveItem(Item item);
+}
