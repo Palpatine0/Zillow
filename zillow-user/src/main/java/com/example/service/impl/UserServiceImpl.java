@@ -97,6 +97,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public ZillowResult delete(String id) {
+        userDao.deleteUserById(id);
+        ;
+        ZillowResult ok = ZillowResult.ok();
+        ok.setMsg("Successfully deleted");
+        return ok;
+    }
+
+    @Override
     public ZillowResult sendVerificationCode(String phone) {
 
         // S1: see if has verification code already there
