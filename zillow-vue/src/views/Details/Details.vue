@@ -38,8 +38,8 @@ export default {
     name: "Details",
     data() {
         return {
-            swiperSlides: [],
             currentIndex: 1,
+            swiperSlides: [],
             detailsInfo: {}
         };
     },

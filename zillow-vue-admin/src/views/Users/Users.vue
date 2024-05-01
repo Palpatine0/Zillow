@@ -36,7 +36,6 @@ export default {
     mounted() {
         this.$api.getUser()
         .then(data => {
-            console.log("data---------------------------------")
             console.log(data)
             if (data.data.status) {
                 this.users = data.data.data

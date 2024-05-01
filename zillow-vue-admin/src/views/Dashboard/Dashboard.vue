@@ -4,11 +4,11 @@
 
         <v-container>
             <v-row justify="end">
-                <v-pagination class="float-right" :length="pagination"   v-model="page" @input="adminSearchByCity"></v-pagination>
+                <v-pagination class="float-right" :length="pagination" v-model="page" @input="adminSearchByCity" color="#156ff6"></v-pagination>
             </v-row>
             <v-row>
                 <v-col cols="12" md="6" lg="4" v-for="(item, index) in searchListData" :key="index">
-                    <v-card class="mx-auto" max-width="400">
+                    <v-card class="mx-auto" max-width="400" :href="item.link">
                         <v-img class="white--text align-end" height="200px" :src="getFirstImageUrl(item.imgs)">
                             <v-card-title>{{ getHeadAddr(item.title) }}</v-card-title>
                         </v-img>
@@ -16,8 +16,10 @@
                             {{ getSubAddr(item.title) }}
                         </v-card-subtitle>
                         <v-card-text class="text--primary">
-                            <b><div>{{item.rentType}}</div></b>
-                            <div>{{item.aptType}}</div>
+                            <b>
+                                <div>{{ item.rentType }}</div>
+                            </b>
+                            <div>{{ item.aptType }}</div>
                         </v-card-text>
                         <v-card-actions>
                             <v-btn color="orange" text>
@@ -89,7 +91,6 @@ export default {
             const parts = fullAddress.split(',');
             return parts[0]; // Return the first part before the comma
         }
-
 
 
     },
