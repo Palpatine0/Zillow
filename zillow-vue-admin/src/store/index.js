@@ -8,16 +8,23 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         drawer: true,
+        city: 'Cape Coral',
         links: [
             {icon: 'fa-lg fas fa-home', text: 'Dashboard', route: '/'},
             {icon: 'fa-lg fa-solid fa-user', text: 'Users', route: '/users'},
             {icon: 'fa-lg fa-solid fa-flask', text: 'Test', route: '/test'},
         ],
+        cities: [
+            'Dallas',
+            'Cape Coral'
+        ],
     },
     mutations: {
         toggleDrawer(state) {
-            // Toggle the value of 'drawer'
             state.drawer = !state.drawer;
+        },
+        setCity(state, city) {
+            state.city = city;
         }
     },
     actions: {

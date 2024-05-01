@@ -3,8 +3,14 @@
         <v-subheader class="subheading grey--text" as="h1">Dashboard</v-subheader>
 
         <v-container>
-            <v-row justify="end">
-                <v-pagination class="float-right" :length="pagination" v-model="page" @input="adminSearchByCity" color="#156ff6"></v-pagination>
+            <v-row style="justify-content: space-between">
+                <v-col cols="2">
+                    <v-select :items="cities" label="Standard" v-model="selectedCity"></v-select>
+
+                </v-col>
+                <div class="mt-5">
+                    <v-pagination class="float-right" :length="pagination" v-model="page" @input="adminSearchByCity" color="#156ff6"></v-pagination>
+                </div>
             </v-row>
             <v-row>
                 <v-col cols="12" md="6" lg="4" v-for="(item, index) in searchListData" :key="index">
@@ -38,10 +44,11 @@
 </template>
 
 <script>
+import {mapState} from "vuex";
+
 export default {
     data() {
         return {
-            city: 'Dallas',
             pagination: 0,
             page: 1,
             totalCount_item: 0,
@@ -50,7 +57,7 @@ export default {
     },
     methods: {
         adminSearchByCity() {
-            this.$api.adminSearchByCity({city: this.city, page: this.page - 1})
+            this.$api.adminSearchByCity({city: this.selectedCity, page: this.page - 1})
             .then((data) => {
                 this.searchListData = []
                 this.totalCount_item = data.data.data[0].totalCount
@@ -86,11 +93,23 @@ export default {
             const parts = fullAddress.split(',');
             return parts[0]; // Return the first part before the comma
         }
-
-
     },
     mounted() {
         this.adminSearchByCity();
+    },
+    computed: {
+        ...mapState(['cities']),
+        ...mapState(['city']),
+        selectedCity: {
+            get() {
+                return this.$store.state.city; // Getter to return the current city
+            },
+            set(value) {
+                this.$store.commit('setCity', value); // Setter to update the city in the Vuex store
+                this.adminSearchByCity(); // Refresh data when city changes
+            }
+        }
+
     },
 }
 </script>
