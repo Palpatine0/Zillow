@@ -9,4 +9,6 @@ public interface ItemService {
     ZillowResult getItemByCity(String city, int page, int rows);
 
     ZillowResult addItem(Item item);
+
+    ZillowResult updateItemStatusById(String id, Boolean isRented, Boolean recommendation);
 }

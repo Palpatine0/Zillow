@@ -96,5 +96,10 @@ public class ItemController {
         return orderServiceFeignClient.getOrder(phone);
     }
 
+    @PostMapping("/updateItemStatusById")
+    public ZillowResult updateItemStatusById(String id, Boolean isRented, Boolean recommendation) {
+        return itemService.updateItemStatusById(id, isRented, recommendation);
+    }
+
 
 }

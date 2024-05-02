@@ -64,63 +64,85 @@
 
         </v-container>
 
-        <v-container>
-            <v-row>
-                <v-col class="info-cell" cols="6" md="3" sm="6">
-                    <v-icon>fa-city</v-icon>
-                    <span>{{ itemInfo.info.type }}</span>
-                </v-col>
-                <v-col class="info-cell" cols="6" md="3" sm="6">
-                    <v-icon>mdi-border-style</v-icon>
-                    <span>{{ itemInfo.info.style }}</span>
-                </v-col>
-                <v-col class="info-cell" cols="6" md="3" sm="6">
-                    <v-icon>fa-hammer</v-icon>
-                    <span>{{ itemInfo.info.years }}</span>
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col class="info-cell" cols="6" md="3" sm="6">
-                    <v-icon>mdi-compass</v-icon>
-                    <span>{{ itemInfo.info.orientation }}</span>
-                </v-col>
-                <v-col class="info-cell" cols="6" md="3" sm="6">
-                    <v-icon>mdi-home-roof</v-icon>
-                    <span>{{ itemInfo.rentType }}</span>
-                </v-col>
-                <v-col class="info-cell" cols="6" md="3" sm="6">
-                    <v-icon>mdi-stairs</v-icon>
-                    <span>{{ itemInfo.info.level }}</span>
-                </v-col>
-            </v-row>
+      <v-container style="display: flex">
+        <v-col cols="12" md="9" sm="6">
+          <v-row>
+            <v-col class="info-cell" cols="6" md="4" sm="6">
+              <v-icon>fa-city</v-icon>
+              <span>{{ itemInfo.info.type }}</span>
+            </v-col>
+            <v-col class="info-cell" cols="6" md="4" sm="6">
+              <v-icon>mdi-border-style</v-icon>
+              <span>{{ itemInfo.info.style }}</span>
+            </v-col>
+            <v-col class="info-cell" cols="6" md="3" sm="6">
+              <v-icon>fa-hammer</v-icon>
+              <span>{{ itemInfo.info.years }}</span>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col class="info-cell" cols="6" md="4" sm="6">
+              <v-icon>mdi-compass</v-icon>
+              <span>{{ itemInfo.info.orientation }}</span>
+            </v-col>
+            <v-col class="info-cell" cols="6" md="4" sm="6">
+              <v-icon>mdi-home-roof</v-icon>
+              <span>{{ itemInfo.rentType }}</span>
+            </v-col>
+            <v-col class="info-cell" cols="6" md="3" sm="6">
+              <v-icon>mdi-stairs</v-icon>
+              <span>{{ itemInfo.info.level }}</span>
+            </v-col>
+          </v-row>
+        </v-col>
+
+
+        <v-col cols="12" md="3" sm="6" style="margin-top: -50px">
+          <v-card class="mx-auto center_h" max-width="344" outlined style="border-radius: 14px;flex-direction: column">
+            <v-btn class="edit-btn mt-5 mb-4" color="#156ff6" dark style="height: 50px!important;"
+                   @click="updateStatus_dialog=!updateStatus_dialog">
+              Edit Status
+            </v-btn>
+            <v-btn class="edit-btn mb-5" color="#156ff6" dark outlined>
+              Edit Info
+            </v-btn>
+          </v-card>
+        </v-col>
         </v-container>
+      <ItemEditStatus :item-info="itemInfo" :update-status_dialog="updateStatus_dialog"/>
+
 
     </v-app>
 </template>
 
 <script>
 import Swiper from "@/components/Swiper.vue";
+import ItemEditStatus from "@/views/Dashboard/Item/Item-editStatus/Item-editStatus.vue";
 
 export default {
     name: "Details",
     components: {
-        Swiper
+      Swiper,
+      ItemEditStatus
     },
     data() {
         return {
+
+          // page vars
             swiperSlides: [],
             itemInfo: {},
-            title: ''
+          title: '',
+          updateStatus_dialog: false
         };
     },
     mounted() {
         console.log("data")
         this.$api.getItem({id: this.$route.params.id})
         .then(data => {
-            console.log(data)
             this.swiperSlides = data.data.imgs;
             this.itemInfo = data.data;
             this.title = data.data.title;
+
         });
     }
 
@@ -164,7 +186,7 @@ export default {
 
 .info-cell {
     background-color: #efeff5;
-    margin: 10px;
+  margin: 4px;
     border-radius: 10px;
 }
 
@@ -174,7 +196,13 @@ export default {
     top: 2px;
 }
 
+.edit-btn {
+  display: block;
+  width: 90%;
+  height: 40px !important;
+}
+
 * {
-//outline: 1px solid red;
+  //outline: 1px solid red;
 }
 </style>

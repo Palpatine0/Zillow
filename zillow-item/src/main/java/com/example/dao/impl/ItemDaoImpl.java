@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -40,5 +41,19 @@ public class ItemDaoImpl implements ItemDao {
     @Override
     public void saveItem(Item item) {
         mongoTemplate.save(item);
+    }
+
+    @Override
+    public void updateItemStatusById(String id, Boolean isRented, Boolean recommendation) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("id").is(id));
+        Update update = new Update();
+        if (isRented != null) {
+            update.set("isRented", isRented);
+        }
+        if (recommendation != null) {
+            update.set("recommendation", recommendation);
+        }
+        mongoTemplate.findAndModify(query, update, Item.class);
     }
 }

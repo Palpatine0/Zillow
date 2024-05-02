@@ -61,6 +61,9 @@ const api = {
     adminGetItemByCity(params) {
         return axios.get(base.baseUrl + base.adminGetItemByCity + "?" + qs.stringify(params));
     },
+    updateItemStatusById(params) {
+        return axios.post(base.baseUrl + base.updateItemStatusById + "?" + qs.stringify(params));
+    },
 
 
     // comment

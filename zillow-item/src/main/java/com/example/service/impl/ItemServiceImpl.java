@@ -8,8 +8,8 @@ import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,6 +21,7 @@ public class ItemServiceImpl implements ItemService {
     private ItemDao itemDao;
 
     private static final String BACKEND_B = "backendB";
+
     // the IP address info that needs to append in blank image routes
     @Value("${zillow.fdfsBasePath.nginx.prefix}")
     private String nginxPrefix;
@@ -57,6 +58,18 @@ public class ItemServiceImpl implements ItemService {
         } catch (Exception e) {
             e.printStackTrace();
             return ZillowResult.error("Failed to add item.");
+        }
+    }
+
+    @Override
+    @CacheEvict(cacheNames = "com:example", key = "'getDetails('+#id+')'")
+    public ZillowResult updateItemStatusById(String id, Boolean isRented, Boolean recommendation) {
+        try {
+            itemDao.updateItemStatusById(id, isRented, recommendation);
+            return ZillowResult.ok("Status update successfully.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ZillowResult.error("Status update failed");
         }
     }
 
