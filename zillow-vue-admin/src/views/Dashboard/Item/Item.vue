@@ -1,6 +1,6 @@
 <template>
     <v-app style="padding: 20px">
-        <v-subheader class="subheading grey--text" as="h1">Details</v-subheader>
+        <v-subheader class="subheading grey--text" as="h1">Dashboard > Item</v-subheader>
         <div class="center_h mb-5">
             <v-img width="200" src="https://assets.leetcode.com/users/images/7da063f0-ed38-4153-9c88-372feaad79d6_1714562261.1995816.jpeg"/>
         </div>
