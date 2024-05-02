@@ -29,15 +29,9 @@ export default {
     position: relative;
     object-fit: cover;
     max-width: 100%;
-    width: 100%;
-    height: 100%;
+    width: 1200px;
+    top: -70px
 }
 
-.bottom-title {
-    font-size: 26px;
-    position: absolute;
-    bottom: -8px;
-    color: white;
-    z-index: 10000;
-}
+
 </style>

@@ -38,11 +38,6 @@ public class ItemController {
     }
 
 
-    /*@PostMapping("/addItem")
-    public ZillowResult addItem(@RequestBody Item item) {
-        return itemService.addItem(item);
-    }*/
-
     @PostMapping("/addItem")
     public ZillowResult addItem(@RequestParam String title, @RequestParam Long sales,
                                 @RequestParam Boolean recommendation, @RequestParam Byte weight, @RequestParam Long price,
@@ -50,13 +45,18 @@ public class ItemController {
                                 @RequestParam String orientation, @RequestParam String level, @RequestParam String style,
                                 @RequestParam String type, @RequestParam String years,
                                 @RequestParam(required = false) String buytime,
-                                @RequestParam Boolean isRented) throws ParseException {
+                                @RequestParam Boolean isRented,
+                                @RequestParam String beds, @RequestParam String baths, @RequestParam String area) throws ParseException {
         Map<String, String> info = new HashMap<>();
         info.put("orientation", orientation);
         info.put("level", level);
         info.put("style", style);
         info.put("type", type);
         info.put("years", years);
+        info.put("beds", beds);
+        info.put("baths", baths);
+        info.put("area", area);
+
 
         ArrayList<String> imgs = new ArrayList<>();
         imgs.add("group1/M00/00/00/CgAEDGVd4TGAaUGTABv2R2xYQ3I511.png");
@@ -85,6 +85,7 @@ public class ItemController {
         item.setImgs(imgs);
         item.setBuytime(date);
         item.setIsRented(isRented);
+
 
         return itemService.addItem(item);
     }

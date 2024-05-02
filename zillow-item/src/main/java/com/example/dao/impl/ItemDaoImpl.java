@@ -30,6 +30,14 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     @Override
+    public int getItemByCityCnt(String city) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("city").is(city));
+        return (int)mongoTemplate.count(query, Item.class);
+    }
+
+
+    @Override
     public void saveItem(Item item) {
         mongoTemplate.save(item);
     }

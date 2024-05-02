@@ -21,13 +21,13 @@ public class Item {
     private Byte weight;
     private Long price;
     private String city;
-    // rent in whole/rent with ppl
     private String rentType;
     private String houseType;
     private Map<String, String> info;
     private List<String> imgs;
     private Date buytime;
     private Boolean isRented;
+
 
     public Boolean getIsRented() {
         return isRented;
@@ -153,4 +153,13 @@ public class Item {
     public void setImgs(List<String> imgs) {
         this.imgs = imgs;
     }
+
+    public Boolean getRented() {
+        return isRented;
+    }
+
+    public void setRented(Boolean rented) {
+        isRented = rented;
+    }
+
 }

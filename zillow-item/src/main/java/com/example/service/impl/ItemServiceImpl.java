@@ -41,12 +41,12 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ZillowResult getItemByCity(String city, int page, int rows) {
-        PageRequest pageRequest = PageRequest.of(page, rows);
         List<Item> itemList = itemDao.getItemByCity(city, page, rows);
-        return ZillowResult.ok(itemList);
+        ZillowResult ok = new ZillowResult();
+        ok.setCnt(itemDao.getItemByCityCnt(city));
+        ok.setData(itemList);
+        return ok;
     }
-
-
 
 
     @Override

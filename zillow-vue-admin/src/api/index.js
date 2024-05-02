@@ -59,7 +59,7 @@ const api = {
         return axios.post(base.baseUrl + base.addItem, params);
     },
     adminGetItemByCity(params) {
-        return axios.get(base.baseUrl + base.getItem + "?" + qs.stringify(params));
+        return axios.get(base.baseUrl + base.adminGetItemByCity + "?" + qs.stringify(params));
     },
 
 
