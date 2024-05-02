@@ -28,20 +28,21 @@ const api = {
         return axios.get(base.baseUrl + base.adminSearchByCity + "?" + qs.stringify(params));
     },
 
-    // detail
+    //
     buytime(params) {
         return axios.get(base.baseUrl + base.getBuyTime + '?id=' + params.id);
     },
     buyaction(params) {
         return axios.get(base.baseUrl + base.buyAction + "?" + qs.stringify(params));
     },
+
+    // item
     getItem(params) {
         return axios.get(base.baseUrl + base.getItem + "?" + qs.stringify(params));
     },
 
     // comment
     addComment(params) {
-        console.log(params)
         return axios.post(base.baseUrl + base.feelback, params);
     },
     getComment(params) {

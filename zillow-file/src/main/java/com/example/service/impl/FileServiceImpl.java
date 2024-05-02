@@ -89,6 +89,35 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
+    public ZillowResult uploadImageNoPrefix(byte[] fileBytes, String fileName) throws IOException {
+        if (fileBytes.length != 0) {
+            try {
+                //1.convert the byte array in to input stream
+                InputStream inputStream = new ByteArrayInputStream(fileBytes);
+                //2.capture the substring of the file
+                String fileSuffix = fileName.substring(fileName.lastIndexOf(".") + 1);
+                //3.upload
+                StorePath storePath = fastFileStorageClient.uploadFile(inputStream, inputStream.available(), fileSuffix, null);
+                String fullPath = storePath.getFullPath();
+                // 4.capture the img route and return
+                String imageUrl = fullPath;
+                HouseImage houseImage = new HouseImage();
+                houseImage.setUrl(fullPath);
+                fileDao.saveHouseImage(houseImage);
+                return ZillowResult.ok(imageUrl);
+            } catch (IOException ioException) {
+                ZillowResult error = ZillowResult.error();
+                error.setMsg("File upload failed");
+                return error;
+            }
+        } else {
+            ZillowResult error = ZillowResult.error();
+            error.setMsg("File upload failed");
+            return error;
+        }
+    }
+
+    @Override
     public ZillowResult delete(String filePath) {
         fastFileStorageClient.deleteFile(filePath);
         return ZillowResult.ok();

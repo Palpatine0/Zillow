@@ -12,10 +12,14 @@ spring:
 
       routes:
         # file
-        - id: file
+        - id: file-getBanner
           uri: lb://zillow-file
           predicates:
             - Path=/file/getBanner
+        - id: file-uploadImageNoPrefix
+          uri: lb://zillow-file
+          predicates:
+            - Path=/file/uploadImageNoPrefix
 
         # trendy
         - id: trendy
@@ -37,6 +41,14 @@ spring:
           predicates:
             - Path=/item/getItem
             - Query=id
+        - id: item-addItem
+          uri: lb://zillow-item
+          predicates:
+            - Path=/item/addItem
+        - id: item-adminGetItemByCity
+          uri: lb://zillow-item
+          predicates:
+            - Path=/item/adminGetItemByCity
 
         # comment
         - id: comment-getComment

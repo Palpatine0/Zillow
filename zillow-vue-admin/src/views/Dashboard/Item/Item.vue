@@ -62,7 +62,6 @@ export default {
       console.log("data")
       this.$api.getItem({id: this.$route.params.id})
         .then(data => {
-
           console.log(data)
             this.swiperSlides = data.data.imgs;
           this.itemInfo = data.data;

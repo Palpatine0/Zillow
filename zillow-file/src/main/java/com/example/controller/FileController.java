@@ -21,15 +21,21 @@ public class FileController {
     private FileService fileService;
 
     @GetMapping("/getBanner")
-    public ZillowResult File() {
+    public ZillowResult file() {
         return fileService.getBanner();
     }
 
 
     @PostMapping("/uploadImage")
-    public ZillowResult upload(MultipartFile file) throws IOException {
+    public ZillowResult uploadImage(MultipartFile file) throws IOException {
         byte[] bytes = file.getBytes();
         return fileService.uploadImage(bytes, file.getOriginalFilename());
+    }
+
+    @PostMapping("/uploadImageNoPrefix")
+    public ZillowResult uploadImageNoPrefix(MultipartFile file) throws IOException {
+        byte[] bytes = file.getBytes();
+        return fileService.uploadImageNoPrefix(bytes, file.getOriginalFilename());
     }
 
     @DeleteMapping("/delete")

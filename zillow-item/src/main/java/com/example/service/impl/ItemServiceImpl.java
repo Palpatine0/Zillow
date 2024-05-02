@@ -9,9 +9,11 @@ import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -38,6 +40,16 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public ZillowResult getItemByCity(String city, int page, int rows) {
+        PageRequest pageRequest = PageRequest.of(page, rows);
+        List<Item> itemList = itemDao.getItemByCity(city, page, rows);
+        return ZillowResult.ok(itemList);
+    }
+
+
+
+
+    @Override
     public ZillowResult addItem(Item item) {
         try {
             itemDao.saveItem(item);
@@ -46,6 +58,17 @@ public class ItemServiceImpl implements ItemService {
             e.printStackTrace();
             return ZillowResult.error("Failed to add item.");
         }
+    }
+
+    private List<Item> imgUrlAppend(List<Item> items) {
+        for (Item item : items) {
+            List<String> newImgs = new ArrayList<>();
+            for (String img : item.getImgs()) {
+                newImgs.add(nginxPrefix + img);
+            }
+            item.setImgs(newImgs);
+        }
+        return items;
     }
 
 }

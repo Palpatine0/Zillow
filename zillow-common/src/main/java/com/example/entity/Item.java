@@ -18,7 +18,6 @@ public class Item {
     private String title;
     private Long sales;
     private Boolean recommendation;
-    // weight
     private Byte weight;
     private Long price;
     private String city;
