@@ -1,7 +1,6 @@
 <template>
     <v-app style="padding: 20px">
         <v-subheader class="subheading grey--text" as="h1">Dashboard</v-subheader>
-
         <v-container>
             <v-row style="justify-content: space-between">
                 <v-col cols="2">
@@ -9,13 +8,13 @@
 
                 </v-col>
                 <div class="mt-5">
-                    <v-pagination class="float-right" :length="pagination" v-model="page" @input="adminSearchByCity" color="#156ff6"></v-pagination>
+                    <v-pagination class="float-right" :length="pagination" v-model="page" @input="adminGetItemByCity" color="#156ff6"></v-pagination>
                 </div>
             </v-row>
             <v-row>
                 <v-col cols="12" md="6" lg="4" v-for="(item, index) in searchListData" :key="index">
                     <v-card class="mx-auto" max-width="400" :href="item.link">
-                        <v-img class="white--text align-end" height="200px" :src="getFirstImageUrl(item.imgs)">
+                        <v-img class="white--text align-end" height="200px" :src="img_prefix+item.img">
                             <v-card-title>{{ getHeadAddr(item.title) }}</v-card-title>
                         </v-img>
                         <v-card-subtitle class="pb-0">
@@ -40,46 +39,65 @@
             </v-row>
 
         </v-container>
+
+        <DashboardAddItem></DashboardAddItem>
+
+
+
+
     </v-app>
 </template>
 
 <script>
 import {mapState} from "vuex";
-
+import DashboardAddItem from "@/views/Dashboard/Dashboard-AddItem/Dashboard-AddItem.vue";
 export default {
     data() {
         return {
-            pagination: 0,
+            // l1
+            title: '',
+            sales: 300,
+            recommendation: false,
+            weight: 0,
+            price: '',
+            city: this.$store.state.city,
+            rentType: '',
+            houseType: '',
+            buytime: '',
+            isRented: false,
+            link: '',
+            img: '',
+            houseType4Search: '',
+            // info
+            orientation: '',
+            level: '',
+            style: '',
+            type: '',
+            years: '',
+
+
+            //
             page: 1,
+
+            pagination: 0,
             totalCount_item: 0,
             searchListData: [],
         }
     },
     methods: {
-        adminSearchByCity() {
-            this.$api.adminSearchByCity({city: this.selectedCity, page: this.page - 1})
+        adminGetItemByCity() {
+            this.$api.adminGetItemByCity({city: this.selectedCity, page: this.page - 1})
             .then((data) => {
                 this.searchListData = []
-                this.totalCount_item = data.data.data[0].totalCount
+                this.totalCount_item = data.data.cnt
                 this.pagination = Math.ceil(this.totalCount_item / 6);
                 this.searchListData = this.searchListData.concat(data.data.data)
-                return data;
+                console.log("this.searchListData")
+                console.log(this.searchListData)
             })
         },
-        getFirstImageUrl(imgs) {
-            const matches = imgs.match(/\[(.*?)\]/);
-            if (matches && matches.length > 1) {
-                const firstUrlPart = matches[1].split(',')[0].trim();
-                const imageUrl = `http://111.231.19.137:8888/${firstUrlPart}`;
-                console.log("Generated image URL:", imageUrl);
-                return imageUrl;
-            } else {
-                console.error("No image URLs found in the provided string");
-                return "default-image-url"; // Fallback URL
-            }
-        },
+
         getSubAddr(fullAddress) {
-            console.log("Processing address:", fullAddress); // This will show you what the input is
             if (!fullAddress) {
                 return "No address available";
             }
@@ -92,24 +110,29 @@ export default {
             }
             const parts = fullAddress.split(',');
             return parts[0]; // Return the first part before the comma
-        }
+        },
+
+    },
+    components: {
+        DashboardAddItem
     },
     mounted() {
-        this.adminSearchByCity();
+        this.adminGetItemByCity();
     },
     computed: {
         ...mapState(['cities']),
         ...mapState(['city']),
+        ...mapState(['img_prefix']),
         selectedCity: {
             get() {
                 return this.$store.state.city; // Getter to return the current city
             },
             set(value) {
                 this.$store.commit('setCity', value); // Setter to update the city in the Vuex store
-                this.adminSearchByCity(); // Refresh data when city changes
+                this.adminGetItemByCity(); // Refresh data when city changes
             }
-        }
+        },
+    }
 
-    },
 }
 </script>

@@ -4,6 +4,7 @@ const base = {
 
     // file
     getBanner: '/file/getBanner',
+    uploadImageNoPrefix: '/file/uploadImageNoPrefix',
 
     // trendy
     getTrendy: '/trendy/getTrendy',
@@ -13,6 +14,9 @@ const base = {
 
     //item
     getItem: '/item/getItem',
+    addItem: '/item/addItem',
+    adminGetItemByCity: '/item/adminGetItemByCity',
+    updateItemStatusById: '/item/updateItemStatusById',
 
     // comment
     comment: '/comment/getComment',

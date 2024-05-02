@@ -4,7 +4,12 @@ import com.example.dao.ItemDao;
 import com.example.entity.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class ItemDaoImpl implements ItemDao {
@@ -17,7 +22,38 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     @Override
+    public List<Item> getItemByCity(String city, int page, int rows) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("city").is(city));
+        query.skip((long) (page) * rows);
+        query.limit(rows);
+        return mongoTemplate.find(query, Item.class);
+    }
+
+    @Override
+    public int getItemByCityCnt(String city) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("city").is(city));
+        return (int)mongoTemplate.count(query, Item.class);
+    }
+
+
+    @Override
     public void saveItem(Item item) {
         mongoTemplate.save(item);
+    }
+
+    @Override
+    public void updateItemStatusById(String id, Boolean isRented, Boolean recommendation) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("id").is(id));
+        Update update = new Update();
+        if (isRented != null) {
+            update.set("isRented", isRented);
+        }
+        if (recommendation != null) {
+            update.set("recommendation", recommendation);
+        }
+        mongoTemplate.findAndModify(query, update, Item.class);
     }
 }

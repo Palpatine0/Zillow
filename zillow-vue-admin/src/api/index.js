@@ -6,10 +6,25 @@ import axios from 'axios'
 
 const api = {
 
-    // index
+    // file
     getBanner() {
         return axios.get(base.baseUrl + base.getBanner)
     },
+    uploadImageNoPrefix(file) {
+        const formData = new FormData();
+        formData.append('api-file', file);
+
+        axios.post(base.baseUrl + base.uploadImageNoPrefix, formData)
+            .then(response => {
+                console.log('File uploaded successfully');
+                console.log(response);
+            })
+            .catch(error => {
+                console.error('Upload error:', error);
+            });
+    },
+
+    //
     getRecommendation(params) {
         return axios.get(base.baseUrl + base.getRecommendation + "?city=" + params.city);
     },
@@ -28,16 +43,28 @@ const api = {
         return axios.get(base.baseUrl + base.adminSearchByCity + "?" + qs.stringify(params));
     },
 
-    // detail
+    //
     buytime(params) {
         return axios.get(base.baseUrl + base.getBuyTime + '?id=' + params.id);
     },
     buyaction(params) {
         return axios.get(base.baseUrl + base.buyAction + "?" + qs.stringify(params));
     },
+
+    // item
     getItem(params) {
         return axios.get(base.baseUrl + base.getItem + "?" + qs.stringify(params));
     },
+    addItem(params) {
+        return axios.post(base.baseUrl + base.addItem, params);
+    },
+    adminGetItemByCity(params) {
+        return axios.get(base.baseUrl + base.adminGetItemByCity + "?" + qs.stringify(params));
+    },
+    updateItemStatusById(params) {
+        return axios.post(base.baseUrl + base.updateItemStatusById + "?" + qs.stringify(params));
+    },
+
 
     // comment
     addComment(params) {

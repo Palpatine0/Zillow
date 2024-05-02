@@ -9,5 +9,7 @@ public interface FileService {
 
     ZillowResult uploadImage(byte[] fileBytes, String fileName) throws IOException;
 
+    ZillowResult uploadImageNoPrefix(byte[] fileBytes, String fileName) throws IOException;
+
     ZillowResult delete(String filePath);
 }

@@ -25,7 +25,8 @@ export default new Vuex.Store({
         }, setUser(state, payload) {
             state.user = payload.data
         }
-    }, actions: {
+    },
+    actions: {
         setCityAciton(context, payload) {
             context.commit('setCity', payload)
         }, setSearchMsgAciton(context, payload) {

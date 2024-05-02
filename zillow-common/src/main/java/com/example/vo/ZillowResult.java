@@ -22,6 +22,7 @@ public class ZillowResult {
     private boolean hasMore;
     // clock down for the reservation
     private long time;
+    private int cnt;
 
 
     public static ZillowResult ok(){

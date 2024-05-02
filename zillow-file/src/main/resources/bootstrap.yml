@@ -11,6 +11,10 @@ spring:
       label: master
       name: zillow
       profile: dev
+  servlet:
+    multipart:
+      max-file-size: 100MB
+
 eureka:
   client:
     service-url:
