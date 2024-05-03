@@ -4,7 +4,7 @@
             <v-sheet height="100%">
                 <v-row class="fill-height" align="center" justify="center">
                     <div class="text-h2 rounded-lg">
-                        <v-img class="centered-image " :src="slide"/>
+                        <v-img class="centered-image " :src="img_prefix+slide"/>
                     </div>
                 </v-row>
             </v-sheet>
@@ -14,12 +14,17 @@
 </template>
 
 <script>
+import {mapState} from "vuex";
+
 export default {
     name: "Swiper",
     data() {
         return {}
     },
-    props: ['slides', 'title']
+    props: ['slides', 'title'],
+    computed: {
+        ...mapState(['img_prefix']),
+    }
 
 };
 </script>

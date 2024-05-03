@@ -5,7 +5,6 @@
             <v-row style="justify-content: space-between">
                 <v-col cols="2">
                     <v-select :items="cities" label="Standard" v-model="selectedCity"></v-select>
-
                 </v-col>
                 <div class="mt-5">
                     <v-pagination class="float-right" :length="pagination" v-model="page" @input="adminGetItemByCity" color="#156ff6"></v-pagination>
@@ -40,7 +39,7 @@
 
         </v-container>
 
-        <DashboardAddItem></DashboardAddItem>
+        <DashboardAddItem class="mt-5"></DashboardAddItem>
 
 
 
@@ -52,33 +51,14 @@
 import {mapState} from "vuex";
 import DashboardAddItem from "@/views/Dashboard/Dashboard-AddItem/Dashboard-AddItem.vue";
 export default {
+    components: {
+        DashboardAddItem
+    },
     data() {
         return {
-            // l1
-            title: '',
-            sales: 300,
-            recommendation: false,
-            weight: 0,
-            price: '',
-            city: this.$store.state.city,
-            rentType: '',
-            houseType: '',
-            buytime: '',
-            isRented: false,
-            link: '',
-            img: '',
-            houseType4Search: '',
-            // info
-            orientation: '',
-            level: '',
-            style: '',
-            type: '',
-            years: '',
 
-
-            //
+            // page vars
             page: 1,
-
             pagination: 0,
             totalCount_item: 0,
             searchListData: [],
@@ -113,9 +93,7 @@ export default {
         },
 
     },
-    components: {
-        DashboardAddItem
-    },
+
     mounted() {
         this.adminGetItemByCity();
     },

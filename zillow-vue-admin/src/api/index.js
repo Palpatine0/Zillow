@@ -64,6 +64,9 @@ const api = {
     updateItemStatusById(params) {
         return axios.post(base.baseUrl + base.updateItemStatusById + "?" + qs.stringify(params));
     },
+    updateItemInfoById(params) {
+        return axios.post(base.baseUrl + base.updateItemInfoById + "?" + qs.stringify(params));
+    },
 
 
     // comment

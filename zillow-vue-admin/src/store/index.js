@@ -8,7 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         drawer: true,
-        city: 'Cape Coral',
+        city: 'Dallas',
         img_prefix: 'http://111.231.19.137:8888/',
         links: [
             {icon: 'fa-lg fas fa-home', text: 'Dashboard', route: '/'},

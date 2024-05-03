@@ -17,46 +17,46 @@
                             <v-container>
                                 <v-row>
                                     <v-col cols="12">
-                                        <v-text-field v-model="title" label="Title" required></v-text-field>
+                                        <v-text-field v-model="item.title" label="Title" required></v-text-field>
                                     </v-col>
 
                                     <v-col cols="12">
-                                        <v-text-field v-model="price" label="Price / mo" required type="number"></v-text-field>
+                                        <v-text-field v-model="item.price" label="Price / mo" required type="number"></v-text-field>
                                     </v-col>
 
 
                                     <v-col cols="12" md="6" sm="6">
-                                        <v-select v-model="rentType" :items="['Whole Rental', 'Room Rental', 'Shared Rental']" label="Rent Type" required></v-select>
+                                        <v-select v-model="item.rentType" :items="['Whole Rental', 'Room Rental', 'Shared Rental']" label="Rent Type" required></v-select>
                                     </v-col>
                                     <v-col cols="12" md="6" sm="6">
-                                        <v-select v-model="recommendation" :items="['No', 'Yes']" label="Recommend" required></v-select>
+                                        <v-select v-model="item.recommendation" :items="['No', 'Yes']" label="Recommend" required></v-select>
                                     </v-col>
 
                                     <v-col cols="12" md="4" sm="6">
-                                        <v-select v-model="orientation" :items="['North', 'South', 'West','East']" label="Orientation" required></v-select>
+                                        <v-select v-model="item.info.orientation" :items="['North', 'South', 'West','East']" label="Orientation" required></v-select>
                                     </v-col>
                                     <v-col cols="12" md="4" sm="6">
-                                        <v-text-field v-model="level" label="Floor" required type="number"></v-text-field>
+                                        <v-text-field v-model="item.info.level" label="Floor" required type="number"></v-text-field>
                                     </v-col>
                                     <v-col cols="12" md="4" sm="6">
-                                        <v-select v-model="style" :items="['Fully Furnished', 'Partially Furnished', 'Bare']" label="Condition" required></v-select>
+                                        <v-select v-model="item.info.style" :items="['Fully Furnished', 'Partially Furnished', 'Bare']" label="Condition" required></v-select>
                                     </v-col>
 
                                     <v-col cols="12" md="6" sm="6">
-                                        <v-select v-model="type" :items="['Single Family Residence','Condominium']" label="Type" required></v-select>
+                                        <v-select v-model="item.info.type" :items="['Single Family Residence','Condominium']" label="Type" required></v-select>
                                     </v-col>
                                     <v-col cols="12" md="6" sm="6">
-                                        <v-text-field v-model="years" label="Build Year" required type="number"></v-text-field>
+                                        <v-text-field v-model="item.info.years" label="Build Year" required type="number"></v-text-field>
                                     </v-col>
 
                                     <v-col cols="12" md="4" sm="6">
-                                        <v-text-field v-model="beds" label="Beds" required type="number"></v-text-field>
+                                        <v-text-field v-model="item.info.beds" label="Beds" required type="number"></v-text-field>
                                     </v-col>
                                     <v-col cols="12" md="4" sm="6">
-                                        <v-text-field v-model="baths" label="Baths" required type="number"></v-text-field>
+                                        <v-text-field v-model="item.info.baths" label="Baths" required type="number"></v-text-field>
                                     </v-col>
                                     <v-col cols="12" md="4" sm="6">
-                                        <v-text-field v-model="area" label="Area" required type="number"></v-text-field>
+                                        <v-text-field v-model="item.info.area" label="Area" required type="number"></v-text-field>
                                     </v-col>
 
                                     <!--<v-file-input label="Upload Images" outlined dense @change="uploadImage($event)" chips md="4"></v-file-input>
@@ -91,29 +91,33 @@
 export default {
     data() {
         return {
-            // l1
-            title: '',
-            sales: 300,
-            recommendation: false,
-            weight: 0,
-            price: '',
-            city: this.$store.state.city,
-            rentType: '',
-            houseType: '',
-            buytime: '',
-            isRented: false,
-            link: '',
-            img: '',
-            houseType4Search: '',
-            // info
-            orientation: '',
-            level: '',
-            style: '',
-            type: '',
-            years: '',
-            beds: '',
-            baths: '',
-            area: '',
+            // item
+            item: {
+                title: '',
+                sales: 300,
+                recommendation: false,
+                weight: 0,
+                price: '',
+                city: this.$store.state.city,
+                rentType: '',
+                houseType: '',
+                info: {
+                    area: '',
+                    orientation: '',
+                    baths: '',
+                    level: '',
+                    style: '',
+                    type: '',
+                    beds: '',
+                    years: '',
+                },
+                buytime: '',
+                isRented: false,
+                link: '',
+                img: '',
+                houseType4Search: '',
+            },
+
 
             // page vars
             addItem_dialog: false,
@@ -124,28 +128,30 @@ export default {
     methods: {
         addItem() {
             this.$api.addItem({
-                title: this.title,
-                sales: this.sales,
-                recommendation: this.recommendation,
-                weight: this.weight,
-                price: this.price,
+                title: this.item.title,
+                sales: this.item.sales,
+                recommendation: this.item.recommendation,
+                weight: this.item.weight,
+                price: this.item.price,
                 city: this.$store.state.city,
-                rentType: this.rentType,
-                houseType: this.houseType,
-                orientation: this.orientation,
-                level: this.level,
-                style: this.style,
-                type: this.type,
-                years: this.years,
-                imgs: this.imgs,
-                buytime: this.buytime,
-                isRented: this.isRented,
-                link: this.link,
-                img: this.img,
-                houseType4Search: this.houseType4Search,
-                beds: this.beds,
-                baths: this.baths,
-                area: this.area,
+                rentType: this.item.rentType,
+                houseType: this.item.houseType,
+
+                area: this.item.info.area,
+                orientation: this.item.info.orientation,
+                baths: this.item.info.baths,
+                level: this.item.info.level,
+                style: this.item.info.style,
+                type: this.item.info.type,
+                beds: this.item.info.beds,
+                years: this.item.info.years,
+
+                imgs: this.item.imgs,
+                buytime: this.item.buytime,
+                isRented: this.item.isRented,
+                link: this.item.link,
+                img: this.item.img,
+                houseType4Search: this.item.houseType4Search,
             })
             .then((data) => {
                 if (data.data.status == 200) {
