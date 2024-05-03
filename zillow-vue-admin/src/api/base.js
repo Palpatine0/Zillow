@@ -17,6 +17,7 @@ const base = {
     addItem: '/item/addItem',
     adminGetItemByCity: '/item/adminGetItemByCity',
     updateItemStatusById: '/item/updateItemStatusById',
+    updateItemInfoById: '/item/updateItemInfoById',
 
     // comment
     comment: '/comment/getComment',

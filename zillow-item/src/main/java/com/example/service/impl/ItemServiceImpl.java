@@ -34,7 +34,7 @@ public class ItemServiceImpl implements ItemService {
         Item items = itemDao.findItemById(id);
         ArrayList<String> newImgs = new ArrayList<>();
         for (String img : items.getImgs()) {
-            newImgs.add(nginxPrefix + img);
+            newImgs.add(img);
         }
         items.setImgs(newImgs);
         return items;
@@ -42,9 +42,9 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ZillowResult getItemByCity(String city, int page, int rows) {
-        List<Item> itemList = itemDao.getItemByCity(city, page, rows);
+        List<Item> itemList = itemDao.findItemByCity(city, page, rows);
         ZillowResult ok = new ZillowResult();
-        ok.setCnt(itemDao.getItemByCityCnt(city));
+        ok.setCnt(itemDao.countItemByCity(city));
         ok.setData(itemList);
         return ok;
     }
@@ -70,6 +70,18 @@ public class ItemServiceImpl implements ItemService {
         } catch (Exception e) {
             e.printStackTrace();
             return ZillowResult.error("Status update failed");
+        }
+    }
+
+    @Override
+    @CacheEvict(cacheNames = "com:example", key = "'getDetails('+#id+')'")
+    public ZillowResult updateItemInfoById(String id, Item item) {
+        try {
+            itemDao.updateItemInfoById(id, item);
+            return ZillowResult.ok("Info update successfully.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ZillowResult.error("Info update failed");
         }
     }
 

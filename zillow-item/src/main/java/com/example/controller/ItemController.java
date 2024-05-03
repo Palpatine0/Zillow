@@ -39,14 +39,11 @@ public class ItemController {
 
 
     @PostMapping("/addItem")
-    public ZillowResult addItem(@RequestParam String title, @RequestParam Long sales,
-                                @RequestParam Boolean recommendation, @RequestParam Byte weight, @RequestParam Long price,
-                                @RequestParam String city, @RequestParam String rentType, @RequestParam String houseType,
-                                @RequestParam String orientation, @RequestParam String level, @RequestParam String style,
-                                @RequestParam String type, @RequestParam String years,
+    public ZillowResult addItem(String title, Long sales, Boolean recommendation, Byte weight, Long price,
+                                String city, String rentType, String houseType, String orientation,
+                                String level, String style, String type, String years,
                                 @RequestParam(required = false) String buytime,
-                                @RequestParam Boolean isRented,
-                                @RequestParam String beds, @RequestParam String baths, @RequestParam String area) throws ParseException {
+                                Boolean isRented, String beds, String baths, String area) throws ParseException {
         Map<String, String> info = new HashMap<>();
         info.put("orientation", orientation);
         info.put("level", level);
@@ -99,6 +96,55 @@ public class ItemController {
     @PostMapping("/updateItemStatusById")
     public ZillowResult updateItemStatusById(String id, Boolean isRented, Boolean recommendation) {
         return itemService.updateItemStatusById(id, isRented, recommendation);
+    }
+
+    @PostMapping("/updateItemInfoById")
+    public ZillowResult updateItemInfoById(String id, String title, Long sales, Boolean recommendation, Byte weight, Long price,
+                                           String city, String rentType, String houseType, String orientation,
+                                           String level, String style, String type, String years,
+                                           String img1, String img2, String img3,
+                                           @RequestParam(required = false) String buytime,
+                                           Boolean isRented, String beds, String baths, String area) throws ParseException {
+        Map<String, String> info = new HashMap<>();
+        info.put("orientation", orientation);
+        info.put("level", level);
+        info.put("style", style);
+        info.put("type", type);
+        info.put("years", years);
+        info.put("beds", beds);
+        info.put("baths", baths);
+        info.put("area", area);
+
+
+        ArrayList<String> imgs = new ArrayList<>();
+        imgs.add(img1);
+        imgs.add(img2);
+        imgs.add(img3);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date;
+
+        if (buytime == null || buytime.isEmpty()) {
+            date = new Date();
+        } else {
+            date = formatter.parse(buytime);
+        }
+
+        Item item = new Item();
+        item.setTitle(title);
+        item.setSales(sales);
+        item.setRecommendation(recommendation);
+        item.setWeight(weight);
+        item.setPrice(price);
+        item.setCity(city);
+        item.setRentType(rentType);
+        item.setHouseType(houseType);
+        item.setInfo(info);
+        item.setImgs(imgs);
+        item.setBuytime(date);
+        item.setIsRented(isRented);
+
+        return itemService.updateItemInfoById(id, item);
     }
 
 

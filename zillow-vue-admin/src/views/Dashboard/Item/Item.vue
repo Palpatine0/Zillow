@@ -11,7 +11,8 @@
             <v-row style="height: 90px">
                 <v-col style="height: 100%">
                     <p class="info-head">
-                        ${{ itemInfo.price }} / mo
+                        ${{ commasNumber(itemInfo.price) }} / mo
+<!--                        ${{ itemInfo.price }} / mo-->
                     </p>
                     <p class="title">{{ itemInfo.title }}</p>
                 </v-col>
@@ -30,7 +31,8 @@
                     </v-col>
                     <v-col cols="6" md="4" sm="6">
                         <p class="info-head">
-                            {{ itemInfo.info.area }}
+                            {{ commasNumber(itemInfo.info.area) }}
+<!--                            {{ itemInfo.info.area }}-->
                         </p>
                         <p class="info-body">sqft</p>
                     </v-col>
@@ -64,52 +66,53 @@
 
         </v-container>
 
-      <v-container style="display: flex">
-        <v-col cols="12" md="9" sm="6">
-          <v-row>
-            <v-col class="info-cell" cols="6" md="4" sm="6">
-              <v-icon>fa-city</v-icon>
-              <span>{{ itemInfo.info.type }}</span>
+        <v-container style="display: flex">
+            <v-col cols="12" md="9" sm="6">
+                <v-row>
+                    <v-col class="info-cell" cols="6" md="4" sm="6">
+                        <v-icon>fa-city</v-icon>
+                        <span>{{ itemInfo.info.type }}</span>
+                    </v-col>
+                    <v-col class="info-cell" cols="6" md="4" sm="6">
+                        <v-icon>mdi-border-style</v-icon>
+                        <span>{{ itemInfo.info.style }}</span>
+                    </v-col>
+                    <v-col class="info-cell" cols="6" md="3" sm="6">
+                        <v-icon>mdi-compass</v-icon>
+                        <span>{{ itemInfo.info.orientation }}</span>
+                    </v-col>
+                </v-row>
+                <v-row>
+                    <v-col class="info-cell" cols="6" md="4" sm="6">
+                        <v-icon>fa-hammer</v-icon>
+                        <span>Built in {{ itemInfo.info.years }}</span>
+                    </v-col>
+                    <v-col class="info-cell" cols="6" md="4" sm="6">
+                        <v-icon>mdi-home-roof</v-icon>
+                        <span>{{ itemInfo.rentType }}</span>
+                    </v-col>
+                    <v-col class="info-cell" cols="6" md="3" sm="6">
+                        <v-icon>mdi-stairs</v-icon>
+                        <span>Floor {{ itemInfo.info.level }}</span>
+                    </v-col>
+                </v-row>
             </v-col>
-            <v-col class="info-cell" cols="6" md="4" sm="6">
-              <v-icon>mdi-border-style</v-icon>
-              <span>{{ itemInfo.info.style }}</span>
-            </v-col>
-            <v-col class="info-cell" cols="6" md="3" sm="6">
-              <v-icon>fa-hammer</v-icon>
-              <span>{{ itemInfo.info.years }}</span>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col class="info-cell" cols="6" md="4" sm="6">
-              <v-icon>mdi-compass</v-icon>
-              <span>{{ itemInfo.info.orientation }}</span>
-            </v-col>
-            <v-col class="info-cell" cols="6" md="4" sm="6">
-              <v-icon>mdi-home-roof</v-icon>
-              <span>{{ itemInfo.rentType }}</span>
-            </v-col>
-            <v-col class="info-cell" cols="6" md="3" sm="6">
-              <v-icon>mdi-stairs</v-icon>
-              <span>{{ itemInfo.info.level }}</span>
-            </v-col>
-          </v-row>
-        </v-col>
 
 
-        <v-col cols="12" md="3" sm="6" style="margin-top: -50px">
-          <v-card class="mx-auto center_h" max-width="344" outlined style="border-radius: 14px;flex-direction: column">
-            <v-btn class="edit-btn mt-5 mb-4" color="#156ff6" dark style="height: 50px!important;"
-                   @click="updateStatus_dialog=!updateStatus_dialog">
-              Edit Status
-            </v-btn>
-            <v-btn class="edit-btn mb-5" color="#156ff6" dark outlined>
-              Edit Info
-            </v-btn>
-          </v-card>
-        </v-col>
+            <v-col cols="12" md="3" sm="6" style="margin-top: -50px">
+                <v-card class="mx-auto center_h" max-width="344" outlined style="border-radius: 14px;flex-direction: column">
+                    <v-btn class="edit-btn mt-5 mb-4" color="#156ff6" dark style="height: 50px!important;" @click="updateStatus_dialog=!updateStatus_dialog">
+                        Edit Status
+                    </v-btn>
+                    <v-btn class="edit-btn mb-5" color="#156ff6" dark outlined @click="updateInfo_dialog=!updateInfo_dialog">
+                        Edit Info
+                    </v-btn>
+                </v-card>
+            </v-col>
         </v-container>
-      <ItemEditStatus :item-info="itemInfo" :update-status_dialog="updateStatus_dialog"/>
+
+        <ItemEditStatus :item-info="itemInfo" :updateStatus_dialog="updateStatus_dialog"/>
+        <ItemEditInfo :item-info="itemInfo" :updateInfo_dialog="updateInfo_dialog"/>
 
 
     </v-app>
@@ -118,31 +121,36 @@
 <script>
 import Swiper from "@/components/Swiper.vue";
 import ItemEditStatus from "@/views/Dashboard/Item/Item-editStatus/Item-editStatus.vue";
+import ItemEditInfo from "@/views/Dashboard/Item/Item-editInfo/Item-editInfo.vue";
 
 export default {
     name: "Details",
     components: {
-      Swiper,
-      ItemEditStatus
+        Swiper,
+        ItemEditStatus,
+        ItemEditInfo
     },
     data() {
         return {
-
-          // page vars
+            // page vars
             swiperSlides: [],
             itemInfo: {},
-          title: '',
-          updateStatus_dialog: false
+            title: '',
+            updateStatus_dialog: false,
+            updateInfo_dialog: false
         };
     },
+    methods: {
+        commasNumber(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+    },
     mounted() {
-        console.log("data")
         this.$api.getItem({id: this.$route.params.id})
         .then(data => {
             this.swiperSlides = data.data.imgs;
             this.itemInfo = data.data;
             this.title = data.data.title;
-
         });
     }
 
@@ -176,17 +184,18 @@ export default {
 .info-body {
     color: rgb(0, 0, 0);
     text-transform: none;
-    font-family: "Roboto Thin", "Helvetica Neue UltraLight", Tahoma, Geneva, sans-serif;
+    font-family: "Open Sans", "Adjusted Arial", Tahoma, Geneva, sans-serif;
     font-size: 20px;
     line-height: 32px;
     font-weight: 100;
     position: relative;
-    bottom: 10px;
+    bottom: 20px;
+    color: gray;
 }
 
 .info-cell {
     background-color: #efeff5;
-  margin: 4px;
+    margin: 4px;
     border-radius: 10px;
 }
 
@@ -197,12 +206,12 @@ export default {
 }
 
 .edit-btn {
-  display: block;
-  width: 90%;
-  height: 40px !important;
+    display: block;
+    width: 90%;
+    height: 40px !important;
 }
 
 * {
-  //outline: 1px solid red;
+//outline: 1px solid red;
 }
 </style>
