@@ -2,10 +2,10 @@
     <div>
         <v-container>
             <v-row justify="center">
-                <v-dialog v-model="updateStatus_dialog" max-width="600px" persistent>
+                <v-dialog v-model="statusUpdate_dialog" max-width="600px" persistent>
                     <v-card>
                         <v-card-title>
-                            <span class="text-h5">Item Profile</span>
+                            <span class="text-h5">Item Status</span>
                         </v-card-title>
                         <v-card-text>
                             <v-container>
@@ -21,7 +21,7 @@
                         </v-card-text>
                         <v-card-actions>
                             <v-spacer></v-spacer>
-                            <v-btn color="blue darken-1" text @click="updateStatus_dialog = false">
+                            <v-btn color="blue darken-1" text @click="statusUpdate_dialog = false">
                                 Close
                             </v-btn>
                             <v-btn color="blue darken-1" text @click="updateItemStatusById">
@@ -44,7 +44,6 @@ export default {
     data() {
         return {
 
-
             // page vars
             updateItemStatusById_msg: false,
             updateItemStatusById_snackbar: false,
@@ -60,7 +59,7 @@ export default {
             })
             .then((data) => {
                 if (data.data.status == 200) {
-                    this.updateStatus_dialog = false;
+                    this.statusUpdate_dialog = false;
                     this.updateItemStatusById_msg = data.data.data;
                     console.log(this.updateItemStatusById_msg)
                     this.updateItemStatusById_snackbar = true
@@ -68,7 +67,7 @@ export default {
             })
         }
     },
-    props: ['updateStatus_dialog', 'itemInfo'],
+    props: ['statusUpdate_dialog', 'itemInfo'],
 
     computed: {
         computedRecommendation: {

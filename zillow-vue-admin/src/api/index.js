@@ -11,18 +11,27 @@ const api = {
         return axios.get(base.baseUrl + base.getBanner)
     },
     uploadImageNoPrefix(file) {
-        const formData = new FormData();
-        formData.append('api-file', file);
-
-        axios.post(base.baseUrl + base.uploadImageNoPrefix, formData)
-            .then(response => {
-                console.log('File uploaded successfully');
-                console.log(response);
-            })
-            .catch(error => {
-                console.error('Upload error:', error);
-            });
+        return axios.post(base.baseUrl + base.uploadImageNoPrefix, file)
     },
+    uploadTest(file) {
+        console.log("entered upload test");
+        const formData = new FormData();
+        formData.append('file', file); // Ensure the correct file object is being used
+        axios.post(base.baseUrl + base.uploadTest, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        .then(response => {
+            console.log('File uploaded successfully:', response.data);
+        })
+        .catch(error => {
+            console.error('There was an error uploading the file:', error);
+        });
+    },
+
+
+
 
     //
     getRecommendation(params) {
@@ -66,6 +75,9 @@ const api = {
     },
     updateItemInfoById(params) {
         return axios.post(base.baseUrl + base.updateItemInfoById + "?" + qs.stringify(params));
+    },
+    updateItemBannerById(params) {
+        return axios.post(base.baseUrl + base.updateItemBannerById + "?" + qs.stringify(params));
     },
 
 
