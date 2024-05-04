@@ -1,6 +1,0 @@
-zillow:
-  cache:
-    names:
-      item:
-        prefix: com:example
-        suffix: getDetails
