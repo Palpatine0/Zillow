@@ -87,7 +87,7 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     @Override
-    public void updateItemBannerById(String id, ArrayList<String> imgs) {
+    public void updateItemShowcasesById(String id, ArrayList<String> imgs) {
         Query query = new Query();
         query.addCriteria(Criteria.where("id").is(id));
         Update update = new Update();

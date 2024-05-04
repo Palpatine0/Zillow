@@ -15,6 +15,6 @@ public interface ItemService {
     ZillowResult updateItemStatusById(String id, Boolean isRented, Boolean recommendation);
     ZillowResult updateItemInfoById(String id, Item item);
 
-    ZillowResult updateItemBannerById(String id, ArrayList<String> imgs);
+    ZillowResult updateItemShowcasesById(String id, ArrayList<String> imgs);
 
 }
