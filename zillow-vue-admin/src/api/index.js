@@ -71,8 +71,8 @@ const api = {
     updateItemInfoById(params) {
         return axios.post(base.baseUrl + base.updateItemInfoById + "?" + qs.stringify(params));
     },
-    updateItemBannerById(params) {
-        return axios.post(base.baseUrl + base.updateItemBannerById + "?" + qs.stringify(params));
+    updateItemShowcasesById(params) {
+        return axios.post(base.baseUrl + base.updateItemShowcasesById + "?" + qs.stringify(params));
     },
 
 

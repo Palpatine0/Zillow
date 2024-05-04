@@ -2,10 +2,10 @@
     <div>
         <v-container>
             <v-row justify="center">
-                <v-dialog v-model="bannerUpdate_dialog" max-width="600px" persistent>
+              <v-dialog v-model="showcasesUpdate_dialog" max-width="600px" persistent>
                     <v-card>
                         <v-card-title>
-                            <span class="text-h5">Item Banners</span>
+                          <span class="text-h5">Item Showcases</span>
                         </v-card-title>
                         <v-card-text>
                             <v-container>
@@ -30,10 +30,10 @@
                         </v-card-text>
                         <v-card-actions>
                             <v-spacer></v-spacer>
-                            <v-btn color="blue darken-1" text @click="bannerUpdate_dialog = false">
+                          <v-btn color="blue darken-1" text @click="showcasesUpdate_dialog = false">
                                 Close
                             </v-btn>
-                            <v-btn color="blue darken-1" text @click="updateItemBannerById">
+                          <v-btn color="blue darken-1" text @click="updateItemShowcasesById">
                                 Submit
                             </v-btn>
                         </v-card-actions>
@@ -42,12 +42,12 @@
             </v-row>
         </v-container>
 
-        <v-snackbar v-model="updateItemBannerById_snackbar" :timeout="2000">
-            {{ updateItemBannerById_msg }}
+      <v-snackbar v-model="updateItemShowcasesById_snackbar" :timeout="2000">
+        {{ updateItemShowcasesById_msg }}
         </v-snackbar>
 
-      <v-snackbar v-model="uploadItemBanner_snackbar" :timeout="2000">
-        {{ uploadItemBanner_msg }}
+      <v-snackbar v-model="uploadItemShowcases_snackbar" :timeout="2000">
+        {{ uploadItemShowcases_msg }}
       </v-snackbar>
     </div>
 </template>
@@ -65,30 +65,30 @@ export default {
           },
 
             // page vars
-          updateItemBannerById_msg: '',
-            updateItemBannerById_snackbar: false,
+          updateItemShowcasesById_msg: '',
+          updateItemShowcasesById_snackbar: false,
 
-          uploadItemBanner_msg: '',
-          uploadItemBanner_snackbar: false,
+          uploadItemShowcases_msg: '',
+          uploadItemShowcases_snackbar: false,
         }
     },
     methods: {
-        updateItemBannerById() {
-          console.log(this.imgUrls.img1)
-          console.log(this.imgUrls.img2)
-          console.log(this.imgUrls.img3)
-            this.$api.updateItemBannerById({
+      updateItemShowcasesById() {
+        console.log(this.imgUrls.img1)
+        console.log(this.imgUrls.img2)
+        console.log(this.imgUrls.img3)
+        this.$api.updateItemShowcasesById({
                 id: this.itemInfo.id,
-              img1: this.imgUrls.img1,
-              img2: this.imgUrls.img2,
-              img3: this.imgUrls.img3
+          img1: this.imgUrls.img1,
+          img2: this.imgUrls.img2,
+          img3: this.imgUrls.img3
             })
             .then((data) => {
                 if (data.data.status == 200) {
-                    console.log(this.updateItemBannerById_msg)
-                  this.updateItemBannerById_msg = data.data.msg;
-                    this.updateItemBannerById_snackbar = true
-                  this.bannerUpdate_dialog = false;
+                  console.log(this.updateItemShowcasesById_msg)
+                  this.updateItemShowcasesById_msg = data.data.msg;
+                  this.updateItemShowcasesById_snackbar = true
+                  this.showcasesUpdate_dialog = false;
                 }
             })
         },
@@ -97,15 +97,15 @@ export default {
             .then((data) => {
               if (data.data.status === 200 && data.data.data) {
                 this.imgUrls[imgKey] = data.data.data;
-                this.uploadItemBanner_msg = "Image uploaded successfully!";
-                this.uploadItemBanner_snackbar = true;
+                this.uploadItemShowcases_msg = "Image uploaded successfully!";
+                this.uploadItemShowcases_snackbar = true;
               } else {
                 throw new Error('Failed to upload image or bad data received');
               }
             })
             .catch((error) => {
-              this.uploadItemBanner_msg = "Failed to upload image, try again.";
-              this.uploadItemBanner_snackbar = true;
+              this.uploadItemShowcases_msg = "Failed to upload image, try again.";
+              this.uploadItemShowcases_snackbar = true;
             });
         },
       assignImgUrls() {
@@ -118,7 +118,7 @@ export default {
         console.log(this.imgUrls.img3)
       },
     },
-    props: ['bannerUpdate_dialog', 'itemInfo'],
+  props: ['showcasesUpdate_dialog', 'itemInfo'],
 
     computed: {
         ...mapState(['img_prefix']),

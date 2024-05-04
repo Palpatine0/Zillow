@@ -19,7 +19,7 @@ const base = {
     adminGetItemByCity: '/item/adminGetItemByCity',
     updateItemStatusById: '/item/updateItemStatusById',
     updateItemInfoById: '/item/updateItemInfoById',
-    updateItemBannerById: '/item/updateItemBannerById',
+    updateItemShowcasesById: '/item/updateItemBannerById',
 
 
     // comment

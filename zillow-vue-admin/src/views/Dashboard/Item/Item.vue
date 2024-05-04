@@ -12,7 +12,7 @@
                 <v-col style="height: 100%">
                     <p class="info-head">
                         ${{ commasNumber(itemInfo.price) }} / mo
-<!--                        ${{ itemInfo.price }} / mo-->
+                      <!--                        ${{ itemInfo.price }} / mo-->
                     </p>
                     <p class="title">{{ itemInfo.title }}</p>
                 </v-col>
@@ -32,7 +32,7 @@
                     <v-col cols="6" md="4" sm="6">
                         <p class="info-head">
                             {{ commasNumber(itemInfo.info.area) }}
-<!--                            {{ itemInfo.info.area }}-->
+                          <!--                            {{ itemInfo.info.area }}-->
                         </p>
                         <p class="info-body">sqft</p>
                     </v-col>
@@ -107,8 +107,9 @@
                     <v-btn class="edit-btn mb-2" color="#156ff6" dark outlined @click="infoUpdate_dialog=!infoUpdate_dialog">
                         Edit Info
                     </v-btn>
-                    <v-btn class="edit-btn mb-5" color="#156ff6" dark outlined @click="bannerUpdate_dialog=!bannerUpdate_dialog">
-                        Edit Banners
+                  <v-btn class="edit-btn mb-5" color="#156ff6" dark outlined
+                         @click="showcasesUpdate_dialog=!showcasesUpdate_dialog">
+                    Edit Showcases
                     </v-btn>
                 </v-card>
             </v-col>
@@ -116,7 +117,7 @@
 
         <ItemEditStatus :item-info="itemInfo" :statusUpdate_dialog="statusUpdate_dialog"/>
         <ItemEditInfo :item-info="itemInfo" :infoUpdate_dialog="infoUpdate_dialog"/>
-        <ItemEditBanners :item-info="itemInfo" :bannerUpdate_dialog="bannerUpdate_dialog"/>
+      <ItemEditShowcases :item-info="itemInfo" :showcasesUpdate_dialog="showcasesUpdate_dialog"/>
 
 
     </v-app>
@@ -126,7 +127,7 @@
 import Swiper from "@/components/Swiper.vue";
 import ItemEditStatus from "@/views/Dashboard/Item/Item-editStatus/Item-editStatus.vue";
 import ItemEditInfo from "@/views/Dashboard/Item/Item-editInfo/Item-editInfo.vue";
-import ItemEditBanners from "@/views/Dashboard/Item/Item-editBanners/Item-editBanners.vue";
+import ItemEditShowcases from "@/views/Dashboard/Item/Item-editShowcases/Item-editShowcases.vue";
 
 export default {
   name: "Item",
@@ -134,7 +135,7 @@ export default {
         Swiper,
         ItemEditStatus,
         ItemEditInfo,
-        ItemEditBanners
+      ItemEditShowcases
     },
     data() {
         return {
@@ -145,7 +146,7 @@ export default {
 
           statusUpdate_dialog: false,
             infoUpdate_dialog: false,
-            bannerUpdate_dialog: false
+          showcasesUpdate_dialog: false
         };
     },
     methods: {
@@ -164,7 +165,7 @@ export default {
 
 }
 </script>
-<style>
+<style scoped>
 .center_h {
     justify-content: center;
     align-items: center;
@@ -181,7 +182,7 @@ export default {
 .title {
     color: rgb(108, 108, 112);
     text-transform: none;
-    font-family: "Roboto Thin", "Helvetica Neue UltraLight", Tahoma, Geneva, sans-serif;
+  font-family: "Roboto Thin", "Helvetica Neue UltraLight", Tahoma, Geneva, sans-serif !important;
     font-size: 20px;
     line-height: 32px;
     font-weight: 100;
@@ -192,13 +193,13 @@ export default {
 .info-body {
     color: rgb(0, 0, 0);
     text-transform: none;
-    font-family: "Open Sans", "Adjusted Arial", Tahoma, Geneva, sans-serif;
-    font-size: 20px;
+  font-family: "Roboto Thin", "Helvetica Neue UltraLight", Tahoma, Geneva, sans-serif !important;
+  font-size: 24px;
     line-height: 32px;
     font-weight: 100;
     position: relative;
     bottom: 20px;
-    color: gray;
+  color: #848b8d;
 }
 
 .info-cell {
