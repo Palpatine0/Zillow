@@ -85,6 +85,22 @@ public class ItemServiceImpl implements ItemService {
         }
     }
 
+    @Override
+    @CacheEvict(cacheNames = "com:example", key = "'getDetails('+#id+')'")
+    public ZillowResult updateItemBannerById(String id, ArrayList<String> imgs) {
+        try {
+            ZillowResult ok = ZillowResult.ok();
+            itemDao.updateItemBannerById(id, imgs);
+            ok.setMsg("Showcases update successfully.");
+            return ok;
+        } catch (Exception e) {
+            e.printStackTrace();
+            ZillowResult result = ZillowResult.error();
+            result.setMsg("Showcases update successfully.");
+            return ZillowResult.error("Showcases update failed");
+        }
+    }
+
     private List<Item> imgUrlAppend(List<Item> items) {
         for (Item item : items) {
             List<String> newImgs = new ArrayList<>();

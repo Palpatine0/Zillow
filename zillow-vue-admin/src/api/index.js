@@ -11,23 +11,18 @@ const api = {
         return axios.get(base.baseUrl + base.getBanner)
     },
     uploadImageNoPrefix(file) {
-        return axios.post(base.baseUrl + base.uploadImageNoPrefix, file)
-    },
-    uploadTest(file) {
-        console.log("entered upload test");
-        const formData = new FormData();
-        formData.append('file', file); // Ensure the correct file object is being used
-        axios.post(base.baseUrl + base.uploadTest, formData, {
+        return axios.post(base.baseUrl + base.uploadImageNoPrefix, file, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         })
-        .then(response => {
-            console.log('File uploaded successfully:', response.data);
+    },
+    uploadTest(file) {
+        return axios.post(base.baseUrl + base.uploadTest, file, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
         })
-        .catch(error => {
-            console.error('There was an error uploading the file:', error);
-        });
     },
 
 

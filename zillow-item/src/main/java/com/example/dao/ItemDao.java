@@ -3,6 +3,7 @@ package com.example.dao;
 
 import com.example.entity.Item;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface ItemDao {
@@ -17,6 +18,8 @@ public interface ItemDao {
     void updateItemStatusById(String id, Boolean isRented, Boolean recommendation);
 
     void updateItemInfoById(String id, Item item);
+
+    void updateItemBannerById(String id, ArrayList<String> imgs);
 
 
 }

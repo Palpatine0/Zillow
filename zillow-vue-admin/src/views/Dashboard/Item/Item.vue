@@ -127,8 +127,9 @@ import Swiper from "@/components/Swiper.vue";
 import ItemEditStatus from "@/views/Dashboard/Item/Item-editStatus/Item-editStatus.vue";
 import ItemEditInfo from "@/views/Dashboard/Item/Item-editInfo/Item-editInfo.vue";
 import ItemEditBanners from "@/views/Dashboard/Item/Item-editBanners/Item-editBanners.vue";
+
 export default {
-    name: "Details",
+  name: "Item",
     components: {
         Swiper,
         ItemEditStatus,
@@ -141,7 +142,8 @@ export default {
             swiperSlides: [],
             itemInfo: {},
             title: '',
-            statusUpdate_dialog: false,
+
+          statusUpdate_dialog: false,
             infoUpdate_dialog: false,
             bannerUpdate_dialog: false
         };
