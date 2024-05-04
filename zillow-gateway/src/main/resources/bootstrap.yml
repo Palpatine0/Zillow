@@ -61,10 +61,10 @@ spring:
           uri: lb://zillow-item
           predicates:
             - Path=/item/updateItemInfoById
-        - id: item-updateItemBannerById
+        - id: item-updateItemShowcasesById
           uri: lb://zillow-item
           predicates:
-            - Path=/item/updateItemBannerById
+            - Path=/item/updateItemShowcasesById
 
         # comment
         - id: comment-getComment

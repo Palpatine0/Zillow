@@ -87,10 +87,10 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     @CacheEvict(cacheNames = "com:example", key = "'getDetails('+#id+')'")
-    public ZillowResult updateItemBannerById(String id, ArrayList<String> imgs) {
+    public ZillowResult updateItemShowcasesById(String id, ArrayList<String> imgs) {
         try {
             ZillowResult ok = ZillowResult.ok();
-            itemDao.updateItemBannerById(id, imgs);
+            itemDao.updateItemShowcasesById(id, imgs);
             ok.setMsg("Showcases update successfully.");
             return ok;
         } catch (Exception e) {

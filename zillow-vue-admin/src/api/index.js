@@ -60,7 +60,7 @@ const api = {
         return axios.get(base.baseUrl + base.getItem + "?" + qs.stringify(params));
     },
     addItem(params) {
-        return axios.post(base.baseUrl + base.addItem, params);
+        return axios.post(base.baseUrl + base.addItem, qs.stringify(params));
     },
     adminGetItemByCity(params) {
         return axios.get(base.baseUrl + base.adminGetItemByCity + "?" + qs.stringify(params));
@@ -71,15 +71,15 @@ const api = {
     updateItemInfoById(params) {
         return axios.post(base.baseUrl + base.updateItemInfoById + "?" + qs.stringify(params));
     },
-    updateItemBannerById(params) {
-        return axios.post(base.baseUrl + base.updateItemBannerById + "?" + qs.stringify(params));
+    updateItemShowcasesById(params) {
+        return axios.post(base.baseUrl + base.updateItemShowcasesById + "?" + qs.stringify(params));
     },
 
 
     // comment
     addComment(params) {
         console.log(params)
-        return axios.post(base.baseUrl + base.feelback, params);
+        return axios.post(base.baseUrl + base.feelback, qs.stringify(params));
     },
     getComment(params) {
         return axios.get(base.baseUrl + base.comment + "?" + qs.stringify(params));

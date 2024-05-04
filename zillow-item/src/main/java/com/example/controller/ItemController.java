@@ -43,6 +43,7 @@ ItemController {
     public ZillowResult addItem(String title, Long sales, Boolean recommendation, Byte weight, Long price,
                                 String city, String rentType, String houseType, String orientation,
                                 String level, String style, String type, String years,
+                                String img1, String img2, String img3,
                                 @RequestParam(required = false) String buytime,
                                 Boolean isRented, String beds, String baths, String area) throws ParseException {
         Map<String, String> info = new HashMap<>();
@@ -57,9 +58,22 @@ ItemController {
 
 
         ArrayList<String> imgs = new ArrayList<>();
-        imgs.add("group1/M00/00/00/CgAEDGVd4TGAaUGTABv2R2xYQ3I511.png");
-        imgs.add("group1/M00/00/00/CgAEDGVd4TGAaUGTABv2R2xYQ3I511.png");
-        imgs.add("group1/M00/00/00/CgAEDGVd4TGAaUGTABv2R2xYQ3I511.png");
+        if(img1 != null && !img1.isEmpty()) {
+            imgs.add(img1);
+        }else {
+            imgs.add("group1/M00/00/00/CgAEDGVd4TGAaUGTABv2R2xYQ3I511.png");
+        }
+        if(img2 != null && !img2.isEmpty()) {
+            imgs.add(img2);
+        }else {
+            imgs.add("group1/M00/00/00/CgAEDGVd4TGAaUGTABv2R2xYQ3I511.png");
+        }
+        if(img3 != null && !img3.isEmpty()) {
+            imgs.add(img3);
+        }else {
+            imgs.add("group1/M00/00/00/CgAEDGVd4TGAaUGTABv2R2xYQ3I511.png");
+        }
+         
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date;
@@ -148,13 +162,13 @@ ItemController {
         return itemService.updateItemInfoById(id, item);
     }
 
-    @PostMapping("/updateItemBannerById")
-    public ZillowResult updateItemBannerById(String id, String img1, String img2, String img3) {
+    @PostMapping("/updateItemShowcasesById")
+    public ZillowResult updateItemShowcasesById(String id, String img1, String img2, String img3) {
         ArrayList<String> imgs = new ArrayList<>();
         imgs.add(img1);
         imgs.add(img2);
         imgs.add(img3);
-        return itemService.updateItemBannerById(id, imgs);
+        return itemService.updateItemShowcasesById(id, imgs);
     }
 
 

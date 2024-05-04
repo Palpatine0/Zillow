@@ -19,7 +19,7 @@ public interface ItemDao {
 
     void updateItemInfoById(String id, Item item);
 
-    void updateItemBannerById(String id, ArrayList<String> imgs);
+    void updateItemShowcasesById(String id, ArrayList<String> imgs);
 
 
 }
