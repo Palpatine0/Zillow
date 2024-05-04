@@ -30,7 +30,7 @@ public class ItemServiceImpl implements ItemService {
     @CircuitBreaker(name = BACKEND_B)
     @RateLimiter(name = BACKEND_B)
     @Cacheable(cacheNames = "com:example", key = "'getDetails('+#id+')'")
-    public Item getItem(String id) {
+    public Item getItemByID(String id) {
         Item items = itemDao.findItemById(id);
         ArrayList<String> newImgs = new ArrayList<>();
         for (String img : items.getImgs()) {
@@ -41,7 +41,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public ZillowResult getItemByCity(String city, int page, int rows) {
+    public ZillowResult getItemsByCity(String city, int page, int rows) {
         List<Item> itemList = itemDao.findItemByCity(city, page, rows);
         ZillowResult ok = new ZillowResult();
         ok.setCnt(itemDao.countItemByCity(city));

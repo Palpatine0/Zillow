@@ -23,19 +23,19 @@ ItemController {
     @Autowired(required = false)
     private OrderServiceFeignClient orderServiceFeignClient;
 
-    @GetMapping("/getItem")
-    public Item getItem(String id) {
-        return itemService.getItem(id);
+    @GetMapping("/getItemByID")
+    public Item getItemByID(String id) {
+        return itemService.getItemByID(id);
     }
 
-    @GetMapping("/getItemByCity")
-    public ZillowResult getItemByCity(String city, int page, @RequestParam(defaultValue = "5") int rows) {
-        return itemService.getItemByCity(city, page, rows);
+    @GetMapping("/getItemsByCity")
+    public ZillowResult getItemsByCity(String city, int page, @RequestParam(defaultValue = "5") int rows) {
+        return itemService.getItemsByCity(city, page, rows);
     }
 
-    @GetMapping("/adminGetItemByCity")
+    @GetMapping("/adminGetItemsByCity")
     public ZillowResult adminGetItemByCity(String city, int page, @RequestParam(defaultValue = "6") int rows) {
-        return itemService.getItemByCity(city, page, rows);
+        return itemService.getItemsByCity(city, page, rows);
     }
 
 
