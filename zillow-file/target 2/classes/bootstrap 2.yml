@@ -1,0 +1,45 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: zillow-file
+  profiles:
+    active: mongodb
+  cloud:
+    config:
+      uri: http://localhost:9010
+      label: master
+      name: zillow
+      profile: dev
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+
+eureka:
+  client:
+    service-url:
+      #      defaultZone: http://111.231.19.137:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
+
+zillow:
+  fdfsBasePath:
+    nginx:
+      prefix: http://111.231.19.137:8888/
+
+logging:
+  pattern:
+    console: '%d{MM/dd HH:mm:ss.SSS} %clr(%-5level) ---  [%-15thread] %cyan(%-50logger{50}):%msg%n'
+
+fdfs:
+  so-timeout: 10000
+  connect-timeout: 10000
+  fileUrl: http://111.231.19.137:8888/
+  tracker-list:
+    - 111.231.19.137:22122

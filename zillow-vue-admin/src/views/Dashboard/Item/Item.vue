@@ -160,7 +160,7 @@ export default {
         }
     },
     mounted() {
-        this.$api.getItem({id: this.$route.params.id})
+        this.$api.getItemByID({id: this.$route.params.id})
         .then(data => {
             this.swiperSlides = data.data.imgs;
             this.itemInfo = data.data;

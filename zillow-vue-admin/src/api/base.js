@@ -14,9 +14,9 @@ const base = {
     getRecommendation: "/recommendation/getRecommendation",
 
     //item
-    getItem: '/item/getItem',
+    getItemByID: '/item/getItemByID',
     addItem: '/item/addItem',
-    adminGetItemByCity: '/item/adminGetItemByCity',
+    adminGetItemsByCity: '/item/adminGetItemsByCity',
     updateItemStatusById: '/item/updateItemStatusById',
     updateItemInfoById: '/item/updateItemInfoById',
     updateItemShowcasesById: '/item/updateItemShowcasesById',
@@ -24,7 +24,7 @@ const base = {
 
     // comment
     comment: '/comment/getComment',
-    feelback: "/comment/addComment",
+    feedback: "/comment/addComment",
 
     // search
     searchByKeyWord: "/search/searchByKeyWord",

@@ -67,7 +67,7 @@ export default {
     },
     methods: {
         adminGetItemByCity() {
-            this.$api.adminGetItemByCity({city: this.selectedCity, page: this.page - 1})
+            this.$api.adminGetItemsByCity({city: this.selectedCity, page: this.page - 1})
             .then((data) => {
                 this.searchListData = []
                 this.totalCount_item = data.data.cnt

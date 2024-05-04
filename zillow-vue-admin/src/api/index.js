@@ -56,14 +56,14 @@ const api = {
     },
 
     // item
-    getItem(params) {
-        return axios.get(base.baseUrl + base.getItem + "?" + qs.stringify(params));
+    getItemByID(params) {
+        return axios.get(base.baseUrl + base.getItemByID + "?" + qs.stringify(params));
     },
     addItem(params) {
         return axios.post(base.baseUrl + base.addItem, qs.stringify(params));
     },
-    adminGetItemByCity(params) {
-        return axios.get(base.baseUrl + base.adminGetItemByCity + "?" + qs.stringify(params));
+    adminGetItemsByCity(params) {
+        return axios.get(base.baseUrl + base.adminGetItemsByCity + "?" + qs.stringify(params));
     },
     updateItemStatusById(params) {
         return axios.post(base.baseUrl + base.updateItemStatusById + "?" + qs.stringify(params));
@@ -79,7 +79,7 @@ const api = {
     // comment
     addComment(params) {
         console.log(params)
-        return axios.post(base.baseUrl + base.feelback, qs.stringify(params));
+        return axios.post(base.baseUrl + base.feedback, qs.stringify(params));
     },
     getComment(params) {
         return axios.get(base.baseUrl + base.comment + "?" + qs.stringify(params));
