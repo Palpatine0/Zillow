@@ -1,0 +1,159 @@
+server:
+  port: 4006
+spring:
+  application:
+    name: zillow-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lower-case-service-id: true
+
+      routes:
+        # file
+        - id: file-getBanner
+          uri: lb://zillow-file
+          predicates:
+            - Path=/file/getBanner
+        - id: file-uploadImageNoPrefix
+          uri: lb://zillow-file
+          predicates:
+            - Path=/file/uploadImageNoPrefix
+        - id: file-uploadTest
+          uri: lb://zillow-file
+          predicates:
+            - Path=/file/uploadTest
+
+        # trendy
+        - id: trendy-getTrendy
+          uri: lb://zillow-trendy
+          predicates:
+            - Path=/trendy/getTrendy
+            - Query=city
+
+        # recommendation
+        - id: recommendation-getRecommendation
+          uri: lb://zillow-recommendation
+          predicates:
+            - Path=/recommendation/getRecommendation
+            - Query=city
+
+        # item
+        - id: item-getItem
+          uri: lb://zillow-item
+          predicates:
+            - Path=/item/getItem
+            - Query=id
+        - id: item-addItem
+          uri: lb://zillow-item
+          predicates:
+            - Path=/item/addItem
+        - id: item-adminGetItemByCity
+          uri: lb://zillow-item
+          predicates:
+            - Path=/item/adminGetItemByCity
+        - id: item-updateItemStatusById
+          uri: lb://zillow-item
+          predicates:
+            - Path=/item/updateItemStatusById
+        - id: item-updateItemInfoById
+          uri: lb://zillow-item
+          predicates:
+            - Path=/item/updateItemInfoById
+        - id: item-updateItemShowcasesById
+          uri: lb://zillow-item
+          predicates:
+            - Path=/item/updateItemShowcasesById
+
+        # comment
+        - id: comment-getComment
+          uri: lb://zillow-comment
+          predicates:
+            - Path=/comment/getComment
+            - Query=id
+            - Query=page
+        - id: comment-addComment
+          uri: lb://zillow-comment
+          predicates:
+            - Path=/comment/addComment
+
+        # search
+        - id: search-searchByKeyWord
+          uri: lb://zillow-search
+          predicates:
+            - Path=/search/searchByKeyWord
+            - Query=city
+            - Query=content
+            - Query=page
+            - Query=page
+        - id: search-searchByCity
+          uri: lb://zillow-search
+          predicates:
+            - Path=/search/searchByCity
+            - Query=city
+            - Query=page
+        - id: search-adminSearchByCity
+          uri: lb://zillow-search
+          predicates:
+            - Path=/search/adminSearchByCity
+            - Query=city
+            - Query=page
+
+
+        # user
+        - id: user
+          uri: lb://zillow-user
+          predicates:
+            - Path=/user/login
+        - id: register
+          uri: lb://zillow-user
+          predicates:
+            - Path=/user/register
+        - id: deleteUser
+          uri: lb://zillow-user
+          predicates:
+            - Path=/user/deleteUser
+        - id: sendVerificationCode
+          uri: lb://zillow-user
+          predicates:
+            - Path=/user/sendVerificationCode
+        - id: getUser
+          uri: lb://zillow-user
+          predicates:
+            - Path=/user/getUser
+
+        # buyAction
+        - id: buyAction
+          uri: lb://zillow-buyaction
+          predicates:
+            - Path=/buyAction/buyAction
+
+        # buyTime
+        - id: buyTime
+          uri: lb://zillow-buytime
+          predicates:
+            - Path=/buyTime/getBuyTime
+            - Query=id
+
+        # order
+        - id: order
+          uri: lb://zillow-order
+          predicates:
+            - Path=/order/getOrder
+            - Query=user
+
+    config:
+      uri: http://localhost:9010
+      label: master
+      name: zillow
+      profile: dev
+
+zillow:
+  fdfsBasePath:
+    nginx:
+      prefix: http://111.231.19.137:8888/
+
+logging:
+  pattern:
+    console: '%d{MM/dd HH:mm:ss.SSS} %clr(%-5level) ---  [%-15thread] %cyan(%-50logger{50}):%msg%n'
