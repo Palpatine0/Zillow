@@ -157,16 +157,13 @@ export default {
                 if (data.data.status == 200) {
                     this.addItem_dialog = false;
                     this.addItem_msg = data.data.data;
-                    console.log(this.addItem_msg)
                     this.addItem_snackbar = true
                 }
             })
         }
     },
     watch: {
-        // Watch for changes in recommendation
         'recommendation'(newVal) {
-            // Update the value based on selection
             if (newVal === 'Yes') {
                 this.recommendation = true;
             } else if (newVal === 'No') {

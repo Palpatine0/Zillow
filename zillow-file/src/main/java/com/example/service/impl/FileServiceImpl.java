@@ -104,7 +104,9 @@ public class FileServiceImpl implements FileService {
                 HouseImage houseImage = new HouseImage();
                 houseImage.setUrl(fullPath);
                 fileDao.saveHouseImage(houseImage);
-                return ZillowResult.ok(imageUrl);
+                ZillowResult ok = ZillowResult.ok(imageUrl);
+                ok.setMsg("File uploaded success");
+                return ok;
             } catch (IOException ioException) {
                 ZillowResult error = ZillowResult.error();
                 error.setMsg("File upload failed");

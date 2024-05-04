@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -82,6 +83,15 @@ public class ItemDaoImpl implements ItemDao {
         update.set("buytime", item.getBuytime());
         update.set("isRented", item.getIsRented());
         update.set("imgs", item.getImgs());
+        mongoTemplate.findAndModify(query, update, Item.class);
+    }
+
+    @Override
+    public void updateItemBannerById(String id, ArrayList<String> imgs) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("id").is(id));
+        Update update = new Update();
+        update.set("imgs", imgs);
         mongoTemplate.findAndModify(query, update, Item.class);
     }
 

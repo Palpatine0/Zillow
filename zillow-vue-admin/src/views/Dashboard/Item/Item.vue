@@ -101,18 +101,22 @@
 
             <v-col cols="12" md="3" sm="6" style="margin-top: -50px">
                 <v-card class="mx-auto center_h" max-width="344" outlined style="border-radius: 14px;flex-direction: column">
-                    <v-btn class="edit-btn mt-5 mb-4" color="#156ff6" dark style="height: 50px!important;" @click="updateStatus_dialog=!updateStatus_dialog">
+                    <v-btn class="edit-btn mt-5 mb-4" color="#156ff6" dark style="height: 50px!important;" @click="statusUpdate_dialog=!statusUpdate_dialog">
                         Edit Status
                     </v-btn>
-                    <v-btn class="edit-btn mb-5" color="#156ff6" dark outlined @click="updateInfo_dialog=!updateInfo_dialog">
+                    <v-btn class="edit-btn mb-2" color="#156ff6" dark outlined @click="infoUpdate_dialog=!infoUpdate_dialog">
                         Edit Info
+                    </v-btn>
+                    <v-btn class="edit-btn mb-5" color="#156ff6" dark outlined @click="bannerUpdate_dialog=!bannerUpdate_dialog">
+                        Edit Banners
                     </v-btn>
                 </v-card>
             </v-col>
         </v-container>
 
-        <ItemEditStatus :item-info="itemInfo" :updateStatus_dialog="updateStatus_dialog"/>
-        <ItemEditInfo :item-info="itemInfo" :updateInfo_dialog="updateInfo_dialog"/>
+        <ItemEditStatus :item-info="itemInfo" :statusUpdate_dialog="statusUpdate_dialog"/>
+        <ItemEditInfo :item-info="itemInfo" :infoUpdate_dialog="infoUpdate_dialog"/>
+        <ItemEditBanners :item-info="itemInfo" :bannerUpdate_dialog="bannerUpdate_dialog"/>
 
 
     </v-app>
@@ -122,13 +126,15 @@
 import Swiper from "@/components/Swiper.vue";
 import ItemEditStatus from "@/views/Dashboard/Item/Item-editStatus/Item-editStatus.vue";
 import ItemEditInfo from "@/views/Dashboard/Item/Item-editInfo/Item-editInfo.vue";
+import ItemEditBanners from "@/views/Dashboard/Item/Item-editBanners/Item-editBanners.vue";
 
 export default {
-    name: "Details",
+  name: "Item",
     components: {
         Swiper,
         ItemEditStatus,
-        ItemEditInfo
+        ItemEditInfo,
+        ItemEditBanners
     },
     data() {
         return {
@@ -136,8 +142,10 @@ export default {
             swiperSlides: [],
             itemInfo: {},
             title: '',
-            updateStatus_dialog: false,
-            updateInfo_dialog: false
+
+          statusUpdate_dialog: false,
+            infoUpdate_dialog: false,
+            bannerUpdate_dialog: false
         };
     },
     methods: {

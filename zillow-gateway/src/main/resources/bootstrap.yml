@@ -20,16 +20,20 @@ spring:
           uri: lb://zillow-file
           predicates:
             - Path=/file/uploadImageNoPrefix
+        - id: file-uploadTest
+          uri: lb://zillow-file
+          predicates:
+            - Path=/file/uploadTest
 
         # trendy
-        - id: trendy
+        - id: trendy-getTrendy
           uri: lb://zillow-trendy
           predicates:
             - Path=/trendy/getTrendy
             - Query=city
 
         # recommendation
-        - id: recommendation
+        - id: recommendation-getRecommendation
           uri: lb://zillow-recommendation
           predicates:
             - Path=/recommendation/getRecommendation
@@ -53,6 +57,14 @@ spring:
           uri: lb://zillow-item
           predicates:
             - Path=/item/updateItemStatusById
+        - id: item-updateItemInfoById
+          uri: lb://zillow-item
+          predicates:
+            - Path=/item/updateItemInfoById
+        - id: item-updateItemBannerById
+          uri: lb://zillow-item
+          predicates:
+            - Path=/item/updateItemBannerById
 
         # comment
         - id: comment-getComment

@@ -2,7 +2,7 @@
     <div>
         <v-container>
             <v-row justify="center">
-                <v-dialog v-model="updateInfo_dialog" max-width="600px" persistent>
+                <v-dialog v-model="infoUpdate_dialog" max-width="600px" persistent>
                     <v-card>
                         <v-card-title>
                             <span class="text-h5">Item Profile</span>
@@ -48,16 +48,16 @@
                                         <v-text-field v-model="computedArea" label="Area" required type="number"></v-text-field>
                                     </v-col>
 
+                                    <!--<v-file-input label="Upload Images" outlined dense @change="uploadImage($event)" chips md="4"></v-file-input>
                                     <v-file-input label="Upload Images" outlined dense @change="uploadImage($event)" chips md="4"></v-file-input>
-                                    <v-file-input label="Upload Images" outlined dense @change="uploadImage($event)" chips md="4"></v-file-input>
-                                    <v-file-input label="Upload Images" outlined dense @change="uploadImage($event)" chips md="4"></v-file-input>
+                                    <v-file-input label="Upload Images" outlined dense @change="uploadImage($event)" chips md="4"></v-file-input>-->
 
                                 </v-row>
                             </v-container>
                         </v-card-text>
                         <v-card-actions>
                             <v-spacer></v-spacer>
-                            <v-btn color="blue darken-1" text @click="updateInfo_dialog = false">
+                            <v-btn color="blue darken-1" text @click="infoUpdate_dialog = false">
                                 Close
                             </v-btn>
                             <v-btn color="blue darken-1" text @click="updateItemInfoById">
@@ -118,7 +118,7 @@ export default {
             })
             .then((data) => {
                 if (data.data.status == 200) {
-                    this.updateInfo_dialog = false;
+                    this.infoUpdate_dialog = false;
                     this.addItem_msg = data.data.data;
                     console.log(this.addItem_msg)
                     this.addItem_snackbar = true
@@ -126,7 +126,7 @@ export default {
             })
         }
     },
-    props: ['updateInfo_dialog', 'itemInfo'],
+    props: ['infoUpdate_dialog', 'itemInfo'],
 
     computed: {
         computedTitle: {

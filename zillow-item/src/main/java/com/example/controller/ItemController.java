@@ -15,7 +15,8 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/item")
-public class ItemController {
+public class
+ItemController {
     @Autowired
     private ItemService itemService;
 
@@ -145,6 +146,15 @@ public class ItemController {
         item.setIsRented(isRented);
 
         return itemService.updateItemInfoById(id, item);
+    }
+
+    @PostMapping("/updateItemBannerById")
+    public ZillowResult updateItemBannerById(String id, String img1, String img2, String img3) {
+        ArrayList<String> imgs = new ArrayList<>();
+        imgs.add(img1);
+        imgs.add(img2);
+        imgs.add(img3);
+        return itemService.updateItemBannerById(id, imgs);
     }
 
 

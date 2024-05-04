@@ -3,15 +3,11 @@ package com.example.controller;
 
 import com.example.service.FileService;
 import com.example.vo.ZillowResult;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Map;
 
 
 @RestController
@@ -33,39 +29,42 @@ public class FileController {
     }
 
     @PostMapping("/uploadImageNoPrefix")
-    public ZillowResult uploadImageNoPrefix(MultipartFile file) throws IOException {
-        byte[] bytes = file.getBytes();
-        return fileService.uploadImageNoPrefix(bytes, file.getOriginalFilename());
+    public ZillowResult uploadImageNoPrefix(@RequestParam("file") MultipartFile file) throws IOException {
+        System.out.println(file.getOriginalFilename());
+        System.out.println(file.getOriginalFilename());
+        System.out.println(file.getOriginalFilename());
+        try {
+            byte[] bytes = file.getBytes();
+            System.out.println("File uploaded successfully: " + file.getOriginalFilename());
+            return fileService.uploadImageNoPrefix(bytes, file.getOriginalFilename());
+        } catch (Exception e) {
+            System.err.println("Error processing file: " + file.getOriginalFilename());
+            e.printStackTrace();
+            ZillowResult result = new ZillowResult();
+            result.setStatus(500);
+            result.setMsg("Failed to upload file due to an error: " + e.getMessage());
+            return result;
+        }
     }
+
 
     @DeleteMapping("/delete")
     public ZillowResult delete(String filePath) {
         return fileService.delete(filePath);
     }
 
-    @GetMapping("/test")
-    public ZillowResult test() {
-        String filePath = "/Users/sheevpalpatine/Desktop/Coding/Full_Stack_Projects/Zillow/Project/Zillow/Zillow/zillow-file/src/main/java/com/example/test/test.json";
-
-        String jsonString = "";
+    @PostMapping("/uploadTest")
+    public ZillowResult uploadFile(@RequestParam("file") MultipartFile file) {
+        System.out.println("File uploaded successfully: " + file.getOriginalFilename());
+        ZillowResult result = new ZillowResult();
         try {
-            // Read the content of the file into a byte array
-            byte[] jsonData = Files.readAllBytes(Paths.get(filePath));
-            jsonString = new String(jsonData);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        ZillowResult zillowResult = new ZillowResult();
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            Map<String, Object> dataMap = objectMapper.readValue(jsonString, Map.class);
-            zillowResult.setData(dataMap);
+            String fileName = file.getOriginalFilename();
+            result.setMsg("File uploaded successfully: " + fileName);
+            return result;
         } catch (Exception e) {
-            e.printStackTrace();
+            result.setStatus(500);
+            result.setMsg("Failed to upload file: " + e.getMessage());
+            return result;
         }
-
-        return zillowResult;
     }
-
 }
