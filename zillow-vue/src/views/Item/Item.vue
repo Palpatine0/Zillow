@@ -1,8 +1,10 @@
 <template>
     <div>
-        <Header title="Details"/>
+        <span class="back-icon" style="position: absolute;z-index: 2;top: 10px;left: 10px;color: #156FF6" @click='back'>
+            <i class="icon-chevron-left"></i>
+        </span>
 
-        <div v-if="swiperSlides.length>0">
+      <div v-if="swiperSlides.length>0" style="position: relative">
             <MySwiper :swiperSlides="swiperSlides"/>
         </div>
         <div v-else>Loading...</div>
@@ -88,7 +90,7 @@ export default {
         DetailsComment,
     },
     mounted() {
-        this.$api.getItem({id: this.$route.params.id}).then(data => {
+      this.$api.getItemByID({id: this.$route.params.id}).then(data => {
             this.swiperSlides = data.data.imgs;
             this.detailsInfo = data.data;
         });
@@ -96,6 +98,9 @@ export default {
     methods: {
         changeCurrentIndexHandler(index) {
             this.currentIndex = index;
+        },
+      back() {
+        window.history.back()
         }
     }
 };
@@ -177,5 +182,13 @@ export default {
             }
         }
     }
+
+  /* Ensure your Swiper container does not overlap in z-index */
+
+  .swiper-container {
+    z-index: 10; /* Lower than the back icon */
+  }
+
+
 }
 </style>

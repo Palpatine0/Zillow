@@ -25,7 +25,7 @@
                             </b>
                             <div>{{ item.aptType }}</div>
                         </v-card-text>
-                        <v-card-actions>
+                      <v-card-actions v-if="false">
                             <v-btn color="orange" text>
                                 Share
                             </v-btn>
@@ -50,6 +50,7 @@
 <script>
 import {mapState} from "vuex";
 import DashboardAddItem from "@/views/Dashboard/Dashboard-AddItem/Dashboard-AddItem.vue";
+
 export default {
     components: {
         DashboardAddItem

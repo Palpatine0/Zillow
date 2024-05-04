@@ -37,8 +37,8 @@ const api = {
     },
 
     // item
-    getItem(params) {
-        return axios.get(base.baseUrl + base.getItem + "?" + qs.stringify(params));
+    getItemByID(params) {
+        return axios.get(base.baseUrl + base.getItemByID + "?" + qs.stringify(params));
     },
 
     // comment

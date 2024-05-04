@@ -6,9 +6,9 @@ import com.example.vo.ZillowResult;
 import java.util.ArrayList;
 
 public interface ItemService {
-    Item getItem(String id);
+    Item getItemByID(String id);
 
-    ZillowResult getItemByCity(String city, int page, int rows);
+    ZillowResult getItemsByCity(String city, int page, int rows);
 
     ZillowResult addItem(Item item);
 

@@ -12,7 +12,7 @@ const base = {
     getRecommendation: "/recommendation/getRecommendation",
 
     // item
-    getItem: '/item/getItem',
+    getItemByID: '/item/getItemByID',
 
     // comment
     comment: '/comment/getComment',

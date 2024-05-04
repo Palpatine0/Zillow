@@ -14,7 +14,8 @@
                                         <v-select v-model="computedRecommendation" :items="['No', 'Yes']" label="Recommend" required></v-select>
                                     </v-col>
                                     <v-col cols="12">
-                                        <v-select v-model="computedIsRented" :items="['No', 'Yes']" label="Recommend" required></v-select>
+                                      <v-select v-model="computedIsRented" :items="['No', 'Yes']" label="Is Rented"
+                                                required></v-select>
                                     </v-col>
                                 </v-row>
                             </v-container>
