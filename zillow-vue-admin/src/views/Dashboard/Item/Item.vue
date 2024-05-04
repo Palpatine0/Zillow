@@ -1,7 +1,7 @@
 <template>
     <v-app style="padding: 20px">
         <v-subheader class="subheading grey--text" as="h1">Dashboard > Item</v-subheader>
-        <div class="center_h mb-5">
+        <div class="center_h mb-1">
             <v-img width="200" src="https://assets.leetcode.com/users/images/7da063f0-ed38-4153-9c88-372feaad79d6_1714562261.1995816.jpeg"/>
         </div>
         <Swiper :slides="swiperSlides" :title="title"></Swiper>
@@ -12,7 +12,7 @@
                 <v-col style="height: 100%">
                     <p class="info-head">
                         ${{ commasNumber(itemInfo.price) }} / mo
-                      <!--                        ${{ itemInfo.price }} / mo-->
+                        <!--                        ${{ itemInfo.price }} / mo-->
                     </p>
                     <p class="title">{{ itemInfo.title }}</p>
                 </v-col>
@@ -32,7 +32,7 @@
                     <v-col cols="6" md="4" sm="6">
                         <p class="info-head">
                             {{ commasNumber(itemInfo.info.area) }}
-                          <!--                            {{ itemInfo.info.area }}-->
+<!--                            {{ itemInfo.info.area }}-->
                         </p>
                         <p class="info-body">sqft</p>
                     </v-col>
@@ -84,7 +84,7 @@
                 </v-row>
                 <v-row>
                     <v-col class="info-cell" cols="6" md="4" sm="6">
-                        <v-icon>fa-hammer</v-icon>
+                        <v-icon>mdi-tools</v-icon>
                         <span>Built in {{ itemInfo.info.years }}</span>
                     </v-col>
                     <v-col class="info-cell" cols="6" md="4" sm="6">
@@ -107,9 +107,9 @@
                     <v-btn class="edit-btn mb-2" color="#156ff6" dark outlined @click="infoUpdate_dialog=!infoUpdate_dialog">
                         Edit Info
                     </v-btn>
-                  <v-btn class="edit-btn mb-5" color="#156ff6" dark outlined
-                         @click="showcasesUpdate_dialog=!showcasesUpdate_dialog">
-                    Edit Showcases
+                    <v-btn class="edit-btn mb-5" color="#156ff6" dark outlined
+                           @click="showcasesUpdate_dialog=!showcasesUpdate_dialog">
+                        Edit Showcases
                     </v-btn>
                 </v-card>
             </v-col>
@@ -117,7 +117,7 @@
 
         <ItemEditStatus :item-info="itemInfo" :statusUpdate_dialog="statusUpdate_dialog"/>
         <ItemEditInfo :item-info="itemInfo" :infoUpdate_dialog="infoUpdate_dialog"/>
-      <ItemEditShowcases :item-info="itemInfo" :showcasesUpdate_dialog="showcasesUpdate_dialog"/>
+        <ItemEditShowcases :item-info="itemInfo" :showcasesUpdate_dialog="showcasesUpdate_dialog"/>
 
 
     </v-app>
@@ -130,12 +130,12 @@ import ItemEditInfo from "@/views/Dashboard/Item/Item-editInfo/Item-editInfo.vue
 import ItemEditShowcases from "@/views/Dashboard/Item/Item-editShowcases/Item-editShowcases.vue";
 
 export default {
-  name: "Item",
+    name: "Item",
     components: {
         Swiper,
         ItemEditStatus,
         ItemEditInfo,
-      ItemEditShowcases
+        ItemEditShowcases
     },
     data() {
         return {
@@ -144,9 +144,9 @@ export default {
             itemInfo: {},
             title: '',
 
-          statusUpdate_dialog: false,
+            statusUpdate_dialog: false,
             infoUpdate_dialog: false,
-          showcasesUpdate_dialog: false
+            showcasesUpdate_dialog: false
         };
     },
     methods: {
@@ -182,7 +182,7 @@ export default {
 .title {
     color: rgb(108, 108, 112);
     text-transform: none;
-  font-family: "Roboto Thin", "Helvetica Neue UltraLight", Tahoma, Geneva, sans-serif !important;
+    font-family: "Roboto Thin", "Helvetica Neue UltraLight", Tahoma, Geneva, sans-serif !important;
     font-size: 20px;
     line-height: 32px;
     font-weight: 100;
@@ -193,13 +193,13 @@ export default {
 .info-body {
     color: rgb(0, 0, 0);
     text-transform: none;
-  font-family: "Roboto Thin", "Helvetica Neue UltraLight", Tahoma, Geneva, sans-serif !important;
-  font-size: 24px;
+    font-family: "Roboto Thin", "Helvetica Neue UltraLight", Tahoma, Geneva, sans-serif !important;
+    font-size: 24px;
     line-height: 32px;
     font-weight: 100;
     position: relative;
     bottom: 20px;
-  color: #848b8d;
+    color: #848b8d;
 }
 
 .info-cell {

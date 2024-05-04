@@ -59,9 +59,24 @@
                                         <v-text-field v-model="item.info.area" label="Area" required type="number"></v-text-field>
                                     </v-col>
 
-                                    <!--<v-file-input label="Upload Images" outlined dense @change="uploadImage($event)" chips md="4"></v-file-input>
-                                    <v-file-input label="Upload Images" outlined dense @change="uploadImage($event)" chips md="4"></v-file-input>
-                                    <v-file-input label="Upload Images" outlined dense @change="uploadImage($event)" chips md="4"></v-file-input>-->
+                                    <v-col cols="12">
+                                        <div v-if="this.item.imgs.img1!=''">
+                                            <v-img :src="this.img_prefix + this.item.imgs.img1" aspect-ratio="2"></v-img>
+                                        </div>
+                                        <v-file-input show-size truncate-length="50" @change="file => uploadImageNoPrefix(file, 'img1')"></v-file-input>
+                                    </v-col>
+                                    <v-col cols="12">
+                                        <div v-if="this.item.imgs.img2!=''">
+                                            <v-img :src="this.img_prefix + this.item.imgs.img2" aspect-ratio="2"></v-img>
+                                        </div>
+                                        <v-file-input show-size truncate-length="50" @change="file => uploadImageNoPrefix(file, 'img2')"></v-file-input>
+                                    </v-col>
+                                    <v-col cols="12">
+                                        <div v-if="this.item.imgs.img3!=''">
+                                            <v-img :src="this.img_prefix + this.item.imgs.img3" aspect-ratio="2"></v-img>
+                                        </div>
+                                        <v-file-input show-size truncate-length="50" @change="file => uploadImageNoPrefix(file, 'img3')"></v-file-input>
+                                    </v-col>
 
 
                                 </v-row>
@@ -84,10 +99,16 @@
         <v-snackbar v-model="addItem_snackbar" :timeout="2000">
             {{ addItem_msg }}
         </v-snackbar>
+
+        <v-snackbar v-model="uploadItemShowcases_add_snackbar" :timeout="2000">
+            {{ uploadItemShowcases_add_msg }}
+        </v-snackbar>
     </div>
 </template>
 
 <script>
+import {mapState} from "vuex";
+
 export default {
     data() {
         return {
@@ -114,12 +135,19 @@ export default {
                 buytime: '',
                 isRented: false,
                 link: '',
-                img: '',
+                imgs: {
+                    img1: '',
+                    img2: '',
+                    img3: ''
+                },
                 houseType4Search: '',
             },
 
 
             // page vars
+            uploadItemShowcases_add_msg: '',
+            uploadItemShowcases_add_snackbar: false,
+
             addItem_dialog: false,
             addItem_msg: false,
             addItem_snackbar: false,
@@ -146,21 +174,40 @@ export default {
                 beds: this.item.info.beds,
                 years: this.item.info.years,
 
-                imgs: this.item.imgs,
                 buytime: this.item.buytime,
                 isRented: this.item.isRented,
                 link: this.item.link,
-                img: this.item.img,
+                img1: this.item.imgs.img1,
+                img2: this.item.imgs.img2,
+                img3: this.item.imgs.img3,
                 houseType4Search: this.item.houseType4Search,
             })
             .then((data) => {
+                console.log(data)
                 if (data.data.status == 200) {
                     this.addItem_dialog = false;
                     this.addItem_msg = data.data.data;
                     this.addItem_snackbar = true
                 }
             })
-        }
+        },
+        uploadImageNoPrefix(file, imgKey) {
+            this.$api.uploadImageNoPrefix({file: file})
+            .then((data) => {
+                console.log(data)
+                if (data.data.status === 200 && data.data.data) {
+                    this.item.imgs[imgKey] = data.data.data;
+                    this.uploadItemShowcases_add_snackbar = true;
+                    this.uploadItemShowcases_add_msg = data.data.msg;
+                } else {
+                    throw new Error('Failed to upload image or bad data received');
+                }
+            })
+
+        },
+    },
+    computed: {
+        ...mapState(['img_prefix']),
     },
     watch: {
         'recommendation'(newVal) {
