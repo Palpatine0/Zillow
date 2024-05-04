@@ -5,6 +5,7 @@
         </span>
 
         <div v-if="swiperSlides.length>0" style="position: relative">
+
             <MySwiper :swiperSlides="swiperSlides"/>
         </div>
         <div v-else>Loading...</div>
@@ -14,6 +15,7 @@
                 <template>
                     <div>
                         <div class="detail-info">
+
                             <h1 class="mt-4">${{ commasNumber(itemInfo.price) }} / mo</h1>
 
 
@@ -101,7 +103,7 @@ export default {
             currentIndex: 1,
             swiperSlides: [],
             itemInfo: {}
-        };
+         };
     },
     components: {
         DetailsStore,
@@ -162,13 +164,10 @@ export default {
                 margin-right: 4px;
             }
         }
-
-
     }
 
     .box_infoB {
         margin: 20px;
-
         .row {
             display: flex;
             justify-content: space-between;
@@ -200,7 +199,5 @@ export default {
     * {
     //outline: 1px solid red;
     }
-
-
 }
 </style>

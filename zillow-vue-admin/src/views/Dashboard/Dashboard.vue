@@ -25,6 +25,7 @@
                             </b>
                             <div>{{ item.aptType }}</div>
                         </v-card-text>
+
                       <v-card-actions v-if="false">
                             <v-btn color="orange" text>
                                 Share

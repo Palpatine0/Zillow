@@ -31,5 +31,6 @@ export default {
 <style lang="less" scoped>
 .mySwiper img {
     width: 100%;
+
 }
 </style>

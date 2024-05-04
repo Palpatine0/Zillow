@@ -51,7 +51,7 @@ const api = {
     buytime(params) {
         return axios.get(base.baseUrl + base.getBuyTime + '?id=' + params.id);
     },
-    buyaction(params) {
+    buyaction(params) { 
         return axios.get(base.baseUrl + base.buyAction + "?" + qs.stringify(params));
     },
 
@@ -78,7 +78,6 @@ const api = {
 
     // comment
     addComment(params) {
-        console.log(params)
         return axios.post(base.baseUrl + base.feedback, qs.stringify(params));
     },
     getComment(params) {

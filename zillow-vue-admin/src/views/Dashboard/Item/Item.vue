@@ -10,6 +10,7 @@
                 <v-col style="height: 100%">
                     <p class="info-head">
                         ${{ commasNumber(itemInfo.price) }} / mo
+
                       <!--${{ itemInfo.price }} / mo-->
                     </p>
                     <p class="title">{{ itemInfo.title }}</p>
@@ -95,7 +96,6 @@
                     </v-col>
                 </v-row>
             </v-col>
-
 
           <v-col cols="12" md="3" sm="6" style="margin-top: -80px">
                 <v-card class="mx-auto center_h" max-width="344" outlined style="border-radius: 14px;flex-direction: column">
