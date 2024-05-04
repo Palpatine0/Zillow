@@ -8,9 +8,6 @@
         "start": "concurrently \"npm run serve\" \" nodemon mock/index.js \""
     },
     "dependencies": {
-        "@fortawesome/fontawesome-svg-core": "^6.5.1",
-        "@fortawesome/free-solid-svg-icons": "^6.5.1",
-        "@fortawesome/vue-fontawesome": "^3.0.0-5",
         "concurrently": "^5.0.0",
         "core-js": "^3.3.2",
         "express": "^4.17.1",

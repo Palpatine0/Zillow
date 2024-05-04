@@ -25,9 +25,6 @@ const api = {
         })
     },
 
-
-
-
     //
     getRecommendation(params) {
         return axios.get(base.baseUrl + base.getRecommendation + "?city=" + params.city);
