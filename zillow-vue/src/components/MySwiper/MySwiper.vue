@@ -1,7 +1,7 @@
 <template>
-  <swiper :options="swiperOption" class="mySwiper ">
-    <swiper-slide v-for="(slide, index) in swiperSlides" :key="index">
-      <img :src="img_prefix+slide" alt style="height: 300px"/>
+    <swiper :options="swiperOption" class="mySwiper ">
+        <swiper-slide v-for="(slide, index) in swiperSlides" :key="index">
+            <img :src="img_prefix+slide" alt style="height: 300px"/>
         </swiper-slide>
         <div slot="pagination" class="swiper-pagination"></div>
     </swiper>
@@ -18,22 +18,22 @@ export default {
                     el: ".swiper-pagination"
                 },
                 loop: true,
-              autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
-              },
+                autoplay: {
+                    delay: 2500,
+                    disableOnInteraction: false,
+                },
             }
         };
     },
-  props: ['swiperSlides'],
-  computed: {
-    ...mapState(['img_prefix']),
-  },
-  created() {
-    if (this.swiperMark == 'home') {
+    props: ['swiperSlides'],
+    computed: {
+        ...mapState(['img_prefix']),
+    },
+    created() {
+        if (this.swiperMark == 'home') {
 
+        }
     }
-  }
 };
 </script>
 <style lang="less" scoped>

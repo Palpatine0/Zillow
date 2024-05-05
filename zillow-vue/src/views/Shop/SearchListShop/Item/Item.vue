@@ -1,7 +1,7 @@
 <!--Item.vue-->
 <template>
     <div class="list-item">
-      <router-link :to="`/item/${ curdata.id }`">
+        <router-link :to="`/item/${ curdata.id }`">
 
             <img :src="getFirstImageUrl(curdata.imgs)" alt/>
 

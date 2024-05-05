@@ -47,11 +47,11 @@ export default {
         },
         submit() {
 
-          this.$api.addComment({
-            commentContent: this.msg,
-            orderId: this.idata.id,
-            phone: this.idata.phone
-          })
+            this.$api.addComment({
+                commentContent: this.msg,
+                orderId: this.idata.id,
+                phone: this.idata.phone
+            })
             .then(data => {
                 console.log(data)
                 this.idata.commentState = 0;
