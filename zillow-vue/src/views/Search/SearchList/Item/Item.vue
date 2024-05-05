@@ -1,9 +1,8 @@
 <!--Item.vue-->
 <template>
     <div class="list-item">
-        <router-link :to="`/details/${ curdata.id }`">
+      <router-link :to="`/item/${ curdata.id }`">
 
-            <!--            <img :src="curdata.imgs" alt/>-->
             <img :src="getFirstImageUrl(curdata.imgs)" alt/>
 
             <div class="mask">
@@ -14,7 +13,7 @@
                 <div class="right">
                     <div class="btn">{{ curdata.rentType }}</div>
                     <p>
-                        <span v-html="curdata.price"></span>$ / Month
+                      ${{ curdata.price }} / Month
                     </p>
                 </div>
             </div>

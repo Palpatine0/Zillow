@@ -59,6 +59,9 @@ const api = {
     addItem(params) {
         return axios.post(base.baseUrl + base.addItem, qs.stringify(params));
     },
+    deleteItemByID(params) {
+        return axios.delete(base.baseUrl + base.deleteItemByID + "?" + qs.stringify(params));
+    },
     adminGetItemsByCity(params) {
         return axios.get(base.baseUrl + base.adminGetItemsByCity + "?" + qs.stringify(params));
     },

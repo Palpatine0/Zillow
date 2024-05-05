@@ -28,6 +28,11 @@ ItemController {
         return itemService.getItemByID(id);
     }
 
+    @DeleteMapping("/deleteItemByID")
+    public ZillowResult deleteItemByID(String id) {
+        return itemService.deleteItemByID(id);
+    }
+
     @GetMapping("/getItemsByCity")
     public ZillowResult getItemsByCity(String city, int page, @RequestParam(defaultValue = "5") int rows) {
         return itemService.getItemsByCity(city, page, rows);

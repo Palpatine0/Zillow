@@ -43,7 +43,7 @@ public class FileServiceImpl implements FileService {
             // S2: append url to data's front, since it hasn't.and put them to a list
             ArrayList<Object> imgRes = new ArrayList<>();
             for (Banner file : files) {
-                imgRes.add(nginxPrefix + file.getUrl());
+                imgRes.add(file.getUrl());
             }
 
             // S3: feedback

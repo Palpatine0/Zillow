@@ -17,7 +17,8 @@ export default new Vuex.Store({
         ],
         cities: [
             'Dallas',
-            'Cape Coral'
+            'Cape Coral',
+            'Beverly Hills'
         ],
     },
     mutations: {

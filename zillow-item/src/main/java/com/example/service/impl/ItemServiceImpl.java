@@ -41,6 +41,23 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public ZillowResult deleteItemByID(String id) {
+        try {
+            itemDao.deleteItemByID(id);
+            ZillowResult ok = new ZillowResult();
+            ok.setMsg("Item deleted successfully.");
+            ok.setStatus(200);
+            return ok;
+        } catch (Exception e) {
+            e.printStackTrace();
+            ZillowResult error = new ZillowResult();
+            error.setMsg("Failed to delete item.");
+            error.setStatus(500);
+            return error;
+        }
+    }
+
+    @Override
     public ZillowResult getItemsByCity(String city, int page, int rows) {
         List<Item> itemList = itemDao.findItemByCity(city, page, rows);
         ZillowResult ok = new ZillowResult();

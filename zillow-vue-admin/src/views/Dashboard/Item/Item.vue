@@ -2,7 +2,8 @@
     <v-app style="padding: 20px">
         <v-subheader class="subheading grey--text" as="h1">Dashboard > Item</v-subheader>
       <div class="center_h mb-5">
-            <v-img width="200" src="https://assets.leetcode.com/users/images/7da063f0-ed38-4153-9c88-372feaad79d6_1714562261.1995816.jpeg"/>
+        <v-img src="https://assets.leetcode.com/users/images/7da063f0-ed38-4153-9c88-372feaad79d6_1714562261.1995816.jpeg"
+               width="200"/>
         </div>
         <Swiper :slides="swiperSlides" :title="title"></Swiper>
       <v-container class="mt-5">
@@ -30,8 +31,8 @@
                     </v-col>
                     <v-col cols="6" md="4" sm="6">
                         <p class="info-head">
-                          <!--                            {{ commasNumber(itemInfo.info.area) }}-->
-                          {{ itemInfo.info.area }}
+                          {{ commasNumber(itemInfo.info.area) }}
+                          <!--                          {{ itemInfo.info.area }}-->
                         </p>
                         <p class="info-body">sqft</p>
                     </v-col>
@@ -98,22 +99,25 @@
             </v-col>
 
           <v-col cols="12" md="3" sm="6" style="margin-top: -80px">
-                <v-card class="mx-auto center_h" max-width="344" outlined style="border-radius: 14px;flex-direction: column">
-                    <v-btn class="edit-btn mt-5 mb-4" color="#156ff6" dark style="height: 50px!important;" @click="statusUpdate_dialog=!statusUpdate_dialog">
+            <v-card class="mx-auto center_h" max-width="344" outlined
+                    style="border-radius: 14px;flex-direction: column">
+              <v-btn class="edit-btn mt-5 mb-4" color="#156ff6" dark style="height: 50px!important;"
+                     @click="statusUpdate_dialog=!statusUpdate_dialog">
                         Edit Status
                     </v-btn>
-                    <v-btn class="edit-btn mb-2" color="#156ff6" dark outlined @click="infoUpdate_dialog=!infoUpdate_dialog">
+              <v-btn class="edit-btn mb-2" color="#156ff6" dark outlined
+                     @click="infoUpdate_dialog=!infoUpdate_dialog">
                         Edit Info
                     </v-btn>
-                  <v-btn class="edit-btn mb-5" color="#156ff6" dark outlined
-                         @click="showcasesUpdate_dialog=!showcasesUpdate_dialog">
+              <v-btn class="edit-btn mb-5" color="#156ff6" dark outlined
+                     @click="showcasesUpdate_dialog=!showcasesUpdate_dialog">
                         Edit Showcases
-                  </v-btn>
+              </v-btn>
                 </v-card>
             <v-card class="mx-auto center_h mt-3 mb-3" max-width="344" outlined
                     style="border-radius: 14px;flex-direction: column;border-color: #ffa9ac">
               <v-btn class="edit-btn mt-3 mb-3" color="red" dark outlined
-                     @click="showcasesUpdate_dialog=!showcasesUpdate_dialog">
+                     @click="itemDelete_dialog=!itemDelete_dialog">
                 <b>DELETE</b>
                     </v-btn>
                 </v-card>
@@ -124,6 +128,32 @@
         <ItemEditInfo :item-info="itemInfo" :infoUpdate_dialog="infoUpdate_dialog"/>
         <ItemEditShowcases :item-info="itemInfo" :showcasesUpdate_dialog="showcasesUpdate_dialog"/>
 
+      <v-row justify="center">
+        <v-dialog v-model="itemDelete_dialog" max-width="320" persistent>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn color="primary" dark v-bind="attrs" v-on="on">
+              Open Dialog
+            </v-btn>
+          </template>
+
+          <v-card>
+            <v-card-title class="text-h5">
+              CONFIRM YOUR OPTION
+            </v-card-title>
+            <v-card-text>You can't revert this action once deleted.</v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="red darken-1" text @click="itemDelete_dialog = false">
+                Cancel
+              </v-btn>
+              <v-btn color="red darken-1" text @click="deleteItemByID(),itemDelete_dialog = false">
+                Confirm
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+
+        </v-dialog>
+      </v-row>
 
     </v-app>
 </template>
@@ -151,12 +181,21 @@ export default {
 
             statusUpdate_dialog: false,
             infoUpdate_dialog: false,
-            showcasesUpdate_dialog: false
+          showcasesUpdate_dialog: false,
+          itemDelete_dialog: false
         };
     },
     methods: {
         commasNumber(x) {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        },
+      deleteItemByID() {
+        this.$api.deleteItemByID({id: this.$route.params.id})
+            .then(data => {
+              if (data.data.status == 200) {
+                window.history.back();
+              }
+            });
         }
     },
     mounted() {

@@ -43,7 +43,7 @@
 
 
         <!-- swiper -->
-        <MySwiper :swiperSlides="swiperSlides" class="mySwiper"/>
+      <MySwiper :swiperSlides="swiperSlides" class="mySwiper"/>
         <!-- /swiper -->
 
 
@@ -68,7 +68,7 @@ import MySwiper from '../../components/MySwiper/MySwiper'
 import FootNav from '../../components/FootNav/FootNav'
 import {mapState} from 'vuex'
 import Suggestions from "../Suggestion/Suggestion.vue";
-import {provide, inject} from 'vue';
+import {inject, provide} from 'vue';
 
 export default {
     name: "Home",
@@ -104,7 +104,6 @@ export default {
     mounted() {
         this.$api.getBanner()
         .then(data => {
-            // console.log(data)
             if (data.data.status == 200) {
                 this.swiperSlides = data.data.results;
             } else {

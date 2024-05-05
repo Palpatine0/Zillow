@@ -5,7 +5,6 @@
         </span>
 
         <div v-if="swiperSlides.length>0" style="position: relative">
-
             <MySwiper :swiperSlides="swiperSlides"/>
         </div>
         <div v-else>Loading...</div>
