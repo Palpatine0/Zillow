@@ -14,6 +14,7 @@ axios.interceptors.request.use(function (config) {
     return Promise.reject(error);
 });
 
+store.dispatch('initializeStore');
 Vue.prototype.axios = axios;
 Vue.prototype.$api = api;
 Vue.config.productionTip = false
