@@ -39,7 +39,7 @@
                               label="Orientation" required></v-select>
                   </v-col>
                   <v-col cols="12" md="4" sm="6">
-                    <v-text-field v-model="item.info.level" label="Floor" required type="number"></v-text-field>
+                    <v-text-field v-model="item.info.level" label="Level" required type="number"></v-text-field>
                   </v-col>
                   <v-col cols="12" md="4" sm="6">
                     <v-select v-model="item.info.style" :items="['Fully Furnished', 'Partially Furnished', 'Bare']"
