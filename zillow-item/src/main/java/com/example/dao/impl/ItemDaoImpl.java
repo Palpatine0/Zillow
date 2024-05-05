@@ -33,6 +33,13 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     @Override
+    public void deleteItemByID(String id) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("id").is(id));
+        mongoTemplate.remove(query, Item.class);
+    }
+
+    @Override
     public int countItemByCity(String city) {
         Query query = new Query();
         query.addCriteria(Criteria.where("city").is(city));

@@ -5,7 +5,6 @@ const base = {
     // file
     getBanner: '/file/getBanner',
     uploadImageNoPrefix: '/file/uploadImageNoPrefix',
-    uploadTest: '/file/uploadTest',
 
     // trendy
     getTrendy: '/trendy/getTrendy',
@@ -16,8 +15,8 @@ const base = {
     //item
     getItemByID: '/item/getItemByID',
     addItem: '/item/addItem',
+    deleteItemByID: '/item/deleteItemByID',
     adminGetItemsByCity: '/item/adminGetItemsByCity',
- 
     updateItemStatusById: '/item/updateItemStatusById',
     updateItemInfoById: '/item/updateItemInfoById',
     updateItemShowcasesById: '/item/updateItemShowcasesById',

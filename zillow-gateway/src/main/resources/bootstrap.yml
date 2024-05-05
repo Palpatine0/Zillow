@@ -49,6 +49,10 @@ spring:
           uri: lb://zillow-item
           predicates:
             - Path=/item/addItem
+        - id: item-deleteItemByID
+          uri: lb://zillow-item
+          predicates:
+            - Path=/item/deleteItemByID
         - id: item-getItemsByCity
           uri: lb://zillow-item
           predicates:

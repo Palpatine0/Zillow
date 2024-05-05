@@ -8,11 +8,14 @@ import java.util.ArrayList;
 public interface ItemService {
     Item getItemByID(String id);
 
+    ZillowResult deleteItemByID(String id);
+
     ZillowResult getItemsByCity(String city, int page, int rows);
 
     ZillowResult addItem(Item item);
 
     ZillowResult updateItemStatusById(String id, Boolean isRented, Boolean recommendation);
+
     ZillowResult updateItemInfoById(String id, Item item);
 
     ZillowResult updateItemShowcasesById(String id, ArrayList<String> imgs);
