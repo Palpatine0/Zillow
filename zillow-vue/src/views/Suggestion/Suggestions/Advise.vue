@@ -67,7 +67,7 @@
 
             img {
                 position: absolute;
-                width: 12%;
+                width: 50px;
             }
 
             .content {
@@ -94,4 +94,8 @@
     }
 
 }
+* {
+    //outline: 1px solid red;
+}
+
 </style>

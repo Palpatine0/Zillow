@@ -7,8 +7,13 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        curcity: 'Dallas', searchMsg: '', collect: [], user: ''
-    }, mutations: {
+        curcity: 'Dallas',
+        searchMsg: '',
+        collect: [],
+        user: '',
+        img_prefix: 'http://111.231.19.137:8888/',
+    },
+    mutations: {
         setCity(state, payload) {
             state.curcity = payload.data
         }, setSearchMsg(state, payload) {
