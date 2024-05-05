@@ -1,19 +1,21 @@
 <template>
     <v-app style="padding: 20px">
-        <v-subheader class="subheading grey--text" as="h1">Dashboard</v-subheader>
+        <v-subheader as="h1" class="subheading grey--text">Dashboard</v-subheader>
         <v-container>
             <v-row style="justify-content: space-between">
                 <v-col cols="2">
-                    <v-select :items="cities" label="Standard" v-model="selectedCity"></v-select>
+                    <v-select v-model="selectedCity" :items="cities" label="Location"></v-select>
                 </v-col>
                 <div class="mt-5">
-                    <v-pagination class="float-right" :length="pagination" v-model="page" @input="adminGetItemByCity" color="#156ff6"></v-pagination>
+                    <v-pagination v-model="page" :length="pagination" class="float-right" color="#156ff6"
+                                  @input="adminGetItemByCity"></v-pagination>
                 </div>
             </v-row>
             <v-row>
-                <v-col cols="12" md="6" lg="4" v-for="(item, index) in searchListData" :key="index">
-                    <v-card class="mx-auto" max-width="400" :href="item.link">
-                        <v-img class="white--text align-end" height="200px" :src="img_prefix+item.img">
+
+                <v-col v-for="(item, index) in searchListData" :key="index" cols="12" lg="4" md="6">
+                    <v-card :href="item.link" class="mx-auto" max-width="400">
+                        <v-img :src="img_prefix+item.img" class="white--text align-end" height="200px">
                             <v-card-title>{{ getHeadAddr(item.title) }}</v-card-title>
                         </v-img>
                         <v-card-subtitle class="pb-0">
@@ -26,7 +28,7 @@
                             <div>{{ item.aptType }}</div>
                         </v-card-text>
 
-                      <v-card-actions v-if="false">
+                        <v-card-actions v-if="false">
                             <v-btn color="orange" text>
                                 Share
                             </v-btn>
@@ -41,8 +43,6 @@
         </v-container>
 
         <DashboardAddItem class="mt-5"></DashboardAddItem>
-
-
 
 
     </v-app>
@@ -100,18 +100,21 @@ export default {
         this.adminGetItemByCity();
     },
     computed: {
-        ...mapState(['cities']),
         ...mapState(['city']),
+        ...mapState(['cities']),
         ...mapState(['img_prefix']),
         selectedCity: {
             get() {
-                return this.$store.state.city; // Getter to return the current city
+                console.log("Getting city:", this.$store.state.city);
+                return this.$store.state.city;
             },
             set(value) {
-                this.$store.commit('setCity', value); // Setter to update the city in the Vuex store
-                this.adminGetItemByCity(); // Refresh data when city changes
+                console.log("Setting city to:", value);
+                this.$store.commit('setCity', value);
+                this.adminGetItemByCity();
             }
-        },
+        }
+
     }
 
 }

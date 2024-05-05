@@ -1,6 +1,6 @@
 <template>
-    <v-app-bar flat app>
-        <v-app-bar-nav-icon @click="toggleDrawer" class="grey--text"/>
+    <v-app-bar app flat>
+        <v-app-bar-nav-icon class="grey--text" @click="toggleDrawer"/>
 
         <v-toolbar-title class="text-uppercase grey--text">
             <span class="font-weight-light">Zillow</span>
@@ -12,7 +12,7 @@
         <!-- dropdown menu -->
         <v-menu offset-y>
             <template v-slot:activator="{ on }">
-                <v-btn text v-on="on" color="grey">
+                <v-btn color="grey" text v-on="on">
                     <v-icon left>mdi-expand-more</v-icon>
                     <span>Menu</span>
                 </v-btn>
@@ -24,16 +24,15 @@
             </v-list>
         </v-menu>
 
-        <v-btn text color="grey">
+        <v-btn color="grey" text>
             <span>Sign Out</span>
             <v-icon right>mdi-exit-to-app</v-icon>
         </v-btn>
     </v-app-bar>
 </template>
 <script>
-import {mapState} from 'vuex'
+import Vuex, {mapState} from 'vuex'
 import Vue from 'vue';
-import Vuex from 'vuex';
 
 Vue.use(Vuex);
 

@@ -1,10 +1,10 @@
 <template>
-    <v-carousel cycle height="550" show-arrows-on-hover hide-delimiter-background>
+    <v-carousel cycle height="550" hide-delimiter-background show-arrows-on-hover>
         <v-carousel-item v-for="(slide, i) in slides" :key="i">
             <v-sheet height="100%">
-                <v-row class="fill-height" align="center" justify="center">
+                <v-row align="center" class="fill-height" justify="center">
                     <div class="text-h2 rounded-lg">
-                        <v-img class="centered-image " :src="img_prefix+slide" aspect-ratio="2"/>
+                        <v-img :src="img_prefix+slide" aspect-ratio="2" class="centered-image "/>
                     </div>
                 </v-row>
             </v-sheet>

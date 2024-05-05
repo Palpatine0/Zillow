@@ -14,25 +14,29 @@
                                         <v-text-field v-model="computedTitle" label="Title" required></v-text-field>
                                     </v-col>
 
-                                    <v-col cols="12" md="6" sm="6">
+                                        <v-col cols="12" md="6" sm="6">
                                         <v-text-field v-model="computedPrice" label="Price / mo" required type="number"></v-text-field>
                                     </v-col>
                                     <v-col cols="12" md="6" sm="6">
-                                        <v-select v-model="computedRentType" :items="['Whole Rental', 'Room Rental', 'Shared Rental']" label="Rent Type" required></v-select>
+                                        <v-select v-model="computedRentType" :items="['Whole Rental', 'Room Rental', 'Shared Rental']"
+                                                  label="Rent Type" required></v-select>
                                     </v-col>
 
                                     <v-col cols="12" md="4" sm="6">
-                                        <v-select v-model="computedOrientation" :items="['North', 'South', 'West','East']" label="Orientation" required></v-select>
+                                        <v-select v-model="computedOrientation" :items="['North', 'South', 'West','East']"
+                                                  label="Orientation" required></v-select>
                                     </v-col>
                                     <v-col cols="12" md="4" sm="6">
                                         <v-text-field v-model="computedLevel" label="Floor" required type="number"></v-text-field>
                                     </v-col>
                                     <v-col cols="12" md="4" sm="6">
-                                        <v-select v-model="computedStyle" :items="['Fully Furnished', 'Partially Furnished', 'Bare']" label="Condition" required></v-select>
+                                        <v-select v-model="computedStyle" :items="['Fully Furnished', 'Partially Furnished', 'Bare']"
+                                                  label="Condition" required></v-select>
                                     </v-col>
 
                                     <v-col cols="12" md="6" sm="6">
-                                        <v-select v-model="computedType" :items="['Single Family Residence','Condominium']" label="Type" required></v-select>
+                                        <v-select v-model="computedType" :items="['Single Family Residence','Condominium']" label="Type"
+                                                  required></v-select>
                                     </v-col>
                                     <v-col cols="12" md="6" sm="6">
                                         <v-text-field v-model="computedYears" label="Build Year" required type="number"></v-text-field>

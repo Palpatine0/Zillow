@@ -11,17 +11,17 @@
                             <v-container>
                                 <v-row>
                                     <v-col cols="12">
-                                        <v-img :src="this.img_prefix + imgs.img1" aspect-ratio="2"></v-img>
+                                        <v-img :src="img_prefix + imgs.img1" aspect-ratio="2"></v-img>
                                         <v-file-input show-size truncate-length="50"
                                                       @change="file => uploadImageNoPrefix(file, 'img1')"></v-file-input>
                                     </v-col>
                                     <v-col cols="12">
-                                        <v-img :src="this.img_prefix + imgs.img2" aspect-ratio="2"></v-img>
+                                        <v-img :src="img_prefix + imgs.img2" aspect-ratio="2"></v-img>
                                         <v-file-input show-size truncate-length="50"
                                                       @change="file => uploadImageNoPrefix(file, 'img2')"></v-file-input>
                                     </v-col>
                                     <v-col cols="12">
-                                        <v-img :src="this.img_prefix + imgs.img3" aspect-ratio="2"></v-img>
+                                        <v-img :src="img_prefix + imgs.img3" aspect-ratio="2"></v-img>
                                         <v-file-input show-size truncate-length="50"
                                                       @change="file => uploadImageNoPrefix(file, 'img3')"></v-file-input>
                                     </v-col>
@@ -93,6 +93,7 @@ export default {
             })
         },
         uploadImageNoPrefix(file, imgKey) {
+            console.log("uploadImageNoPrefix")
             this.$api.uploadImageNoPrefix({file: file})
             .then((data) => {
                 if (data.data.status === 200 && data.data.data) {

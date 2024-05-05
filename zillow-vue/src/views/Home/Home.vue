@@ -43,7 +43,7 @@
 
 
         <!-- swiper -->
-      <MySwiper :swiperSlides="swiperSlides" class="mySwiper"/>
+        <MySwiper :swiperSlides="swiperSlides" class="mySwiper"/>
         <!-- /swiper -->
 
 
@@ -228,7 +228,6 @@ export default {
     }
 
 }
-
 
 
 </style>

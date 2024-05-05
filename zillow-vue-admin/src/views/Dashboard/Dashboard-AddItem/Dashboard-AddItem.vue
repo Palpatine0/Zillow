@@ -26,24 +26,29 @@
 
 
                                     <v-col cols="12" md="6" sm="6">
-                                        <v-select v-model="item.rentType" :items="['Whole Rental', 'Room Rental', 'Shared Rental']" label="Rent Type" required></v-select>
+                                        <v-select v-model="item.rentType" :items="['Whole Rental', 'Room Rental', 'Shared Rental']"
+                                                  label="Rent Type" required></v-select>
                                     </v-col>
                                     <v-col cols="12" md="6" sm="6">
-                                        <v-select v-model="item.recommendation" :items="['No', 'Yes']" label="Recommend" required></v-select>
+                                        <v-select v-model="item.recommendation" :items="['No', 'Yes']" label="Recommend"
+                                                  required></v-select>
                                     </v-col>
 
                                     <v-col cols="12" md="4" sm="6">
-                                        <v-select v-model="item.info.orientation" :items="['North', 'South', 'West','East']" label="Orientation" required></v-select>
+                                        <v-select v-model="item.info.orientation" :items="['North', 'South', 'West','East']"
+                                                  label="Orientation" required></v-select>
                                     </v-col>
                                     <v-col cols="12" md="4" sm="6">
                                         <v-text-field v-model="item.info.level" label="Floor" required type="number"></v-text-field>
                                     </v-col>
                                     <v-col cols="12" md="4" sm="6">
-                                        <v-select v-model="item.info.style" :items="['Fully Furnished', 'Partially Furnished', 'Bare']" label="Condition" required></v-select>
+                                        <v-select v-model="item.info.style" :items="['Fully Furnished', 'Partially Furnished', 'Bare']"
+                                                  label="Condition" required></v-select>
                                     </v-col>
 
                                     <v-col cols="12" md="6" sm="6">
-                                        <v-select v-model="item.info.type" :items="['Single Family Residence','Condominium']" label="Type" required></v-select>
+                                        <v-select v-model="item.info.type" :items="['Single Family Residence','Condominium']" label="Type"
+                                                  required></v-select>
                                     </v-col>
                                     <v-col cols="12" md="6" sm="6">
                                         <v-text-field v-model="item.info.years" label="Build Year" required type="number"></v-text-field>
@@ -63,19 +68,22 @@
                                         <div v-if="this.item.imgs.img1!=''">
                                             <v-img :src="this.img_prefix + this.item.imgs.img1" aspect-ratio="2"></v-img>
                                         </div>
-                                        <v-file-input show-size truncate-length="50" @change="file => uploadImageNoPrefix(file, 'img1')"></v-file-input>
+                                        <v-file-input show-size truncate-length="50"
+                                                      @change="file => uploadImageNoPrefix(file, 'img1')"></v-file-input>
                                     </v-col>
                                     <v-col cols="12">
                                         <div v-if="this.item.imgs.img2!=''">
                                             <v-img :src="this.img_prefix + this.item.imgs.img2" aspect-ratio="2"></v-img>
                                         </div>
-                                        <v-file-input show-size truncate-length="50" @change="file => uploadImageNoPrefix(file, 'img2')"></v-file-input>
+                                        <v-file-input show-size truncate-length="50"
+                                                      @change="file => uploadImageNoPrefix(file, 'img2')"></v-file-input>
                                     </v-col>
                                     <v-col cols="12">
                                         <div v-if="this.item.imgs.img3!=''">
                                             <v-img :src="this.img_prefix + this.item.imgs.img3" aspect-ratio="2"></v-img>
                                         </div>
-                                        <v-file-input show-size truncate-length="50" @change="file => uploadImageNoPrefix(file, 'img3')"></v-file-input>
+                                        <v-file-input show-size truncate-length="50"
+                                                      @change="file => uploadImageNoPrefix(file, 'img3')"></v-file-input>
                                     </v-col>
 
 

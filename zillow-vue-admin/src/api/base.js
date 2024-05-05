@@ -25,7 +25,7 @@ const base = {
     // comment
     comment: '/comment/getComment',
     feedback: "/comment/addComment",
- 
+
 
     // search
     searchByKeyWord: "/search/searchByKeyWord",

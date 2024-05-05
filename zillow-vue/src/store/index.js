@@ -16,32 +16,41 @@ export default new Vuex.Store({
     mutations: {
         setCity(state, payload) {
             state.curcity = payload.data
-        }, setSearchMsg(state, payload) {
+        },
+        setSearchMsg(state, payload) {
             state.searchMsg = payload.data
-        }, addCollect(state, payload) {
+        },
+        addCollect(state, payload) {
             state.collect.push(payload.data)
             state.collect = [...state.collect]
-        }, delCollect(state, payload) {
+        },
+        delCollect(state, payload) {
             let index = state.collect.indexOf(payload.data)
             if (index > -1) {
                 state.collect.splice(index, 1)
             }
             state.collect = [...state.collect]
-        }, setUser(state, payload) {
+        },
+        setUser(state, payload) {
             state.user = payload.data
         }
     },
     actions: {
         setCityAciton(context, payload) {
             context.commit('setCity', payload)
-        }, setSearchMsgAciton(context, payload) {
+        },
+        setSearchMsgAciton(context, payload) {
             context.commit('setSearchMsg', payload)
-        }, addCollectAciton(context, payload) {
+        },
+        addCollectAciton(context, payload) {
             context.commit('addCollect', payload)
-        }, delCollectAction(context, payload) {
+        },
+        delCollectAction(context, payload) {
             context.commit('delCollect', payload)
-        }, setUserAction(context, payload) {
+        },
+        setUserAction(context, payload) {
             context.commit('setUser', payload)
         }
-    }, modules: {}
+    },
+    modules: {}
 })

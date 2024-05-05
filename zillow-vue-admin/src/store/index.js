@@ -8,7 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         drawer: true,
-        city: 'Dallas',
+        city: 'Los Angeles',
         img_prefix: 'http://111.231.19.137:8888/',
         links: [
             {icon: 'fa-lg fas fa-home', text: 'Dashboard', route: '/'},
@@ -27,10 +27,15 @@ export default new Vuex.Store({
         },
         setCity(state, city) {
             state.city = city;
+            localStorage.setItem('city', city); // Save to local storage
         }
     },
     actions: {
-        // You can define actions here if needed
+        initializeStore({commit}) {
+            if (localStorage.getItem('city')) {
+                commit('setCity', localStorage.getItem('city'));
+            }
+        }
     },
     modules: {
         // You can define modules here if needed

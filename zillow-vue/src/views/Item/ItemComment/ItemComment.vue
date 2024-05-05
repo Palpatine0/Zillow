@@ -1,8 +1,8 @@
 <template>
     <div class="comment-list">
-      <div v-if="commentData == ''">
-        <div class="center_h" style="color:gainsboro;">There's no comment.</div>
-      </div>
+        <div v-if="commentData == ''">
+            <div class="center_h" style="color:gainsboro;">There's no comment.</div>
+        </div>
         <div v-for='(item,index) in commentData' :key='index' class="comment-item">
             <h3>
                 {{ item.username }}
@@ -44,9 +44,9 @@ export default {
     mounted() {
         this.http()
         .then(data => {
-          console.log("comment")
-          console.log(data.data.data)
-          console.log("/comment")
+            console.log("comment")
+            console.log(data.data.data)
+            console.log("/comment")
             this.commentData = data.data.data
         })
     },
@@ -79,9 +79,9 @@ export default {
 }
 
 .center_h {
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 0 auto;
 }
 </style>
