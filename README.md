@@ -10,13 +10,13 @@ Welcome to the Zillow Imitation Project. This repository houses a Spring Cloud-b
 - Admin Panel: A Vue.js and Vuetify-based dashboard for administrators to manage property listings.
 
 ## Technologies Used
-- Spring Boot: Simplifies the bootstrapping and development of new Spring applications.
-- Spring Cloud: Facilitates building robust microservices using patterns like service discovery, configuration management, and routing.
-- MongoDB: NoSQL database used for storing application data.
-- Redis: In-memory data structure store, used as a database, cache, and message broker.
-- Elasticsearch: Search engine based on the Lucene library, perfect for powerful search functionalities.
-- RabbitMQ: Advanced message queuing protocol used for handling service-to-service communication.
-- Vue.js and Vuetify: Progressive JavaScript framework and material design component framework used for building the admin panel.
+- `Spring Boot`: Simplifies the bootstrapping and development of new Spring applications.
+- `Spring Cloud`: Facilitates building robust microservices using patterns like service discovery, configuration management, and routing.
+- `MongoDB`: NoSQL database used for storing application data.
+- `Redis`: In-memory data structure store, used as a database, cache, and message broker.
+- `Elasticsearch`: Search engine based on the Lucene library, perfect for powerful search functionalities.
+- `RabbitMQ`: Advanced message queuing protocol used for handling service-to-service communication.
+- `Vue.js` and `Vuetify`: Progressive JavaScript framework and material design component framework used for building the admin panel.
 
 ## Getting Started
 ### Prerequisites
