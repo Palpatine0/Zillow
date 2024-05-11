@@ -24,7 +24,7 @@ export default {
         Item
     },
     computed: {
-        ...mapState(['uid'])
+        ...mapState(['userId'])
     },
     mounted() {
         this.$api.getOrders({

@@ -1,14 +1,14 @@
 <!-- Shop.vue -->
 <template>
     <div>
-        <SearchListShop :curcity="curcity"/>
+        <SearchListShop :cur_city="cur_city"/>
         <FootNav/>
     </div>
 </template>
 
 <script>
 import FootNav from '../../components/FootNav/FootNav';
-import Item from "@/views/Search/SearchList/Item/Item.vue";
+import Item from "@/views/Home/Search/SearchList/Item/Item.vue";
 import LoadMore from "@/components/LoadMore/LoadMore.vue";
 import {mapActions, mapState} from 'vuex';
 import SearchListShop from "@/views/Shop/SearchListShop/SearchListShop.vue";
@@ -22,7 +22,7 @@ export default {
         FootNav
     },
     computed: {
-        ...mapState(['curcity', 'page'])
+        ...mapState(['cur_city', 'page'])
     },
     methods: {
         back() {

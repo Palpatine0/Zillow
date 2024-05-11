@@ -36,6 +36,13 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public User getUserById(String id) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("id").is(id));
+        return mongoTemplate.findOne(query, User.class);
+    }
+
+    @Override
     public List<User> selectUsers(Query query) {
         return mongoTemplate.find(query, User.class);
     }

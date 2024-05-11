@@ -11,7 +11,7 @@
                         <div class="top-row">
                             <div class="city-selector">
                                 <router-link to="/city">
-                                    <span>{{ curcity ? curcity : 'Dallas' }}</span>
+                                    <span>{{ cur_city ? cur_city : 'Dallas' }}</span>
                                     <i class="icon-angle-down"></i>
                                 </router-link>
                             </div>
@@ -67,7 +67,7 @@ import SearchInput from '../../components/SearchInput/SearchInput'
 import MySwiper from '../../components/MySwiper/MySwiper'
 import FootNav from '../../components/FootNav/FootNav'
 import {mapState} from 'vuex'
-import Suggestions from "../Suggestion/Suggestion.vue";
+import Suggestions from "./Suggestion/Suggestion.vue";
 import {inject, provide} from 'vue';
 
 export default {
@@ -123,7 +123,7 @@ export default {
         provide('reload', reload); // Provide reload for child components
     },
     computed: {
-        ...mapState(['curcity'])
+        ...mapState(['cur_city'])
     },
 };
 </script>

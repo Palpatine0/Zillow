@@ -23,7 +23,13 @@ export default {
         Header
     },
     mounted() {
-        this.$api.buyaction({id: this.$route.params.id, user: this.$route.params.user})
+        this.$api.buyaction({
+            itemId: this.$route.params.itemId,
+            userId: this.$route.params.userId,
+            startDate: this.$route.params.startDate,
+            endDate: this.$route.params.endDate,
+            price: this.$route.params.price
+        })
         .then(data => {
             // console.log(data)
             this.msg = data.data.msg

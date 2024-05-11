@@ -15,9 +15,7 @@ public class Order {
     private String id;
     private String userId;
     private String itemId;
-    private String userName;
-    private String title;
     private String price;
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
 }

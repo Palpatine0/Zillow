@@ -27,7 +27,7 @@ public class BuyActionMessageServiceImpl implements BuyActionMessageService {
     private String itemSuffix;
 
     @Override
-    public boolean buyAction(String itemId, String phone) {
+    public boolean buyAction(String itemId, String userId, String startDate, String endDate, String price) {
         //S1: get item from Redis by key (prefix::suffix)
         String key = itemPrefix + "::" + itemSuffix + "(" + itemId + ")";
         Item item = itemDao4Redis.getItem(key);
@@ -44,8 +44,10 @@ public class BuyActionMessageServiceImpl implements BuyActionMessageService {
             if (row == 1) {
                 Order order = new Order();
                 order.setItemId(itemId);
-                order.setPrice(item.getPrice().toString());
-                order.setTitle(item.getTitle());
+                order.setUserId(userId);
+                order.setStartDate(startDate);
+                order.setEndDate(endDate);
+                order.setPrice(price);
                 BMOrderDao.saveOrder(order);
                 return true;
             }

@@ -17,7 +17,7 @@
                           fill="#1470f5"/>
                 </svg>
                 <br>
-                <h3>{{ curcity }}</h3>
+                <h3>{{ cur_city }}</h3>
             </p>
         </div>
 
@@ -41,7 +41,7 @@ export default {
     methods: {
         getUserById() {
             this.$api.getUserById({
-                id: this.uid
+                id: this.userId
             })
             .then(data => {
                 this.username=data.data.data.username
@@ -54,10 +54,10 @@ export default {
         ShopCarOrder
     },
     computed: {
-        ...mapState(["uid", "curcity"])
+        ...mapState(["userId", "cur_city"])
     },
     mounted() {
-        if (!this.uid) {
+        if (!this.userId) {
             this.$router.push("/login");
         }
         this.getUserById()

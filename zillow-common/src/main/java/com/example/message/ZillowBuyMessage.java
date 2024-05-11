@@ -12,6 +12,9 @@ import java.io.Serializable;
 @ToString
 @NoArgsConstructor
 public class ZillowBuyMessage implements Serializable {
+    private String userId;
     private String itemId;
-    private String username;
+    private String price;
+    private String startDate;
+    private String endDate;
 }

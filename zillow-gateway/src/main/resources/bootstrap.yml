@@ -79,7 +79,7 @@ spring:
           uri: lb://zillow-comment
           predicates:
             - Path=/comment/getComment
-            - Query=id
+            - Query=itemId
             - Query=page
         - id: comment-addComment
           uri: lb://zillow-comment

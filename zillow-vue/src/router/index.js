@@ -2,15 +2,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home/Home.vue'
-import Life from '../views/Life/Life.vue'
-import Mine from '../views/Mine/Mine.vue'
 import Register from "@/views/Register/Regiser.vue";
 import Login from '../views/Login/Login.vue'
 import Shop from '../views/Shop/Shop.vue'
 import Shopcar from '../views/Shopcar/Shopcar.vue'
 import City from '../views/City/City.vue'
 import Item from '../views/Item/Item.vue'
-import Search from '../views/Search/Search.vue'
+import Search from '../views/Home/Search/Search.vue'
 import Buy from '../views/Buy/Buy'
 
 const originalPush = VueRouter.prototype.push
@@ -25,16 +23,6 @@ const routes = [
         path: '/',
         name: 'home',
         component: Home
-    },
-    {
-        path: '/life',
-        name: 'life',
-        component: Life
-    },
-    {
-        path: '/mine',
-        name: 'mine',
-        component: Mine
     },
     {
         path: '/login',
@@ -72,7 +60,7 @@ const routes = [
         component: Search
     },
     {
-        path: '/buy/:id/:user',
+        path: '/buy/:itemId/:userId/:startDate/:endDate/:price',
         name: 'buy',
         component: Buy
     }
