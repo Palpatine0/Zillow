@@ -30,7 +30,7 @@ export default {
         };
     },
     computed: {
-        ...mapState(["collect", 'user'])
+        ...mapState(["collect", 'uid'])
     },
     mounted() {
         this.isCollect = this.isStore()

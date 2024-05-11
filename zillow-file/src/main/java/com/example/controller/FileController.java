@@ -30,9 +30,6 @@ public class FileController {
 
     @PostMapping("/uploadImageNoPrefix")
     public ZillowResult uploadImageNoPrefix(@RequestParam("file") MultipartFile file) throws IOException {
-        System.out.println(file.getOriginalFilename());
-        System.out.println(file.getOriginalFilename());
-        System.out.println(file.getOriginalFilename());
         try {
             byte[] bytes = file.getBytes();
             System.out.println("File uploaded successfully: " + file.getOriginalFilename());
@@ -53,18 +50,5 @@ public class FileController {
         return fileService.delete(filePath);
     }
 
-    @PostMapping("/uploadTest")
-    public ZillowResult uploadFile(@RequestParam("file") MultipartFile file) {
-        System.out.println("File uploaded successfully: " + file.getOriginalFilename());
-        ZillowResult result = new ZillowResult();
-        try {
-            String fileName = file.getOriginalFilename();
-            result.setMsg("File uploaded successfully: " + fileName);
-            return result;
-        } catch (Exception e) {
-            result.setStatus(500);
-            result.setMsg("Failed to upload file: " + e.getMessage());
-            return result;
-        }
-    }
+
 }

@@ -44,13 +44,8 @@ public class BuyActionMessageServiceImpl implements BuyActionMessageService {
             if (row == 1) {
                 Order order = new Order();
                 order.setItemId(itemId);
-                order.setCommentState(0);
-                order.setHouseType(item.getHouseType4Search());
-                order.setImg(item.getImg());
                 order.setPrice(item.getPrice().toString());
-                order.setRentType(item.getRentType());
                 order.setTitle(item.getTitle());
-                order.setPhone(phone);
                 BMOrderDao.saveOrder(order);
                 return true;
             }

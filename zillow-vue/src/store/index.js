@@ -10,7 +10,7 @@ export default new Vuex.Store({
         curcity: 'Dallas',
         searchMsg: '',
         collect: [],
-        user: '',
+        uid: '',
         img_prefix: 'http://111.231.19.137:8888/',
     },
     mutations: {
@@ -31,8 +31,8 @@ export default new Vuex.Store({
             }
             state.collect = [...state.collect]
         },
-        setUser(state, payload) {
-            state.user = payload.data
+        setUid(state, payload) {
+            state.uid = payload.data
         }
     },
     actions: {
@@ -48,8 +48,8 @@ export default new Vuex.Store({
         delCollectAction(context, payload) {
             context.commit('delCollect', payload)
         },
-        setUserAction(context, payload) {
-            context.commit('setUser', payload)
+        setUidAction(context, payload) {
+            context.commit('setUid', payload)
         }
     },
     modules: {}

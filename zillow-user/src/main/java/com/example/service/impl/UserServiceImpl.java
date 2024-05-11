@@ -134,9 +134,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ZillowResult getUser() {
+    public ZillowResult getUsers() {
         Query query = new Query();
         List<User> users = userDao.selectUsers(query);
         return ZillowResult.ok(users);
+    }
+
+    @Override
+    public ZillowResult getUserByUsername(String username) {
+        User user = userDao.getUserByUsername(username);
+        return ZillowResult.ok(user);
+    }
+
+    @Override
+    public ZillowResult getUserById(String id) {
+        User user = userDao.getUserById(id);
+        return ZillowResult.ok(user);
     }
 }

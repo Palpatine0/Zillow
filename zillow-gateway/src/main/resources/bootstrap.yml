@@ -126,10 +126,20 @@ spring:
           uri: lb://zillow-user
           predicates:
             - Path=/user/sendVerificationCode
-        - id: getUser
+        - id: getUsers
           uri: lb://zillow-user
           predicates:
-            - Path=/user/getUser
+            - Path=/user/getUsers
+        - id: getUserByUsername
+          uri: lb://zillow-user
+          predicates:
+            - Path=/user/getUserByUsername
+            - Query=username
+        - id: getUserById
+          uri: lb://zillow-user
+          predicates:
+            - Path=/user/getUserById
+            - Query=id
 
         # buyAction
         - id: buyAction

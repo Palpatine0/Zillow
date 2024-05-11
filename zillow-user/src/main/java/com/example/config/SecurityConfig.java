@@ -33,35 +33,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         super.configure(web);
     }
 
-    /*@Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin()
-//                .loginProcessingUrl("/login")
-                .loginProcessingUrl("/login")
-//                .successForwardUrl("/detail/getDetail")
-                .successForwardUrl("/details")
-                .successHandler(authenticationService)
-                .failureHandler(authenticationService)
-                .and().rememberMe()
-                .tokenValiditySeconds(12096000)
-                // not intercepting routes
-//                .and().authorizeRequests().antMatchers("/login/sendVerificationCode").permitAll()
-                .and().authorizeRequests().antMatchers("/sendyzm").permitAll()
-                .anyRequest().authenticated();
-        super.configure(http);
-    }*/
-
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/user/login").permitAll() // Allow access to /login without authentication
-                .antMatchers("/user/deleteUser").permitAll() // Allow access to /getUser without authentication
-                .antMatchers("/user/sendVerificationCode").permitAll() // Allow access to /sendVerificationCode without authentication
-                .antMatchers("/user/register").permitAll() // Allow access to /register without authentication
-                .antMatchers("/user/getUser").permitAll() // Allow access to /getUser without authentication
-                .anyRequest().authenticated() // All other requests require authentication
+                // Allow access to /login without authentication
+                .antMatchers("/user/login").permitAll()
+                .antMatchers("/user/deleteUser").permitAll()
+                .antMatchers("/user/sendVerificationCode").permitAll()
+                .antMatchers("/user/register").permitAll()
+                .antMatchers("/user/getUsers").permitAll()
+                .antMatchers("/user/getUserByUsername").permitAll()
+                .antMatchers("/user/getUserById").permitAll()
+                // All other requests require authentication
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/user/login")

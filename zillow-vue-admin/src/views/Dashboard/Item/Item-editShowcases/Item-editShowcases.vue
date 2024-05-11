@@ -98,10 +98,11 @@ export default {
           .then((data) => {
             if (data.data.status === 200 && data.data.data) {
               this.imgs[imgKey] = data.data.data;
-              this.uploadItemShowcases_msg = "Image uploaded successfully!";
+                this.uploadItemShowcases_msg = "Image uploaded successfully!";
               this.uploadItemShowcases_snackbar = true;
             } else {
-              throw new Error('Failed to upload image or bad data received');
+                this.uploadItemShowcases_msg = "Sever error, try again.";
+                this.uploadItemShowcases_snackbar = true;
             }
           })
 

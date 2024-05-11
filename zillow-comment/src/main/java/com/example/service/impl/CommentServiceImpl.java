@@ -32,9 +32,9 @@ public class CommentServiceImpl implements CommentService {
     public ZillowResult addComment(String orderId, String commentContent, String phone) {
         try {
             Order order = orderDao.getOrders(orderId);
-
+            order.getUserId();
             Comment comment = new Comment();
-            comment.setUsername(order.getPhone());
+            comment.setUsername(order.getUserName());
             comment.setComment(commentContent);
             comment.setItemId(order.getItemId());
             comment.setStar(3);

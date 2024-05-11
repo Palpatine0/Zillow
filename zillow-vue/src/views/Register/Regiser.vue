@@ -55,7 +55,7 @@ export default {
         back() {
             this.$router.push('/');
         },
-        ...mapActions(['setUserAction']),
+        ...mapActions(['setUidAction']),
         /*sendYzm() {
             if (this.timer) {
                 clearInterval(this.timer)

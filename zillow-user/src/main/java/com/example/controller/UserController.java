@@ -35,9 +35,9 @@ public class UserController {
     }
 
     @PermitAll
-    @GetMapping("/getUser")
-    public ZillowResult getUser() {
-        return userService.getUser();
+    @GetMapping("/getUsers")
+    public ZillowResult getUsers() {
+        return userService.getUsers();
     }
 
     @PostMapping("/sendVerificationCode")
@@ -50,4 +50,13 @@ public class UserController {
         return userDetails;
     }
 
+    @GetMapping("/getUserByUsername")
+    public ZillowResult getUserByUsername(String username) {
+        return userService.getUserByUsername(username);
+    }
+
+    @GetMapping("/getUserById")
+    public ZillowResult getUserById(String id) {
+        return userService.getUserById(id);
+    }
 }
