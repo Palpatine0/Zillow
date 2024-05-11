@@ -15,8 +15,8 @@ public class BuyActionController {
     private BuyActionService buyActionService;
 
     @GetMapping("/buyAction")
-    public ZillowResult buyAction(String id, String user) {
-        return buyActionService.buyAction(id, user);
+    public ZillowResult buyAction(String itemId, String userId, String startDate, String endDate, String price) {
+        return buyActionService.buyAction(itemId, userId, startDate, endDate, price);
     }
 
 }

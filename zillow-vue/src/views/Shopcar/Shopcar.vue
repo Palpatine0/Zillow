@@ -9,7 +9,7 @@
                           fill="#1470f5"/>
                 </svg>
                 <br>
-                <h3>{{ user }}</h3>
+                <h3>{{ username }}</h3>
             </p>
             <p>
                 <svg height="16" viewBox="0 0 384 512" width="12" xmlns="http://www.w3.org/2000/svg">
@@ -17,7 +17,7 @@
                           fill="#1470f5"/>
                 </svg>
                 <br>
-                <h3>{{ curcity }}</h3>
+                <h3>{{ cur_city }}</h3>
             </p>
         </div>
 
@@ -34,7 +34,19 @@ import FootNav from "@/components/FootNav/FootNav.vue";
 export default {
     name: "Shopcar",
     data() {
-        return {};
+        return {
+            username: ''
+        };
+    },
+    methods: {
+        getUserById() {
+            this.$api.getUserById({
+                id: this.userId
+            })
+            .then(data => {
+                this.username=data.data.data.username
+            })
+        }
     },
     components: {
         FootNav,
@@ -42,12 +54,13 @@ export default {
         ShopCarOrder
     },
     computed: {
-        ...mapState(["user", "curcity"])
+        ...mapState(["userId", "cur_city"])
     },
     mounted() {
-        if (!this.user) {
+        if (!this.userId) {
             this.$router.push("/login");
         }
+        this.getUserById()
     }
 };
 </script>

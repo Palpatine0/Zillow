@@ -30,7 +30,7 @@ export default {
         Item,
         LoadMore,
     },
-    props: ['curcity'],
+    props: ['cur_city'],
     methods: {
         getMoreData() {
             this.page += 1;
@@ -41,7 +41,7 @@ export default {
             });
         },
         http() {
-            return this.$api.searchByCity({city: this.curcity, page: this.page})
+            return this.$api.searchByCity({city: this.cur_city, page: this.page})
             .then((data) => {
                 this.searchListData = this.searchListData.concat(data.data.data)
                 return data;

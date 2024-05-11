@@ -20,14 +20,14 @@ export default {
         };
     },
     computed: {
-        ...mapState(['curcity'])
+        ...mapState(['cur_city'])
     },
     components: {
         HomeHotView
     },
     mounted() {
         this.$api.hotProduct({
-            city: this.curcity
+            city: this.cur_city
         })
         .then(data => {
             if (data.data.status) {
@@ -36,7 +36,7 @@ export default {
         })
 
         this.$api.getRecommendation({
-            city: this.curcity
+            city: this.cur_city
         })
         .then(data => {
             if (data.data.status) {

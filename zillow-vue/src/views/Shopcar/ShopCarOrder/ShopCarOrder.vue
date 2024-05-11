@@ -24,12 +24,13 @@ export default {
         Item
     },
     computed: {
-        ...mapState(['user'])
+        ...mapState(['userId'])
     },
     mounted() {
-        this.$api.getOrder({user: this.user})
+        this.$api.getOrders({
+            user: this.user
+        })
         .then(data => {
-            // console.log(data)
             this.orderData = data.data
         })
     },

@@ -109,12 +109,12 @@
                                 </div>
                             </div>
                         </div>
-                        <DetailsStore :id="id"/>
+                        <ItemOption :itemId="itemId" :price="itemInfo.price"/>
                     </div>
                 </template>
             </tab>
             <tab class="t" index="0" label="Comments">
-                <DetailsComment :id='$route.params.id'/>
+                <DetailsComment :itemId='itemId'/>
             </tab>
         </tabs>
 
@@ -127,7 +127,7 @@ import MySwiper from "../../components/MySwiper/MySwiper";
 import DetailsComment from './ItemComment/ItemComment.vue'
 import Tabs from "../../components/tabs/index.js";
 import Vue from "vue";
-import DetailsStore from "@/views/Item/ItemOption/ItemOption.vue";
+import ItemOption from "@/views/Item/ItemOption/ItemOption.vue";
 
 
 Vue.use(Tabs);
@@ -137,18 +137,19 @@ export default {
         return {
             currentIndex: 1,
             swiperSlides: [],
-            itemInfo: {}
+            itemInfo: {},
+            itemId: this.$route.params.id
         };
     },
     components: {
-        DetailsStore,
+        ItemOption,
         MySwiper,
         Header,
         DetailsComment,
     },
     mounted() {
         this.$api.getItemByID({
-            id: this.$route.params.id
+            id: this.itemId
         }).then(data => {
             this.swiperSlides = data.data.imgs;
             this.itemInfo = data.data;

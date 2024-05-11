@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import Item from './Item/Item'
-import LoadMore from '../../../components/LoadMore/LoadMore'
+import Item from './Item/Item.vue'
+import LoadMore from '../../../../components/LoadMore/LoadMore.vue'
 
 export default {
     name: 'SearchList',
@@ -26,20 +26,24 @@ export default {
         Item,
         LoadMore
     },
-    props: ['kw', 'curcity'],
+    props: ['kw', 'cur_city'],
 
     methods: {
 
         getMoreData() {
             this.page = this.page += 1
-            this.http(this.kw, this.curcity)
+            this.http(this.kw, this.cur_city)
             .then(data => {
                 this.searchListData = this.searchListData.concat(data.data.data)
                 this.hasMore = data.data.hasMore
             })
         },
         http(keyword, city) {
-            return this.$api.searchByKeyWord({city: city, content: keyword, page: this.page})
+            return this.$api.searchByKeyWord({
+                city: city,
+                content: keyword,
+                page: this.page
+            })
         }
     },
     watch: {
@@ -48,7 +52,7 @@ export default {
                 return;
             }
             // console.log(n,o)
-            this.http(this.kw, this.curcity)
+            this.http(this.kw, this.cur_city)
             .then(data => {
                 this.searchListData = data.data.data
                 this.hasMore = data.data.hasMore

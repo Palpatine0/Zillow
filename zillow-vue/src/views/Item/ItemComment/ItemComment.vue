@@ -24,14 +24,16 @@ export default {
             page: 0
         }
     },
-    props: ['id'],
+    props: ['itemId'],
     components: {
         LoadMore,
         Star
     },
     methods: {
         http() {
-            return this.$api.getComment({id: this.id, page: this.page})
+            return this.$api.getComment({
+                itemId: this.itemId, page: this.page}
+            )
         },
         getMoreData() {
             this.page += 1;

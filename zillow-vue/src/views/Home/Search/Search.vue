@@ -17,12 +17,12 @@
             </div>
 
         </div>
-        <SearchList :curcity='curcity' :kw='searchMsg'/>
+        <SearchList :cur_city='cur_city' :kw='searchMsg'/>
     </div>
 </template>
 <script>
-import SearchInput from '../../components/SearchInput/SearchInput'
-import SearchList from './SearchList/SearchList'
+import SearchInput from '../../../components/SearchInput/SearchInput.vue'
+import SearchList from './SearchList/SearchList.vue'
 import {mapActions, mapState} from 'vuex'
 
 export default {
@@ -35,7 +35,7 @@ export default {
         SearchList
     },
     computed: {
-        ...mapState(['searchMsg', 'curcity', 'page'])
+        ...mapState(['searchMsg', 'cur_city', 'page'])
     },
     methods: {
         ...mapActions(['setSearchMsgAciton']),

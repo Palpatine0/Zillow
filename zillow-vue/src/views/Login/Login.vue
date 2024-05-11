@@ -18,7 +18,7 @@
                 <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
                       fill="#1470f5"/>
             </svg>
-            <input v-model="msg" placeholder="Username"/>
+            <input v-model="username" placeholder="Username"/>
         </div>
         <div class="input-container password-container">
             <div>
@@ -30,8 +30,7 @@
             </div>
             <input v-model="pwd" placeholder="Password" type="text"/>
         </div>
-        <button :disabled='!disableclick' :style="{background:!disableclick?'#156FF6':'#156FF6'}" class="btn-login"
-                @click="login">Sign In
+        <button :disabled='!disableclick' :style="{background:!disableclick?'#156FF6':'#156FF6'}" class="btn-login" @click="login">Sign In
         </button>
     </div>
 </template>
@@ -44,7 +43,7 @@ export default {
     name: 'Login',
     data() {
         return {
-            msg: '',
+            username: '',
             pwd: '',
             disableclick: true,
             time: 60,
@@ -55,7 +54,7 @@ export default {
         back() {
             this.$router.push('/');
         },
-        ...mapActions(['setUserAction']),
+        ...mapActions(['setUserIdAction']),
         /*sendYzm() {
             if (this.timer) {
                 clearInterval(this.timer)
@@ -80,17 +79,24 @@ export default {
         },
         login() {
             this.$api.login({
-                username: this.msg,
+                username: this.username,
                 password: this.pwd
             })
             .then(data => {
-                console.log("API Response:", data);
                 if (data.data.status == 200) {
-                    this.setUserAction({data: this.msg})
-                    window.history.back();
+                    this.getUserByUsername();
                 } else {
                     alert(data.data.msg)
                 }
+            })
+        },
+        getUserByUsername() {
+            this.$api.getUserByUsername({
+                username: this.username,
+            })
+            .then(data => {
+                this.setUidAction({data: data.data.data.id})
+                window.history.back();
             })
         }
     },

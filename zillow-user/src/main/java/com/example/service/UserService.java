@@ -11,6 +11,9 @@ public interface UserService {
 
     ZillowResult deleteUser(String id);
 
-    ZillowResult getUser();
+    ZillowResult getUsers();
+
+    ZillowResult getUserByUsername(String username);
+    ZillowResult getUserById(String id);
 
 }

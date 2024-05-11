@@ -26,9 +26,9 @@ public class BuyActionServiceImpl implements BuyActionService {
 
 
     @Override
-    public ZillowResult buyAction(String id, String user) {
+    public ZillowResult buyAction(String itemId, String userId,String startDate,String endDate,String price) {
         // S1: see if a product is buyable
-        String key = itemPrefix + "::" + itemSuffix + "(" + id + ")";
+        String key = itemPrefix + "::" + itemSuffix + "(" + itemId + ")";
         Item item = buyActionDao.getItem(key);
         // feedback if unbuyable
         if (item.getIsRented()) {
@@ -39,8 +39,11 @@ public class BuyActionServiceImpl implements BuyActionService {
 
         // S2: create a message object then send to MQ
         ZillowBuyMessage zillowBuyMessage = new ZillowBuyMessage();
-        zillowBuyMessage.setItemId(id);
-        zillowBuyMessage.setUsername(user);
+        zillowBuyMessage.setItemId(itemId);
+        zillowBuyMessage.setUserId(userId);
+        zillowBuyMessage.setStartDate(startDate);
+        zillowBuyMessage.setEndDate(endDate);
+        zillowBuyMessage.setPrice(price);
         boolean messageResult = streamBridge.send("zillowMessenger-out-0", zillowBuyMessage); // zillowMessenger-in-0: see the yml
 
 

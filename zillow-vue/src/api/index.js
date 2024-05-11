@@ -60,12 +60,18 @@ const api = {
     register(params) {
         return axios.post(base.baseUrl + base.register, params);
     },
-    getUser(params) {
-        return axios.get(base.baseUrl + base.getUser, params);
+    getUsers(params) {
+        return axios.get(base.baseUrl + base.getUsers, params);
+    },
+    getUserByUsername(params) {
+        return axios.get(base.baseUrl + base.getUserByUsername + "?" + qs.stringify(params));
+    },
+    getUserById(params) {
+        return axios.get(base.baseUrl + base.getUserById + "?" + qs.stringify(params));
     },
 
     // order
-    getOrder(params) {
+    getOrders(params) {
         return axios.get(base.baseUrl + base.order + "?" + qs.stringify(params));
     },
 
