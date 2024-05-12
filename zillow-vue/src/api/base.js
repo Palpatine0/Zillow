@@ -21,7 +21,6 @@ const base = {
     // search
     searchByKeyWord: "/search/searchByKeyWord",
     searchByCity: "/search/searchByCity",
-    adminSearchByCity: "/search/adminSearchByCity",
 
     // user
     sendVerificationCode: '/user/sendVerificationCode',
