@@ -57,10 +57,6 @@ spring:
           uri: lb://zillow-item
           predicates:
             - Path=/item/getItemsByCity
-        - id: item-adminGetItemsByCity
-          uri: lb://zillow-item
-          predicates:
-            - Path=/item/adminGetItemsByCity
         - id: item-updateItemStatusById
           uri: lb://zillow-item
           predicates:

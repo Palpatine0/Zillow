@@ -38,10 +38,6 @@ ItemController {
         return itemService.getItemsByCity(city, page, rows);
     }
 
-    @GetMapping("/adminGetItemsByCity")
-    public ZillowResult adminGetItemByCity(String city, int page, @RequestParam(defaultValue = "6") int rows) {
-        return itemService.getItemsByCity(city, page, rows);
-    }
 
 
     @PostMapping("/addItem")
