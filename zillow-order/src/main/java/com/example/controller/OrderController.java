@@ -16,9 +16,9 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @GetMapping("/getOrder")
-    public List<Order> getOrder(@RequestParam(value = "user") String phone) {
-        return orderService.getOrder(phone);
+    @GetMapping("/getOrders")
+    public List<Order> getOrders(@RequestParam(value = "userId") String userId) {
+        return orderService.getOrders(userId);
     }
 
 

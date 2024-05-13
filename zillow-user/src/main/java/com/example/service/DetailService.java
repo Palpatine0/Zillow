@@ -23,7 +23,7 @@ public class DetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        com.example.entity.User user = userDao.getUserByUsername(username);
+        com.example.entity.User user = userDao.findUserByUsername(username);
         String password = "";
         if (user == null) {
         } else {

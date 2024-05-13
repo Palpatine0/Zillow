@@ -71,10 +71,10 @@ spring:
             - Path=/item/updateItemShowcasesById
 
         # comment
-        - id: comment-getComment
+        - id: comment-getCommentsByItemId
           uri: lb://zillow-comment
           predicates:
-            - Path=/comment/getComment
+            - Path=/comment/getCommentsByItemId
             - Query=itemId
             - Query=page
         - id: comment-addComment
@@ -151,11 +151,11 @@ spring:
             - Query=id
 
         # order
-        - id: order
+        - id: getOrders
           uri: lb://zillow-order
           predicates:
-            - Path=/order/getOrder
-            - Query=user
+            - Path=/order/getOrders
+            - Query=userId
 
     config:
       uri: http://localhost:9010

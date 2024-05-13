@@ -16,8 +16,8 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public List<Order> getOrder(String phone) {
-        List<Order> orders = orderDao.getOrders(phone);
+    public List<Order> getOrders(String userId) {
+        List<Order> orders = orderDao.findOrders(userId);
         return orders;
     }
 }

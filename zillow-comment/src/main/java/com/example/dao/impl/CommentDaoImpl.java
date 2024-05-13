@@ -20,7 +20,7 @@ public class CommentDaoImpl implements CommentDao {
     }
 
     @Override
-    public List<Comment> getCommentByItemId(Query query) {
+    public List<Comment> findCommentsByItemId(Query query) {
         return mongoTemplate.find(query,Comment.class);
     }
 }
