@@ -92,7 +92,22 @@ export default {
                     alert(data.data.msg)
                 }
             })
-        }
+        },
+
+        uploadImageNoPrefix(file, imgKey) {
+            this.$api.uploadImageNoPrefix({file: file})
+            .then((data) => {
+                console.log(data)
+                if (data.data.status === 200 && data.data.data) {
+                    this.item.imgs[imgKey] = data.data.data;
+                    this.uploadItemShowcases_add_snackbar = true;
+                    this.uploadItemShowcases_add_msg = data.data.msg;
+                } else {
+                    throw new Error('Failed to upload image or bad data received');
+                }
+            })
+
+        },
 
     },
 }

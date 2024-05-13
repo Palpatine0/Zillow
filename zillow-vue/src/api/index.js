@@ -6,10 +6,20 @@ import axios from 'axios'
 
 const api = {
 
-    // index
+
+    // file
     getBanner() {
         return axios.get(base.baseUrl + base.getBanner)
     },
+    uploadImageNoPrefix(file) {
+        return axios.post(base.baseUrl + base.uploadImageNoPrefix, file, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+    },
+
+    //
     getRecommendation(params) {
         return axios.get(base.baseUrl + base.getRecommendation + "?city=" + params.city);
     },
