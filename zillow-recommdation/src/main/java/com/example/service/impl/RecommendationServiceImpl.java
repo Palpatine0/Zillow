@@ -24,7 +24,7 @@ public class RecommendationServiceImpl implements RecommendationService {
 
 
     @Override
-    public ZillowResult getRecommendation(String city) {
+    public ZillowResult getRecommendations(String city) {
         // 1: get data
         Query query = new Query();
         Criteria criteria = new Criteria();
@@ -37,7 +37,7 @@ public class RecommendationServiceImpl implements RecommendationService {
 
         // S2: pagination
         query.with(PageRequest.of(0, 4));
-        List<Item> items = recommendationDao.selectRecommendation(query);
+        List<Item> items = recommendationDao.findRecommendations(query);
         int sz = items.size();
         if (sz < 4) {
             int lack = 4 - sz;
@@ -49,7 +49,7 @@ public class RecommendationServiceImpl implements RecommendationService {
             );
             queryy.addCriteria(criteriaa);
             queryy.with(PageRequest.of(0, lack));
-            List<Item> itemm = recommendationDao.selectRecommendation(queryy);
+            List<Item> itemm = recommendationDao.findRecommendations(queryy);
 
             items.addAll(itemm);
         }

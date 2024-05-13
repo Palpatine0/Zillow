@@ -40,7 +40,7 @@ public class SearchServiceImpl implements SearchService {
 
 
     @Override
-    public void ESInit() {
+    public void esinit() {
         List<Item> itemList = mongoTemplate.findAll(Item.class);
         ArrayList<Item4ES> arrayList = new ArrayList<>();
         for (Item item : itemList) {

@@ -22,7 +22,8 @@ public class TrendyServiceImpl implements TrendyService {
     @Value("${zillow.fdfsBasePath.nginx.prefix}")
     private String nginxPrefix;
 
-    public ZillowResult getTrendy(String city) {
+    @Override
+    public ZillowResult getTrendies(String city) {
         // S1: get data
         Query query = new Query();
         // set cri: current city data
@@ -30,7 +31,7 @@ public class TrendyServiceImpl implements TrendyService {
 
         // S2: pagination
         query.with(PageRequest.of(0, 4));
-        List<Item> items = trendyDao.getTrendy(query);
+        List<Item> items = trendyDao.findTrendies(query);
         for (Item item : items) {
             System.out.println(item);
         }
@@ -43,12 +44,11 @@ public class TrendyServiceImpl implements TrendyService {
             Query queryy = new Query();
             queryy.addCriteria(Criteria.where("city").is(city));
             queryy.with(PageRequest.of(0, lack));
-            List<Item> itemm = trendyDao.getTrendy(queryy);
+            List<Item> itemm = trendyDao.findTrendies(queryy);
             items.addAll(itemm);
         }
 
 
-        // XXXXXX
         // fallback option, if really have nothing to show, fill the remaining will all this
         if (items.size() < 4) {
             for (int i = items.size(); i < 4; i++) {

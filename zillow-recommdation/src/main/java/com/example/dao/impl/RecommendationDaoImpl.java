@@ -17,7 +17,7 @@ public class RecommendationDaoImpl implements RecommendationDao {
     private MongoTemplate mongoTemplate;
 
     @Override
-    public List<Item> selectRecommendation(Query query) {
+    public List<Item> findRecommendations(Query query) {
         return mongoTemplate.find(query,Item.class);
     }
 

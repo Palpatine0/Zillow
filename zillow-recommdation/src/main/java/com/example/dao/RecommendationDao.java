@@ -6,6 +6,6 @@ import org.springframework.data.mongodb.core.query.Query;
 import java.util.List;
 
 public interface RecommendationDao {
-    List<Item>selectRecommendation(Query query);
+    List<Item> findRecommendations(Query query);
 }
 

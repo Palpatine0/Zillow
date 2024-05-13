@@ -17,7 +17,7 @@ public class TrendyDaoImpl implements TrendyDao {
     MongoTemplate mongoTemplate;
 
     @Override
-    public List<Item> getTrendy(Query query) {
+    public List<Item> findTrendies(Query query) {
         return mongoTemplate.find(query,Item.class);
     }
 }

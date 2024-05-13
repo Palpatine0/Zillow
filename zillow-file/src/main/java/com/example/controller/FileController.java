@@ -17,7 +17,7 @@ public class FileController {
     private FileService fileService;
 
     @GetMapping("/getBanner")
-    public ZillowResult file() {
+    public ZillowResult getBanner() {
         return fileService.getBanner();
     }
 

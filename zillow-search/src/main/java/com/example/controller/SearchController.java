@@ -20,11 +20,6 @@ public class SearchController {
         return searchService.searchByCity(city, page, rows);
     }
 
-    @GetMapping("/adminSearchByCity")
-    public ZillowResult adminSearchByCity(String city, int page, @RequestParam(defaultValue = "6") int rows) {
-        return searchService.searchByCity(city, page, rows);
-    }
-
     @GetMapping("/searchByKeyWord")
     public ZillowResult searchByKeyWord(String city, String content, int page, @RequestParam(defaultValue = "5") int rows) {
         return searchService.searchByKeyWord(city, content, page, rows);
@@ -32,13 +27,13 @@ public class SearchController {
 
     @GetMapping("/ESReload")
     public ZillowResult esReload() {
-        searchService.ESInit();
+        searchService.esinit();
         return ZillowResult.ok("Done");
     }
 
     @Scheduled(cron = "0 0 */5 * * ?")
     public void scheduledESReload() {
-        searchService.ESInit();
+        searchService.esinit();
         System.out.println("ES Reload scheduled task executed.");
     }
 

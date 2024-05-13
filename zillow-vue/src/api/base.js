@@ -7,17 +7,17 @@ const base = {
     uploadImageNoPrefix: '/file/uploadImageNoPrefix',
 
     // trendy
-    getTrendy: '/trendy/getTrendy',
+    getTrendies: '/trendy/getTrendies',
 
     // recommendation
-    getRecommendation: "/recommendation/getRecommendation",
+    getRecommendations: "/recommendation/getRecommendations",
 
     // item
     getItemByID: '/item/getItemByID',
 
     // comment
-    comment: '/comment/getComment',
-    feelback: "/comment/addComment",
+    getComment: '/comment/getComment',
+    addComment: "/comment/addComment",
 
     // search
     searchByKeyWord: "/search/searchByKeyWord",

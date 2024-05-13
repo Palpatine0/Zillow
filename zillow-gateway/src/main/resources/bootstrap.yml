@@ -26,17 +26,17 @@ spring:
             - Path=/file/uploadTest
 
         # trendy
-        - id: trendy-getTrendy
+        - id: trendy-getTrendies
           uri: lb://zillow-trendy
           predicates:
-            - Path=/trendy/getTrendy
+            - Path=/trendy/getTrendies
             - Query=city
 
         # recommendation
-        - id: recommendation-getRecommendation
+        - id: recommendation-getRecommendations
           uri: lb://zillow-recommendation
           predicates:
-            - Path=/recommendation/getRecommendation
+            - Path=/recommendation/getRecommendations
             - Query=city
 
         # item

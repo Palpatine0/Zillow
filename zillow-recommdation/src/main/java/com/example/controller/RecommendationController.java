@@ -13,9 +13,9 @@ public class RecommendationController {
     @Autowired
     private RecommendationService recommendationService;
 
-    @GetMapping("/getRecommendation")
-    public ZillowResult getTrendy(String city) {
-        return recommendationService.getRecommendation(city);
+    @GetMapping("/getRecommendations")
+    public ZillowResult getRecommendations(String city) {
+        return recommendationService.getRecommendations(city);
     }
 
 

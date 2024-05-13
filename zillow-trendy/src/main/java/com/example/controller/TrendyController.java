@@ -13,9 +13,9 @@ public class TrendyController {
     @Autowired
     private TrendyService trendyService;
 
-    @GetMapping("/getTrendy")
-    public ZillowResult getTrendy(String city) {
-        return trendyService.getTrendy(city);
+    @GetMapping("/getTrendies")
+    public ZillowResult getTrendies(String city) {
+        return trendyService.getTrendies(city);
     }
 
 
