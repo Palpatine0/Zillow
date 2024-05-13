@@ -6,6 +6,6 @@ import org.springframework.data.mongodb.core.query.Query;
 import java.util.List;
 
 public interface TrendyDao {
-    List<Item> getTrendy(Query query);
+    List<Item> findTrendies(Query query);
 }
 

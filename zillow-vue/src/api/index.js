@@ -20,11 +20,11 @@ const api = {
     },
 
     //
-    getRecommendation(params) {
-        return axios.get(base.baseUrl + base.getRecommendation + "?city=" + params.city);
+    getRecommendations(params) {
+        return axios.get(base.baseUrl + base.getRecommendations + "?city=" + params.city);
     },
-    hotProduct(params) {
-        return axios.get(base.baseUrl + base.getTrendy + "?city=" + params.city);
+    getTrendies(params) {
+        return axios.get(base.baseUrl + base.getTrendies + "?city=" + params.city);
     },
 
     // search
@@ -53,10 +53,10 @@ const api = {
 
     // comment
     addComment(params) {
-        return axios.post(base.baseUrl + base.feelback, params);
+        return axios.post(base.baseUrl + base.addComment, params);
     },
     getComment(params) {
-        return axios.get(base.baseUrl + base.comment + "?" + qs.stringify(params));
+        return axios.get(base.baseUrl + base.getComment + "?" + qs.stringify(params));
     },
 
 

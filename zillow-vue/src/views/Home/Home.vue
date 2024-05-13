@@ -43,14 +43,14 @@
 
 
         <!-- swiper -->
-        <MySwiper :swiperSlides="swiperSlides" class="mySwiper"/>
+        <MySwiper :swiperSlides="swiperSlides" class="mySwiper" style="height: 300px"/>
         <!-- /swiper -->
 
 
         <Homehot class="mt-4"/>
 
         <!-- trendy -->
-        <Suggestions/>
+        <Suggestion/>
         <!-- /trendy -->
 
         <!-- foot nav -->
@@ -65,13 +65,20 @@
 import Homehot from './Homehot/Homehot'
 import SearchInput from '../../components/SearchInput/SearchInput'
 import MySwiper from '../../components/MySwiper/MySwiper'
-import FootNav from '../../components/FootNav/FootNav'
+import FootNav from "@/components/FootNav/FootNav.vue";
 import {mapState} from 'vuex'
-import Suggestions from "./Suggestion/Suggestion.vue";
+import Suggestion from "@/views/Home/Suggestion/Suggestion.vue";
 import {inject, provide} from 'vue';
 
 export default {
     name: "Home",
+    components: {
+        Suggestion,
+        Homehot,
+        SearchInput,
+        MySwiper,
+        FootNav
+    },
     data() {
         return {
             msg: 'Default value',
@@ -101,7 +108,7 @@ export default {
             }
         }
     },
-    mounted() {
+    created() {
         this.$api.getBanner()
         .then(data => {
             if (data.data.status == 200) {
@@ -111,21 +118,16 @@ export default {
             }
         })
     },
-    components: {
-        Suggestions,
-        Homehot,
-        SearchInput,
-        MySwiper,
-        FootNav
-    },
+
     setup() {
-        const reload = inject('reload'); // Inject reload from App.vue
-        provide('reload', reload); // Provide reload for child components
+        const reload = inject('reload');
+        provide('reload', reload);
     },
     computed: {
         ...mapState(['cur_city'])
     },
 };
+
 </script>
 
 
@@ -225,6 +227,11 @@ export default {
                 z-index: 10;
             }
         }
+    }
+
+
+    * {
+        //outline: 1px solid red;
     }
 
 }

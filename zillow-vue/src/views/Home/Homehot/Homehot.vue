@@ -1,8 +1,8 @@
 <template>
     <div>
-        <HomeHotView v-if="recommendation.length>0" :hotData="recommendation" title="Recommendations"/>
+        <HomeHotView v-if="recommendations.length>0" :hotData="recommendations" title="Recommendations"/>
         <div v-else class="test">Loading Data...</div>
-        <HomeHotView v-if="trendy.length>0" :hotData="trendy" title="Trendies"/>
+        <HomeHotView v-if="trendies.length>0" :hotData="trendies" title="Trendies"/>
         <div v-else class="test">Loading Data...</div>
     </div>
 </template>
@@ -15,8 +15,8 @@ export default {
     name: "Homehot",
     data() {
         return {
-            trendy: [],
-            recommendation: []
+            trendies: [],
+            recommendations: []
         };
     },
     computed: {
@@ -26,21 +26,21 @@ export default {
         HomeHotView
     },
     mounted() {
-        this.$api.hotProduct({
+        this.$api.getTrendies({
             city: this.cur_city
         })
         .then(data => {
             if (data.data.status) {
-                this.trendy = data.data.data
+                this.trendies = data.data.data
             }
         })
 
-        this.$api.getRecommendation({
+        this.$api.getRecommendations({
             city: this.cur_city
         })
         .then(data => {
             if (data.data.status) {
-                this.recommendation = data.data.data
+                this.recommendations = data.data.data
             }
         })
     }
