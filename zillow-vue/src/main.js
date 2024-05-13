@@ -16,10 +16,6 @@ import 'swiper/dist/css/swiper.css'
 axios.interceptors.request.use(
     function (config) {
         // Do something before request is sent
-        if (config.method == 'post') {
-            console.log('posted')
-            config.data = qs.stringify(config.data)
-        }
         return config;
     },
     function (error) {

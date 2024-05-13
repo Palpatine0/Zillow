@@ -28,7 +28,7 @@
                           fill="#1470f5"/>
                 </svg>
             </div>
-            <input v-model="pwd" placeholder="Password" type="text"/>
+            <input v-model="password" placeholder="Password" type="text"/>
         </div>
         <button :disabled='!disableclick' :style="{background:!disableclick?'#156FF6':'#156FF6'}" class="btn-login" @click="login">Sign In
         </button>
@@ -44,7 +44,7 @@ export default {
     data() {
         return {
             username: '',
-            pwd: '',
+            password: '',
             disableclick: true,
             time: 60,
             timer: null
@@ -80,9 +80,11 @@ export default {
         login() {
             this.$api.login({
                 username: this.username,
-                password: this.pwd
+                password: this.password
             })
             .then(data => {
+                console.log("data")
+                console.log(data)
                 if (data.data.status == 200) {
                     this.getUserByUsername();
                 } else {
