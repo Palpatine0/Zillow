@@ -42,7 +42,9 @@ const api = {
     buytime(params) {
         return axios.get(base.baseUrl + base.getBuyTime + '?id=' + params.id);
     },
-    buyaction(params) {
+
+    // buyAction
+    buyAction(params) {
         return axios.get(base.baseUrl + base.buyAction + "?" + qs.stringify(params));
     },
 
@@ -50,6 +52,7 @@ const api = {
     getItemByID(params) {
         return axios.get(base.baseUrl + base.getItemByID + "?" + qs.stringify(params));
     },
+
 
     // comment
     addComment(params) {

@@ -90,7 +90,7 @@ export default {
             console.log(this.startDate)
             console.log(this.endDate)
             console.log(totalPrice)
-           /* if (this.userId) {
+            if (this.userId) {
                 this.$router.push(
                         '/buy/' + this.itemId +
                         '/' + this.userId +
@@ -100,7 +100,7 @@ export default {
                 );
             } else {
                 this.$router.push('/login')
-            }*/
+            }
         },
 
         dtimer(wei) {
