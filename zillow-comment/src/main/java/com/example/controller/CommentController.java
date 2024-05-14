@@ -17,9 +17,9 @@ public class CommentController {
         return commentService.addComment(orderId, commentContent, phone);
     }
 
-    @GetMapping("/getComment")
-    public ZillowResult getCommentByItemId(@RequestParam(value = "itemId") String itemId, int page, @RequestParam(defaultValue = "5") int rows) {
-        return commentService.getCommentByItemID(itemId, page, rows);
+    @GetMapping("/getCommentsByItemId")
+    public ZillowResult getCommentsByItemId(@RequestParam(value = "itemId") String itemId, int page, @RequestParam(defaultValue = "5") int rows) {
+        return commentService.getCommentsByItemId(itemId, page, rows);
     }
 
 }

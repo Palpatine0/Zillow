@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
         loginLog.setLoginTime(new Date());
         loginLog.setType("1");*/
 
-        User user = userDao.getUserByUsername(username);
+        User user = userDao.findUserByUsername(username);
         String name = user.getUsername();
         String pwd = user.getPassword();
         VerificationCode vCode4Check = verificationDao.getVerificationCode(phone);
@@ -85,7 +85,7 @@ public class UserServiceImpl implements UserService {
             return ZillowResult.error("Password cannot be empty");
         }
 
-        User user4Check = userDao.getUserByUsername(username);
+        User user4Check = userDao.findUserByUsername(username);
         if (user4Check != null) {
             return ZillowResult.error("This username had been used");
         } else {
@@ -98,7 +98,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ZillowResult deleteUser(String id) {
-        userDao.deleteUserById(id);
+        userDao.removeUserById(id);
         ZillowResult ok = ZillowResult.ok();
         ok.setMsg("Successfully deleted");
         return ok;
@@ -136,19 +136,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public ZillowResult getUsers() {
         Query query = new Query();
-        List<User> users = userDao.selectUsers(query);
+        List<User> users = userDao.findUsers(query);
         return ZillowResult.ok(users);
     }
 
     @Override
     public ZillowResult getUserByUsername(String username) {
-        User user = userDao.getUserByUsername(username);
+        User user = userDao.findUserByUsername(username);
         return ZillowResult.ok(user);
     }
 
     @Override
     public ZillowResult getUserById(String id) {
-        User user = userDao.getUserById(id);
+        User user = userDao.findUserById(id);
         return ZillowResult.ok(user);
     }
+
 }

@@ -22,28 +22,28 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void deleteUserById(String id) {
+    public void removeUserById(String id) {
         Query query = new Query();
         query.addCriteria(Criteria.where("_id").is(id));
         mongoTemplate.remove(query, User.class);
     }
 
     @Override
-    public User getUserByUsername(String username) {
+    public User findUserByUsername(String username) {
         Query query = new Query();
         query.addCriteria(Criteria.where("username").is(username));
         return mongoTemplate.findOne(query, User.class);
     }
 
     @Override
-    public User getUserById(String id) {
+    public User findUserById(String id) {
         Query query = new Query();
         query.addCriteria(Criteria.where("id").is(id));
         return mongoTemplate.findOne(query, User.class);
     }
 
     @Override
-    public List<User> selectUsers(Query query) {
+    public List<User> findUsers(Query query) {
         return mongoTemplate.find(query, User.class);
     }
 

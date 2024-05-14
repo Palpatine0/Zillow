@@ -2,8 +2,10 @@ package com.example.service.impl;
 
 import com.example.dao.CommentDao;
 import com.example.dao.OrderDao;
+import com.example.dao.UserDao;
 import com.example.entity.Comment;
 import com.example.entity.Order;
+import com.example.entity.User;
 import com.example.service.CommentService;
 import com.example.vo.ZillowResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,10 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private OrderDao orderDao;
 
+    @Autowired
+    private UserDao userDao;
+
+
 
     @Value("${zillow.fdfsBasePath.nginx.prefix}")
     private String nginxPrefix;
@@ -32,9 +38,10 @@ public class CommentServiceImpl implements CommentService {
     public ZillowResult addComment(String orderId, String commentContent, String phone) {
         try {
             Order order = orderDao.getOrders(orderId);
+            User user = userDao.getUserById(order.getUserId());
             order.getUserId();
             Comment comment = new Comment();
-            comment.setUsername(order.getUserName());
+            comment.setUsername(user.getUsername());
             comment.setComment(commentContent);
             comment.setItemId(order.getItemId());
             comment.setStar(3);
@@ -48,12 +55,12 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public ZillowResult getCommentByItemID(String itemId, int page, int rows) {
+    public ZillowResult getCommentsByItemId(String itemId, int page, int rows) {
         Query query = new Query();
         query.addCriteria(Criteria.where("itemId").is(itemId));
         query.with(PageRequest.of(page, rows));
 
-        List<Comment> comments = commentDao.getCommentByItemId(query);
+        List<Comment> comments = commentDao.findCommentsByItemId(query);
 
         for (Comment comment : comments) {
             String username = comment.getUsername().replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2");

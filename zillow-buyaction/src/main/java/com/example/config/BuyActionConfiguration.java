@@ -7,10 +7,10 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
 @Configuration
-public class BuyActionConfiguration extends RedisConfiguration {
+public class
+BuyActionConfiguration extends RedisConfiguration {
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-        // call the super class to create template
         return super.redisTemplate(redisConnectionFactory);
     }
 }

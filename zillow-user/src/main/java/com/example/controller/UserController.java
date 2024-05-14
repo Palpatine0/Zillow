@@ -34,7 +34,6 @@ public class UserController {
         return userService.deleteUser(id);
     }
 
-    @PermitAll
     @GetMapping("/getUsers")
     public ZillowResult getUsers() {
         return userService.getUsers();

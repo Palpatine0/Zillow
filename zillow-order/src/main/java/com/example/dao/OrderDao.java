@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface OrderDao {
 
-    List<Order> getOrders(String phone);
+    List<Order> findOrders(String phone);
 }
 

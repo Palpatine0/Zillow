@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface CommentDao {
     void saveComment(Comment comment);
-    List<Comment> getCommentByItemId(Query query);
+    List<Comment> findCommentsByItemId(Query query);
 }

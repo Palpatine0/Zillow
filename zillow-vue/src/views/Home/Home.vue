@@ -47,7 +47,7 @@
         <!-- /swiper -->
 
 
-        <Homehot class="mt-4"/>
+        <Featured class="mt-4"/>
 
         <!-- trendy -->
         <Suggestion/>
@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import Homehot from './Homehot/Homehot'
+import Featured from './Featured/Featured.vue'
 import SearchInput from '../../components/SearchInput/SearchInput'
 import MySwiper from '../../components/MySwiper/MySwiper'
 import FootNav from "@/components/FootNav/FootNav.vue";
@@ -74,7 +74,7 @@ export default {
     name: "Home",
     components: {
         Suggestion,
-        Homehot,
+        Featured,
         SearchInput,
         MySwiper,
         FootNav

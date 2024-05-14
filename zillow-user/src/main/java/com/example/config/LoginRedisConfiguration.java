@@ -8,7 +8,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 
 @Configuration
 public class LoginRedisConfiguration extends RedisConfiguration {
-
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         return super.redisTemplate(redisConnectionFactory);

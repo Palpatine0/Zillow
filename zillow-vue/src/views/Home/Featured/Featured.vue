@@ -1,18 +1,18 @@
 <template>
     <div>
-        <HomeHotView v-if="recommendations.length>0" :hotData="recommendations" title="Recommendations"/>
+        <FeaturedView v-if="recommendations.length>0" :hotData="recommendations" title="Recommendations"/>
         <div v-else class="test">Loading Data...</div>
-        <HomeHotView v-if="trendies.length>0" :hotData="trendies" title="Trendies"/>
+        <FeaturedView v-if="trendies.length>0" :hotData="trendies" title="Trendies"/>
         <div v-else class="test">Loading Data...</div>
     </div>
 </template>
 
 <script>
 import {mapState} from 'vuex'
-import HomeHotView from "../HomeHotView/HomeHotView";
+import FeaturedView from "./FeaturedView/FeaturedView.vue";
 
 export default {
-    name: "Homehot",
+    name: "Featured",
     data() {
         return {
             trendies: [],
@@ -23,7 +23,7 @@ export default {
         ...mapState(['cur_city'])
     },
     components: {
-        HomeHotView
+        FeaturedView
     },
     mounted() {
         this.$api.getTrendies({
