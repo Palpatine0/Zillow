@@ -32,13 +32,13 @@ public class FileServiceImpl implements FileService {
     private String nginxPrefix;
 
     @Override
-    public ZillowResult getBanner() {
+    public ZillowResult getBanners() {
         ZillowResult result = new ZillowResult();
         try {
             // S1: get data
             Query query = new Query();
             query.with(PageRequest.of(0, 4));
-            List<Banner> files = fileDao.selectBanner(query);
+            List<Banner> files = fileDao.findBanners(query);
 
             // S2: append url to data's front, since it hasn't.and put them to a list
             ArrayList<Object> imgRes = new ArrayList<>();

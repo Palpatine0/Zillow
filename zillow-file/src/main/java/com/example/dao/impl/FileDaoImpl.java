@@ -16,7 +16,7 @@ public class FileDaoImpl implements FileDao {
     private MongoTemplate mongoTemplate;
 
     @Override
-    public List<Banner> selectBanner(Query query) {
+    public List<Banner> findBanners(Query query) {
         List<Banner> banner = mongoTemplate.find(query, Banner.class);
         return banner;
     }

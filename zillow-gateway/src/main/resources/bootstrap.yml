@@ -12,10 +12,10 @@ spring:
 
       routes:
         # file
-        - id: file-getBanner
+        - id: file-getBanners
           uri: lb://zillow-file
           predicates:
-            - Path=/file/getBanner
+            - Path=/file/getBanners
         - id: file-uploadImageNoPrefix
           uri: lb://zillow-file
           predicates:

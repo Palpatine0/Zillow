@@ -8,8 +8,8 @@ const api = {
 
 
     // file
-    getBanner() {
-        return axios.get(base.baseUrl + base.getBanner)
+    getBanners() {
+        return axios.get(base.baseUrl + base.getBanners)
     },
     uploadImageNoPrefix(file) {
         return axios.post(base.baseUrl + base.uploadImageNoPrefix, file, {
