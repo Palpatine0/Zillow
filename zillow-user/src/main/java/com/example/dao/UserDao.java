@@ -10,12 +10,12 @@ public interface UserDao {
 
     void saveUser(User user);
 
-    void deleteUserById(String id);
+    void removeUserById(String id);
 
-    List<User> selectUsers(Query query);
+    List<User> findUsers(Query query);
 
-    User getUserByUsername(String username);
+    User findUserByUsername(String username);
 
-    User getUserById(String id);
+    User findUserById(String id);
 
 }
