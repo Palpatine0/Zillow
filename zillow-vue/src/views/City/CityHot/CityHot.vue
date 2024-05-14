@@ -13,7 +13,7 @@
 
             </li>
             <li>
-                <span>Atlanta</span>
+                <span>Beverly Hills</span>
             </li>
             <li>
                 <span>Cape Coral</span>

@@ -23,7 +23,7 @@ export default {
         Header
     },
     mounted() {
-        this.$api.buyaction({
+        this.$api.buyAction({
             itemId: this.$route.params.itemId,
             userId: this.$route.params.userId,
             startDate: this.$route.params.startDate,

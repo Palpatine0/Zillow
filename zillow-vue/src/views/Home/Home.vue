@@ -109,7 +109,7 @@ export default {
         }
     },
     created() {
-        this.$api.getBanner()
+        this.$api.getBanners()
         .then(data => {
             if (data.data.status == 200) {
                 this.swiperSlides = data.data.results;

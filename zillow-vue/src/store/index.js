@@ -49,7 +49,7 @@ export default new Vuex.Store({
             context.commit('delCollect', payload)
         },
         setUserIdAction(context, payload) {
-            context.commit('setUid', payload)
+            context.commit('setUserId', payload)
         }
     },
     modules: {}

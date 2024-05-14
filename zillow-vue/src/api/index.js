@@ -8,8 +8,8 @@ const api = {
 
 
     // file
-    getBanner() {
-        return axios.get(base.baseUrl + base.getBanner)
+    getBanners() {
+        return axios.get(base.baseUrl + base.getBanners)
     },
     uploadImageNoPrefix(file) {
         return axios.post(base.baseUrl + base.uploadImageNoPrefix, file, {
@@ -42,7 +42,9 @@ const api = {
     buytime(params) {
         return axios.get(base.baseUrl + base.getBuyTime + '?id=' + params.id);
     },
-    buyaction(params) {
+
+    // buyAction
+    buyAction(params) {
         return axios.get(base.baseUrl + base.buyAction + "?" + qs.stringify(params));
     },
 
@@ -50,6 +52,7 @@ const api = {
     getItemByID(params) {
         return axios.get(base.baseUrl + base.getItemByID + "?" + qs.stringify(params));
     },
+
 
     // comment
     addComment(params) {
@@ -65,10 +68,10 @@ const api = {
         return axios.post(base.baseUrl + base.sendVerificationCode, params)
     },
     login(params) {
-        return axios.post(base.baseUrl + base.login, params);
+        return axios.post(base.baseUrl + base.login, qs.stringify(params));
     },
     register(params) {
-        return axios.post(base.baseUrl + base.register, params);
+        return axios.post(base.baseUrl + base.register, qs.stringify(params));
     },
     getUsers(params) {
         return axios.get(base.baseUrl + base.getUsers, params);

@@ -16,9 +16,9 @@ public class FileController {
     @Autowired
     private FileService fileService;
 
-    @GetMapping("/getBanner")
-    public ZillowResult getBanner() {
-        return fileService.getBanner();
+    @GetMapping("/getBanners")
+    public ZillowResult getBanners() {
+        return fileService.getBanners();
     }
 
 

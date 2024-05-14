@@ -5,7 +5,7 @@ import com.example.vo.ZillowResult;
 import java.io.IOException;
 
 public interface FileService {
-    ZillowResult getBanner();
+    ZillowResult getBanners();
 
     ZillowResult uploadImage(byte[] fileBytes, String fileName) throws IOException;
 
