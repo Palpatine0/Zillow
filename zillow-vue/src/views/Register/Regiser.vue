@@ -86,7 +86,7 @@ export default {
             })
             .then(data => {
                 if (data.data.status == 200) {
-                    this.setUserAction({data: this.msg})
+                    this.setUserIdAction({data: this.msg})
                     window.history.back();
                 } else {
                     alert(data.data.msg)

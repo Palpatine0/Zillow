@@ -29,24 +29,29 @@ public class CommentServiceImpl implements CommentService {
     private UserDao userDao;
 
 
-
     @Value("${zillow.fdfsBasePath.nginx.prefix}")
     private String nginxPrefix;
 
 
     @Override
-    public ZillowResult addComment(String orderId, String commentContent, String phone) {
+    public ZillowResult addComment(String orderId, String commentContent) {
         try {
-            Order order = orderDao.getOrders(orderId);
+            Order order = orderDao.getOrderByOrderId(orderId);
+            if (order == null) {
+                return ZillowResult.error("No order found for the given orderId: " + orderId);
+            }
+
             User user = userDao.getUserById(order.getUserId());
-            order.getUserId();
+            if (user == null) {
+                return ZillowResult.error("No user found for the given userId: " + order.getUserId());
+            }
+
             Comment comment = new Comment();
             comment.setUsername(user.getUsername());
             comment.setComment(commentContent);
             comment.setItemId(order.getItemId());
             comment.setStar(3);
             commentDao.saveComment(comment);
-            orderDao.updateCommentStatus(orderId, 0);
             return ZillowResult.ok("Comment added successfully");
         } catch (Exception e) {
             e.printStackTrace();

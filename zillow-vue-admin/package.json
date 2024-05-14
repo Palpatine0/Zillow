@@ -9,6 +9,8 @@
     },
     "dependencies": {
         "core-js": "^3.6.5",
+        "event-pubsub": "^5.0.3",
+        "js-message": "^2.1.0",
         "vue": "^2.6.11",
         "vue-router": "^3.2.0",
         "vuetify": "^2.4.0",

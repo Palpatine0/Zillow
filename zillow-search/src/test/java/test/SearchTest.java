@@ -17,7 +17,7 @@ import java.util.List;
 
 @SpringBootTest(classes = SearchApplication.class)
 @RunWith(SpringRunner.class)
-public class TestSearch {
+public class SearchTest {
 
     @Autowired
     private MongoTemplate mongoTemplate;

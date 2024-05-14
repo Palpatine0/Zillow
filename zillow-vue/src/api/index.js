@@ -58,8 +58,8 @@ const api = {
     addComment(params) {
         return axios.post(base.baseUrl + base.addComment, params);
     },
-    getComment(params) {
-        return axios.get(base.baseUrl + base.getComment + "?" + qs.stringify(params));
+    getCommentsByItemId(params) {
+        return axios.get(base.baseUrl + base.getCommentsByItemId + "?" + qs.stringify(params));
     },
 
 
@@ -84,8 +84,8 @@ const api = {
     },
 
     // order
-    getOrders(params) {
-        return axios.get(base.baseUrl + base.order + "?" + qs.stringify(params));
+    getOrdersByUserId(params) {
+        return axios.get(base.baseUrl + base.getOrdersByUserId + "?" + qs.stringify(params));
     },
 
 

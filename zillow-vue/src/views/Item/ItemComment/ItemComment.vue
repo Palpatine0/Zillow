@@ -7,7 +7,7 @@
             <h3>
                 {{ item.username }}
             </h3>
-            <Star :star='item.star'/>
+            <!--<Star :star='item.star'/>-->
             <p>{{ item.comment }}</p>
         </div>
     </div>
@@ -31,8 +31,9 @@ export default {
     },
     methods: {
         http() {
-            return this.$api.getComment({
-                itemId: this.itemId, page: this.page}
+            return this.$api.getCommentsByItemId({
+                        itemId: this.itemId, page: this.page
+                    }
             )
         },
         getMoreData() {

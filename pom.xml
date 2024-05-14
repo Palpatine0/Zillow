@@ -20,10 +20,8 @@
         <module>zillow-redis-cache</module>
         <module>zillow-comment</module>
         <module>zillow-common</module>
-        <module>zillow-detail</module>
         <module>zillow-gateway</module>
         <module>zillow-trendy</module>
-        <module>zillow-login</module>
         <module>zillow-mongodb-dao</module>
         <module>zillow-order</module>
         <module>zillow-rabbit-publisher</module>
