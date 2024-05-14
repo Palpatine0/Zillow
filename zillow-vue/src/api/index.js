@@ -65,10 +65,10 @@ const api = {
         return axios.post(base.baseUrl + base.sendVerificationCode, params)
     },
     login(params) {
-        return axios.post(base.baseUrl + base.login, params);
+        return axios.post(base.baseUrl + base.login, qs.stringify(params));
     },
     register(params) {
-        return axios.post(base.baseUrl + base.register, params);
+        return axios.post(base.baseUrl + base.register, qs.stringify(params));
     },
     getUsers(params) {
         return axios.get(base.baseUrl + base.getUsers, params);

@@ -97,7 +97,9 @@ export default {
                 username: this.username,
             })
             .then(data => {
-                this.setUidAction({data: data.data.data.id})
+                console.log("hit hit hit ")
+                console.log(data.data.data.id)
+                this.setUserIdAction({data: data.data.data.id})
                 window.history.back();
             })
         }
