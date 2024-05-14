@@ -18,9 +18,8 @@ public class OrderDaoImpl implements OrderDao {
     private MongoTemplate mongoTemplate;
 
     @Override
-    public List<Order> findOrders(String userId) {
-        Query query = new Query();
-        query.addCriteria(Criteria.where("userId").is(userId));
+    public List<Order> findOrders(Query query) {
+
         return mongoTemplate.find(query, Order.class);
     }
 }
