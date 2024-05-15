@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 // Allow access to /login without authentication
                 .antMatchers("/user/login").permitAll()
-                .antMatchers("/user/deleteUser").permitAll()
+                .antMatchers("/user/deleteUserById").permitAll()
                 .antMatchers("/user/sendVerificationCode").permitAll()
                 .antMatchers("/user/register").permitAll()
                 .antMatchers("/user/getUsers").permitAll()

@@ -9,11 +9,12 @@ public interface UserService {
 
     ZillowResult register(String username, String password, String phone);
 
-    ZillowResult deleteUser(String id);
+    ZillowResult deleteUserById(String id);
 
     ZillowResult getUsers();
 
     ZillowResult getUserByUsername(String username);
+
     ZillowResult getUserById(String id);
 
 }

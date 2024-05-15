@@ -23,7 +23,7 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public Order getOrders(String orderId) {
+    public Order getOrderByOrderId(String orderId) {
         return mongoTemplate.findById(orderId, Order.class);
     }
 

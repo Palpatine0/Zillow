@@ -114,10 +114,10 @@ spring:
           uri: lb://zillow-user
           predicates:
             - Path=/user/register
-        - id: deleteUser
+        - id: deleteUserById
           uri: lb://zillow-user
           predicates:
-            - Path=/user/deleteUser
+            - Path=/user/deleteUserById
         - id: sendVerificationCode
           uri: lb://zillow-user
           predicates:

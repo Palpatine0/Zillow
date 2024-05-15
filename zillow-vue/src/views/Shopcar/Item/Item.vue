@@ -20,7 +20,7 @@
             </div>
 
             <div v-if="commentToggle" class="comment-text-container">
-                <textarea v-model="msg" :style="{ width: '100%', height: '80px' }" class="comment-text"></textarea>
+                <textarea v-model="commentContent" :style="{ width: '100%', height: '80px' }" class="comment-text"></textarea>
                 <div class="btns">
                     <button class="btn" @click="submit">Submit</button>
                     <button class="btn unseleted-btn" @click="commentBtnOnclick">Cancel</button>
@@ -39,7 +39,7 @@ export default {
     name: "Item",
     data() {
         return {
-            msg: '',
+            commentContent: '',
             commentToggle: false,
         };
     },
@@ -54,16 +54,14 @@ export default {
             this.commentToggle = !this.commentToggle
         },
         submit() {
-
             this.$api.addComment({
-                commentContent: this.msg,
                 orderId: this.orderData.id,
-                phone: this.orderData.phone
+                commentContent: this.commentContent,
             })
             .then(data => {
                 console.log(data)
                 this.orderData.commentState = 0;
-                this.msg = ''
+                this.commentContent = ''
             })
 
         },

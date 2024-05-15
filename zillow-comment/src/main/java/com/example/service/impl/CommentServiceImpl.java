@@ -35,6 +35,9 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public ZillowResult addComment(String orderId, String commentContent) {
+        if (orderId == null) {
+            return ZillowResult.error("OrderId must not be null");
+        }
         try {
             Order order = orderDao.getOrderByOrderId(orderId);
             if (order == null) {
