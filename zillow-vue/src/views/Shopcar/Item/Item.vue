@@ -4,27 +4,26 @@
         <div class="clear-fix order-item-container">
 
             <div class="order-item-img float-left">
-                <img :src="idata.img"/>
+                <img :src="img_prefix+orderData.itemDetails.img"/>
             </div>
 
             <div class="order-item-content">
-                <span><b>Name:</b> <br>{{ idata.title }}</span>
-                <span><b>Type:</b> <br>{{ idata.houseType }}</span>
-                <span><b>Price:</b> <br>${{ idata.price }}</span>
+                <span><b>Item:</b> <br>{{ orderData.itemDetails.title }}</span>
+                <span><b>Duration:</b> <br>{{ orderData.startDate }} - {{ orderData.endDate }}</span>
+                <span><b>Price:</b> <br>${{ orderData.price }}</span>
             </div>
 
             <!--comment btn-->
             <div class="order-item-comment float-right">
-                <button v-if="idata.commentState===0" class="btn" @click="commentBtnOnclick">Comment</button>
-                <!--            <button v-else-if="idata.commentState === 2" class="btn unseleted-btn">Commented</button>-->
-                <span v-else></span>
+                <button v-if="!commentToggle" class="btn" style="margin-left: 14px" @click="commentBtnOnclick">Comment
+                </button>
             </div>
 
-            <div v-if="idata.commentState === 1" class="comment-text-container">
-                <textarea v-model="msg" :style="{ width: '100%', height: '80px' }" class="comment-text"></textarea>
+            <div v-if="commentToggle" class="comment-text-container">
+                <textarea v-model="commentContent" :style="{ width: '100%', height: '80px' }" class="comment-text"></textarea>
                 <div class="btns">
                     <button class="btn" @click="submit">Submit</button>
-                    <button class="btn unseleted-btn" @click="cancelBtnOnclick">Cancel</button>
+                    <button class="btn unseleted-btn" @click="commentBtnOnclick">Cancel</button>
                 </div>
             </div>
         </div>
@@ -32,39 +31,53 @@
     </div>
 
 </template>
+
 <script>
+import {mapState} from 'vuex'
+
 export default {
     name: "Item",
     data() {
         return {
-            msg: ''
+            commentContent: '',
+            commentToggle: false,
         };
     },
-    props: ['idata'],
+    props: {
+        orderData: {
+            type: Object,
+            required: true
+        }
+    },
     methods: {
         commentBtnOnclick() {
-            this.idata.commentState = 1
+            this.commentToggle = !this.commentToggle
         },
         submit() {
-
             this.$api.addComment({
-                commentContent: this.msg,
-                orderId: this.idata.id,
-                phone: this.idata.phone
+                orderId: this.orderData.id,
+                commentContent: this.commentContent,
             })
             .then(data => {
                 console.log(data)
-                this.idata.commentState = 0;
-                this.msg = ''
+                this.orderData.commentState = 0;
+                this.commentContent = ''
             })
 
         },
         cancelBtnOnclick() {
-            this.idata.commentState = 0;
+            this.orderData.commentState = 0;
         }
     },
+    computed: {
+        ...mapState(['img_prefix']),
+    },
+    mounted() {
+        console.log('Received orderData:', this.orderData);
+    }
 };
 </script>
+
 <style lang="less" scoped>
 .order-item-container {
     //height: 220px;

@@ -16,7 +16,7 @@ const base = {
     getItemByID: '/item/getItemByID',
 
     // comment
-    getComment: '/comment/getComment',
+    getCommentsByItemId: '/comment/getCommentsByItemId',
     addComment: "/comment/addComment",
 
     // search
@@ -26,7 +26,7 @@ const base = {
     // user
     sendVerificationCode: '/user/sendVerificationCode',
     login: '/user/login',
-    register: '/user/Register',
+    register: '/user/register',
     getUsers: '/user/getUsers',
     getUserByUsername: '/user/getUserByUsername',
     getUserById: '/user/getUserById',
@@ -38,7 +38,7 @@ const base = {
     getBuyTime: '/buyTime/getBuyTime',
 
     // order
-    order: "/order/getOrder"
+    getOrdersByUserId: "/order/getOrdersByUserId"
 }
 
 export default base;

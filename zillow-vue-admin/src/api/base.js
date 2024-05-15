@@ -37,7 +37,7 @@ const base = {
     login: '/user/login',
     register: '/user/Register',
     getUser: '/user/getUsers',
-    deleteUser: '/user/deleteUser',
+    deleteUserById: '/user/deleteUserById',
 
     // buyAction
     buyAction: "/buyAction/buyAction",
@@ -46,7 +46,7 @@ const base = {
     getBuyTime: '/buyTime/getBuyTime',
 
     // order
-    order: "/order/getOrder"
+    order: "/order/getOrders"
 }
 
 export default base;

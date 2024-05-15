@@ -13,7 +13,7 @@ export default new Vuex.Store({
         links: [
             {icon: 'fa-lg fas fa-home', text: 'Dashboard', route: '/'},
             {icon: 'fa-lg fa-solid fa-user', text: 'Users', route: '/users'},
-            {icon: 'fa-lg fa-solid fa-flask', text: 'Test', route: '/test'},
+            // {icon: 'fa-lg fa-solid fa-flask', text: 'Test', route: '/test'},
         ],
         cities: [
             'Dallas',

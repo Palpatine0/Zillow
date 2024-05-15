@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.security.PermitAll;
-
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -29,9 +27,9 @@ public class UserController {
         return userService.login(username, password, phone, verificationCode);
     }
 
-    @PostMapping("/deleteUser")
-    public ZillowResult deleteUser(String id) {
-        return userService.deleteUser(id);
+    @PostMapping("/deleteUserById")
+    public ZillowResult deleteUserById(String id) {
+        return userService.deleteUserById(id);
     }
 
     @GetMapping("/getUsers")

@@ -13,8 +13,8 @@ public class CommentController {
     private CommentService commentService;
 
     @PostMapping("/addComment")
-    public ZillowResult addComment(String orderId, String commentContent, String phone) {
-        return commentService.addComment(orderId, commentContent, phone);
+    public ZillowResult addComment(String orderId, String commentContent) {
+        return commentService.addComment(orderId, commentContent);
     }
 
     @GetMapping("/getCommentsByItemId")

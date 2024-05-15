@@ -83,8 +83,6 @@ export default {
                 password: this.password
             })
             .then(data => {
-                console.log("data")
-                console.log(data)
                 if (data.data.status == 200) {
                     this.getUserByUsername();
                 } else {
@@ -97,8 +95,6 @@ export default {
                 username: this.username,
             })
             .then(data => {
-                console.log("hit hit hit ")
-                console.log(data.data.data.id)
                 this.setUserIdAction({data: data.data.data.id})
                 window.history.back();
             })
