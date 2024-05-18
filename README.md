@@ -78,7 +78,8 @@ This project is distributed under the MIT License. See the LICENSE file for more
 
 ### Admin
 <div align="center">
-    <img style="width: 800px" src="https://assets.leetcode.com/users/images/ce07d4fb-665d-45b6-b558-ba4932a5fe47_1715999207.1361368.jpeg"><br>
-    <img style="width: 800px" src="https://assets.leetcode.com/users/images/e6acff3d-fc81-4408-ad71-d7dc7aeaffa9_1715999338.097314.jpeg"><br>
-    <img style="width: 800px" src="https://assets.leetcode.com/users/images/a776fa62-4f2e-4a0e-a0c0-d0f3fe785607_1715999410.477739.jpeg"><br>
+    <img style="width: 400px" src="https://assets.leetcode.com/users/images/ce07d4fb-665d-45b6-b558-ba4932a5fe47_1715999207.1361368.jpeg">
+    <img style="width: 400px" src="https://assets.leetcode.com/users/images/e7b1b804-8c0b-45b8-80cf-72b3f7633779_1715998831.4935336.jpeg"><br>
+    <img style="width: 400px" src="https://assets.leetcode.com/users/images/e6acff3d-fc81-4408-ad71-d7dc7aeaffa9_1715999338.097314.jpeg">
+    <img style="width: 400px" src="https://assets.leetcode.com/users/images/a776fa62-4f2e-4a0e-a0c0-d0f3fe785607_1715999410.477739.jpeg"><br>
 </div>
