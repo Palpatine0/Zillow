@@ -1,4 +1,4 @@
-<!--SearchListShop.vue-->
+<!--ItemListings.vue-->
 <template>
     <div>
         <div v-if='searchListData.length>0'>
@@ -6,6 +6,7 @@
         </div>
         <div v-else>Loading....</div>
         <LoadMore @getMoreData='getMoreData'/>
+        <FootNav/>
     </div>
 </template>
 
@@ -39,11 +40,12 @@ export default {
             })
         },
         http(keyword, city) {
-            return this.$api.searchByKeyWord({
+            return this.$api.getItemsByCity({
                 city: city,
-                content: keyword,
-                page: this.page
+                page: this.page ,
+                rows: 5
             })
+
         }
     },
     watch: {

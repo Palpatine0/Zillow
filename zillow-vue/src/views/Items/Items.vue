@@ -1,22 +1,22 @@
-<!-- Shop.vue -->
+<!-- Items.vue -->
 <template>
     <div>
-        <SearchListShop :cur_city="cur_city"/>
+        <ItemListings :cur_city="cur_city"/>
         <FootNav/>
     </div>
 </template>
 
 <script>
 import FootNav from '../../components/FootNav/FootNav';
-import Item from "@/views/Home/Search/SearchList/Item/Item.vue";
+import Item from "@/views/Home/Search/SearchItemListings/Item/Item.vue";
 import LoadMore from "@/components/LoadMore/LoadMore.vue";
 import {mapActions, mapState} from 'vuex';
-import SearchListShop from "@/views/Shop/SearchListShop/SearchListShop.vue";
+import ItemListings from "@/views/Items/ItemListings/ItemListings.vue";
 
 export default {
-    name: 'Shop',
+    name: 'Items',
     components: {
-        SearchListShop,
+        ItemListings,
         LoadMore,
         Item,
         FootNav

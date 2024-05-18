@@ -33,15 +33,18 @@
         <button :disabled='!disableclick' :style="{background:!disableclick?'#156FF6':'#156FF6'}" class="btn-login"
                 @click="register">Sign Up
         </button>
+        <FootNav/>
     </div>
 </template>
 
 
 <script>
 import {mapActions} from 'vuex'
+import FootNav from "@/components/FootNav/FootNav.vue";
 
 export default {
     name: 'Register',
+    components: {FootNav},
     data() {
         return {
             msg: '',

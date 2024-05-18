@@ -39,10 +39,10 @@ export default new Vuex.Store({
         setCityAciton(context, payload) {
             context.commit('setCity', payload)
         },
-        setSearchMsgAciton(context, payload) {
+        setSearchMsgAction(context, payload) {
             context.commit('setSearchMsg', payload)
         },
-        addCollectAciton(context, payload) {
+        addCollectAction(context, payload) {
             context.commit('addCollect', payload)
         },
         delCollectAction(context, payload) {

@@ -3,15 +3,9 @@
         <h3>Popular Cities</h3>
         <ul class="clear-fix" @click="getClickCity($event)">
             <li>
-                <span>Austin</span>
-            </li>
-            <li>
                 <span>Dallas</span>
             </li>
-            <li>
-                <span>New York</span>
 
-            </li>
             <li>
                 <span>Beverly Hills</span>
             </li>

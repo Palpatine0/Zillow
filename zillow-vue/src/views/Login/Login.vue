@@ -32,6 +32,7 @@
         </div>
         <button :disabled='!disableclick' :style="{background:!disableclick?'#156FF6':'#156FF6'}" class="btn-login" @click="login">Sign In
         </button>
+        <FootNav/>
     </div>
 </template>
 

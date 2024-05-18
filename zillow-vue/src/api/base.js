@@ -14,6 +14,7 @@ const base = {
 
     // item
     getItemByID: '/item/getItemByID',
+    getItemsByCity: '/item/getItemsByCity',
 
     // comment
     getCommentsByItemId: '/comment/getCommentsByItemId',

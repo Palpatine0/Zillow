@@ -5,12 +5,12 @@
         <div class="current-city">
             <h2>Current City: {{ cur_city }}</h2>
         </div>
-        <CityHot/>
+        <Cities/>
     </div>
 </template>
 <script>
-import CityHeader from '../../components/Header/Header'
-import CityHot from './CityHot/CityHot'
+import CityHeader from '../../../components/Header/Header.vue'
+import Cities from './Cities/Cities.vue'
 import {mapState} from 'vuex'
 
 export default {
@@ -20,7 +20,7 @@ export default {
     },
     components: {
         CityHeader,
-        CityHot
+        Cities
     },
     computed: {
         ...mapState(['cur_city'])

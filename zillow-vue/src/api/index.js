@@ -34,23 +34,24 @@ const api = {
     searchByCity(params) {
         return axios.get(base.baseUrl + base.searchByCity + "?" + qs.stringify(params));
     },
-    adminSearchByCity(params) {
-        return axios.get(base.baseUrl + base.adminSearchByCity + "?" + qs.stringify(params));
-    },
 
-    //
-    buytime(params) {
-        return axios.get(base.baseUrl + base.getBuyTime + '?id=' + params.id);
-    },
+
+
 
     // buyAction
     buyAction(params) {
         return axios.get(base.baseUrl + base.buyAction + "?" + qs.stringify(params));
     },
+    buyTime(params) {
+        return axios.get(base.baseUrl + base.getBuyTime + '?id=' + params.id);
+    },
 
     // item
     getItemByID(params) {
         return axios.get(base.baseUrl + base.getItemByID + "?" + qs.stringify(params));
+    },
+    getItemsByCity(params) {
+        return axios.get(base.baseUrl + base.getItemsByCity + "?" + qs.stringify(params));
     },
 
 

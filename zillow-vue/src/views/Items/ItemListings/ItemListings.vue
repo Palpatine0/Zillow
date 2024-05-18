@@ -1,4 +1,4 @@
-<!-- SearchListShop.vue -->
+<!-- ItemListings.vue -->
 <template>
     <div>
         <div v-if="searchListData.length > 0">
