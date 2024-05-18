@@ -2,9 +2,9 @@
   "_id": {
     "$oid": "654e5a0e5522eb326f02d68d"
   },
-  "title": "24300 Malibu Rd, Beverly Hills, CA 90265",
+  "title": "24300 Malibu Rd, Beverly Hills, CA 10652",
   "sales": 300,
-  "recommendation": false,
+  "recommendation": true,
   "weight": 0,
   "city": "Beverly Hills",
   "price": 13000,
@@ -19,16 +19,16 @@
     "beds": "3"
   },
   "imgs": [
-    "group1/M00/00/01/CgAEDGY3XoWAOHQjAAOrFFgZlxI45.jpeg",
-    "group1/M00/00/00/CgAEDGVd4TWAGcADAAapoldvuJY801.png",
-    "group1/M00/00/00/CgAEDGVd4SOAOm7GAAccr9iz7Ew359.png"
+    "group1/M00/00/02/CgAEDGZEBvKAcjzcAAccr9iz7Ew669.png",
+    "group1/M00/00/02/CgAEDGZEBvaAECVWAAOrFFgZlxI95.jpeg",
+    "group1/M00/00/02/CgAEDGZEBueAIAAnAAJ0hCgvKJk330.jpg"
   ],
   "_class": "com.example.entity.Item",
   "buytime": {
-    "$date": "2023-11-05T16:00:00.000Z"
+    "$date": "2023-11-04T16:00:00.000Z"
   },
-  "isRented": true,
-  "rentType": "Whole Rental",
+  "isRented": false,
+  "rentType": "Room Rental",
   "houseType": "60m² "
 },
 {
@@ -37,7 +37,7 @@
   },
   "title": "1028 Ridgedale Dr, Los Angeles, CA 90210",
   "sales": 300,
-  "recommendation": false,
+  "recommendation": true,
   "weight": 6,
   "city": "Cape Coral",
   "price": 3000,
@@ -136,7 +136,7 @@
   },
   "title": "4231 W Lawther Dr, Dallas, TX 75214",
   "sales": 300,
-  "recommendation": true,
+  "recommendation": false,
   "weight": 2,
   "city": "Dallas",
   "price": 1397,
@@ -167,9 +167,9 @@
   "_id": {
     "$oid": "656accdb275e8bf9d0d9794a"
   },
-  "title": "5116 Terry St, Dallas, TX 75223",
+  "title": "5116 Fordham Rd, Dallas, TX 75223",
   "sales": 300,
-  "recommendation": false,
+  "recommendation": true,
   "weight": 2,
   "city": "Dallas",
   "price": 7000,
@@ -191,7 +191,7 @@
   ],
   "_class": "com.example.entity.Item",
   "buytime": {
-    "$date": "2023-12-08T16:00:00.000Z"
+    "$date": "2023-12-07T16:00:00.000Z"
   },
   "isRented": true,
   "houseType": "60m² "
@@ -231,44 +231,11 @@
 },
 {
   "_id": {
-    "$oid": "656acf10275e8bf9d0d9794c"
-  },
-  "title": "5735 Riverside Dr, Cape Coral, FL 33904",
-  "sales": 300,
-  "recommendation": true,
-  "weight": 9,
-  "city": "Cape Coral",
-  "price": 300,
-  "rentType": "Whole Rental",
-  "info": {
-    "orientation": "North",
-    "level": "1",
-    "style": "Fully Furnished",
-    "type": "Single Family Residence",
-    "years": "2000",
-    "area": "1400",
-    "baths": "4",
-    "beds": "4"
-  },
-  "imgs": [
-    "group1/M00/00/00/CgAEDGV1nPqALnijAATfyJqeD94375.jpg",
-    "group1/M00/00/00/CgAEDGV1nRGAekViAAa2JvVVL2E744.jpg",
-    "group1/M00/00/00/CgAEDGV1nPqALnijAATfyJqeD94375.jpg"
-  ],
-  "_class": "com.example.entity.Item",
-  "buytime": {
-    "$date": "2023-12-09T16:00:00.000Z"
-  },
-  "isRented": false,
-  "houseType": "60m² "
-},
-{
-  "_id": {
     "$oid": "6575983544d016a49482012d"
   },
   "title": "8750 Park Ln APT 159, Dallas, TX 75231",
   "sales": 300,
-  "recommendation": true,
+  "recommendation": false,
   "weight": 2,
   "city": "Dallas",
   "price": 3977,
@@ -334,7 +301,7 @@
   },
   "title": "4731 Wildwood Rd, Dallas, TX 75209",
   "sales": 300,
-  "recommendation": false,
+  "recommendation": true,
   "weight": 1,
   "city": "Dallas",
   "price": 16000,
@@ -464,7 +431,7 @@
   "_id": {
     "$oid": "66382d2c89763423465d81cf"
   },
-  "title": "31555 Pacific Coast Hwy, Beverly Hills, CA 90265",
+  "title": "31235 Pacific Coast Hwy, Beverly Hills, CA 90265",
   "sales": 300,
   "recommendation": false,
   "weight": 0,
@@ -490,7 +457,7 @@
   "buytime": {
     "$date": "2024-05-05T16:00:00.000Z"
   },
-  "isRented": false,
+  "isRented": true,
   "_class": "com.example.entity.Item"
 },
 {
@@ -499,7 +466,7 @@
   },
   "title": "9016 Thrasher Ave, Los Angeles, CA 90069",
   "sales": 300,
-  "recommendation": false,
+  "recommendation": true,
   "weight": 0,
   "price": 12000,
   "city": "Beverly Hills",
@@ -522,6 +489,105 @@
   ],
   "buytime": {
     "$date": "2024-05-06T01:31:45.927Z"
+  },
+  "isRented": false,
+  "_class": "com.example.entity.Item"
+},
+{
+  "_id": {
+    "$oid": "664337429616db2fe16adb82"
+  },
+  "title": "1675 Carla Rdg, Beverly Hills, CA 90210",
+  "sales": 300,
+  "recommendation": false,
+  "weight": 0,
+  "price": 29995,
+  "city": "Beverly Hills",
+  "rentType": "Whole Rental",
+  "houseType": "",
+  "info": {
+    "area": "6050",
+    "orientation": "West",
+    "baths": "5",
+    "level": "2",
+    "style": "Fully Furnished",
+    "type": "Single Family Residence",
+    "beds": "4",
+    "years": "2022"
+  },
+  "imgs": [
+    "group1/M00/00/02/CgAEDGZDOn2AHZ-gAIEf-9ZiHZg782.jpg",
+    "group1/M00/00/02/CgAEDGZDOs6Ac1idAGZr4rBQDl0068.jpg",
+    "group1/M00/00/02/CgAEDGZDOtSAI8SrAGIcSRR1FyI024.jpg"
+  ],
+  "buytime": {
+    "$date": "2024-05-14T10:04:50.575Z"
+  },
+  "isRented": false,
+  "_class": "com.example.entity.Item"
+},
+{
+  "_id": {
+    "$oid": "66440764ef3579511a06a79a"
+  },
+  "title": "Test",
+  "sales": 300,
+  "recommendation": false,
+  "weight": 0,
+  "price": 112111,
+  "city": "Beverly Hills",
+  "rentType": "Whole Rental",
+  "houseType": "",
+  "info": {
+    "area": "11",
+    "orientation": "West",
+    "baths": "21",
+    "level": "2",
+    "style": "Bare",
+    "type": "Single Family Residence",
+    "beds": "21",
+    "years": "111"
+  },
+  "imgs": [
+    "group1/M00/00/02/CgAEDGZEBy6AUB9EAEpySpKJLUA804.jpg",
+    "group1/M00/00/02/CgAEDGZEBzOAXvyYAF_R0O0xRJ0369.jpg",
+    "group1/M00/00/02/CgAEDGZEBzqAC5uCAG3G45WlNfM103.jpg"
+  ],
+  "buytime": {
+    "$date": "2024-05-15T00:52:52.444Z"
+  },
+  "isRented": false,
+  "_class": "com.example.entity.Item"
+},
+{
+  "_id": {
+    "$oid": "6647efaf8f22f6547c9c9246"
+  },
+  "title": "1421 Bronson Ct, Dallas, TX 75204",
+  "sales": 300,
+  "recommendation": true,
+  "weight": 0,
+  "price": 1120,
+  "city": "Dallas",
+  "rentType": "Room Rental",
+  "houseType": "",
+  "info": {
+    "area": "1760",
+    "orientation": "South",
+    "baths": "3",
+    "level": "3",
+    "style": "Fully Furnished",
+    "type": "Condominium",
+    "beds": "2",
+    "years": "2013"
+  },
+  "imgs": [
+    "group1/M00/00/02/CgAEDGZH78WAWQN7AAbKolwOLIU62.webp",
+    "group1/M00/00/02/CgAEDGZH74mAT3Q2AAXIvIDsbIA73.webp",
+    "group1/M00/00/02/CgAEDGZH74qALsbMAAW6ZCkRA2E39.webp"
+  ],
+  "buytime": {
+    "$date": "2024-05-18T00:00:47.787Z"
   },
   "isRented": false,
   "_class": "com.example.entity.Item"
