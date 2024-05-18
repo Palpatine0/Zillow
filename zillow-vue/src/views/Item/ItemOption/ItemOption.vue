@@ -70,7 +70,7 @@ export default {
     },
     props: ["itemId", "price"],
     methods: {
-        ...mapActions(["addCollectAciton", "delCollectAction"]),
+        ...mapActions(["addCollectAction", "delCollectAction"]),
         toggleDatePicker() {
             this.showDatePicker = !this.showDatePicker; // This should toggle the state between true and false.
             console.log("Toggle DatePicker: ", this.showDatePicker);
@@ -146,7 +146,7 @@ export default {
                     this.delCollectAction({data: this.itemId})
                 } else {
                     this.isCollect = true
-                    this.addCollectAciton({data: this.itemId})
+                    this.addCollectAction({data: this.itemId})
                 }
             } else {
                 this.$router.push('/login')

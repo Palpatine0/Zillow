@@ -13,7 +13,7 @@
             </div>
         </div>
 
-        <ShopCarOrder/>
+        <Order/>
 
 
         <FootNav/>
@@ -22,11 +22,11 @@
 <script>
 import {mapState, mapActions} from "vuex";
 import Header from "../../components/Header/Header";
-import ShopCarOrder from './ShopCarOrder/ShopCarOrder'
+import Order from './Orders/Orders.vue'
 import FootNav from "@/components/FootNav/FootNav.vue";
 
 export default {
-    name: "Shopcar",
+    name: "Mine",
     data() {
         return {
             username: ''
@@ -43,9 +43,9 @@ export default {
         }
     },
     components: {
-        FootNav,
         Header,
-        ShopCarOrder
+        Order,
+        FootNav
     },
     computed: {
         ...mapState(["userId", "cur_city"])

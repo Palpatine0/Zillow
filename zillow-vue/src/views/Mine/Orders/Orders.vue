@@ -15,7 +15,7 @@ import Item from '../Item/Item'
 import { mapState } from 'vuex'
 
 export default {
-    name: 'ShopCarOrder',
+    name: 'Order',
     data() {
         return {
             order: []
