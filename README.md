@@ -43,9 +43,6 @@ mvn clean install
 ```
 
 
-## Usage
-Please refer to the documentation within each service for specific startup instructions or browse the application at https://github.com/Palpatine0/Zillow for more details.
-
 ## Contributing
 We welcome contributions! Any contributions are greatly appreciated.
 
