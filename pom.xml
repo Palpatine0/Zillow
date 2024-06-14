@@ -12,19 +12,21 @@
     <description>Zillow</description>
 
     <modules>
-        <module>zillow-eureka</module>
+        <module>zillow-eureka-server</module>
         <module>zillow-config-server</module>
+        <module>zillow-gateway-server</module>
+
+        <module>zillow-mongodb-dao</module>
+        <module>zillow-redis-cache</module>
+        <module>zillow-rabbit-publisher</module>
+
         <module>zillow-buyaction</module>
         <module>zillow-buyaction-message-consumer</module>
         <module>zillow-buytime</module>
-        <module>zillow-redis-cache</module>
         <module>zillow-comment</module>
         <module>zillow-common</module>
-        <module>zillow-gateway</module>
         <module>zillow-trendy</module>
-        <module>zillow-mongodb-dao</module>
         <module>zillow-order</module>
-        <module>zillow-rabbit-publisher</module>
         <module>zillow-recommdation</module>
         <module>zillow-search</module>
         <module>zillow-file</module>

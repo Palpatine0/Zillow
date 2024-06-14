@@ -2,7 +2,7 @@ server:
   port: 4006
 spring:
   application:
-    name: zillow-gateway
+    name: zillow-gateway-server
   cloud:
     gateway:
       discovery:
