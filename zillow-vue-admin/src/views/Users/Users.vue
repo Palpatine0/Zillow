@@ -64,7 +64,7 @@ export default {
             .then(data => {
                 console.log(data.status)
                 if (data.status == 200) {
-                    // window.location.reload();
+                    window.location.reload();
                 }
             })
         }

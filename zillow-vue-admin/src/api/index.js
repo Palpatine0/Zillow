@@ -89,7 +89,7 @@ const api = {
         return axios.post(base.baseUrl + base.register, params);
     },
     deleteUserById(params) {
-        return axios.post(base.baseUrl + base.deleteUserById, params);
+        return axios.post(base.baseUrl + base.deleteUserById, qs.stringify(params));
     },
     getUser(params) {
         return axios.get(base.baseUrl + base.getUser, params);

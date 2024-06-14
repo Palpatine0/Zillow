@@ -99,6 +99,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public ZillowResult deleteUserById(String id) {
         userDao.removeUserById(id);
+        if (id == null) {
+            ZillowResult error = ZillowResult.error();
+            error.setMsg("Failed deleted, id cannot be empty");
+            return error;
+        }
         ZillowResult ok = ZillowResult.ok();
         ok.setMsg("Successfully deleted");
         return ok;
@@ -110,7 +115,9 @@ public class UserServiceImpl implements UserService {
         // S1: see if has verification code already there
         VerificationCode vCode4Check = verificationDao.getVerificationCode(phone);
         if (vCode4Check != null) {
-            return ZillowResult.error("Verification code still valid, please do not repeatedly send verification code");
+            ZillowResult error = ZillowResult.error();
+            error.setMsg("Verification code still valid, please do not repeatedly send verification code");
+            return error;
         }
 
         // S2: build new verification code if does not exist
@@ -127,10 +134,9 @@ public class UserServiceImpl implements UserService {
 
         verificationDao.setVerificationCode(verificationCode.getPhone(), verificationCode);
 
-        ZillowResult result = ZillowResult.ok();
-        result.setMsg("Verification code sent");
-        System.out.println("phone: " + phone + " code: " + rawCode);
-        return result;
+        ZillowResult ok = ZillowResult.ok();
+        ok.setMsg("Verification code sent");
+        return ok;
     }
 
     @Override
