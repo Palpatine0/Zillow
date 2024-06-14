@@ -77,4 +77,34 @@
   "star": 3,
   "itemId": "655dd33a1d461d991c2607fd",
   "_class": "com.example.entity.Comment"
+},
+{
+  "_id": {
+    "$oid": "66439402d1a0ef2573684e3a"
+  },
+  "username": "1",
+  "comment": "Best of the best!!!",
+  "star": 3,
+  "itemId": "654e5a0e5522eb326f02d68d",
+  "_class": "com.example.entity.Comment"
+},
+{
+  "_id": {
+    "$oid": "6643a42d806f66582078ed17"
+  },
+  "username": "Percival",
+  "comment": "Absolutely worth it ",
+  "star": 3,
+  "itemId": "66382d2c89763423465d81cf",
+  "_class": "com.example.entity.Comment"
+},
+{
+  "_id": {
+    "$oid": "6643a4a6806f66582078ed18"
+  },
+  "username": "Percival",
+  "comment": "Finally, a place with enough room for my ego",
+  "star": 3,
+  "itemId": "66382d2c89763423465d81cf",
+  "_class": "com.example.entity.Comment"
 }]

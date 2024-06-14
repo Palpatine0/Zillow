@@ -11,15 +11,7 @@
   "_id": {
     "$oid": "6569a6ab668974488c1f6568"
   },
-  "username": "1",
-  "password": "1",
-  "_class": "com.example.entity.User"
-},
-{
-  "_id": {
-    "$oid": "656adf78753c7f37c9148966"
-  },
-  "username": "adffd",
+  "username": "Doug Burgum",
   "password": "1",
   "_class": "com.example.entity.User"
 },
@@ -33,9 +25,33 @@
 },
 {
   "_id": {
-    "$oid": "656adf78753c7f37c9148968"
+    "$oid": "664398106da31a1c76c94ba9"
   },
-  "username": "adffd",
+  "username": "3211",
   "password": "1",
+  "_class": "com.example.entity.User"
+},
+{
+  "_id": {
+    "$oid": "6643985f6da31a1c76c94baa"
+  },
+  "username": "6711",
+  "password": "1",
+  "_class": "com.example.entity.User"
+},
+{
+  "_id": {
+    "$oid": "6643992d6da31a1c76c94bac"
+  },
+  "username": "Percival",
+  "password": "123",
+  "_class": "com.example.entity.User"
+},
+{
+  "_id": {
+    "$oid": "6647ddbb744e114da45f96a0"
+  },
+  "username": "Don",
+  "password": "XMASADQ_",
   "_class": "com.example.entity.User"
 }]
