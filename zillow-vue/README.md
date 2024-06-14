@@ -26,7 +26,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ## <span style="color: red">Having trouble running</span>
 
 **Solution**
-```shell
+```bash
 rm -rf node_modules
 rm package-lock.json
 npm install

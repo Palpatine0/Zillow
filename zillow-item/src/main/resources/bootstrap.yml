@@ -11,18 +11,6 @@ spring:
       label: master
       name: zillow
       profile: dev
-#eureka:
-#  client:
-#    service-url:
-#      defaultZone: http://111.231.19.137:8761/eureka/
-
-zillow:
-  banner:
-    nginx:
-      prefix: http://111.231.19.137:8888/
-  fdfsBasePath:
-    nginx:
-      prefix: http://111.231.19.137:8888/
 
 logging:
   pattern:
