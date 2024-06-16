@@ -1,5 +1,6 @@
 server:
   port: 4006
+
 spring:
   application:
     name: zillow-gateway-server
@@ -9,7 +10,6 @@ spring:
         locator:
           enabled: false
           lower-case-service-id: true
-
       routes:
         # file
         - id: file-getBanners
@@ -156,7 +156,6 @@ spring:
           predicates:
             - Path=/order/getOrdersByUserId
             - Query=userId
-
     config:
       uri: http://localhost:9010
       label: master

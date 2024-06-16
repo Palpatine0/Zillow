@@ -7,7 +7,6 @@ import axios from "axios";
 import api from './api/index.js'
 
 axios.interceptors.request.use(function (config) {
-
     return config;
 }, function (error) {
     // Do something with request error

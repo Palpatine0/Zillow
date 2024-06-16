@@ -76,7 +76,6 @@ export default {
             console.log("Toggle DatePicker: ", this.showDatePicker);
         },
 
-
         clickBuyHandler() {
             this.showDatePicker = true;  // This assumes you have a `showDatePicker` data property to control the visibility of your date picker modal.
         },
