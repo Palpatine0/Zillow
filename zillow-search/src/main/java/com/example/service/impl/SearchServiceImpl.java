@@ -4,7 +4,7 @@ import com.example.dao.SearchDao;
 import com.example.entity.Item;
 import com.example.entity.Item4ES;
 import com.example.service.SearchService;
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -27,17 +27,16 @@ public class SearchServiceImpl implements SearchService {
 
 
     @Override
-    public ZillowResult searchByCity(String city, int page, int rows) {
+    public BaseResult searchByCity(String city, int page, int rows) {
         List<Item4ES> item4ESList = searchDao.searchByCity(city, page, rows);
-        return ZillowResult.ok(item4ESList);
+        return BaseResult.ok(item4ESList);
     }
 
     @Override
-    public ZillowResult searchByKeyWord(String city, String content, int page, int rows) {
+    public BaseResult searchByKeyWord(String city, String content, int page, int rows) {
         List<Item4ES> item4ESList = searchDao.searchByKeyWord(city, content, page, rows);
-        return ZillowResult.ok(item4ESList);
+        return BaseResult.ok(item4ESList);
     }
-
 
     @Override
     public void esinit() {

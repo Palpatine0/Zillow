@@ -2,7 +2,7 @@ package com.example.controller;
 
 
 import com.example.service.CommentService;
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,12 +13,12 @@ public class CommentController {
     private CommentService commentService;
 
     @PostMapping("/addComment")
-    public ZillowResult addComment(String orderId, String commentContent) {
+    public BaseResult addComment(String orderId, String commentContent) {
         return commentService.addComment(orderId, commentContent);
     }
 
     @GetMapping("/getCommentsByItemId")
-    public ZillowResult getCommentsByItemId(@RequestParam(value = "itemId") String itemId, int page, @RequestParam(defaultValue = "5") int rows) {
+    public BaseResult getCommentsByItemId(@RequestParam(value = "itemId") String itemId, int page, @RequestParam(defaultValue = "5") int rows) {
         return commentService.getCommentsByItemId(itemId, page, rows);
     }
 

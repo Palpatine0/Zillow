@@ -2,7 +2,7 @@ package com.example.controller;
 
 
 import com.example.service.BuyTimeService;
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +16,7 @@ public class BuyTimeController {
     private BuyTimeService buyTimeService;
 
     @GetMapping("/getBuyTime")
-    public ZillowResult getBuyTime(@RequestParam(value = "id") String itemId) {
+    public BaseResult getBuyTime(@RequestParam(value = "id") String itemId) {
         return buyTimeService.getBuyTime(itemId);
     }
 

@@ -1,7 +1,7 @@
 package com.example.service;
 
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 
 public interface RecommendationService {
-    ZillowResult getRecommendations(String city);
+    BaseResult getRecommendations(String city);
 }

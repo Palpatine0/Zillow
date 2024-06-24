@@ -3,7 +3,7 @@ package com.example.service.impl;
 import com.example.dao.BuyTimeDao;
 import com.example.entity.Item;
 import com.example.service.BuyTimeService;
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +13,9 @@ public class BuyTimeServiceImpl implements BuyTimeService {
     private BuyTimeDao buyTimeDao;
 
     @Override
-    public ZillowResult getBuyTime(String itemId) {
+    public BaseResult getBuyTime(String itemId) {
         Item item = buyTimeDao.getItem(itemId);
-        ZillowResult ok = ZillowResult.ok();
+        BaseResult ok = BaseResult.ok();
         ok.setTime(item.getBuytime().getTime());
         return ok;
     }

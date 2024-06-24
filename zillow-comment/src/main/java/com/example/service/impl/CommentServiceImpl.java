@@ -7,7 +7,7 @@ import com.example.entity.Comment;
 import com.example.entity.Order;
 import com.example.entity.User;
 import com.example.service.CommentService;
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
@@ -34,19 +34,19 @@ public class CommentServiceImpl implements CommentService {
 
 
     @Override
-    public ZillowResult addComment(String orderId, String commentContent) {
+    public BaseResult addComment(String orderId, String commentContent) {
         if (orderId == null) {
-            return ZillowResult.error("OrderId must not be null");
+            return BaseResult.error("OrderId must not be null");
         }
         try {
             Order order = orderDao.getOrderByOrderId(orderId);
             if (order == null) {
-                return ZillowResult.error("No order found for the given orderId: " + orderId);
+                return BaseResult.error("No order found for the given orderId: " + orderId);
             }
 
             User user = userDao.getUserById(order.getUserId());
             if (user == null) {
-                return ZillowResult.error("No user found for the given userId: " + order.getUserId());
+                return BaseResult.error("No user found for the given userId: " + order.getUserId());
             }
 
             Comment comment = new Comment();
@@ -55,15 +55,15 @@ public class CommentServiceImpl implements CommentService {
             comment.setItemId(order.getItemId());
             comment.setStar(3);
             commentDao.saveComment(comment);
-            return ZillowResult.ok("Comment added successfully");
+            return BaseResult.ok("Comment added successfully");
         } catch (Exception e) {
             e.printStackTrace();
-            return ZillowResult.error("Comment add failed");
+            return BaseResult.error("Comment add failed");
         }
     }
 
     @Override
-    public ZillowResult getCommentsByItemId(String itemId, int page, int rows) {
+    public BaseResult getCommentsByItemId(String itemId, int page, int rows) {
         Query query = new Query();
         query.addCriteria(Criteria.where("itemId").is(itemId));
         query.with(PageRequest.of(page, rows));
@@ -74,7 +74,7 @@ public class CommentServiceImpl implements CommentService {
             String username = comment.getUsername().replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2");
             comment.setUsername(username);
         }
-        ZillowResult result = ZillowResult.ok(comments);
+        BaseResult result = BaseResult.ok(comments);
 
 
         long count = comments == null ? 0 : comments.size();

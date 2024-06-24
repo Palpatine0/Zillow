@@ -3,7 +3,7 @@ package com.example.service.impl;
 import com.example.dao.RecommendationDao;
 import com.example.entity.Item;
 import com.example.service.RecommendationService;
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
@@ -24,7 +24,7 @@ public class RecommendationServiceImpl implements RecommendationService {
 
 
     @Override
-    public ZillowResult getRecommendations(String city) {
+    public BaseResult getRecommendations(String city) {
         // 1: get data
         Query query = new Query();
         Criteria criteria = new Criteria();
@@ -63,7 +63,7 @@ public class RecommendationServiceImpl implements RecommendationService {
 
         //S3: append url for image
         items = this.imgUrlAppend(items);
-        return ZillowResult.ok(items);
+        return BaseResult.ok(items);
     }
 
     private List<Item> imgUrlAppend(List<Item> items){

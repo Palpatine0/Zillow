@@ -3,7 +3,7 @@ package com.example.service.impl;
 import com.example.dao.TrendyDao;
 import com.example.entity.Item;
 import com.example.service.TrendyService;
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
@@ -23,7 +23,7 @@ public class TrendyServiceImpl implements TrendyService {
     private String nginxPrefix;
 
     @Override
-    public ZillowResult getTrendies(String city) {
+    public BaseResult getTrendies(String city) {
         // S1: get data
         Query query = new Query();
         // set cri: current city data
@@ -59,7 +59,7 @@ public class TrendyServiceImpl implements TrendyService {
         //S3: append url for image
         items = this.imgUrlAppend(items);
 
-        return ZillowResult.ok(items);
+        return BaseResult.ok(items);
     }
 
     private List<Item> imgUrlAppend(List<Item> items) {

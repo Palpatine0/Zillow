@@ -2,7 +2,7 @@ package com.example.controller;
 
 
 import com.example.service.BuyActionService;
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +15,7 @@ public class BuyActionController {
     private BuyActionService buyActionService;
 
     @GetMapping("/buyAction")
-    public ZillowResult buyAction(String itemId, String userId, String startDate, String endDate, String price) {
+    public BaseResult buyAction(String itemId, String userId, String startDate, String endDate, String price) {
         return buyActionService.buyAction(itemId, userId, startDate, endDate, price);
     }
 

@@ -1,23 +1,23 @@
 package com.example.service;
 
 import com.example.entity.Item;
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 
 import java.util.ArrayList;
 
 public interface ItemService {
     Item getItemByID(String id);
 
-    ZillowResult deleteItemByID(String id);
+    BaseResult deleteItemByID(String id);
 
-    ZillowResult getItemsByCity(String city, int page, int rows);
+    BaseResult getItemsByCity(String city, int page, int rows);
 
-    ZillowResult addItem(Item item);
+    BaseResult addItem(Item item);
 
-    ZillowResult updateItemStatusById(String id, Boolean isRented, Boolean recommendation);
+    BaseResult updateItemStatusById(String id, Boolean isRented, Boolean recommendation);
 
-    ZillowResult updateItemInfoById(String id, Item item);
+    BaseResult updateItemInfoById(String id, Item item);
 
-    ZillowResult updateItemShowcasesById(String id, ArrayList<String> imgs);
+    BaseResult updateItemShowcasesById(String id, ArrayList<String> imgs);
 
 }

@@ -1,9 +1,9 @@
 package com.example.service;
 
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 
 public interface CommentService {
-    ZillowResult addComment(String orderId, String commentContent);
+    BaseResult addComment(String orderId, String commentContent);
 
-    ZillowResult getCommentsByItemId(String itemId, int page, int rows);
+    BaseResult getCommentsByItemId(String itemId, int page, int rows);
 }

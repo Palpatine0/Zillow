@@ -2,7 +2,7 @@ package com.example.service;
 
 import com.example.dao.UserDao;
 import com.example.dao.VerificationDao;
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -33,7 +33,7 @@ public class AuthenticationService implements AuthenticationSuccessHandler, Auth
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         System.out.println("Processing after successful authentication");
-        ZillowResult ok = ZillowResult.ok();
+        BaseResult ok = BaseResult.ok();
         ok.setMsg("Authentication passed");
 
         // set respond, set it as JSON type as it write out
@@ -45,7 +45,7 @@ public class AuthenticationService implements AuthenticationSuccessHandler, Auth
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         System.out.println("Processing after a failed authentication");
-        ZillowResult error = ZillowResult.error();
+        BaseResult error = BaseResult.error();
         error.setMsg("Authentication failed");
         // set respond, set it as JSON type as it write out
         response.setContentType("application/json;charset=utf-8");

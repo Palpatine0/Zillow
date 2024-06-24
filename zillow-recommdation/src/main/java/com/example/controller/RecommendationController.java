@@ -1,7 +1,7 @@
 package com.example.controller;
 
 import com.example.service.RecommendationService;
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +14,7 @@ public class RecommendationController {
     private RecommendationService recommendationService;
 
     @GetMapping("/getRecommendations")
-    public ZillowResult getRecommendations(String city) {
+    public BaseResult getRecommendations(String city) {
         return recommendationService.getRecommendations(city);
     }
 

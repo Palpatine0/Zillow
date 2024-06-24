@@ -1,7 +1,7 @@
 package com.example.controller;
 
 import com.example.service.OrderService;
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +15,7 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping("/getOrdersByUserId")
-    public ZillowResult getOrdersByUserId(@RequestParam String userId) {
+    public BaseResult getOrdersByUserId(@RequestParam String userId) {
         return orderService.getOrdersByUserId(userId);
     }
 

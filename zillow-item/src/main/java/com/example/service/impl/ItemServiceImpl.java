@@ -3,7 +3,7 @@ package com.example.service.impl;
 import com.example.dao.ItemDao;
 import com.example.entity.Item;
 import com.example.service.ItemService;
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,16 +41,16 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public ZillowResult deleteItemByID(String id) {
+    public BaseResult deleteItemByID(String id) {
         try {
             itemDao.deleteItemByID(id);
-            ZillowResult ok = new ZillowResult();
+            BaseResult ok = new BaseResult();
             ok.setMsg("Item deleted successfully.");
             ok.setStatus(200);
             return ok;
         } catch (Exception e) {
             e.printStackTrace();
-            ZillowResult error = new ZillowResult();
+            BaseResult error = new BaseResult();
             error.setMsg("Failed to delete item.");
             error.setStatus(500);
             return error;
@@ -58,9 +58,9 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public ZillowResult getItemsByCity(String city, int page, int rows) {
+    public BaseResult getItemsByCity(String city, int page, int rows) {
         List<Item> itemList = itemDao.findItemByCity(city, page, rows);
-        ZillowResult ok = new ZillowResult();
+        BaseResult ok = new BaseResult();
         ok.setCnt(itemDao.countItemByCity(city));
         ok.setData(itemList);
         return ok;
@@ -68,53 +68,53 @@ public class ItemServiceImpl implements ItemService {
 
 
     @Override
-    public ZillowResult addItem(Item item) {
+    public BaseResult addItem(Item item) {
         try {
             itemDao.saveItem(item);
-            return ZillowResult.ok("Item added successfully.");
+            return BaseResult.ok("Item added successfully.");
         } catch (Exception e) {
             e.printStackTrace();
-            return ZillowResult.error("Failed to add item.");
+            return BaseResult.error("Failed to add item.");
         }
     }
 
     @Override
     @CacheEvict(cacheNames = "com:example", key = "'getDetails('+#id+')'")
-    public ZillowResult updateItemStatusById(String id, Boolean isRented, Boolean recommendation) {
+    public BaseResult updateItemStatusById(String id, Boolean isRented, Boolean recommendation) {
         try {
             itemDao.updateItemStatusById(id, isRented, recommendation);
-            return ZillowResult.ok("Status update successfully.");
+            return BaseResult.ok("Status update successfully.");
         } catch (Exception e) {
             e.printStackTrace();
-            return ZillowResult.error("Status update failed");
+            return BaseResult.error("Status update failed");
         }
     }
 
     @Override
     @CacheEvict(cacheNames = "com:example", key = "'getDetails('+#id+')'")
-    public ZillowResult updateItemInfoById(String id, Item item) {
+    public BaseResult updateItemInfoById(String id, Item item) {
         try {
             itemDao.updateItemInfoById(id, item);
-            return ZillowResult.ok("Info update successfully.");
+            return BaseResult.ok("Info update successfully.");
         } catch (Exception e) {
             e.printStackTrace();
-            return ZillowResult.error("Info update failed");
+            return BaseResult.error("Info update failed");
         }
     }
 
     @Override
     @CacheEvict(cacheNames = "com:example", key = "'getDetails('+#id+')'")
-    public ZillowResult updateItemShowcasesById(String id, ArrayList<String> imgs) {
+    public BaseResult updateItemShowcasesById(String id, ArrayList<String> imgs) {
         try {
-            ZillowResult ok = ZillowResult.ok();
+            BaseResult ok = BaseResult.ok();
             itemDao.updateItemShowcasesById(id, imgs);
             ok.setMsg("Showcases update successfully.");
             return ok;
         } catch (Exception e) {
             e.printStackTrace();
-            ZillowResult result = ZillowResult.error();
+            BaseResult result = BaseResult.error();
             result.setMsg("Showcases update successfully.");
-            return ZillowResult.error("Showcases update failed");
+            return BaseResult.error("Showcases update failed");
         }
     }
 

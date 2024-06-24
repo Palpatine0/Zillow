@@ -1,15 +1,15 @@
 package com.example.service;
 
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 
 import java.io.IOException;
 
 public interface FileService {
-    ZillowResult getBanners();
+    BaseResult getBanners();
 
-    ZillowResult uploadImage(byte[] fileBytes, String fileName) throws IOException;
+    BaseResult uploadImage(byte[] fileBytes, String fileName) throws IOException;
 
-    ZillowResult uploadImageNoPrefix(byte[] fileBytes, String fileName) throws IOException;
+    BaseResult uploadImageNoPrefix(byte[] fileBytes, String fileName) throws IOException;
 
-    ZillowResult delete(String filePath);
+    BaseResult delete(String filePath);
 }

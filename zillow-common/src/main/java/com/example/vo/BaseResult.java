@@ -10,7 +10,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class ZillowResult {
+public class BaseResult {
     // status code, 200(success) or 500(failed)
     private int status;
     // result result
@@ -25,27 +25,27 @@ public class ZillowResult {
     private int cnt;
 
 
-    public static ZillowResult ok(){
-        ZillowResult ZillowResult = new ZillowResult();
-        ZillowResult.setStatus(200);
-        return ZillowResult;
+    public static BaseResult ok(){
+        BaseResult BaseResult = new BaseResult();
+        BaseResult.setStatus(200);
+        return BaseResult;
     }
 
-    public static ZillowResult ok(Object data){
-        ZillowResult result = new ZillowResult();
+    public static BaseResult ok(Object data){
+        BaseResult result = new BaseResult();
         result.setStatus(200);
         result.setData(data);
         return result;
     }
 
-    public static ZillowResult error(){
-        ZillowResult result = new ZillowResult();
+    public static BaseResult error(){
+        BaseResult result = new BaseResult();
         result.setStatus(500);
         return result;
     }
 
-    public static ZillowResult error(String msg){
-        ZillowResult result = new ZillowResult();
+    public static BaseResult error(String msg){
+        BaseResult result = new BaseResult();
         result.setStatus(500);
         result.setMsg(msg);
         return result;

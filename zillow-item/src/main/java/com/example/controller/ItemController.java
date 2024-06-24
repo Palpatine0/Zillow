@@ -5,7 +5,7 @@ import com.example.entity.Item;
 import com.example.entity.Order;
 import com.example.service.ItemService;
 import com.example.service.OrderServiceFeignClient;
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,24 +29,24 @@ ItemController {
     }
 
     @DeleteMapping("/deleteItemByID")
-    public ZillowResult deleteItemByID(String id) {
+    public BaseResult deleteItemByID(String id) {
         return itemService.deleteItemByID(id);
     }
 
     @GetMapping("/getItemsByCity")
-    public ZillowResult getItemsByCity(String city, int page, @RequestParam(defaultValue = "5") int rows) {
+    public BaseResult getItemsByCity(String city, int page, @RequestParam(defaultValue = "5") int rows) {
         return itemService.getItemsByCity(city, page, rows);
     }
 
 
 
     @PostMapping("/addItem")
-    public ZillowResult addItem(String title, Long sales, Boolean recommendation, Byte weight, Long price,
-                                String city, String rentType, String houseType, String orientation,
-                                String level, String style, String type, String years,
-                                String img1, String img2, String img3,
-                                @RequestParam(required = false) String buytime,
-                                Boolean isRented, String beds, String baths, String area) throws ParseException {
+    public BaseResult addItem(String title, Long sales, Boolean recommendation, Byte weight, Long price,
+                              String city, String rentType, String houseType, String orientation,
+                              String level, String style, String type, String years,
+                              String img1, String img2, String img3,
+                              @RequestParam(required = false) String buytime,
+                              Boolean isRented, String beds, String baths, String area) throws ParseException {
         Map<String, String> info = new HashMap<>();
         info.put("orientation", orientation);
         info.put("level", level);
@@ -110,17 +110,17 @@ ItemController {
     }
 
     @PostMapping("/updateItemStatusById")
-    public ZillowResult updateItemStatusById(String id, Boolean isRented, Boolean recommendation) {
+    public BaseResult updateItemStatusById(String id, Boolean isRented, Boolean recommendation) {
         return itemService.updateItemStatusById(id, isRented, recommendation);
     }
 
     @PostMapping("/updateItemInfoById")
-    public ZillowResult updateItemInfoById(String id, String title, Long sales, Boolean recommendation, Byte weight, Long price,
-                                           String city, String rentType, String houseType, String orientation,
-                                           String level, String style, String type, String years,
-                                           String img1, String img2, String img3,
-                                           @RequestParam(required = false) String buytime,
-                                           Boolean isRented, String beds, String baths, String area) throws ParseException {
+    public BaseResult updateItemInfoById(String id, String title, Long sales, Boolean recommendation, Byte weight, Long price,
+                                         String city, String rentType, String houseType, String orientation,
+                                         String level, String style, String type, String years,
+                                         String img1, String img2, String img3,
+                                         @RequestParam(required = false) String buytime,
+                                         Boolean isRented, String beds, String baths, String area) throws ParseException {
         Map<String, String> info = new HashMap<>();
         info.put("orientation", orientation);
         info.put("level", level);
@@ -164,7 +164,7 @@ ItemController {
     }
 
     @PostMapping("/updateItemShowcasesById")
-    public ZillowResult updateItemShowcasesById(String id, String img1, String img2, String img3) {
+    public BaseResult updateItemShowcasesById(String id, String img1, String img2, String img3) {
         ArrayList<String> imgs = new ArrayList<>();
         imgs.add(img1);
         imgs.add(img2);

@@ -1,7 +1,7 @@
 package com.example.service;
 
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 
 public interface BuyTimeService {
-    ZillowResult getBuyTime(String itemId);
+    BaseResult getBuyTime(String itemId);
 }

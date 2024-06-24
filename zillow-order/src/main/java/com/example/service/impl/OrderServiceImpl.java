@@ -3,7 +3,7 @@ package com.example.service.impl;
 import com.example.dao.OrderDao;
 import com.example.entity.Order;
 import com.example.service.OrderService;
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +16,8 @@ public class OrderServiceImpl implements OrderService {
     private OrderDao orderDao;
 
     @Override
-    public ZillowResult getOrdersByUserId(String userId) {
+    public BaseResult getOrdersByUserId(String userId) {
         List<Order> orders = orderDao.findOrdersByUserId(userId);
-        return ZillowResult.ok(orders);
+        return BaseResult.ok(orders);
     }
 }

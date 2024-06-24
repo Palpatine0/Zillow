@@ -4,7 +4,7 @@ import com.example.dao.FileDao;
 import com.example.entity.Banner;
 import com.example.entity.HouseImage;
 import com.example.service.FileService;
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 import com.github.tobato.fastdfs.domain.fdfs.StorePath;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +32,8 @@ public class FileServiceImpl implements FileService {
     private String nginxPrefix;
 
     @Override
-    public ZillowResult getBanners() {
-        ZillowResult result = new ZillowResult();
+    public BaseResult getBanners() {
+        BaseResult result = new BaseResult();
         try {
             // S1: get data
             Query query = new Query();
@@ -60,7 +60,7 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public ZillowResult uploadImage(byte[] fileBytes, String fileName) throws IOException {
+    public BaseResult uploadImage(byte[] fileBytes, String fileName) throws IOException {
         if (fileBytes.length != 0) {
             try {
                 //1.convert the byte array in to input stream
@@ -75,21 +75,21 @@ public class FileServiceImpl implements FileService {
                 HouseImage houseImage = new HouseImage();
                 houseImage.setUrl(fullPath);
                 fileDao.saveHouseImage(houseImage);
-                return ZillowResult.ok(imageUrl);
+                return BaseResult.ok(imageUrl);
             } catch (IOException ioException) {
-                ZillowResult error = ZillowResult.error();
+                BaseResult error = BaseResult.error();
                 error.setMsg("File upload failed");
                 return error;
             }
         } else {
-            ZillowResult error = ZillowResult.error();
+            BaseResult error = BaseResult.error();
             error.setMsg("File upload failed");
             return error;
         }
     }
 
     @Override
-    public ZillowResult uploadImageNoPrefix(byte[] fileBytes, String fileName) throws IOException {
+    public BaseResult uploadImageNoPrefix(byte[] fileBytes, String fileName) throws IOException {
         if (fileBytes.length != 0) {
             try {
                 //1.convert the byte array in to input stream
@@ -104,24 +104,24 @@ public class FileServiceImpl implements FileService {
                 HouseImage houseImage = new HouseImage();
                 houseImage.setUrl(fullPath);
                 fileDao.saveHouseImage(houseImage);
-                ZillowResult ok = ZillowResult.ok(imageUrl);
+                BaseResult ok = BaseResult.ok(imageUrl);
                 ok.setMsg("File uploaded success");
                 return ok;
             } catch (IOException ioException) {
-                ZillowResult error = ZillowResult.error();
+                BaseResult error = BaseResult.error();
                 error.setMsg("File upload failed");
                 return error;
             }
         } else {
-            ZillowResult error = ZillowResult.error();
+            BaseResult error = BaseResult.error();
             error.setMsg("File upload failed");
             return error;
         }
     }
 
     @Override
-    public ZillowResult delete(String filePath) {
+    public BaseResult delete(String filePath) {
         fastFileStorageClient.deleteFile(filePath);
-        return ZillowResult.ok();
+        return BaseResult.ok();
     }
 }

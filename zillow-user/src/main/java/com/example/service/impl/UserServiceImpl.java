@@ -6,7 +6,7 @@ import com.example.dao.VerificationDao;
 import com.example.entity.User;
 import com.example.entity.VerificationCode;
 import com.example.service.UserService;
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
 
     // aboard after spring security configured, this method wont execute anymore
     @Override
-    public ZillowResult login(String username, String password, String phone, String verificationCode) {
+    public BaseResult login(String username, String password, String phone, String verificationCode) {
         /*LoginLog loginLog = new LoginLog();
         loginLog.setUsername(phone);
         loginLog.setLoginTime(new Date());
@@ -40,29 +40,29 @@ public class UserServiceImpl implements UserService {
 
         if (name == null) {
             System.out.println("username failed");
-            return ZillowResult.error("Enter your username");
+            return BaseResult.error("Enter your username");
         }
         if (password == null) {
             System.out.println("pwd failed");
-            return ZillowResult.error("Enter your password");
+            return BaseResult.error("Enter your password");
         }
         if (vCode4Check == null) {
             /*loginLog.setSuccess(false);
             loginLog.setMessage("Verification code outdated");
             loginLogDao.insertLoginLog(loginLog);*/
             System.out.println("v code failed");
-            return ZillowResult.error("Enter your verification code");
+            return BaseResult.error("Enter your verification code");
         }
 
         if (!password.equals(pwd)) {
             System.out.println("username unmatched");
-            return ZillowResult.error("Username or password code does not match");
+            return BaseResult.error("Username or password code does not match");
         }
         if (!verificationCode.equals(vCode4Check.getVerificationCode())) {
             /*loginLog.setSuccess(false);
             loginLog.setMessage("In correct verification code");*/
             System.out.println("v code unmatched");
-            return ZillowResult.error("Verification code does not match");
+            return BaseResult.error("Verification code does not match");
         }
 
         /*loginLog.setSuccess(true);
@@ -70,52 +70,52 @@ public class UserServiceImpl implements UserService {
 
         /*loginLogDao.insertLoginLog(loginLog);*/
         verificationDao.deleteVerificationCode(phone);
-        return ZillowResult.ok("Successfully sign in");
+        return BaseResult.ok("Successfully sign in");
     }
 
     @Override
-    public ZillowResult register(String username, String password, String phone) {
+    public BaseResult register(String username, String password, String phone) {
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
         user.setPhone(phone);
         if (username == "") {
-            return ZillowResult.error("Username cannot be empty");
+            return BaseResult.error("Username cannot be empty");
         } else if (password == "") {
-            return ZillowResult.error("Password cannot be empty");
+            return BaseResult.error("Password cannot be empty");
         }
 
         User user4Check = userDao.findUserByUsername(username);
         if (user4Check != null) {
-            return ZillowResult.error("This username had been used");
+            return BaseResult.error("This username had been used");
         } else {
             userDao.saveUser(user);
         }
-        ZillowResult ok = ZillowResult.ok();
+        BaseResult ok = BaseResult.ok();
         ok.setMsg("Successfully registered");
         return ok;
     }
 
     @Override
-    public ZillowResult deleteUserById(String id) {
+    public BaseResult deleteUserById(String id) {
         userDao.removeUserById(id);
         if (id == null) {
-            ZillowResult error = ZillowResult.error();
+            BaseResult error = BaseResult.error();
             error.setMsg("Failed deleted, id cannot be empty");
             return error;
         }
-        ZillowResult ok = ZillowResult.ok();
+        BaseResult ok = BaseResult.ok();
         ok.setMsg("Successfully deleted");
         return ok;
     }
 
     @Override
-    public ZillowResult sendVerificationCode(String phone) {
+    public BaseResult sendVerificationCode(String phone) {
 
         // S1: see if has verification code already there
         VerificationCode vCode4Check = verificationDao.getVerificationCode(phone);
         if (vCode4Check != null) {
-            ZillowResult error = ZillowResult.error();
+            BaseResult error = BaseResult.error();
             error.setMsg("Verification code still valid, please do not repeatedly send verification code");
             return error;
         }
@@ -134,28 +134,28 @@ public class UserServiceImpl implements UserService {
 
         verificationDao.setVerificationCode(verificationCode.getPhone(), verificationCode);
 
-        ZillowResult ok = ZillowResult.ok();
+        BaseResult ok = BaseResult.ok();
         ok.setMsg("Verification code sent");
         return ok;
     }
 
     @Override
-    public ZillowResult getUsers() {
+    public BaseResult getUsers() {
         Query query = new Query();
         List<User> users = userDao.findUsers(query);
-        return ZillowResult.ok(users);
+        return BaseResult.ok(users);
     }
 
     @Override
-    public ZillowResult getUserByUsername(String username) {
+    public BaseResult getUserByUsername(String username) {
         User user = userDao.findUserByUsername(username);
-        return ZillowResult.ok(user);
+        return BaseResult.ok(user);
     }
 
     @Override
-    public ZillowResult getUserById(String id) {
+    public BaseResult getUserById(String id) {
         User user = userDao.findUserById(id);
-        return ZillowResult.ok(user);
+        return BaseResult.ok(user);
     }
 
 }

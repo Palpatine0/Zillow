@@ -4,7 +4,7 @@ import com.example.dao.BuyActionDao;
 import com.example.entity.Item;
 import com.example.message.ZillowBuyMessage;
 import com.example.service.BuyActionService;
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.stream.function.StreamBridge;
@@ -26,13 +26,13 @@ public class BuyActionServiceImpl implements BuyActionService {
 
 
     @Override
-    public ZillowResult buyAction(String itemId, String userId,String startDate,String endDate,String price) {
+    public BaseResult buyAction(String itemId, String userId, String startDate, String endDate, String price) {
         // S1: see if a product is buyable
         String key = itemPrefix + "::" + itemSuffix + "(" + itemId + ")";
         Item item = buyActionDao.getItem(key);
         // feedback if unbuyable
         if (item.getIsRented()) {
-            ZillowResult error = ZillowResult.error();
+            BaseResult error = BaseResult.error();
             error.setMsg("Late, it's occupied. ");
             return error;
         }
@@ -49,11 +49,11 @@ public class BuyActionServiceImpl implements BuyActionService {
 
         // S3: return a result base on the result from MQ
         if (messageResult) {
-            ZillowResult ok = ZillowResult.ok();
+            BaseResult ok = BaseResult.ok();
             ok.setMsg("Successfully purchased");
             return ok;
         } else {
-            ZillowResult error = ZillowResult.error();
+            BaseResult error = BaseResult.error();
             error.setMsg("Server error");
             return error;
         }

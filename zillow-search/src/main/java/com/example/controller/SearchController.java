@@ -1,7 +1,7 @@
 package com.example.controller;
 
 import com.example.service.SearchService;
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,25 +16,26 @@ public class SearchController {
     private SearchService searchService;
 
     @GetMapping("/searchByCity")
-    public ZillowResult searchByCity(String city, int page, @RequestParam(defaultValue = "5") int rows) {
+    public BaseResult searchByCity(String city, int page, @RequestParam(defaultValue = "5") int rows) {
         return searchService.searchByCity(city, page, rows);
     }
 
     @GetMapping("/searchByKeyWord")
-    public ZillowResult searchByKeyWord(String city, String content, int page, @RequestParam(defaultValue = "5") int rows) {
+    public BaseResult searchByKeyWord(String city, String content, int page, @RequestParam(defaultValue = "5") int rows) {
         return searchService.searchByKeyWord(city, content, page, rows);
     }
 
     @GetMapping("/ESReload")
-    public ZillowResult esReload() {
+    public BaseResult esReload() {
         searchService.esinit();
-        return ZillowResult.ok("Done");
+        BaseResult ok = BaseResult.ok();
+        ok.setMsg("Done");
+        return ok;
     }
 
     @Scheduled(cron = "0 0 */5 * * ?")
     public void scheduledESReload() {
         searchService.esinit();
-        System.out.println("ES Reload scheduled task executed.");
     }
 
 }

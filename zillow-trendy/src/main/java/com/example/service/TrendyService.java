@@ -1,7 +1,7 @@
 package com.example.service;
 
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 
 public interface TrendyService {
-    ZillowResult getTrendies(String city);
+    BaseResult getTrendies(String city);
 }

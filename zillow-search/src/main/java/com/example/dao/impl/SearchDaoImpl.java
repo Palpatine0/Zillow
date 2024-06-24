@@ -124,6 +124,7 @@ public class SearchDaoImpl implements SearchDao {
         for (Item4ES item : items) {
             list.add(new IndexQueryBuilder().withObject(item).build());
         }
+
         // insert
         elasticsearchRestTemplate.bulkIndex(list, Item4ES.class);
     }

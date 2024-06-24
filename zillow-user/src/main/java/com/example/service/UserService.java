@@ -1,20 +1,20 @@
 package com.example.service;
 
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 
 public interface UserService {
-    ZillowResult sendVerificationCode(String phone);
+    BaseResult sendVerificationCode(String phone);
 
-    ZillowResult login(String username, String password, String phone, String verificationCode);
+    BaseResult login(String username, String password, String phone, String verificationCode);
 
-    ZillowResult register(String username, String password, String phone);
+    BaseResult register(String username, String password, String phone);
 
-    ZillowResult deleteUserById(String id);
+    BaseResult deleteUserById(String id);
 
-    ZillowResult getUsers();
+    BaseResult getUsers();
 
-    ZillowResult getUserByUsername(String username);
+    BaseResult getUserByUsername(String username);
 
-    ZillowResult getUserById(String id);
+    BaseResult getUserById(String id);
 
 }

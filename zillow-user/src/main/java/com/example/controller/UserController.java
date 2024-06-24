@@ -2,7 +2,7 @@ package com.example.controller;
 
 
 import com.example.service.UserService;
-import com.example.vo.ZillowResult;
+import com.example.vo.BaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,27 +18,27 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register")
-    public ZillowResult register(String username, String password, String phone) {
+    public BaseResult register(String username, String password, String phone) {
         return userService.register(username, password, phone);
     }
 
     @PostMapping("/login")
-    public ZillowResult login(String username, String password, String phone, String verificationCode) {
+    public BaseResult login(String username, String password, String phone, String verificationCode) {
         return userService.login(username, password, phone, verificationCode);
     }
 
     @PostMapping("/deleteUserById")
-    public ZillowResult deleteUserById(String id) {
+    public BaseResult deleteUserById(String id) {
         return userService.deleteUserById(id);
     }
 
     @GetMapping("/getUsers")
-    public ZillowResult getUsers() {
+    public BaseResult getUsers() {
         return userService.getUsers();
     }
 
     @PostMapping("/sendVerificationCode")
-    public ZillowResult sentVerificationCode(String phone) {
+    public BaseResult sentVerificationCode(String phone) {
         return userService.sendVerificationCode(phone);
     }
 
@@ -48,12 +48,12 @@ public class UserController {
     }
 
     @GetMapping("/getUserByUsername")
-    public ZillowResult getUserByUsername(String username) {
+    public BaseResult getUserByUsername(String username) {
         return userService.getUserByUsername(username);
     }
 
     @GetMapping("/getUserById")
-    public ZillowResult getUserById(String id) {
+    public BaseResult getUserById(String id) {
         return userService.getUserById(id);
     }
 }
