@@ -1,8 +1,8 @@
 <!--SearchInput.vue-->
 <template>
-    <input v-model="msg" class='search-input' placeholder="Address, neighborhood, city, Zip" type="text"
-           @keyup="search($event)">
+    <input v-model="msg" class='search-input' placeholder="Address, neighborhood, city, Zip" type="text" @keyup="search($event)">
 </template>
+
 <script>
 export default {
     name: 'SearchInput',
@@ -20,24 +20,25 @@ export default {
                 if (this.msg == this.pk) {
                     return
                 }
-                this.$emit('setSearchMsgAciton', {data: this.msg})
+                this.$emit('setSearchMsgAction', {data: this.msg})
             }
         }
     },
     mounted() {
         this.msg = this.pk
-        this.$emit('setSearchMsgAciton', {data: this.pk})
+        this.$emit('setSearchMsgAction', {data: this.pk})
     },
     watch: {
         'pk': function (n, o) {
             if (n !== this.msg) {
                 this.msg = n;
-                this.$emit('setSearchMsgAciton', {data: n})
+                this.$emit('setSearchMsgAction', {data: n})
             }
         }
     },
 }
 </script>
+
 <style lang="less" scoped>
 .search-input {
     font-size: 22px !important;

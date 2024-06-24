@@ -1,5 +1,6 @@
 server:
   port: 9010
+
 spring:
   application:
     name: zillow-config-server

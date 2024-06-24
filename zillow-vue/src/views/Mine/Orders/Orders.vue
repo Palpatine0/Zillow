@@ -3,7 +3,11 @@
         <div v-if='order.length'>
             <Item v-for='(orderData, index) in order' :key='index' :orderData='orderData'/>
         </div>
-        <div v-else>Loading...</div>
+        <div v-else>
+            <div style="padding: 10px;color: gainsboro;">
+                Loading...
+            </div>
+        </div>
         <br>
         <br>
         <br>

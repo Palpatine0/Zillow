@@ -57,12 +57,10 @@ export default {
             this.userId_delete = id;
         },
         deleteUser() {
-            console.log(this.userId_delete);
             this.$api.deleteUserById({
                 id: this.userId_delete
             })
             .then(data => {
-                console.log(data.status)
                 if (data.status == 200) {
                     window.location.reload();
                 }

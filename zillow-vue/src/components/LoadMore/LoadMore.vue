@@ -1,5 +1,4 @@
 <template>
-    <div ref="load">Pending for load more...</div>
 </template>
 <script>
 export default {
@@ -12,7 +11,6 @@ export default {
         const winHeight = document.documentElement.clientHeight;
         let loadDiv = this.$refs.load
         window.onscroll = () => {
-            // console.log(winHeight,document.documentElement.scrollTop,loadDiv.offsetTop,loadDiv.getBoundingClientRect().top)
             if (timer) {
                 clearTimeout(timer)
             }

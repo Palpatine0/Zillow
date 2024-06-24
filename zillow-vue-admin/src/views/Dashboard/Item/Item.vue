@@ -8,7 +8,7 @@
         <Swiper :slides="swiperSlides" :title="title"></Swiper>
         <v-container class="mt-5">
             <v-row style="height: 90px">
-                <v-col style="height: 100%">
+                    <v-col style="height: 100%">
                     <p class="info-head">
                         ${{ commasNumber(itemInfo.price) }} / mo
                         <!--${{ itemInfo.price }} / mo-->
@@ -31,7 +31,6 @@
                     <v-col cols="6" md="4" sm="6">
                         <p class="info-head">
                             {{ commasNumber(itemInfo.info.area) }}
-                            <!--                          {{ itemInfo.info.area }}-->
                         </p>
                         <p class="info-body">sqft</p>
                     </v-col>

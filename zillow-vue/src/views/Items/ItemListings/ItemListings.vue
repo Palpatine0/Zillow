@@ -4,7 +4,11 @@
         <div v-if="searchListData.length > 0">
             <Item v-for="(curdata, index) in searchListData" :key="index" :curdata="curdata"/>
         </div>
-        <div v-else>Loading....</div>
+        <div v-else>
+            <div style="padding: 10px;color: gainsboro;">
+                Loading...
+            </div>
+        </div>
         <LoadMore @getMoreData='getMoreData'/>
         <br>
         <br>

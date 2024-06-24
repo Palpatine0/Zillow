@@ -8,6 +8,7 @@ const api = {
 
 
     // file
+
     getBanners() {
         return axios.get(base.baseUrl + base.getBanners)
     },

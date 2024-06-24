@@ -1,9 +1,17 @@
 <template>
     <div>
         <FeaturedView v-if="recommendations.length>0" :hotData="recommendations" title="Recommendations"/>
-        <div v-else class="test">Loading Data...</div>
+        <div v-else >
+            <div style="padding: 10px;color: gainsboro;">
+                Loading...
+            </div>
+        </div>
         <FeaturedView v-if="trendies.length>0" :hotData="trendies" title="Trendies"/>
-        <div v-else class="test">Loading Data...</div>
+        <div v-else class="test">
+            <div style="padding: 10px;color: gainsboro;">
+                Loading...
+            </div>
+        </div>
     </div>
 </template>
 
@@ -46,11 +54,3 @@ export default {
     }
 };
 </script>
-
-<style>
-.test {
-    font-family: Arial;
-}
-
-
-</style>

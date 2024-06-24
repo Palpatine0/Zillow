@@ -4,7 +4,11 @@
         <div v-if='searchListData.length>0'>
             <Item v-for='(curdata,index) in searchListData' :key='index' :curdata='curdata'/>
         </div>
-        <div v-else>Loading....</div>
+        <div v-else>
+            <div style="padding: 10px;color: gainsboro;">
+                Loading...
+            </div>
+        </div>
         <LoadMore @getMoreData='getMoreData'/>
         <FootNav/>
     </div>
@@ -30,7 +34,6 @@ export default {
     props: ['kw', 'cur_city'],
 
     methods: {
-
         getMoreData() {
             this.page = this.page += 1
             this.http(this.kw, this.cur_city)
@@ -40,12 +43,11 @@ export default {
             })
         },
         http(keyword, city) {
-            return this.$api.getItemsByCity({
+            return this.$api.searchByKeyWord({
                 city: city,
-                page: this.page ,
-                rows: 5
+                content: keyword,
+                page: this.page
             })
-
         }
     },
     watch: {
@@ -58,7 +60,6 @@ export default {
             .then(data => {
                 this.searchListData = data.data.data
                 this.hasMore = data.data.hasMore
-
             })
         }
     },

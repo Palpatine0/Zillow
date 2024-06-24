@@ -1,5 +1,6 @@
 server:
   port: 8761
+
 spring:
   application:
     name: zillow-eureka-server
@@ -7,6 +8,7 @@ spring:
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
+
 eureka:
   client:
     fetch-registry: false

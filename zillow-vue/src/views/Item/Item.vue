@@ -7,7 +7,11 @@
         <div v-if="swiperSlides.length>0" style="position: relative">
             <MySwiper :swiperSlides="swiperSlides"/>
         </div>
-        <div v-else>Loading...</div>
+        <div v-else>
+            <div style="padding: 10px;color: gainsboro;">
+                Loading...
+            </div>
+        </div>
 
         <tabs :currentIndex="currentIndex" class="tabb" @changeCurrentIndex="changeCurrentIndexHandler">
             <tab class="t" index="1" label="Info">
