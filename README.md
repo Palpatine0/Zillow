@@ -8,11 +8,15 @@ microservices architecture using modern technologies like MongoDB, Redis, Elasti
 
 ## Features
 
-- Property Listings: Users can view a variety of rental properties, each detailed with photos, prices, and descriptions.
-- Search Functionality: Robust search capabilities powered by Elasticsearch, allowing filters for location, price range,
-  number of bedrooms, and more.
-- User Accounts: Users can create accounts to save favorite listings and contact property managers directly.
-- Admin Panel: A Vue.js and Vuetify-based dashboard for administrators to manage property listings.
+- **Property Listings:** Users can view a variety of rental properties, each detailed with photos, prices, and
+  descriptions.
+- **Search Functionality:** Robust search capabilities powered by Elasticsearch, allowing filters for location, price
+  range, number of bedrooms, and more.
+- **User Accounts:** Users can create accounts to save favorite listings and contact property managers directly.
+- **Admin Panel:** A Vue.js and Vuetify-based dashboard for administrators to manage property listings.
+- **Microservices Architecture**: Built with Spring Boot and Spring Cloud for scalable and maintainable service
+  management.
+- **Data Storage**: Use MongoDB for flexible and efficient data storage solutions.
 
 ## Technologies Used
 
@@ -61,6 +65,7 @@ mvn clean install
 #### Redis Deployment (Mac)
 
 1. Create container
+
 ```bash
 docker run -d -p 6379:6379 --name dev_zillow_svc_redis redis:7.2-rc2 --requirepass root
 ```
@@ -68,25 +73,28 @@ docker run -d -p 6379:6379 --name dev_zillow_svc_redis redis:7.2-rc2 --requirepa
 #### MongoDB Deployment (Mac)
 
 1. Create container
+
 ```bash
 docker run -d -p 27017:27017 --name dev_zillow_svc_mongodb mongo:4.4.19-rc2 --auth
 ```
 
 2. Enter MongoDB
+
 ```bash
 docker exec -it dev_zillow_svc_mongodb bash
 ```
+
 ```bash
 mongo
 ```
 
 3. Set authentication
+
 ```bash
 use admin
 db.createUser({ user: "root", pwd: "root", roles: [{ role: "root", db: "admin" }] })
 db.auth("root", "root");
 ```
-
 
 ### Application Ports
 
