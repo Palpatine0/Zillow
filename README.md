@@ -38,6 +38,8 @@ Ensure you have the following installed:
 
 ### Installation
 
+#### Project Installation
+
 1. Clone the repository:
 
 ```bash
@@ -55,6 +57,36 @@ cd Zillow
 ```bash
 mvn clean install
 ```
+
+#### Redis Deployment (Mac)
+
+1. Create container
+```bash
+docker run -d -p 6379:6379 --name dev_zillow_svc_redis redis:7.2-rc2 --requirepass root
+```
+
+#### MongoDB Deployment (Mac)
+
+1. Create container
+```bash
+docker run -d -p 27017:27017 --name dev_zillow_svc_mongodb mongo:4.4.19-rc2 --auth
+```
+
+2. Enter MongoDB
+```bash
+docker exec -it dev_zillow_svc_mongodb bash
+```
+```bash
+mongo
+```
+
+3. Set authentication
+```bash
+use admin
+db.createUser({ user: "root", pwd: "root", roles: [{ role: "root", db: "admin" }] })
+db.auth("root", "root");
+```
+
 
 ### Application Ports
 
