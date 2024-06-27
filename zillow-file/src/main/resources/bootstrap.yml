@@ -1,5 +1,6 @@
 server:
   port: 9000
+
 spring:
   application:
     name: zillow-file
@@ -29,3 +30,11 @@ fdfs:
   fileUrl: http://111.231.19.137:8888/
   tracker-list:
     - 111.231.19.137:22122
+
+zillow:
+  fdfsBasePath:
+    nginx:
+      prefix: http://111.231.19.137:8888/
+  banner:
+    nginx:
+      prefix: http://111.231.19.137:8888/

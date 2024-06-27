@@ -37,8 +37,6 @@ const api = {
     },
 
 
-
-
     // buyAction
     buyAction(params) {
         return axios.get(base.baseUrl + base.buyAction + "?" + qs.stringify(params));
@@ -58,7 +56,7 @@ const api = {
 
     // comment
     addComment(params) {
-        return axios.post(base.baseUrl + base.addComment, params);
+        return axios.post(base.baseUrl + base.addComment + "?" + qs.stringify(params));
     },
     getCommentsByItemId(params) {
         return axios.get(base.baseUrl + base.getCommentsByItemId + "?" + qs.stringify(params));

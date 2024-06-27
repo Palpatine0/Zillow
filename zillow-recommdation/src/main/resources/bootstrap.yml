@@ -1,5 +1,6 @@
 server:
   port: 9002
+
 spring:
   application:
     name: zillow-recommendation
@@ -11,3 +12,11 @@ spring:
       label: master
       name: zillow
       profile: dev
+
+zillow:
+  fdfsBasePath:
+    nginx:
+      prefix: http://111.231.19.137:8888/
+  banner:
+    nginx:
+      prefix: http://111.231.19.137:8888/
