@@ -8,7 +8,7 @@
         </div>
         <FeaturedView v-if="trendies.length>0" :hotData="trendies" title="Trendies"/>
         <div v-else class="test">
-            <div style="padding: 10px;color: gainsboro;">
+            <div style="padding: 10px;color: gainsboro;" align="center">
                 Loading...
             </div>
         </div>

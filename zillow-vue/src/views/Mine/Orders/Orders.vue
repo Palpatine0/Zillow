@@ -4,7 +4,7 @@
             <Item v-for='(orderData, index) in order' :key='index' :orderData='orderData'/>
         </div>
         <div v-else>
-            <div style="padding: 10px;color: gainsboro;">
+            <div style="padding: 10px;color: gainsboro;" align="center">
                 Loading...
             </div>
         </div>

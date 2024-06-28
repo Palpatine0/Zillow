@@ -1,4 +1,5 @@
 <template>
+    <div ref="load" align="center">Scroll down to load more...</div>
 </template>
 <script>
 export default {

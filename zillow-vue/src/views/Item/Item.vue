@@ -8,7 +8,7 @@
             <MySwiper :swiperSlides="swiperSlides"/>
         </div>
         <div v-else>
-            <div style="padding: 10px;color: gainsboro;">
+            <div style="padding: 10px;color: gainsboro;" align="center">
                 Loading...
             </div>
         </div>
