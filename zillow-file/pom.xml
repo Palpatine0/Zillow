@@ -42,7 +42,6 @@
             <version>1.26.5</version>
         </dependency>
 
-
         <!--this project-->
         <dependency>
             <groupId>com.example</groupId>
@@ -54,6 +53,12 @@
             <groupId>com.example</groupId>
             <artifactId>zillow-mongodb-dao</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.cdimascio</groupId>
+            <artifactId>java-dotenv</artifactId>
+            <version>5.2.2</version>
         </dependency>
 
     </dependencies>
