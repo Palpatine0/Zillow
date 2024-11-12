@@ -22,6 +22,11 @@ public class FileController {
     }
 
 
+    @PostMapping("/upload")
+    public BaseResult upload(MultipartFile file, String path) {
+        return fileService.upload(file, path);
+    }
+
     @PostMapping("/uploadImage")
     public BaseResult uploadImage(MultipartFile file) throws IOException {
         byte[] bytes = file.getBytes();
