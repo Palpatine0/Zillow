@@ -8,6 +8,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         cur_city: 'Dallas',
+        awsS3RequestUrl: "https://percival-s3-zillow.s3.us-east-1.amazonaws.com/",
+        awsS3Paths: {
+            item: 'public/image/item/'
+        },
         searchMsg: '',
         collect: [],
         userId: '',

@@ -8,7 +8,7 @@ import java.io.IOException;
 public interface FileService {
     BaseResult getBanners();
 
-    BaseResult upload(MultipartFile file, String path);
+    BaseResult uploadFile(MultipartFile file, String path);
 
     BaseResult uploadImage(byte[] fileBytes, String fileName) throws IOException;
 

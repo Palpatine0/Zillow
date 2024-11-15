@@ -4,7 +4,7 @@
       <v-sheet height="100%">
         <v-row align="center" class="fill-height" justify="center">
           <div class="text-h2 rounded-lg">
-            <v-img :src="img_prefix+slide" aspect-ratio="2" class="centered-image "/>
+            <v-img :src="awsS3RequestUrl+slide" aspect-ratio="2" class="centered-image "/>
           </div>
         </v-row>
       </v-sheet>
@@ -23,7 +23,7 @@ export default {
   },
   props: ['slides', 'title'],
   computed: {
-    ...mapState(['img_prefix']),
+      ...mapState(['awsS3RequestUrl']),
   }
 
 };

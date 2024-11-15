@@ -9,7 +9,10 @@ export default new Vuex.Store({
     state: {
         drawer: true,
         city: 'Los Angeles',
-        img_prefix: 'http://111.231.19.137:8888/',
+        awsS3RequestUrl: "https://percival-s3-zillow.s3.us-east-1.amazonaws.com/",
+        awsS3Paths: {
+            item: 'public/image/item/'
+        },
         links: [
             {icon: 'fa-lg fas fa-home', text: 'Dashboard', route: '/'},
             {icon: 'fa-lg fa-solid fa-user', text: 'Users', route: '/users'},
@@ -32,7 +35,7 @@ export default new Vuex.Store({
     },
     actions: {
         initializeStore({commit}) {
-            if (localStorage.getItem('city')) {
+            if(localStorage.getItem('city')) {
                 commit('setCity', localStorage.getItem('city'));
             }
         }

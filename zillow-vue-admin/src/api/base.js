@@ -5,6 +5,7 @@ const base = {
     // file
     getBanner: '/file/getBanner',
     uploadImageNoPrefix: '/file/uploadImageNoPrefix',
+    uploadFile: '/file/uploadFile',
 
     // trendy
     getTrendy: '/trendy/getTrendy',

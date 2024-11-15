@@ -2,8 +2,7 @@
     <v-app style="padding: 20px">
         <v-subheader as="h1" class="subheading grey--text">Dashboard > Item</v-subheader>
         <div class="center_h mb-5">
-            <v-img src="https://assets.leetcode.com/users/images/7da063f0-ed38-4153-9c88-372feaad79d6_1714562261.1995816.jpeg"
-                   width="200"/>
+            <v-img src="https://assets.leetcode.com/users/images/7da063f0-ed38-4153-9c88-372feaad79d6_1714562261.1995816.jpeg" width="200"/>
         </div>
         <Swiper :slides="swiperSlides" :title="title"></Swiper>
         <v-container class="mt-5">
@@ -99,23 +98,19 @@
             <v-col cols="12" md="3" sm="6" style="margin-top: -80px">
                 <v-card class="mx-auto center_h" max-width="344" outlined
                         style="border-radius: 14px;flex-direction: column">
-                    <v-btn class="edit-btn mt-5 mb-4" color="#156ff6" dark style="height: 50px!important;"
-                           @click="statusUpdate_dialog=!statusUpdate_dialog">
+                    <v-btn class="edit-btn mt-5 mb-4" color="#156ff6" dark style="height: 50px!important;" @click="statusUpdate_dialog=!statusUpdate_dialog">
                         Edit Status
                     </v-btn>
-                    <v-btn class="edit-btn mb-2" color="#156ff6" dark outlined
-                           @click="infoUpdate_dialog=!infoUpdate_dialog">
+                    <v-btn class="edit-btn mb-2" color="#156ff6" dark outlined @click="infoUpdate_dialog=!infoUpdate_dialog">
                         Edit Info
                     </v-btn>
-                    <v-btn class="edit-btn mb-5" color="#156ff6" dark outlined
-                           @click="showcasesUpdate_dialog=!showcasesUpdate_dialog">
+                    <v-btn class="edit-btn mb-5" color="#156ff6" dark outlined @click="showcasesUpdate_dialog=!showcasesUpdate_dialog">
                         Edit Showcases
                     </v-btn>
                 </v-card>
                 <v-card class="mx-auto center_h mt-3 mb-3" max-width="344" outlined
                         style="border-radius: 14px;flex-direction: column;border-color: #ffa9ac">
-                    <v-btn class="edit-btn mt-3 mb-3" color="red" dark outlined
-                           @click="itemDelete_dialog=!itemDelete_dialog">
+                    <v-btn class="edit-btn mt-3 mb-3" color="red" dark outlined @click="itemDelete_dialog=!itemDelete_dialog">
                         <b>DELETE</b>
                     </v-btn>
                 </v-card>

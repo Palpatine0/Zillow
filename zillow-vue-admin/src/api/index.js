@@ -10,6 +10,13 @@ const api = {
     getBanner() {
         return axios.get(base.baseUrl + base.getBanner)
     },
+    uploadFile(file) {
+        return axios.post(base.baseUrl + base.uploadFile, file, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+    },
     uploadImageNoPrefix(file) {
         return axios.post(base.baseUrl + base.uploadImageNoPrefix, file, {
             headers: {

@@ -7,15 +7,14 @@
                     <v-select v-model="selectedCity" :items="cities" label="Location"></v-select>
                 </v-col>
                 <div class="mt-5">
-                    <v-pagination v-model="page" :length="pagination" class="float-right" color="#156ff6"
-                                  @input="adminGetItemByCity"></v-pagination>
+                    <v-pagination v-model="page" :length="pagination" class="float-right" color="#156ff6" @input="adminGetItemByCity"></v-pagination>
                 </div>
             </v-row>
             <v-row>
 
                 <v-col v-for="(item, index) in searchListData" :key="index" cols="12" lg="4" md="6">
                     <v-card :href="item.link" class="mx-auto" max-width="400">
-                        <v-img :src="img_prefix+item.img" class="white--text align-end" height="200px">
+                        <v-img :src="awsS3RequestUrl+item.imgs[0]" class="white--text align-end" height="200px">
                             <v-card-title>{{ getHeadAddr(item.title) }}</v-card-title>
                         </v-img>
                         <v-card-subtitle class="pb-0">
@@ -106,7 +105,7 @@ export default {
     computed: {
         ...mapState(['city']),
         ...mapState(['cities']),
-        ...mapState(['img_prefix']),
+        ...mapState(['awsS3RequestUrl']),
         selectedCity: {
             get() {
                 console.log("Getting city:", this.$store.state.city);

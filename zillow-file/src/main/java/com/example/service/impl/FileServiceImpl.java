@@ -82,7 +82,7 @@ public class FileServiceImpl implements FileService {
 
 
     @Override
-    public BaseResult upload(MultipartFile multipartFile, String path) {
+    public BaseResult uploadFile(MultipartFile multipartFile, String path) {
         String filePath = path + "/" + multipartFile.getOriginalFilename();
         try {
             ObjectMetadata objectMetadata = new ObjectMetadata();
@@ -90,9 +90,13 @@ public class FileServiceImpl implements FileService {
             objectMetadata.setContentLength(multipartFile.getSize());
             s3Client.putObject(AWSS3Constant.BUCKET_NAME, filePath, multipartFile.getInputStream(), objectMetadata);
         } catch (IOException e) {
-            BaseResult.error(String.valueOf(e));
+            BaseResult error = BaseResult.error();
+            error.setMsg("File upload failed");
+            return error;
         }
-        return BaseResult.ok(filePath);
+        BaseResult ok = BaseResult.ok(filePath);
+        ok.setMsg("File uploaded success");
+        return ok;
     }
 
     @Override

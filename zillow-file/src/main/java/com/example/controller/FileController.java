@@ -21,10 +21,9 @@ public class FileController {
         return fileService.getBanners();
     }
 
-
-    @PostMapping("/upload")
-    public BaseResult upload(MultipartFile file, String path) {
-        return fileService.upload(file, path);
+    @PostMapping("/uploadFile")
+    public BaseResult uploadFile(MultipartFile file, String path) {
+        return fileService.uploadFile(file, path);
     }
 
     @PostMapping("/uploadImage")
@@ -37,10 +36,8 @@ public class FileController {
     public BaseResult uploadImageNoPrefix(@RequestParam("file") MultipartFile file) throws IOException {
         try {
             byte[] bytes = file.getBytes();
-            System.out.println("File uploaded successfully: " + file.getOriginalFilename());
             return fileService.uploadImageNoPrefix(bytes, file.getOriginalFilename());
         } catch (Exception e) {
-            System.err.println("Error processing file: " + file.getOriginalFilename());
             e.printStackTrace();
             BaseResult result = new BaseResult();
             result.setStatus(500);
