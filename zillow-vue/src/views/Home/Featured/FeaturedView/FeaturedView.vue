@@ -1,28 +1,36 @@
 <template>
-    <div class="hotproduct">
-        <h1>{{ title }}</h1>
-        <div class="hot-container">
-            <ul class="clear-fix">
-                <li v-for='(item,index) in hotData' :key='index' class="hot-item">
-                    <a :href='item.link'>
-                        <div class="image-wrapper">
-                            <img class="img-fluid" :alt='item.title' :src='item.img'/>
-                        </div>
-                        <span>{{ item.title }}</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+<div class="hotproduct">
+    <h1>{{ title }}</h1>
+    <div class="hot-container">
+        <ul class="clear-fix">
+            <li v-for='(item,index) in hotData' :key='index' class="hot-item">
+                <a :href='item.link'>
+                    <div class="image-wrapper">
+                        <img class="img-fluid" :alt='item.title' :src='awsS3RequestUrl+item.img'/>
+                    </div>
+                    <span>{{ item.title }}</span>
+                </a>
+            </li>
+        </ul>
     </div>
+</div>
 </template>
 
 <script>
+import {mapState} from "vuex";
+
 export default {
     name: 'HomeHotView',
     data() {
         return {}
     },
-    props: ['title', 'hotData']
+    props: [
+        'title',
+        'hotData'
+    ],
+    computed: {
+        ...mapState(['awsS3RequestUrl']),
+    }
 }
 </script>
 <style lang="less" scoped>

@@ -1,21 +1,20 @@
 // store/index.js
 
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
         cur_city: 'Dallas',
         awsS3RequestUrl: "https://percival-s3-zillow.s3.us-east-1.amazonaws.com/",
         awsS3Paths: {
-            item: 'public/image/item/'
+            item: 'public/image/item/',
         },
         searchMsg: '',
         collect: [],
         userId: '',
-        img_prefix: 'http://111.231.19.137:8888/',
     },
     mutations: {
         setCity(state, payload) {
@@ -30,7 +29,7 @@ export default new Vuex.Store({
         },
         delCollect(state, payload) {
             let index = state.collect.indexOf(payload.data)
-            if (index > -1) {
+            if(index > -1) {
                 state.collect.splice(index, 1)
             }
             state.collect = [...state.collect]
@@ -40,6 +39,15 @@ export default new Vuex.Store({
         }
     },
     actions: {
+        initializeStore({commit}) {
+            if(localStorage.getItem('cur_city')) {
+                commit('setCity', localStorage.getItem('cur_city'));
+            }
+        },
+        setCity(state, city) {
+            state.city = city;
+            localStorage.setItem('city', city);
+        },
         setCityAciton(context, payload) {
             context.commit('setCity', payload)
         },
@@ -57,4 +65,4 @@ export default new Vuex.Store({
         }
     },
     modules: {}
-})
+});

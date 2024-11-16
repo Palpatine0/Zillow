@@ -221,7 +221,7 @@ export default {
     font-weight: 100;
     position: relative;
     bottom: 10px;
-}
+}a
 
 .info-body {
     color: rgb(0, 0, 0);

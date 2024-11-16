@@ -4,31 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6036f9cc-ce70-4803-803c-54f70e97b53a" name="Changes" comment="feat(BE-file): AWS S3 integration">
+    <list default="true" id="6036f9cc-ce70-4803-803c-54f70e97b53a" name="Changes" comment="config(BE): update .gitignore">
       <change afterPath="$PROJECT_DIR$/zillow-vue/src/plugins/vuetify.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/zillow-vue/src/utils/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zillow-item/src/main/java/com/example/service/impl/ItemServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-item/src/main/java/com/example/service/impl/ItemServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zillow-mongodb-dao/src/main/resources/application-mongodb.yml" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-mongodb-dao/src/main/resources/application-mongodb.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-recommdation/src/main/java/com/example/service/impl/RecommendationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-recommdation/src/main/java/com/example/service/impl/RecommendationServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-trendy/src/main/java/com/example/service/impl/TrendyServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-trendy/src/main/java/com/example/service/impl/TrendyServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zillow-vue-admin/babel.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue-admin/babel.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zillow-vue-admin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue-admin/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zillow-vue-admin/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue-admin/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zillow-vue-admin/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue-admin/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-vue-admin/src/components/Swiper.vue" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue-admin/src/components/Swiper.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zillow-vue-admin/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue-admin/src/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zillow-vue-admin/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue-admin/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/zillow-vue/.browserslistrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-vue-admin/src/views/Dashboard/Item/Item.vue" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue-admin/src/views/Dashboard/Item/Item.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zillow-vue/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zillow-vue/postcss.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue/postcss.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zillow-vue/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zillow-vue/public/robots.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/zillow-vue/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue/src/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zillow-vue/src/components/FootNav/FootNav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue/src/components/FootNav/FootNav.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-vue/src/components/MySwiper/MySwiper.vue" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue/src/components/MySwiper/MySwiper.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zillow-vue/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue/src/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zillow-vue/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-vue/src/views/Home/Featured/FeaturedView/FeaturedView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue/src/views/Home/Featured/FeaturedView/FeaturedView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-vue/src/views/Item/Item.vue" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue/src/views/Item/Item.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zillow-vue/src/views/Mine/Item/Item.vue" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue/src/views/Mine/Item/Item.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zillow-vue/src/views/Mine/Orders/Orders.vue" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue/src/views/Mine/Orders/Orders.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zillow-vue/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue/vue.config.js" afterDir="false" />
     </list>
+    <list id="36f1cd05-fd83-4ab2-9b49-107ac2a4c4b1" name="config(BE): add dir idea" comment="config(BE): add dir idea" />
     <list id="a4264e1f-7436-427a-9e7c-9b6b716b422c" name="config(BE-file): add .gitignore" comment="config(BE-file): add .gitignore" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,6 +99,7 @@
     "Spring Boot.GatewayServerApplication.executor": "Debug",
     "Spring Boot.ItemApplication.executor": "Debug",
     "Spring Boot.OrderApplication.executor": "Debug",
+    "Spring Boot.RecommendationApplication.executor": "Debug",
     "Spring Boot.TrendyApplication.executor": "Debug",
     "Spring Boot.UserApplication.executor": "Debug",
     "git-widget-placeholder": "master",
@@ -136,23 +144,10 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.TrendyApplication">
+  <component name="RunManager" selected="Spring Boot.RecommendationApplication">
     <configuration name="BuyactionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="zillow-buyaction" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.BuyactionApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="zillow-config-server" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.ConfigServerApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -204,6 +199,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RecommendationApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="zillow-recommdation" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.RecommendationApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TrendyApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="zillow-trendy" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.TrendyApplication" />
@@ -232,11 +240,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.ItemApplication" />
         <item itemvalue="Spring Boot.TrendyApplication" />
+        <item itemvalue="Spring Boot.RecommendationApplication" />
         <item itemvalue="Spring Boot.UserApplication" />
         <item itemvalue="Spring Boot.OrderApplication" />
-        <item itemvalue="Spring Boot.ItemApplication" />
-        <item itemvalue="Spring Boot.ConfigServerApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -256,6 +264,7 @@
     <task active="true" id="Default" summary="Default task">
       <changelist id="6036f9cc-ce70-4803-803c-54f70e97b53a" name="Changes" comment="" />
       <changelist id="a4264e1f-7436-427a-9e7c-9b6b716b422c" name="config(BE-file): add .gitignore" comment="" />
+      <changelist id="36f1cd05-fd83-4ab2-9b49-107ac2a4c4b1" name="config(BE): add dir idea" comment="" />
       <created>1731398113374</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -263,7 +272,7 @@
       <workItem from="1731398114829" duration="28700000" />
       <workItem from="1731632244707" duration="694000" />
       <workItem from="1731738564848" duration="2889000" />
-      <workItem from="1731742398783" duration="638000" />
+      <workItem from="1731742398783" duration="2853000" />
     </task>
     <task id="LOCAL-00001" summary="config(BE-file): add .gitignore">
       <option name="closed" value="true" />
@@ -313,7 +322,31 @@
       <option name="project" value="LOCAL" />
       <updated>1731422009959</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="config(BE): add dir idea">
+      <option name="closed" value="true" />
+      <created>1731743266308</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1731743266309</updated>
+    </task>
+    <task id="LOCAL-00008" summary="config(BE): update .gitignore">
+      <option name="closed" value="true" />
+      <created>1731743310757</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1731743310757</updated>
+    </task>
+    <task id="LOCAL-00009" summary="config(BE): add dir idea">
+      <option name="closed" value="true" />
+      <created>1731743385528</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1731743385528</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -335,7 +368,9 @@
     <MESSAGE value="config(BE-file): add .env.example" />
     <MESSAGE value="test(BE-file): test" />
     <MESSAGE value="feat(BE-file): AWS S3 integration" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(BE-file): AWS S3 integration" />
+    <MESSAGE value="config(BE): update .gitignore" />
+    <MESSAGE value="config(BE): add dir idea" />
+    <option name="LAST_COMMIT_MESSAGE" value="config(BE): add dir idea" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

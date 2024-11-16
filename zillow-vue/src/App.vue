@@ -1,7 +1,7 @@
 <template>
-    <div id="app">
-        <router-view v-if="isRouterAlive"></router-view>
-    </div>
+<div id="app">
+    <router-view v-if="isRouterAlive"></router-view>
+</div>
 </template>
 
 <script>
@@ -26,7 +26,6 @@ export default {
             this.isRouterAlive = false;
             this.$nextTick(() => (this.isRouterAlive = true));
         }
-
     },
     mounted() {
         this.globalData.deviceWidth = window.screen.width;

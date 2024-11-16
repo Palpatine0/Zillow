@@ -22,10 +22,6 @@ public class ItemServiceImpl implements ItemService {
 
     private static final String BACKEND_B = "backendB";
 
-    // the IP address info that needs to append in blank image routes
-    @Value("${zillow.fdfsBasePath.nginx.prefix}")
-    private String nginxPrefix;
-
     @Override
     @CircuitBreaker(name = BACKEND_B)
     @RateLimiter(name = BACKEND_B)
@@ -115,14 +111,14 @@ public class ItemServiceImpl implements ItemService {
             BaseResult result = BaseResult.error();
             result.setMsg("Showcases update successfully.");
             return BaseResult.error("Showcases update failed");
-        }
+        }   
     }
 
     private List<Item> imgUrlAppend(List<Item> items) {
         for (Item item : items) {
             List<String> newImgs = new ArrayList<>();
             for (String img : item.getImgs()) {
-                newImgs.add(nginxPrefix + img);
+                newImgs.add(img);
             }
             item.setImgs(newImgs);
         }

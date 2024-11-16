@@ -37,7 +37,6 @@ export default {
                 userId: this.userId
             });
             const orders = ordersResponse.data.data;
-
             const orderPromises = orders.map(async (order) => {
                 const itemResponse = await this.$api.getItemByID({
                     id: order.itemId
@@ -47,9 +46,6 @@ export default {
             });
 
             this.order = await Promise.all(orderPromises);
-
-            console.log("this.orderData");
-            console.log(this.order);
         } catch (error) {
             console.error("Error fetching order data:", error);
         }

@@ -1,7 +1,7 @@
 <template>
     <swiper :options="swiperOption" class="mySwiper ">
         <swiper-slide v-for="(slide, index) in swiperSlides" :key="index">
-            <img :src="img_prefix+slide" alt style="height: 300px"/>
+            <img :src="awsS3RequestUrl+slide" alt style="height: 300px"/>
         </swiper-slide>
         <div slot="pagination" class="swiper-pagination"></div>
     </swiper>
@@ -27,7 +27,7 @@ export default {
     },
     props: ['swiperSlides'],
     computed: {
-        ...mapState(['img_prefix']),
+        ...mapState(['awsS3RequestUrl']),
     },
     created() {
         if (this.swiperMark == 'home') {

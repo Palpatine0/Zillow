@@ -95,8 +95,6 @@ let dw = ref(null); // Define deviceWidth in the data option
 
 onMounted(() => {
     setTimeout(() => {
-        console.log("globalData-deviceWidth")
-        console.log(globalData.deviceWidth)
         dw.value = globalData.deviceWidth
     }, 1000);
 });

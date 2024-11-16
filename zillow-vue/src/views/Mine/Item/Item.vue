@@ -4,7 +4,7 @@
         <div class="clear-fix order-item-container">
 
             <div class="order-item-img float-left">
-                <img :src="img_prefix+orderData.itemDetails.img"/>
+                <img :src="awsS3RequestUrl+orderData.itemDetails.img"/>
             </div>
 
             <div class="order-item-content">
@@ -70,7 +70,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(['img_prefix']),
+        ...mapState(['awsS3RequestUrl']),
     },
     mounted() {
         console.log('Received orderData:', this.orderData);
