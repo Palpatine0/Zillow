@@ -5,7 +5,7 @@
     </span>
 
     <div v-if="swiperSlides.length>0" style="position: relative">
-        <MySwiper :swiperSlides="swiperSlides"/>
+        <Swiper :slides="swiperSlides"/>
     </div>
     <div v-else>
         <div style="padding: 10px;color: gainsboro;" align="center">
@@ -124,7 +124,7 @@
 
 <script>
 import Header from "../../components/Header/Header";
-import MySwiper from "../../components/MySwiper/MySwiper";
+import Swiper from "@/components/Swiper.vue";
 import DetailsComment from './ItemComment/ItemComment.vue'
 import Tabs from "../../components/tabs/index.js";
 import Vue from "vue";
@@ -143,7 +143,7 @@ export default {
     },
     components: {
         ItemOption,
-        MySwiper,
+        Swiper,
         Header,
         DetailsComment,
     },
@@ -196,13 +196,13 @@ export default {
 
         color: #000;
         opacity: 0.8;
-        margin-left: 20px;
+        margin: 0 5vw;
     }
 
     .box_infoA {
         display: flex;
         height: 25px;
-        margin-left: 20px;
+        margin: 0 5vw;
 
         .basic-info {
             margin-right: 10px;
@@ -214,7 +214,7 @@ export default {
     }
 
     .box_infoB {
-        margin: 20px;
+        margin: 0 5vw;
 
         .row {
             display: flex;

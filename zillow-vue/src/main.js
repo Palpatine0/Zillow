@@ -7,10 +7,8 @@ import vuetify from './plugins/vuetify'
 import axios from "axios";
 import api from './api/index.js'
 import common from "./utils/common";
-import qs from 'querystring'
+import globalMixin from './utils/globalMixin'
 import './assets/css/common.less';
-import './assets/css/font.css'
-import './assets/css/iconfont.css'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 
@@ -27,6 +25,8 @@ Vue.prototype.axios = axios;
 Vue.prototype.$api = api;
 Vue.prototype.$common = common;
 Vue.use(VueAwesomeSwiper)
+
+Vue.mixin(globalMixin)
 
 Vue.config.productionTip = false
 

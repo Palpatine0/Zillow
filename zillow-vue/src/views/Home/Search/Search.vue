@@ -12,7 +12,7 @@
                 </svg>
             </div>
         </div>
-        <SearchItemListings :cur_city='cur_city' :kw='searchMsg'/>
+        <SearchItemListings :currentCity='currentCity' :kw='searchMsg'/>
     </div>
 </template>
 
@@ -31,7 +31,7 @@ export default {
         SearchItemListings
     },
     computed: {
-        ...mapState(['searchMsg', 'cur_city', 'page'])
+        ...mapState(['searchMsg', 'currentCity', 'page'])
     },
     methods: {
         ...mapActions(['setSearchMsgAction']),

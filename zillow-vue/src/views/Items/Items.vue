@@ -1,13 +1,13 @@
 <!-- Items.vue -->
 <template>
     <div>
-        <ItemListings :cur_city="cur_city"/>
-        <FootNav/>
+        <ItemListings :currentCity="currentCity"/>
+        <NavBar/>
     </div>
 </template>
 
 <script>
-import FootNav from '../../components/FootNav/FootNav';
+import NavBar from '../../components/NavBar/NavBar';
 import Item from "@/views/Home/Search/SearchItemListings/Item/Item.vue";
 import LoadMore from "@/components/LoadMore/LoadMore.vue";
 import {mapActions, mapState} from 'vuex';
@@ -19,10 +19,10 @@ export default {
         ItemListings,
         LoadMore,
         Item,
-        FootNav
+        NavBar
     },
     computed: {
-        ...mapState(['cur_city', 'page'])
+        ...mapState(['currentCity', 'page'])
     },
     methods: {
         back() {

@@ -10,7 +10,7 @@
             </div>
         </div>
         <LoadMore @getMoreData='getMoreData'/>
-        <FootNav/>
+        <NavBar/>
     </div>
 </template>
 
@@ -31,12 +31,12 @@ export default {
         Item,
         LoadMore
     },
-    props: ['kw', 'cur_city'],
+    props: ['kw', 'currentCity'],
 
     methods: {
         getMoreData() {
             this.page = this.page += 1
-            this.http(this.kw, this.cur_city)
+            this.http(this.kw, this.currentCity)
             .then(data => {
                 this.searchListData = this.searchListData.concat(data.data.data)
                 this.hasMore = data.data.hasMore
@@ -56,7 +56,7 @@ export default {
                 return;
             }
             // console.log(n,o)
-            this.http(this.kw, this.cur_city)
+            this.http(this.kw, this.currentCity)
             .then(data => {
                 this.searchListData = data.data.data
                 this.hasMore = data.data.hasMore

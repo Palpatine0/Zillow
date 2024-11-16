@@ -28,14 +28,14 @@ export default {
         };
     },
     computed: {
-        ...mapState(['cur_city'])
+        ...mapState(['currentCity'])
     },
     components: {
         FeaturedView
     },
     mounted() {
         this.$api.getTrendies({
-            city: this.cur_city
+            city: this.currentCity
         })
         .then(data => {
             if (data.data.status) {
@@ -44,7 +44,7 @@ export default {
         })
 
         this.$api.getRecommendations({
-            city: this.cur_city
+            city: this.currentCity
         })
         .then(data => {
             if (data.data.status) {

@@ -7,7 +7,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        cur_city: 'Dallas',
+        currentCity: 'Dallas',
         awsS3RequestUrl: "https://percival-s3-zillow.s3.us-east-1.amazonaws.com/",
         awsS3Paths: {
             item: 'public/image/item/',
@@ -18,7 +18,7 @@ export default new Vuex.Store({
     },
     mutations: {
         setCity(state, payload) {
-            state.cur_city = payload.data
+            state.currentCity = payload.data
         },
         setSearchMsg(state, payload) {
             state.searchMsg = payload.data
@@ -40,8 +40,8 @@ export default new Vuex.Store({
     },
     actions: {
         initializeStore({commit}) {
-            if(localStorage.getItem('cur_city')) {
-                commit('setCity', localStorage.getItem('cur_city'));
+            if(localStorage.getItem('currentCity')) {
+                commit('setCity', localStorage.getItem('currentCity'));
             }
         },
         setCity(state, city) {

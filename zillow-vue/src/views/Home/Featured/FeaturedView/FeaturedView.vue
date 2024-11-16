@@ -1,5 +1,5 @@
 <template>
-<div class="hotproduct">
+<div class="featured">
     <h1>{{ title }}</h1>
     <div class="hot-container">
         <ul class="clear-fix">
@@ -20,7 +20,7 @@
 import {mapState} from "vuex";
 
 export default {
-    name: 'HomeHotView',
+    name: 'FeaturedView',
     data() {
         return {}
     },
@@ -34,7 +34,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.hotproduct {
+.featured {
     * {
         font-family: Arial;
     }

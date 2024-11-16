@@ -5,13 +5,12 @@
         <div id="home-header" class="clear-fix">
             <div class="container-fluid ">
                 <div class="row">
-
                     <!--top-row-->
                     <div class="col-sm-12 col-md-4">
                         <div class="top-row">
                             <div class="city-selector">
                                 <router-link to="/city">
-                                    <span>{{ cur_city ? cur_city : 'Dallas' }}</span>
+                                    <span>{{ currentCity ? currentCity : 'Dallas' }}</span>
                                     <i class="icon-angle-down"></i>
                                 </router-link>
                             </div>
@@ -23,7 +22,7 @@
 
                     <!--search-bar-->
                     <div class="col-sm-12 col-md-4 ">
-                        <div class="search-bar ">
+                        <div :class="isMobile?'search-bar-mobile':'search-bar'">
                             <div class="center_h">
                                 <h1 class="">Agents. Tours.<br> Loans. Homes.</h1>
                             </div>
@@ -43,10 +42,8 @@
 
 
         <!-- swiper -->
-        <MySwiper :swiperSlides="swiperSlides" class="mySwiper" style="height: 300px"/>
+        <Swiper :slides="swiperSlides"/>
         <!-- /swiper -->
-
-
         <Featured class="mt-4"/>
 
         <!-- trendy -->
@@ -54,7 +51,7 @@
         <!-- /trendy -->
 
         <!-- foot nav -->
-        <FootNav/>
+        <NavBar/>
         <!-- /foot nav -->
 
 
@@ -64,8 +61,8 @@
 <script>
 import Featured from './Featured/Featured.vue'
 import SearchInput from '../../components/SearchInput/SearchInput'
-import MySwiper from '../../components/MySwiper/MySwiper'
-import FootNav from "@/components/FootNav/FootNav.vue";
+import Swiper from "@/components/Swiper.vue";
+import NavBar from "@/components/NavBar/NavBar.vue";
 import {mapState} from 'vuex'
 import Suggestion from "@/views/Home/Suggestion/Suggestion.vue";
 import {inject, provide} from 'vue';
@@ -76,8 +73,8 @@ export default {
         Suggestion,
         Featured,
         SearchInput,
-        MySwiper,
-        FootNav
+        NavBar,
+        Swiper
     },
     data() {
         return {
@@ -86,6 +83,21 @@ export default {
             swiperSlides: [],
             startY: 0,
             isPullingDown: false,
+
+            items: [
+                {
+                    src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+                },
+                {
+                    src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+                },
+                {
+                    src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+                },
+                {
+                    src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+                },
+            ],
         }
     },
 
@@ -124,7 +136,7 @@ export default {
         provide('reload', reload);
     },
     computed: {
-        ...mapState(['cur_city'])
+        ...mapState(['currentCity'])
     },
 };
 
@@ -144,9 +156,10 @@ export default {
 }
 
 #home-header {
-    height: 70px;
+    height: 90px;
     width: 100%;
     position: absolute;
+    z-index: 10000;
 
 
     * {
@@ -178,7 +191,7 @@ export default {
         }
     }
 
-    .search-bar {
+    .search-bar-mobile {
         position: absolute;
         top: 120%;
         width: 100%;
@@ -197,10 +210,10 @@ export default {
         }
 
         .search-container {
-            width: 80%;
+            width: 320px;
             height: 58px;
             background-color: #fff;
-            border-radius: 3px;
+            border-radius: 10px;
             border: 1px solid gainsboro;
 
             position: relative;
@@ -229,6 +242,104 @@ export default {
         }
     }
 
+    .search-bar-mobile {
+        position: absolute;
+        top: 120%;
+        width: 100%;
+        left: 0px;
+        height: 150px;
+
+        h1 {
+            color: rgb(255, 255, 255);
+            -webkit-font-smoothing: antialiased;
+            text-transform: none;
+            font-family: "Object Sans", "Adjusted Arial", Tahoma, Geneva, sans-serif;
+            margin: 0px;
+            font-weight: 900;
+            font-size: 36px;
+            line-height: 40px;
+        }
+
+        .search-container {
+            width: 320px;
+            height: 58px;
+            background-color: #fff;
+            border-radius: 10px;
+            border: 1px solid gainsboro;
+
+            position: relative;
+            top: 20px;
+
+            padding: 5px;
+
+            i {
+                color: #ccc !important;
+            }
+
+            input {
+                width: 90%;
+                color: #000000 !important;
+                font-size: 14px !important;
+                font-weight: normal;
+                border: none;
+                overflow: hidden;
+            }
+
+            svg {
+                position: relative;
+                float: right;
+                z-index: 10;
+            }
+        }
+    }
+
+    .search-bar {
+        position: absolute;
+        top: 120%;
+        width: 800px;
+        left: 0;
+        height: 150px;
+
+        h1 {
+            color: rgb(255, 255, 255);
+            -webkit-font-smoothing: antialiased;
+            text-transform: none;
+            font-family: "Object Sans", "Adjusted Arial", Tahoma, Geneva, sans-serif;
+            margin: 0px;
+            font-weight: 900;
+            font-size: 60px;
+            line-height: 60px;
+        }
+
+        .search-container {
+            width: 450px;
+            height: 68px;
+            background-color: #fff;
+            border-radius: 10px;
+            border: 1px solid gainsboro;
+            margin-top: 30px;
+            padding: 5px;
+
+            i {
+                color: #ccc !important;
+            }
+
+            input {
+                width: 90%;
+                color: #000000 !important;
+                font-size: 14px !important;
+                font-weight: normal;
+                border: none;
+                overflow: hidden;
+            }
+
+            svg {
+                position: relative;
+                float: right;
+                z-index: 10;
+            }
+        }
+    }
 
     * {
         //outline: 1px solid red;

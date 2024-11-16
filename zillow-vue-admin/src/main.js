@@ -7,7 +7,6 @@ import vuetify from './plugins/vuetify'
 import axios from "axios";
 import api from './api/index.js'
 import common from "./utils/common";
-import qs from 'querystring'
 
 axios.interceptors.request.use(
     function(config) {

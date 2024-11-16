@@ -9,21 +9,21 @@
             </div>
             <div class="mt-2" style="display: flex" >
                 <img src="../../../src/assets/images/location.png" style="width: 40px;height: 40px;">
-                <h3 class="mt-2" style="margin-left: 10px">{{ cur_city }}</h3>
+                <h3 class="mt-2" style="margin-left: 10px">{{ currentCity }}</h3>
             </div>
         </div>
 
         <Order/>
 
 
-        <FootNav/>
+        <NavBar/>
     </div>
 </template>
 <script>
 import {mapState, mapActions} from "vuex";
 import Header from "../../components/Header/Header";
 import Order from './Orders/Orders.vue'
-import FootNav from "@/components/FootNav/FootNav.vue";
+import NavBar from "@/components/NavBar/NavBar.vue";
 
 export default {
     name: "Mine",
@@ -45,10 +45,10 @@ export default {
     components: {
         Header,
         Order,
-        FootNav
+        NavBar
     },
     computed: {
-        ...mapState(["userId", "cur_city"])
+        ...mapState(["userId", "currentCity"])
     },
     mounted() {
         if (!this.userId) {

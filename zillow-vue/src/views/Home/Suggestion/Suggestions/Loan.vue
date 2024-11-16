@@ -33,10 +33,10 @@
     .loan_wrap {
         width: 92%;
         margin: 0 auto;
-
+        padding: 60px 5vw 42px 5vw;
 
         img {
-            width: 90%;
+            width: 300px;
             display: block;
             margin: 0 auto;
         }

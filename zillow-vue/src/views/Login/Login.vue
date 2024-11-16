@@ -13,26 +13,12 @@
         <span class="back-icon" @click='back'>
             <i class="icon-chevron-left"></i>
         </span>
-        <div class="input-container phone-container">
-            <svg height="16" viewBox="0 0 448 512" width="14" xmlns="http://www.w3.org/2000/svg">
-                <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
-                      fill="#1470f5"/>
-            </svg>
-            <input v-model="username" placeholder="Username"/>
-        </div>
-        <div class="input-container password-container">
-            <div>
-                <svg height="16" style="height:16px !important;width: 16px !important;" viewBox="0 0 512 512" width="14"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path d="M336 352c97.2 0 176-78.8 176-176S433.2 0 336 0S160 78.8 160 176c0 18.7 2.9 36.8 8.3 53.7L7 391c-4.5 4.5-7 10.6-7 17v80c0 13.3 10.7 24 24 24h80c13.3 0 24-10.7 24-24V448h40c13.3 0 24-10.7 24-24V384h40c6.4 0 12.5-2.5 17-7l33.3-33.3c16.9 5.4 35 8.3 53.7 8.3zM376 96a40 40 0 1 1 0 80 40 40 0 1 1 0-80z"
-                          fill="#1470f5"/>
-                </svg>
-            </div>
-            <input v-model="password" placeholder="Password" type="text"/>
-        </div>
-        <button :disabled='!disableclick' :style="{background:!disableclick?'#156FF6':'#156FF6'}" class="btn-login" @click="login">Sign In
-        </button>
-        <FootNav/>
+        <v-text-field label="Username" placeholder="Enter Username" v-model="username" outlined class="mt-5"></v-text-field>
+        <v-text-field label="Password" placeholder="Password" v-model="password" outlined type="password"></v-text-field>
+        <v-btn :disabled='!disableclick' :style="{background:!disableclick?'#156FF6':'#156FF6'}" color="primary" x-large dark width="100%" @click="login">
+            Sign In
+        </v-btn>
+        <NavBar/>
     </div>
 </template>
 
@@ -86,6 +72,7 @@ export default {
             .then(data => {
                 if (data.data.status == 200) {
                     this.getUserByUsername();
+                    this.$router.push("/shopcar");
                 } else {
                     alert(data.data.msg)
                 }
@@ -134,58 +121,8 @@ export default {
         color: #156FF6;
     }
 
-    .input-container {
-        background-color: #fff;
-        border: 1px solid #f1f1f1;
-        padding: 5px 10px;
-        border-radius: 5px;
-        overflow: hidden;
 
-        // kill svg gap!!
-        display: flex;
-        align-items: center;
-        gap: 0; /* Adjust this as needed */
 
-        input {
-            font-size: 16px;
-            display: block;
-            border: none;
-        }
-
-        i {
-            color: #156FF6;
-            width: 16px;
-            float: left;
-            margin-top: 3px;
-            font-size: 17px;
-        }
-    }
-
-    .phone-container {
-        input {
-            margin-left: 20px;
-        }
-    }
-
-    .password-container {
-        margin-top: 10px;
-
-        input {
-            margin-left: 20px;
-            margin-right: 80px;
-        }
-
-        button {
-            width: 80px;
-            height: 100%;
-            font-size: 16px;
-            color: #156FF6;
-            border: 0;
-            background-color: #fff;
-            text-align: center;
-            float: right;
-        }
-    }
 
     .btn-login {
         width: 100%;

@@ -19,9 +19,6 @@ public class TrendyServiceImpl implements TrendyService {
     @Autowired
     private TrendyDao trendyDao;
 
-    @Value("${zillow.fdfsBasePath.nginx.prefix}")
-    private String nginxPrefix;
-
     @Override
     public BaseResult getTrendies(String city) {
         // S1: get data
@@ -66,7 +63,7 @@ public class TrendyServiceImpl implements TrendyService {
         for (Item item : items) {
             List<String> newImgs = new ArrayList<>();
             for (String img : item.getImgs()) {
-                newImgs.add(nginxPrefix + img);
+                newImgs.add(img);
             }
             item.setImgs(newImgs);
         }

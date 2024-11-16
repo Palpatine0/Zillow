@@ -3,7 +3,7 @@
         <CityHeader title='Select a City'/>
 
         <div class="current-city">
-            <h2>Current City: {{ cur_city }}</h2>
+            <h2>Current City: {{ currentCity }}</h2>
         </div>
         <Cities/>
     </div>
@@ -23,7 +23,7 @@ export default {
         Cities
     },
     computed: {
-        ...mapState(['cur_city'])
+        ...mapState(['currentCity'])
     },
 }
 </script>

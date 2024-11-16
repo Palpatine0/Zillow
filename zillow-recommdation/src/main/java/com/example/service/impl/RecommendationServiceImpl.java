@@ -19,10 +19,6 @@ public class RecommendationServiceImpl implements RecommendationService {
     @Autowired
     private RecommendationDao recommendationDao;
 
-    @Value("${zillow.banner.nginx.prefix}")
-    private String nginxPrefix;
-
-
     @Override
     public BaseResult getRecommendations(String city) {
         // 1: get data
@@ -70,7 +66,7 @@ public class RecommendationServiceImpl implements RecommendationService {
         for(Item item : items){
             List<String> newImgs = new ArrayList<>();
             for(String img : item.getImgs()){
-                newImgs.add(nginxPrefix + img);
+                newImgs.add(img);
             }
             item.setImgs(newImgs);
         }
