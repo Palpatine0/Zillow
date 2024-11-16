@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6036f9cc-ce70-4803-803c-54f70e97b53a" name="Changes" comment="feat(BE-file): AWS S3 integration">
+      <change afterPath="$PROJECT_DIR$/zillow-vue/src/plugins/vuetify.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zillow-vue/src/utils/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-item/src/main/java/com/example/service/impl/ItemServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-item/src/main/java/com/example/service/impl/ItemServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-mongodb-dao/src/main/resources/application-mongodb.yml" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-mongodb-dao/src/main/resources/application-mongodb.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-vue-admin/babel.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue-admin/babel.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-vue-admin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue-admin/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-vue-admin/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue-admin/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-vue-admin/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue-admin/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-vue-admin/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue-admin/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-vue-admin/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue-admin/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-vue/.browserslistrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-vue/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-vue/postcss.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue/postcss.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-vue/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-vue/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-vue/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-vue/src/components/FootNav/FootNav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue/src/components/FootNav/FootNav.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-vue/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-vue/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-vue/src/views/Mine/Item/Item.vue" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue/src/views/Mine/Item/Item.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-vue/src/views/Mine/Orders/Orders.vue" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue/src/views/Mine/Orders/Orders.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zillow-vue/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/zillow-vue/vue.config.js" afterDir="false" />
+    </list>
+    <list id="a4264e1f-7436-427a-9e7c-9b6b716b422c" name="config(BE-file): add .gitignore" comment="config(BE-file): add .gitignore" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="customMavenHome" value="$PROJECT_DIR$/../../../../APP/Maven/apache-maven-3.6.3" />
+        <option name="mavenHomeTypeForPersistence" value="CUSTOM" />
+        <option name="userSettingsFile" value="$PROJECT_DIR$/../../../../APP/Maven/apache-maven-3.6.3/conf/settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;2676f5ff&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2ok09NY4nmjbrGZ37Pdgnu7K5aQ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.Zillow [clean].executor": "Run",
+    "Maven.Zillow [install].executor": "Run",
+    "Maven.zillow-file [clean].executor": "Run",
+    "Maven.zillow-file [install].executor": "Run",
+    "Maven.zillow-gateway-server [clean].executor": "Run",
+    "Maven.zillow-gateway-server [install].executor": "Run",
+    "Maven.zillow-user [clean].executor": "Run",
+    "Maven.zillow-user [install].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.ConfigServerApplication.executor": "Debug",
+    "Spring Boot.EurekaServerApplication.executor": "Debug",
+    "Spring Boot.FileApplication.executor": "Debug",
+    "Spring Boot.GatewayServerApplication.executor": "Debug",
+    "Spring Boot.ItemApplication.executor": "Debug",
+    "Spring Boot.OrderApplication.executor": "Debug",
+    "Spring Boot.TrendyApplication.executor": "Debug",
+    "Spring Boot.UserApplication.executor": "Debug",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/sheevpalpatine/Desktop/Coding/Full_Stack_Projects/Zillow/Project/Zillow/zillow-file",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.5140187",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "preferences.fileTypes",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.constant" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/zillow-file" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.constant" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.TrendyApplication">
+    <configuration name="BuyactionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="zillow-buyaction" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.BuyactionApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="zillow-config-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.ConfigServerApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="zillow-eureka-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.eureka.EurekaServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FileApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="zillow-file" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.FileApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ItemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="zillow-item" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.ItemApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MessageConsumerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="zillow-buyaction-message-consumer" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.MessageConsumerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="zillow-order" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.OrderApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TrendyApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="zillow-trendy" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.TrendyApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="zillow-user" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.UserApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.TrendyApplication" />
+        <item itemvalue="Spring Boot.UserApplication" />
+        <item itemvalue="Spring Boot.OrderApplication" />
+        <item itemvalue="Spring Boot.ItemApplication" />
+        <item itemvalue="Spring Boot.ConfigServerApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>$USER_HOME$/.subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6036f9cc-ce70-4803-803c-54f70e97b53a" name="Changes" comment="" />
+      <changelist id="a4264e1f-7436-427a-9e7c-9b6b716b422c" name="config(BE-file): add .gitignore" comment="" />
+      <created>1731398113374</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1731398113374</updated>
+      <workItem from="1731398114829" duration="28700000" />
+      <workItem from="1731632244707" duration="694000" />
+      <workItem from="1731738564848" duration="2889000" />
+      <workItem from="1731742398783" duration="638000" />
+    </task>
+    <task id="LOCAL-00001" summary="config(BE-file): add .gitignore">
+      <option name="closed" value="true" />
+      <created>1731417038102</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1731417038102</updated>
+    </task>
+    <task id="LOCAL-00002" summary="config(BE-file): add .gitignore">
+      <option name="closed" value="true" />
+      <created>1731417055370</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1731417055370</updated>
+    </task>
+    <task id="LOCAL-00003" summary="config(BE-file): add .env.example">
+      <option name="closed" value="true" />
+      <created>1731417089472</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1731417089472</updated>
+    </task>
+    <task id="LOCAL-00004" summary="test(BE-file): test">
+      <option name="closed" value="true" />
+      <created>1731417135073</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1731417135073</updated>
+    </task>
+    <task id="LOCAL-00005" summary="test(BE-file): test">
+      <option name="closed" value="true" />
+      <created>1731417484910</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1731417484910</updated>
+    </task>
+    <task id="LOCAL-00006" summary="feat(BE-file): AWS S3 integration">
+      <option name="closed" value="true" />
+      <created>1731422009959</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1731422009959</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="config(BE-file): add .gitignore" />
+    <MESSAGE value="config(BE-file): add .env.example" />
+    <MESSAGE value="test(BE-file): test" />
+    <MESSAGE value="feat(BE-file): AWS S3 integration" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(BE-file): AWS S3 integration" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

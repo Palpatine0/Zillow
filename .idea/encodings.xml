@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/zillow-buyaction-message-consumer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-buyaction-message-consumer/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-buyaction/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-buyaction/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-buytime/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-buytime/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-comment/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-comment/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-config-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-config-server/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-file/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-file/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-gateway-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-gateway-server/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-item/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-item/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-mongodb-dao/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-mongodb-dao/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-order/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-order/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-rabbit-publisher/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-rabbit-publisher/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-recommdation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-recommdation/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-redis-cache/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-redis-cache/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-search/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-search/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-trendy/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-trendy/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-user/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zillow-user/src/main/resources" charset="UTF-8" />
+  </component>
+</project>
