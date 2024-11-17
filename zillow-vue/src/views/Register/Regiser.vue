@@ -1,94 +1,163 @@
 <template>
-    <div id="login-container">
-        <router-Link to="/login">
-            <div class="sign_in">
-                Sign In
+<div id="register-container">
+    <div class="sign-up">Sign Up</div>
+    <router-Link to="/login">
+        <div class="sign-in">Sign In</div>
+    </router-Link>
+    <span class="back-icon" @click='back'>
+        <i class="icon-chevron-left"></i>
+    </span>
+    <v-container>
+        <span class="d-flex center-h">
+            <div v-if="!this.isAvatarSet">
+                <v-avatar size="148" class="d-flex justify-center mb-6" @click="changeAvatar">
+                    <v-img :src="awsS3RequestUrl + this.user.avatar" aspect-ratio="2"></v-img>
+                </v-avatar>
             </div>
-        </router-Link>
-
-        <div class="sign_up">
-            Sign Up
-        </div>
-
-        <span class="back-icon" @click='back'>
-            <i class="icon-chevron-left"></i>
+            <div v-else>
+                <v-avatar size="148" class="d-flex justify-center mb-6">
+                    <v-img :src="this.awsS3RequestUrl + this.user.avatar" aspect-ratio="2"></v-img>
+                </v-avatar>
+            </div>
         </span>
-        <v-text-field label="Username" placeholder="Enter Username" v-model="username" outlined class="mt-5"></v-text-field>
-        <v-text-field label="Password" placeholder="Password" v-model="password" outlined type="password"></v-text-field>
-        <v-btn  style="background-color: #156FF6" color="primary" x-large dark width="100%" @click="register">
-            Sign In
-        </v-btn>
-        <NavBar/>
-    </div>
+        <v-file-input label="Select Your Avatar" truncate-length="50" @change="file => uploadFile(file)"></v-file-input>
+        <v-text-field label="Username" placeholder="Username" v-model="user.username" outlined :rules="[v => !!v || 'Username is required']"></v-text-field>
+        <v-text-field label="Password" placeholder="Password" v-model="user.password" outlined :rules="[v => !!v || 'Password is required']" type="password"></v-text-field>
+        <v-btn style="background-color: #156FF6" color="primary" x-large dark width="100%" @click="register">Sign In</v-btn>
+    </v-container>
+
+    <!-- Snackbars -->
+    <v-snackbar v-model="uploadAvatarSnackbar" :timeout="2000">
+        {{ uploadAvatarMsg }}
+    </v-snackbar>
+    <v-snackbar v-model="validationSnackbar" :timeout="2000" color="error">
+        {{ validationMsg }}
+    </v-snackbar>
+</div>
 </template>
 
 
 <script>
-import {mapActions} from 'vuex'
+import {mapActions, mapState} from 'vuex'
 import NavBar from "@/components/NavBar/NavBar.vue";
 
 export default {
     name: 'Register',
     components: {NavBar},
+    computed: {
+        ...mapState([
+            "awsS3ImagePaths",
+            "awsS3RequestUrl"
+        ])
+    },
+    created() {
+        window.xx = this;
+    },
     data() {
         return {
-            username: '',
-            password: '',
+            user: {
+                id: this.$common.getRandomMongoId(),
+                username: '',
+                password: '',
+                avatar: 'group1/M00/00/02/CgAEDGZvMWqAQoDMAACf56sfwHE812.png',
+                role: 1
+            },
+
+            isAvatarSet: false,
+
+            defaultAvatar: [
+                'public/image/common/default-avatar/AGI2.webp',
+                'public/image/common/default-avatar/apple-art-2a-3x4.webp',
+                'public/image/common/default-avatar/Building-an-early-warning-system-for-LLM-aided-biological-threat-creation.webp',
+                'public/image/common/default-avatar/Business.jpg',
+                'public/image/common/default-avatar/CustomBlogCover.avif',
+                'public/image/common/default-avatar/DALL_E.jpg',
+                'public/image/common/default-avatar/introducing_the_gpt_store.webp',
+                'public/image/common/default-avatar/Mac_App_Hero.jpg',
+                'public/image/common/default-avatar/practices-for-governing-agentic-ai-systems.avif',
+                'public/image/common/default-avatar/start-building-and-api-call.webp',
+                'public/image/common/default-avatar/WechatIMG1886.jpg',
+            ],
+
+            uploadAvatarMsg: '',
+            uploadAvatarSnackbar: false,
+
+            validationMsg: '',
+            validationSnackbar: false,
         }
+    },
+    mounted() {
+        this.setRandomAvatar();
     },
     methods: {
         back() {
             this.$router.push('/');
         },
         ...mapActions(['setUserIdAction']),
-        /*sendYzm() {
-            if (this.timer) {
-                clearInterval(this.timer)
-            }
-            this.$api.sendyzm({phone: this.msg})
-                .then(data => {
-                    console.log(data)
-                })
-            this.dtimer()
-        },*/
-
+        setRandomAvatar() {
+            const randomIndex = Math.floor(Math.random() * this.defaultAvatar.length);
+            this.user.avatar = this.defaultAvatar[randomIndex];
+        },
+        changeAvatar() {
+            this.setRandomAvatar();
+        },
         register() {
             this.$api.register({
-                username: this.username,
-                password: this.password
+                id: this.user.id,
+                username: this.user.username,
+                password: this.user.password,
+                avatar: this.user.avatar,
+                role: this.user.role
             })
             .then(data => {
-                if (data.data.status == 200) {
-                    this.setUserIdAction({data: this.username})
+                if(data.data.status == 200) {
+                    this.setUserIdAction({data: this.user.username})
                     window.history.back();
                 } else {
                     alert(data.data.msg)
                 }
             })
         },
+
+        uploadFile(file) {
+            var path = this.awsS3ImagePaths.user + this.user.id
+            this.$api.uploadFile({file: file, path: path})
+            .then((data) => {
+                if(data.data.status === 200 && data.data.data) {
+                    this.user.avatar = data.data.data;
+                    this.uploadAvatarSnackbar = true;
+                    this.uploadAvatarMsg = data.data.msg;
+                    this.isAvatarSet = true;
+                } else {
+                    throw new Error('Failed to upload image or bad data received');
+                }
+            })
+        },
+
     },
 }
 </script>
 
 
 <style lang="less" scoped>
-#login-container {
+#register-container {
     width: 300px;
-    margin: 160px auto 0 auto;
+    margin: 120px auto 0 auto;
 
     * {
         font-family: Arial;
     }
 
-    .sign_in {
+    .sign-in {
         position: absolute;
         top: 5px;
         right: 5px;
         float: right;
         color: #156FF6;
+        font-weight: bold;
     }
 
-    .sign_up {
+    .sign-up {
         position: relative;
         width: 134px;
         height: 40px;
@@ -98,72 +167,6 @@ export default {
         font-weight: bold;
         display: block;
         color: #156FF6;
-    }
-
-    .input-container {
-        background-color: #fff;
-        border: 1px solid #f1f1f1;
-        padding: 5px 10px;
-        border-radius: 5px;
-        overflow: hidden;
-
-        // kill svg gap!!
-        display: flex;
-        align-items: center;
-        gap: 0; /* Adjust this as needed */
-
-        input {
-            font-size: 16px;
-            display: block;
-            border: none;
-        }
-
-        i {
-            color: #156FF6;
-            width: 16px;
-            float: left;
-            margin-top: 3px;
-            font-size: 17px;
-        }
-    }
-
-    .phone-container {
-        input {
-            margin-left: 20px;
-        }
-    }
-
-    .password-container {
-        margin-top: 10px;
-
-        input {
-            margin-left: 20px;
-            margin-right: 80px;
-        }
-
-        button {
-            width: 80px;
-            height: 100%;
-            font-size: 16px;
-            color: #156FF6;
-            border: 0;
-            background-color: #fff;
-            text-align: center;
-            float: right;
-        }
-    }
-
-    .btn-login {
-        width: 100%;
-        height: 40px;
-        text-align: center;
-        background-color: #156FF6;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        margin-top: 10px;
-        padding: 5px 0;
     }
 
     .back-icon {

@@ -74,19 +74,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public BaseResult register(String username, String password, String phone) {
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setPhone(phone);
-        if (username == "") {
+    public BaseResult register(User user) {
+        if (user.getUsername() == "") {
             return BaseResult.error("Username cannot be empty");
-        } else if (password == "") {
+        } else if (user.getPassword() == "") {
             return BaseResult.error("Password cannot be empty");
         }
 
-        User user4Check = userDao.findUserByUsername(username);
-        if (user4Check != null) {
+        User checkUser = userDao.findUserByUsername(user.getUsername());
+        if (checkUser != null) {
             return BaseResult.error("This username had been used");
         } else {
             userDao.saveUser(user);

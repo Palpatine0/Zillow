@@ -4,6 +4,7 @@ const base = {
 
     // file
     getBanners: '/file/getBanners',
+    uploadFile: '/file/uploadFile',
     uploadImageNoPrefix: '/file/uploadImageNoPrefix',
 
     // trendy

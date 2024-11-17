@@ -1,15 +1,15 @@
 package com.example.controller;
 
 
+import com.example.entity.User;
 import com.example.service.UserService;
 import com.example.vo.BaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -18,8 +18,18 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register")
-    public BaseResult register(String username, String password, String phone) {
-        return userService.register(username, password, phone);
+    public BaseResult register(String id, String username, String password, String phone, String avatar, Integer role) {
+        if (id==null) {
+            return BaseResult.error("Empty user");
+        }
+        User user = new User();
+        user.setId(id);
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setPhone(phone);
+        user.setAvatar(avatar);
+        user.setRole(role);
+        return userService.register(user);
     }
 
     @PostMapping("/login")

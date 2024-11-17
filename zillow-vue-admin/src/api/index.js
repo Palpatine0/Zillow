@@ -17,21 +17,6 @@ const api = {
             }
         })
     },
-    uploadImageNoPrefix(file) {
-        return axios.post(base.baseUrl + base.uploadImageNoPrefix, file, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        })
-    },
-
-    //
-    getRecommendation(params) {
-        return axios.get(base.baseUrl + base.getRecommendation + "?city=" + params.city);
-    },
-    hotProduct(params) {
-        return axios.get(base.baseUrl + base.getTrendy + "?city=" + params.city);
-    },
 
     // search
     searchByKeyWord(params) {
@@ -47,9 +32,6 @@ const api = {
     //
     buytime(params) {
         return axios.get(base.baseUrl + base.getBuyTime + '?id=' + params.id);
-    },
-    buyaction(params) {
-        return axios.get(base.baseUrl + base.buyAction + "?" + qs.stringify(params));
     },
 
     // item

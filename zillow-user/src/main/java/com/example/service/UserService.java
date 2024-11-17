@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.entity.User;
 import com.example.vo.BaseResult;
 
 public interface UserService {
@@ -7,7 +8,7 @@ public interface UserService {
 
     BaseResult login(String username, String password, String phone, String verificationCode);
 
-    BaseResult register(String username, String password, String phone);
+    BaseResult register(User user);
 
     BaseResult deleteUserById(String id);
 
