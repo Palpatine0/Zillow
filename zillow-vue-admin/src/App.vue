@@ -13,7 +13,7 @@ import NavBar from './components/NavBar.vue';
 import HeadBar from "@/components/HeadBar.vue";
 
 export default {
-    name: 'App',
+    name: "App",
     components: {
         HeadBar,
         NavBar,

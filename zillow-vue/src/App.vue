@@ -1,16 +1,19 @@
 <template>
-<div id="app">
+<v-app>
     <NavBar/>
-    <router-view v-if="isRouterAlive"></router-view>
-</div>
+    <v-main>
+        <router-view v-if="isRouterAlive"></router-view>
+    </v-main>
+</v-app>
 </template>
-
 <script>
 import NavBar from "@/components/NavBar/NavBar.vue";
 
 export default {
     name: "App",
-    components: {NavBar},
+    components: {
+        NavBar
+    },
     provide() {
         return {
             globalData: this.globalData,

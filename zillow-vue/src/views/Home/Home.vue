@@ -3,34 +3,29 @@
     <!--header-->
     <div id="home-header" class="clear-fix">
         <div class="container-fluid ">
-            <div class="row">
-                <!--top-row-->
-                <div v-if="isMobile" class="col-sm-12 col-md-4">
-                    <div class="top-row">
-                        <div class="city-selector">
-                            <router-link to="/city">
-                                <span>{{ currentCity ? currentCity : 'Dallas' }}</span>
-                                <i class="icon-angle-down"></i>
-                            </router-link>
-                        </div>
-                        <div class="logo">
-                            <img alt="Zillow logo" class="" decoding="auto" focusable="false" height="25" loading="eager" src="https://s.zillowstatic.com/pfs/static/z-logo-white.svg" type="image/svg+xml" width="120">
-                        </div>
+            <div v-if="isMobile" class="col-sm-12 col-md-4">
+                <div class="top-row">
+                    <div class="city-selector">
+                        <router-link to="/city">
+                            <span>{{ currentCity ? currentCity : 'Dallas' }}</span>
+                            <i class="icon-angle-down"></i>
+                        </router-link>
+                    </div>
+                    <div class="logo">
+                        <img alt="Zillow logo" class="" decoding="auto" focusable="false" height="25" loading="eager" src="https://s.zillowstatic.com/pfs/static/z-logo-white.svg" type="image/svg+xml" width="120">
                     </div>
                 </div>
-
-                <!--search-bar-->
-                <div class="col-sm-12 col-md-4 ">
-                    <div :class="isMobile?'search-bar-mobile':'search-bar'">
-                        <div class="center-h">
-                            <h1 class="">Agents. Tours.<br> Loans. Homes.</h1>
-                        </div>
-                        <div class="search-container center-h">
-                            <SearchInput/>
-                            <svg height="20" viewBox="0 0 512 512" width="20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" fill="#006aff"/>
-                            </svg>
-                        </div>
+            </div>
+            <div class="col-sm-12 col-md-4 ">
+                <div :class="isMobile?'search-bar-mobile':'search-bar'">
+                    <div class="center-h">
+                        <h1 class="">Agents. Tours.<br> Loans. Homes.</h1>
+                    </div>
+                    <div class="search-container center-h">
+                        <SearchInput/>
+                        <svg height="20" viewBox="0 0 512 512" width="20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" fill="#006aff"/>
+                        </svg>
                     </div>
                 </div>
             </div>
