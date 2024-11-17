@@ -53,6 +53,16 @@
 import {mapState} from "vuex";
 
 export default {
+    props: [
+        'showcasesUpdate_dialog',
+        'itemInfo'
+    ],
+    computed: {
+        ...mapState([
+            'awsS3RequestUrl',
+            'awsS3ImagePaths'
+        ]),
+    },
     data() {
         return {
             imgs: {
@@ -69,6 +79,11 @@ export default {
             uploadItemShowcases_snackbar: false,
         }
     },
+    created() {
+        this.assignImgUrls();
+        console.log(this.itemInfo)
+    },
+
     methods: {
         updateItemShowcasesById() {
             console.log(this.imgs.img1)
@@ -110,16 +125,6 @@ export default {
                 this.imgs.img3 = this.itemInfo.imgs[2] || '';
             }
         },
-    },
-    props: ['showcasesUpdate_dialog', 'itemInfo'],
-
-    computed: {
-        ...mapState(['awsS3RequestUrl']),
-        ...mapState(['awsS3ImagePaths']),
-    },
-    created() {
-        this.assignImgUrls();
-        console.log(this.itemInfo)
     },
 }
 </script>
