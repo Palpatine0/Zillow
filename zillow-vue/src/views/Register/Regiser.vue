@@ -1,9 +1,6 @@
 <template>
 <div id="register-container">
     <div class="sign-up">Sign Up</div>
-    <router-Link to="/login">
-        <div class="sign-in">Sign In</div>
-    </router-Link>
     <span class="back-icon" @click='back'>
         <i class="icon-chevron-left"></i>
     </span>
@@ -23,7 +20,8 @@
         <v-file-input label="Select Your Avatar" truncate-length="50" @change="file => uploadFile(file)"></v-file-input>
         <v-text-field label="Username" placeholder="Username" v-model="user.username" outlined :rules="[v => !!v || 'Username is required']"></v-text-field>
         <v-text-field label="Password" placeholder="Password" v-model="user.password" outlined :rules="[v => !!v || 'Password is required']" type="password"></v-text-field>
-        <v-btn style="background-color: #156FF6" color="primary" x-large dark width="100%" @click="register">Sign In</v-btn>
+        <v-btn style="background-color: #156FF6" color="primary" x-large dark width="100%" @click="register">Sign Up</v-btn>
+        <v-btn class="mt-4" text width="100%" style="color: #156FF6" @click="loginRedirect">Sign In</v-btn>
     </v-container>
 
     <!-- Snackbars -->
@@ -49,9 +47,6 @@ export default {
             "awsS3ImagePaths",
             "awsS3RequestUrl"
         ])
-    },
-    created() {
-        window.xx = this;
     },
     data() {
         return {
@@ -134,6 +129,11 @@ export default {
             })
         },
 
+        // Redirects
+        loginRedirect() {
+            this.$router.push("/login");
+        }
+
     },
 }
 </script>
@@ -142,20 +142,7 @@ export default {
 <style lang="less" scoped>
 #register-container {
     width: 300px;
-    margin: 120px auto 0 auto;
-
-    * {
-        font-family: Arial;
-    }
-
-    .sign-in {
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        float: right;
-        color: #156FF6;
-        font-weight: bold;
-    }
+    margin: 80px auto 0 auto;
 
     .sign-up {
         position: relative;

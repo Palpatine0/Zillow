@@ -1,91 +1,87 @@
 <template>
-    <div id="login-container">
-        <router-Link to="/register">
-            <div class="sign_up">
-                Sign Up
-            </div>
-        </router-Link>
+<div id="login-container">
+    <div class="sign-in">Sign In</div>
+    <span class="back-icon" @click='back'>
+        <i class="icon-chevron-left"></i>
+    </span>
+    <v-container>
+        <v-text-field label="Username" placeholder="Username" v-model="user.username" outlined :rules="[v => !!v || 'Username is required']"></v-text-field>
+        <v-text-field label="Password" placeholder="Password" v-model="user.password" outlined :rules="[v => !!v || 'Password is required']" type="password"></v-text-field>
+        <v-btn style="background-color: #156FF6" color="primary" x-large dark width="100%" @click="login">Sign In</v-btn>
+        <v-btn class="mt-4" text width="100%" style="color: #156FF6" @click="registerRedirect">Sign Up</v-btn>
+    </v-container>
 
-        <div class="sign_in">
-            Sign In
-        </div>
-
-        <span class="back-icon" @click='back'>
-            <i class="icon-chevron-left"></i>
-        </span>
-        <v-text-field label="Username" placeholder="Enter Username" v-model="username" outlined class="mt-5"></v-text-field>
-        <v-text-field label="Password" placeholder="Password" v-model="password" outlined type="password"></v-text-field>
-        <v-btn :disabled='!disableclick' :style="{background:!disableclick?'#156FF6':'#156FF6'}" color="primary" x-large dark width="100%" @click="login">
-            Sign In
-        </v-btn>
-        <NavBar/>
-    </div>
+    <!-- Snackbars -->
+    <v-snackbar v-model="validationSnackbar" :timeout="2000" color="error">
+        {{ validationMsg }}
+    </v-snackbar>
+</div>
 </template>
 
 
 <script>
-import {mapActions} from 'vuex'
+import {mapActions, mapState} from 'vuex'
+import NavBar from "@/components/NavBar/NavBar.vue";
 
 export default {
     name: 'Login',
+    components: {NavBar},
+    computed: {
+        ...mapState([
+            "awsS3ImagePaths",
+            "awsS3RequestUrl"
+        ])
+    },
     data() {
         return {
-            username: '',
-            password: '',
-            disableclick: true,
-            time: 60,
-            timer: null
+            user: {
+                username: '',
+                password: '',
+            },
+
+            validationMsg: '',
+            validationSnackbar: false,
         }
     },
     methods: {
+        ...mapActions(['setUserAction']),
         back() {
             this.$router.push('/');
         },
-        ...mapActions(['setUserIdAction']),
-        /*sendYzm() {
-            if (this.timer) {
-                clearInterval(this.timer)
-            }
-            this.$api.sendyzm({phone: this.msg})
-                .then(data => {
-                    console.log(data)
-                })
-            this.dtimer()
-        },*/
-        dtimer() {
-            let that = this;
-            that.timer = setInterval(function () {
-                if (that.time > 0) {
-                    that.disableclick = true;
-                    that.time = that.time - 1;
-                } else {
-                    that.disableclick = false;
-                    that.timer = null;
-                }
-            }, 1000)
-        },
         login() {
             this.$api.login({
-                username: this.username,
-                password: this.password
+                username: this.user.username,
+                password: this.user.password
             })
-            .then(data => {
-                if (data.data.status == 200) {
-                    this.getUserByUsername();
-                    this.$router.push("/shopcar");
+            .then(async data => {
+                if(data.data.status == 200) {
+                    await this.getUserByUsername();
+                    this.$router.push("/mine");
                 } else {
-                    alert(data.data.msg)
+                    this.validationSnackbar = true;
+                    this.validationMsg = data.data.msg;
                 }
             })
         },
-        getUserByUsername() {
-            this.$api.getUserByUsername({
-                username: this.username,
-            })
-            .then(data => {
-                this.setUserIdAction({data: data.data.data.id})
-                window.history.back();
-            })
+        async getUserByUsername() {
+            const getUserByUsername = () => {
+                return new Promise((resolve, reject) => {
+                    this.$api.getUserByUsername({
+                        username: this.user.username,
+                    })
+                    .then(data => {
+                        const user = data.data.data
+                        this.setUserAction(user)
+                        window.history.back();
+                    })
+                })
+            }
+            await getUserByUsername()
+        },
+
+        // Redirects
+        registerRedirect() {
+            this.$router.push("/register");
         }
     },
 }
@@ -95,21 +91,9 @@ export default {
 <style lang="less" scoped>
 #login-container {
     width: 300px;
-    margin: 160px auto 0 auto;
+    margin: 80px auto 0 auto;
 
-    * {
-        font-family: Arial;
-    }
-
-    .sign_up {
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        float: right;
-        color: #156FF6;
-    }
-
-    .sign_in {
+    .sign-in {
         position: relative;
         width: 118px;
         height: 40px;
@@ -119,22 +103,6 @@ export default {
         font-weight: bold;
         display: block;
         color: #156FF6;
-    }
-
-
-
-
-    .btn-login {
-        width: 100%;
-        height: 40px;
-        text-align: center;
-        background-color: #156FF6;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        margin-top: 10px;
-        padding: 5px 0;
     }
 
     .back-icon {
