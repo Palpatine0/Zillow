@@ -39,7 +39,7 @@
                         </div>
                     </v-col>
                 </v-row>
-                <v-row >
+                <v-row>
                     <v-btn depressed @click="signOut" block>
                         <v-icon>mdi-exit-to-app</v-icon>
                     </v-btn>

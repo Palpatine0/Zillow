@@ -1,15 +1,13 @@
 <template>
-<div @touchend="handleTouchEnd" @touchmove="handleTouchMove" @touchstart="handleTouchStart">
+<v-app >
     <!--header-->
     <div id="home-header" class="clear-fix">
         <div class="container-fluid ">
             <div v-if="isMobile" class="col-sm-12 col-md-4">
                 <div class="top-row">
-                    <div class="city-selector">
-                        <router-link to="/city">
-                            <span>{{ currentCity ? currentCity : 'Dallas' }}</span>
-                            <i class="icon-angle-down"></i>
-                        </router-link>
+                    <div class="city-selector" @click="cityRedirect">
+                        <span>{{ currentCity ? currentCity : 'Dallas' }}</span>
+                        <i class="icon-angle-down"></i>
                     </div>
                     <div class="logo">
                         <img alt="Zillow logo" class="" decoding="auto" focusable="false" height="25" loading="eager" src="https://s.zillowstatic.com/pfs/static/z-logo-white.svg" type="image/svg+xml" width="120">
@@ -34,35 +32,41 @@
     <!--/header-->
 
 
-    <!-- swiper -->
     <Swiper :slides="swiperSlides"/>
-    <!-- /swiper -->
+
     <Featured class="mt-4"/>
 
-    <!-- trendy -->
-    <Suggestion/>
-    <!-- /trendy -->
+    <ServiceOptions class="mt-12"/>
 
-</div>
+    <Loan class="mt-12"/>
+
+    <Advise class="mt-4"/>
+
+</v-app>
 </template>
 
 <script>
-import Featured from './Featured/Featured.vue'
-import SearchInput from '../../components/SearchInput/SearchInput'
-import Swiper from "@/components/Swiper.vue";
-import NavBar from "@/components/NavBar/NavBar.vue";
 import {mapState} from 'vuex'
-import Suggestion from "@/views/Index/Suggestion/Suggestion.vue";
 import {inject, provide} from 'vue';
+import Swiper from "@/components/Swiper.vue";
+import SearchInput from '../../components/SearchInput/SearchInput'
+import Featured from './Featured/Featured.vue'
+import ServiceOptions from "@/views/Index/ServiceOptions/ServiceOptions.vue";
+import Loan from "@/views/Index/Loan/Loan.vue";
+import Advise from "@/views/Index/Advise/Advise.vue";
 
 export default {
     name: "Index",
     components: {
-        Suggestion,
-        Featured,
+        Swiper,
         SearchInput,
-        NavBar,
-        Swiper
+        Featured,
+        Loan,
+        ServiceOptions,
+        Advise,
+    },
+    computed: {
+        ...mapState(['currentCity'])
     },
     data() {
         return {
@@ -71,41 +75,6 @@ export default {
             swiperSlides: [],
             startY: 0,
             isPullingDown: false,
-
-            items: [
-                {
-                    src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
-                },
-                {
-                    src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
-                },
-                {
-                    src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
-                },
-                {
-                    src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
-                },
-            ],
-        }
-    },
-
-    methods: {
-        handleTouchStart(event) {
-            this.startY = event.touches[0].clientY;
-            this.isPullingDown = false;
-        },
-        handleTouchMove(event) {
-            const currentY = event.touches[0].clientY;
-            if(currentY > this.startY) { // Detecting downward drag
-                this.isPullingDown = true;
-            }
-        },
-        handleTouchEnd() {
-            if(this.isPullingDown) {
-                // Logic to refresh data or reload page
-                // Example: this.fetchData();
-                location.reload(); // Or use Vue methods to reload data instead of hard refresh
-            }
         }
     },
     created() {
@@ -118,13 +87,15 @@ export default {
             }
         })
     },
-
     setup() {
         const reload = inject('reload');
         provide('reload', reload);
     },
-    computed: {
-        ...mapState(['currentCity'])
+    methods: {
+        // Redirects
+        cityRedirect(){
+            this.$router.push('/city')
+        }
     },
 };
 
@@ -132,25 +103,12 @@ export default {
 
 
 <style lang='less' scoped>
-.mySwiper {
-    z-index: -1;
-}
-
-
 #home-header {
     height: 90px;
     width: 100%;
     position: absolute;
     z-index: 10000;
 
-
-    * {
-        color: #ffffff;
-        font-family: Arial;
-
-        line-height: 1;
-        text-decoration: none;
-    }
 
 
     .top-row {
@@ -165,6 +123,7 @@ export default {
         justify-content: space-between; /* Add this line */
 
         .city-selector {
+            color: #FFF;
             margin-left: 20px;
         }
 

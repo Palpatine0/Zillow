@@ -10,14 +10,14 @@
                 <h4>What to do next</h4>
                 <br>
                 <div class="box">
-                    <img src="../../../../assets/images/advise-a.png">
+                    <img src="../../../assets/images/advise-a.png">
                     <div class="content">
                         <h5>See how mush you can afford</h5>
                         <p>Estimate a realistic budget using Zillow's affordable calculator</p>
                     </div>
                 </div>
                 <div class="box">
-                    <img src="../../../../assets/images/advise-b.png">
+                    <img src="../../../assets/images/advise-b.png">
                     <div class="content">
                         <h5>Get pre-qualified for a home loan</h5>
                         <p>At Zillow Home Loans, we can pre-qualify you in less than three minutes with no impact on
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="box">
-                    <img src="../../../../assets/images/advise-c.png">
+                    <img src="../../../assets/images/advise-c.png">
                     <div class="content">
                         <h5>About Zillow Home Loans</h5>
                         <p>learn what services and loan types we offer, and hear from happy customers</p>
