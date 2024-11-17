@@ -1,4 +1,4 @@
-<!-- Items.vue -->
+<!-- Homes.vue -->
 <template>
     <div>
         <ItemListings :currentCity="currentCity"/>
@@ -7,13 +7,13 @@
 
 <script>
 import NavBar from '../../components/NavBar/NavBar';
-import Item from "@/views/Home/Search/SearchItemListings/Item/Item.vue";
+import Item from "@/views/Index/Search/SearchItemListings/Item/Item.vue";
 import LoadMore from "@/components/LoadMore/LoadMore.vue";
 import {mapActions, mapState} from 'vuex';
-import ItemListings from "@/views/Items/ItemListings/ItemListings.vue";
+import ItemListings from "@/views/Homes/ItemListings/ItemListings.vue";
 
 export default {
-    name: 'Items',
+    name: 'Homes',
     components: {
         ItemListings,
         LoadMore,

@@ -66,7 +66,7 @@ export default {
             this.$router.push("/mine");
         },
         shopRedirect() {
-            this.$router.push("/shop");
+            this.$router.push("/homes");
         }
     },
 };

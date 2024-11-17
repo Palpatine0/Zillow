@@ -1,14 +1,15 @@
 // router/index.js
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home/Home.vue'
+
+import Index from '../views/Index/Index.vue'
 import Register from "@/views/Register/Regiser.vue";
 import Login from '../views/Login/Login.vue'
-import Shop from '../views/Items/Items.vue'
+import Homes from '../views/Homes/Homes.vue'
 import Mine from '../views/Mine/Mine.vue'
-import City from '../views/Home/City/City.vue'
+import City from '../views/Index/City/City.vue'
 import Item from '../views/Item/Item.vue'
-import Search from '../views/Home/Search/Search.vue'
+import Search from '../views/Index/Search/Search.vue'
 import Buy from '../views/Buy/Buy'
 
 const originalPush = VueRouter.prototype.push
@@ -21,8 +22,8 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: '/',
-        name: 'home',
-        component: Home
+        name: 'index',
+        component: Index
     },
     {
         path: '/login',
@@ -35,9 +36,9 @@ const routes = [
         component: Register
     },
     {
-        path: '/shop',
-        name: 'shop',
-        component: Shop
+        path: '/homes',
+        name: 'homes',
+        component: Homes
     },
     {
         path: '/mine',

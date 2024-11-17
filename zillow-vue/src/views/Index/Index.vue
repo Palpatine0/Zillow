@@ -52,11 +52,11 @@ import SearchInput from '../../components/SearchInput/SearchInput'
 import Swiper from "@/components/Swiper.vue";
 import NavBar from "@/components/NavBar/NavBar.vue";
 import {mapState} from 'vuex'
-import Suggestion from "@/views/Home/Suggestion/Suggestion.vue";
+import Suggestion from "@/views/Index/Suggestion/Suggestion.vue";
 import {inject, provide} from 'vue';
 
 export default {
-    name: "Home",
+    name: "Index",
     components: {
         Suggestion,
         Featured,
