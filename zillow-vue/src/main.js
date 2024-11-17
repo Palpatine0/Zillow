@@ -9,8 +9,6 @@ import api from './api/index.js'
 import common from "./utils/common";
 import globalMixin from './utils/globalMixin'
 import './assets/css/common.less';
-import VueAwesomeSwiper from 'vue-awesome-swiper'
-import 'swiper/dist/css/swiper.css'
 
 axios.interceptors.request.use(
     function(config) {
@@ -24,7 +22,6 @@ store.dispatch('initializeStore');
 Vue.prototype.axios = axios;
 Vue.prototype.$api = api;
 Vue.prototype.$common = common;
-Vue.use(VueAwesomeSwiper)
 
 Vue.mixin(globalMixin)
 

@@ -2,7 +2,7 @@
     <div>
         <FeaturedView v-if="recommendations.length>0" :hotData="recommendations" title="Recommendations"/>
         <div v-else >
-            <div style="padding: 10px;color: gainsboro;">
+            <div style="padding: 10px;color: gainsboro;" align="center">
                 Loading...
             </div>
         </div>

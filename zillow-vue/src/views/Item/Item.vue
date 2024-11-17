@@ -101,7 +101,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="center_h">
+                    <div class="center-h">
                         <div class="box">
                             <img src="../../assets/images/advise-c.png">
                             <div class="content">
@@ -171,7 +171,7 @@ export default {
 </script>
 <style>
 
-.center_h {
+.center-h {
     justify-content: center;
     align-items: center;
     display: flex;

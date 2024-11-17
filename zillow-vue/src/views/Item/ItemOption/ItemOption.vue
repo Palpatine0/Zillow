@@ -17,7 +17,7 @@
                     <div class="modal-content mb-4">
                         <span class="close" @click.stop="toggleDatePicker">&times;</span>
                         <h4>Select a date for renting</h4>
-                        <div class="center_h">
+                        <div class="center-h">
                             <input type="date" v-model="startDate">
                             <input type="date" v-model="endDate">
                         </div>
@@ -86,9 +86,6 @@ export default {
             months -= startDate.getMonth();
             months += endDate.getMonth();
             let totalPrice = months * this.price;
-            console.log(this.startDate)
-            console.log(this.endDate)
-            console.log(totalPrice)
             if (this.userId) {
                 this.$router.push(
                         '/buy/' + this.itemId +
@@ -158,7 +155,7 @@ export default {
 </script>
 <style lang="less" scoped>
 
-.center_h {
+.center-h {
     justify-content: center;
     align-items: center;
     display: flex;

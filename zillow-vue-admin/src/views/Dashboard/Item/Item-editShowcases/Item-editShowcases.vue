@@ -89,23 +89,8 @@ export default {
                 }
             })
         },
-        uploadImageNoPrefix(file, imgKey) {
-            console.log("uploadImageNoPrefix")
-            this.$api.uploadImageNoPrefix({file: file})
-            .then((data) => {
-                if(data.data.status === 200 && data.data.data) {
-                    this.imgs[imgKey] = data.data.data;
-                    this.uploadItemShowcases_msg = "Image uploaded successfully!";
-                    this.uploadItemShowcases_snackbar = true;
-                } else {
-                    this.uploadItemShowcases_msg = "Sever error, try again.";
-                    this.uploadItemShowcases_snackbar = true;
-                }
-            })
-
-        },
         uploadFile(file, imgKey) {
-            var path = this.awsS3Paths.item + this.itemInfo.id
+            var path = this.awsS3ImagePaths.item + this.itemInfo.id
             this.$api.uploadFile({file: file, path: path})
             .then((data) => {
                 if(data.data.status === 200 && data.data.data) {
@@ -130,7 +115,7 @@ export default {
 
     computed: {
         ...mapState(['awsS3RequestUrl']),
-        ...mapState(['awsS3Paths']),
+        ...mapState(['awsS3ImagePaths']),
     },
     created() {
         this.assignImgUrls();

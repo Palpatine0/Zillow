@@ -9,12 +9,14 @@ export default new Vuex.Store({
     state: {
         currentCity: 'Dallas',
         awsS3RequestUrl: "https://percival-s3-zillow.s3.us-east-1.amazonaws.com/",
-        awsS3Paths: {
+        awsS3ImagePaths: {
             item: 'public/image/item/',
+            user: 'public/image/user/',
         },
         searchMsg: '',
         collect: [],
         userId: '',
+        user: '',
     },
     mutations: {
         setCity(state, payload) {
@@ -34,14 +36,25 @@ export default new Vuex.Store({
             }
             state.collect = [...state.collect]
         },
-        setUserId(state, payload) {
-            state.userId = payload.data
+
+        setUser(state, payload) {
+            state.user = payload; // Update Vuex state
+            localStorage.setItem('user', JSON.stringify(payload)); // Store as JSON
+        },
+        clearUser(state) {
+            state.user = null;
+            localStorage.removeItem('user');
         }
     },
     actions: {
         initializeStore({commit}) {
-            if(localStorage.getItem('currentCity')) {
-                commit('setCity', localStorage.getItem('currentCity'));
+            const currentCity = localStorage.getItem('currentCity');
+            if(currentCity) {
+                commit('setCity', currentCity);
+            }
+            const user = localStorage.getItem('user');
+            if (user) {
+                commit('setUser', JSON.parse(user));
             }
         },
         setCity(state, city) {
@@ -60,8 +73,12 @@ export default new Vuex.Store({
         delCollectAction(context, payload) {
             context.commit('delCollect', payload)
         },
-        setUserIdAction(context, payload) {
-            context.commit('setUserId', payload)
+
+        setUserAction(context, payload) {
+            context.commit('setUser', payload)
+        },
+        clearUserAction({commit}) {
+            commit('clearUser');
         }
     },
     modules: {}

@@ -39,7 +39,7 @@ export default {
         font-family: Arial;
     }
 
-    .center_h {
+    .center-h {
         justify-content: center;
         align-items: center;
         display: flex;

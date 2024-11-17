@@ -1,7 +1,7 @@
 <template>
     <div class="comment-list">
         <div v-if="commentData == ''">
-            <div class="center_h" style="color:gainsboro;">There's no comment.</div>
+            <div class="center-h" style="color:gainsboro;">There's no comment.</div>
         </div>
         <div v-for='(item,index) in commentData' :key='index' class="comment-item">
             <h3>
@@ -81,7 +81,7 @@ export default {
     padding: 20px;
 }
 
-.center_h {
+.center-h {
     justify-content: center;
     align-items: center;
     display: flex;

@@ -5,7 +5,7 @@ import Home from '../views/Home/Home.vue'
 import Register from "@/views/Register/Regiser.vue";
 import Login from '../views/Login/Login.vue'
 import Shop from '../views/Items/Items.vue'
-import Shopcar from '../views/Mine/Mine.vue'
+import Mine from '../views/Mine/Mine.vue'
 import City from '../views/Home/City/City.vue'
 import Item from '../views/Item/Item.vue'
 import Search from '../views/Home/Search/Search.vue'
@@ -40,9 +40,9 @@ const routes = [
         component: Shop
     },
     {
-        path: '/shopcar',
-        name: 'shopcar',
-        component: Shopcar
+        path: '/mine',
+        name: 'mine',
+        component: Mine
     },
     {
         path: '/city',

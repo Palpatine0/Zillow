@@ -154,6 +154,7 @@ export default {
     methods: {
         addItem() {
             this.$api.addItem({
+                id: this.item.id,
                 title: this.item.title,
                 sales: this.item.sales,
                 recommendation: this.item.recommendation,
@@ -190,7 +191,7 @@ export default {
             })
         },
         uploadFile(file, imgKey) {
-            var path = this.awsS3Paths.item + this.item.id
+            var path = this.awsS3ImagePaths.item + this.item.id
             this.$api.uploadFile({file: file, path: path})
             .then((data) => {
                 if(data.data.status === 200 && data.data.data) {
@@ -205,7 +206,7 @@ export default {
     },
     computed: {
         ...mapState(['awsS3RequestUrl']),
-        ...mapState(['awsS3Paths']),
+        ...mapState(['awsS3ImagePaths']),
     },
     watch: {
         'recommendation'(newVal) {

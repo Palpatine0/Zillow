@@ -10,8 +10,8 @@
                     <v-pagination v-model="page" :length="pagination" class="float-right" color="#156ff6" @input="adminGetItemByCity"></v-pagination>
                 </div>
             </v-row>
-            <v-row>
 
+            <v-row>
                 <v-col v-for="(item, index) in searchListData" :key="index" cols="12" lg="4" md="6">
                     <v-card :href="item.link" class="mx-auto" max-width="400">
                         <v-img :src="awsS3RequestUrl+item.imgs[0]" class="white--text align-end" height="200px">
