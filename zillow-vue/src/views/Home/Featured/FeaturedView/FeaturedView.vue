@@ -1,18 +1,50 @@
 <template>
-<div class="featured">
+<div>
     <h1>{{ title }}</h1>
-    <div class="hot-container">
-        <ul class="clear-fix">
-            <li v-for='(item,index) in hotData' :key='index' class="hot-item">
-                <a :href='item.link'>
-                    <div class="image-wrapper">
-                        <img class="img-fluid" :alt='item.title' :src='awsS3RequestUrl+item.img'/>
-                    </div>
-                    <span>{{ item.title }}</span>
-                </a>
-            </li>
-        </ul>
-    </div>
+    <v-container v-if="!isMobile" class="featured-container" style="max-width: 90vw;border-radius: 15px;padding: 20px;">
+        <v-row>
+            <v-col cols="6" lg="6" md="6" @click="itemRedirect(hotData[0].link)">
+                <v-img :src='awsS3RequestUrl+hotData[0].img' class="white--text align-end rounded-lg" height="320px"/>
+                <div class="center-h"><span><b>{{ hotData[0].title }}</b></span></div>
+            </v-col>
+            <v-col cols="6" lg="6" md="6" @click="itemRedirect(hotData[1].link)">
+                <v-img :src='awsS3RequestUrl+hotData[1].img' class="white--text align-end rounded-lg" height="320px"/>
+                <div class="center-h"><span><b>{{ hotData[1].title }}</b></span></div>
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col cols="6" lg="6" md="6" @click="itemRedirect(hotData[2].link)">
+                <v-img :src='awsS3RequestUrl+hotData[2].img' class="white--text align-end rounded-lg" height="320px"/>
+                <div class="center-h"><span><b>{{ hotData[2].title }}</b></span></div>
+            </v-col>
+            <v-col cols="6" lg="6" md="6" @click="itemRedirect(hotData[3].link)">
+                <v-img :src='awsS3RequestUrl+hotData[3].img' class="white--text align-end rounded-lg" height="320px"/>
+                <div class="center-h"><span><b>{{ hotData[3].title }}</b></span></div>
+            </v-col>
+        </v-row>
+    </v-container>
+    <v-container v-else class="featured-container">
+        <v-row>
+            <v-col cols="6" lg="6" md="6" @click="itemRedirect(hotData[0].link)">
+                <v-img :src='awsS3RequestUrl+hotData[0].img' class="white--text align-end rounded-lg" height="100px"/>
+                <div class="center-h"><span><b>{{ hotData[0].title }}</b></span></div>
+            </v-col>
+            <v-col cols="6" lg="6" md="6" @click="itemRedirect(hotData[1].link)">
+                <v-img :src='awsS3RequestUrl+hotData[1].img' class="white--text align-end rounded-lg" height="100px"/>
+                <div class="center-h"><span><b>{{ hotData[1].title }}</b></span></div>
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col cols="6" lg="6" md="6" @click="itemRedirect(hotData[2].link)">
+                <v-img :src='awsS3RequestUrl+hotData[2].img' class="white--text align-end rounded-lg" height="100px"/>
+                <div class="center-h"><span><b>{{ hotData[2].title }}</b></span></div>
+            </v-col>
+            <v-col cols="6" lg="6" md="6" @click="itemRedirect(hotData[3].link)">
+                <v-img :src='awsS3RequestUrl+hotData[3].img' class="white--text align-end rounded-lg" height="100px"/>
+                <div class="center-h"><span><b>{{ hotData[3].title }}</b></span></div>
+            </v-col>
+        </v-row>
+    </v-container>
 </div>
 </template>
 
@@ -30,96 +62,28 @@ export default {
     ],
     computed: {
         ...mapState(['awsS3RequestUrl']),
-    }
+    },
+    methods: {
+        // Redirects
+        itemRedirect(link) {
+            this.$router.push(link);
+        }
+    },
 }
 </script>
 <style lang="less" scoped>
-.featured {
-    * {
-        font-family: Arial;
-    }
+h1 {
+    position: relative;
+    left: 3%;
+    width: 97%;
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: left;
+    color: #156FF6;
+    font-size: 30px !important;
+}
 
-    .center-h {
-        justify-content: center;
-        align-items: center;
-        display: flex;
-        margin: 0 auto;
-    }
-
-    h1 {
-        position: relative;
-        left: 3%;
-        width: 97%;
-        margin-top: 10px;
-        font-size: 20px;
-        font-weight: bold;
-        text-align: left;
-        color: #156FF6;
-        font-size: 30px !important;
-    }
-
-    .hot-container {
-        background: #f7f8fa;
-        margin: 10px;
-        border-radius: 5px;
-        //box-shadow: 1px 1px 5px 1px #e1e1e1;
-
-        ul {
-            position: relative;
-            left: 1%;
-
-            li {
-                width: 50%;
-                overflow: hidden;
-                float: left;
-
-                a {
-                    img {
-                        border-radius: 5px;
-                        width: 90%;
-                        height: 90%;
-                        bottom: 0;
-                    }
-
-                    span {
-                        margin: 0 auto;
-                        width: 160px;
-                        height: 28px;
-                        display: block;
-                        text-align: center;
-                        font-size: 12px;
-                    }
-                }
-            }
-        }
-    }
-
-    .hot-item {
-        width: 50%;
-        padding: 5px;
-    }
-
-    .image-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-        height: 0;
-        padding-bottom: 56.25%; /* 16:9 aspect ratio */
-        position: relative;
-    }
-
-    img.img-fluid {
-        max-width: 100%; /* Will scale the image to the width of the container */
-        max-height: 100%; /* Will scale the image to the height of the container */
-        object-fit: cover; /* Will fill the content box, can be set to 'contain' if you want to see the whole image */
-        border-radius: 5px;
-        position: absolute; /* Positioning the image absolutely within the relative container */
-    }
-
-
-    * {
-        //outline: 1px solid red;
-    }
+.featured-container {
+    background: #f7f8fa;
 }
 </style>
