@@ -1,4 +1,4 @@
-<!--Item.vue-->
+<!--PurchasedItem.vue-->
 <template>
     <div class="list-item">
         <router-link :to="`/item/${ curdata.id }`">

@@ -33,7 +33,7 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     @Override
-    public void deleteItemByID(String id) {
+    public void deleteItemById(String id) {
         Query query = new Query();
         query.addCriteria(Criteria.where("id").is(id));
         mongoTemplate.remove(query, Item.class);

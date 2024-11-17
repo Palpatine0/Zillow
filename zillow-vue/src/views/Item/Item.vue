@@ -165,7 +165,7 @@ export default {
         DetailsComment,
     },
     mounted() {
-        this.$api.getItemByID({
+        this.$api.getItemById({
             id: this.itemId
         }).then(data => {
             this.swiperSlides = data.data.imgs;

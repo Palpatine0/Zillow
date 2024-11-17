@@ -35,14 +35,14 @@ const api = {
     },
 
     // item
-    getItemByID(params) {
-        return axios.get(base.baseUrl + base.getItemByID + "?" + qs.stringify(params));
+    getItemById(params) {
+        return axios.get(base.baseUrl + base.getItemById + "?" + qs.stringify(params));
     },
     addItem(params) {
         return axios.post(base.baseUrl + base.addItem, qs.stringify(params));
     },
-    deleteItemByID(params) {
-        return axios.delete(base.baseUrl + base.deleteItemByID + "?" + qs.stringify(params));
+    deleteItemById(params) {
+        return axios.delete(base.baseUrl + base.deleteItemById + "?" + qs.stringify(params));
     },
     getItemsByCity(params) {
         return axios.get(base.baseUrl + base.getItemsByCity + "?" + qs.stringify(params));

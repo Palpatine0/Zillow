@@ -23,14 +23,14 @@ ItemController {
     @Autowired(required = false)
     private OrderServiceFeignClient orderServiceFeignClient;
 
-    @GetMapping("/getItemByID")
-    public Item getItemByID(String id) {
-        return itemService.getItemByID(id);
+    @GetMapping("/getItemById")
+    public Item getItemById(String id) {
+        return itemService.getItemById(id);
     }
 
-    @DeleteMapping("/deleteItemByID")
-    public BaseResult deleteItemByID(String id) {
-        return itemService.deleteItemByID(id);
+    @DeleteMapping("/deleteItemById")
+    public BaseResult deleteItemById(String id) {
+        return itemService.deleteItemById(id);
     }
 
     @GetMapping("/getItemsByCity")

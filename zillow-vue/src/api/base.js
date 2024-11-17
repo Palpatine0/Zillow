@@ -14,7 +14,7 @@ const base = {
     getRecommendations: "/recommendation/getRecommendations",
 
     // item
-    getItemByID: '/item/getItemByID',
+    getItemById: '/item/getItemById',
     getItemsByCity: '/item/getItemsByCity',
 
     // comment

@@ -26,7 +26,7 @@ public class ItemServiceImpl implements ItemService {
     @CircuitBreaker(name = BACKEND_B)
     @RateLimiter(name = BACKEND_B)
     @Cacheable(cacheNames = "com:example", key = "'getDetails('+#id+')'")
-    public Item getItemByID(String id) {
+    public Item getItemById(String id) {
         Item items = itemDao.findItemById(id);
         ArrayList<String> newImgs = new ArrayList<>();
         for (String img : items.getImgs()) {
@@ -37,9 +37,9 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public BaseResult deleteItemByID(String id) {
+    public BaseResult deleteItemById(String id) {
         try {
-            itemDao.deleteItemByID(id);
+            itemDao.deleteItemById(id);
             BaseResult ok = new BaseResult();
             ok.setMsg("Item deleted successfully.");
             ok.setStatus(200);

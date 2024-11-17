@@ -14,9 +14,9 @@ const base = {
     getRecommendation: "/recommendation/getRecommendation",
 
     //item
-    getItemByID: '/item/getItemByID',
+    getItemById: '/item/getItemById',
     addItem: '/item/addItem',
-    deleteItemByID: '/item/deleteItemByID',
+    deleteItemById: '/item/deleteItemById',
     getItemsByCity: '/item/getItemsByCity',
     updateItemStatusById: '/item/updateItemStatusById',
     updateItemInfoById: '/item/updateItemInfoById',

@@ -11,7 +11,7 @@ public interface ItemDao {
 
     List<Item> findItemByCity(String city, int page, int rows);
 
-    void deleteItemByID(String id);
+    void deleteItemById(String id);
 
     int countItemByCity(String city);
 

@@ -40,19 +40,19 @@ spring:
             - Query=city
 
         # item
-        - id: item-getItemByID
+        - id: item-getItemById
           uri: lb://zillow-item
           predicates:
-            - Path=/item/getItemByID
+            - Path=/item/getItemById
             - Query=id
         - id: item-addItem
           uri: lb://zillow-item
           predicates:
             - Path=/item/addItem
-        - id: item-deleteItemByID
+        - id: item-deleteItemById
           uri: lb://zillow-item
           predicates:
-            - Path=/item/deleteItemByID
+            - Path=/item/deleteItemById
         - id: item-getItemsByCity
           uri: lb://zillow-item
           predicates:

@@ -1,99 +1,99 @@
 <template>
-    <div>
-        <Header title="Mine"/>
+<v-app style="padding: 4vw">
+    <v-container>
+        <v-row style="display: flex;justify-content: space-between" cols="12" lg="4" md="6">
 
-        <div class="userinfo-container mt-3">
-            <div style="display: flex">
-                <img src="../../../src/assets/images/user.png" style="width: 40px;height: 40px;">
-                <h3 class="mt-2" style="margin-left: 10px">{{ username }}</h3>
-            </div>
-            <div class="mt-2" style="display: flex" >
-                <img src="../../../src/assets/images/location.png" style="width: 40px;height: 40px;">
-                <h3 class="mt-2" style="margin-left: 10px">{{ currentCity }}</h3>
-            </div>
-        </div>
+            <v-col v-if="!isMobile" cols="12" lg="4" md="6" style="margin-top: 60px">
+                <v-row style="position: fixed;top: 30vh;">
+                    <v-col cols="4" lg="4" md="6">
+                        <v-avatar size="120" class="d-flex justify-center">
+                            <v-img :src="awsS3RequestUrl + user.avatar" aspect-ratio="2"></v-img>
+                        </v-avatar>
+                    </v-col>
+                    <v-col cols="8" lg="8" md="6">
+                        <h2 class="mt-4" style="margin-left: 20px"><b>{{ user.username }}</b></h2>
+                        <div class="mt-2" style="margin-left: 20px;display: flex">
+                            <img class="" src="../../../src/assets/images/location.png" style="width: 25px;height: 25px;">
+                            <h3>{{ currentCity }}</h3>
+                        </div>
+                    </v-col>
+                </v-row>
+                <v-row style="position: fixed;top: 48vh;width: 26vw">
+                    <v-btn depressed @click="signOut" block>
+                        <v-icon>mdi-exit-to-app</v-icon>
+                    </v-btn>
+                </v-row>
+            </v-col>
+            <v-col v-else cols="12" lg="4" md="6" style="margin-top: 60px">
+                <v-row>
+                    <v-col cols="3" lg="3" md="6">
+                        <v-avatar size="80" class="d-flex justify-center mb-6 m-1">
+                            <v-img :src="awsS3RequestUrl + user.avatar" aspect-ratio="2"></v-img>
+                        </v-avatar>
+                    </v-col>
+                    <v-col cols="8" lg="8" md="6" style="margin-left: 20px;">
+                        <h3 style="margin-top: 2vh;font-weight: bold;">{{ user.username }}</h3>
+                        <div class="" style="display: flex">
+                            <img class="" src="../../../src/assets/images/location.png" style="width: 25px;height: 25px;">
+                            <h5>{{ currentCity }}</h5>
+                        </div>
+                    </v-col>
+                </v-row>
+                <v-row >
+                    <v-btn depressed @click="signOut" block>
+                        <v-icon>mdi-exit-to-app</v-icon>
+                    </v-btn>
+                </v-row>
+            </v-col>
 
-        <Order/>
+            <v-col cols="12" lg="6" md="6">
+                <PurchasedItemListings/>
+            </v-col>
 
-
-        <NavBar/>
-    </div>
+        </v-row>
+    </v-container>
+</v-app>
 </template>
 <script>
-import {mapState, mapActions} from "vuex";
+import {mapState} from "vuex";
 import Header from "../../components/Header/Header";
-import Order from './Orders/Orders.vue'
+import PurchasedItemListings from "@/views/Mine/PurchasedItemListings/PurchasedItemListings.vue";
 import NavBar from "@/components/NavBar/NavBar.vue";
 
 export default {
     name: "Mine",
     data() {
-        return {
-            username: ''
-        };
-    },
-    methods: {
-        getUserById() {
-            this.$api.getUserById({
-                id: this.userId
-            })
-            .then(data => {
-                this.username=data.data.data.username
-            })
-        }
+        return {};
     },
     components: {
         Header,
-        Order,
+        PurchasedItemListings,
         NavBar
     },
-    computed: {
-        ...mapState(["userId", "currentCity"])
-    },
     mounted() {
-        if (!this.userId) {
+        if(!this.user) {
             this.$router.push("/login");
         }
-        this.getUserById()
-    }
+    },
+    computed: {
+        ...mapState([
+            "user",
+            "awsS3RequestUrl",
+            "currentCity"
+        ])
+    },
+    methods: {
+        signOut() {
+            this.$store.dispatch('clearUserAction');
+            this.$router.push("/login");
+        }
+    },
 };
 </script>
 <style lang="less" scoped>
-* {
-    font-family: Arial;
-}
-
-
 .svg {
-    // kill svg gap!!
     display: flex;
     align-items: center;
     gap: 0;
 }
-
-.userinfo-container {
-    background-color: #fff;
-    padding: 10px;
-    width: 80%;
-    position: relative;
-    left: 5%;
-
-    p {
-        svg {
-            height: 26px !important;
-            width: 26px !important;
-        }
-
-        h3 {
-            font-size: 32px !important;
-        }
-
-        line-height: 1.5;
-        color: #666;
-        margin-bottom: 10px;
-
-
-    }
-}
-
 </style>

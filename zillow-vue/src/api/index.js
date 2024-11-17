@@ -53,8 +53,8 @@ const api = {
     },
 
     // item
-    getItemByID(params) {
-        return axios.get(base.baseUrl + base.getItemByID + "?" + qs.stringify(params));
+    getItemById(params) {
+        return axios.get(base.baseUrl + base.getItemById + "?" + qs.stringify(params));
     },
     getItemsByCity(params) {
         return axios.get(base.baseUrl + base.getItemsByCity + "?" + qs.stringify(params));

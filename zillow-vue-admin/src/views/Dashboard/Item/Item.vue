@@ -126,7 +126,7 @@
                 <v-btn color="red darken-1" text @click="itemDelete_dialog = false">
                     Cancel
                 </v-btn>
-                <v-btn color="red darken-1" text @click="deleteItemByID(),itemDelete_dialog = false">
+                <v-btn color="red darken-1" text @click="deleteItemById(),itemDelete_dialog = false">
                     Confirm
                 </v-btn>
             </v-card-actions>
@@ -172,8 +172,8 @@ export default {
         commasNumber(x) {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         },
-        deleteItemByID() {
-            this.$api.deleteItemByID({id: this.$route.params.id})
+        deleteItemById() {
+            this.$api.deleteItemById({id: this.$route.params.id})
             .then(data => {
                 if(data.data.status == 200) {
                     window.history.back();
@@ -182,7 +182,7 @@ export default {
         }
     },
     mounted() {
-        this.$api.getItemByID({id: this.$route.params.id})
+        this.$api.getItemById({id: this.$route.params.id})
         .then(data => {
             this.swiperSlides = data.data.imgs;
             this.itemInfo = data.data;

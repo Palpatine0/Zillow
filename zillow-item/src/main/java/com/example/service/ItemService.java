@@ -6,9 +6,9 @@ import com.example.vo.BaseResult;
 import java.util.ArrayList;
 
 public interface ItemService {
-    Item getItemByID(String id);
+    Item getItemById(String id);
 
-    BaseResult deleteItemByID(String id);
+    BaseResult deleteItemById(String id);
 
     BaseResult getItemsByCity(String city, int page, int rows);
 
