@@ -2,7 +2,6 @@
 <template>
     <div>
         <ItemListings :currentCity="currentCity"/>
-        <NavBar/>
     </div>
 </template>
 

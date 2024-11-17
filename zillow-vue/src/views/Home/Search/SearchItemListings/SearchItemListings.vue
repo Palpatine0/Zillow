@@ -10,7 +10,6 @@
             </div>
         </div>
         <LoadMore @getMoreData='getMoreData'/>
-        <NavBar/>
     </div>
 </template>
 
