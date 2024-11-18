@@ -13,7 +13,6 @@
     <v-row align="center" justify="center">
         <v-list width="300">
             <v-list-item-group color="grey lighten-5">
-
                 <v-list-item v-for="(item, i) in links" :key="i" link @click="navigateTo(item.route)">
                     <v-list-item-icon>
                         <v-icon size="16" v-text="item.icon"></v-icon>
@@ -23,7 +22,6 @@
                         <v-list-item-title v-text="item.text"></v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
-
             </v-list-item-group>
         </v-list>
     </v-row>

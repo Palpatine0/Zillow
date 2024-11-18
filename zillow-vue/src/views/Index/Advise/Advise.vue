@@ -1,47 +1,32 @@
-<script setup>
-
-</script>
-
 <template>
-
-    <div>
-        <div class="advise">
-            <div class="advise_warp">
-                <h4>What to do next</h4>
-                <br>
-                <div class="box">
-                    <img src="../../../assets/images/advise-a.png">
-                    <div class="content">
-                        <h5>See how mush you can afford</h5>
-                        <p>Estimate a realistic budget using Zillow's affordable calculator</p>
-                    </div>
-                </div>
-                <div class="box">
-                    <img src="../../../assets/images/advise-b.png">
-                    <div class="content">
-                        <h5>Get pre-qualified for a home loan</h5>
-                        <p>At Zillow Home Loans, we can pre-qualify you in less than three minutes with no impact on
-                            your credit score.</p>
-                    </div>
-                </div>
-                <div class="box">
-                    <img src="../../../assets/images/advise-c.png">
-                    <div class="content">
-                        <h5>About Zillow Home Loans</h5>
-                        <p>learn what services and loan types we offer, and hear from happy customers</p>
-                    </div>
-                </div>
-
+<div class="advise mb-14">
+    <div class="advise_warp">
+        <h4>What to do next</h4>
+        <br>
+        <div class="box">
+            <img src="../../../assets/images/advise-a.png">
+            <div class="content">
+                <h5>See how mush you can afford</h5>
+                <p>Estimate a realistic budget using Zillow's affordable calculator</p>
             </div>
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <div class="box">
+            <img src="../../../assets/images/advise-b.png">
+            <div class="content">
+                <h5>Get pre-qualified for a home loan</h5>
+                <p>At Zillow Home Loans, we can pre-qualify you in less than three minutes with no impact on
+                    your credit score.</p>
+            </div>
+        </div>
+        <div class="box">
+            <img src="../../../assets/images/advise-c.png">
+            <div class="content">
+                <h5>About Zillow Home Loans</h5>
+                <p>learn what services and loan types we offer, and hear from happy customers</p>
+            </div>
+        </div>
     </div>
-
+</div>
 </template>
 
 <style lang="less" scoped>
@@ -95,8 +80,6 @@
 
 }
 
-* {
-    //outline: 1px solid red;
-}
-
 </style>
+<script setup lang="ts">
+</script>

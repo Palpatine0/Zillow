@@ -13,8 +13,8 @@
                     <v-col cols="8" lg="8" md="6">
                         <h2 class="mt-4" style="margin-left: 20px"><b>{{ user.username }}</b></h2>
                         <div class="mt-2" style="margin-left: 20px;display: flex">
-                            <img class="" src="../../../src/assets/images/location.png" style="width: 25px;height: 25px;">
-                            <h3>{{ currentCity }}</h3>
+                            <v-icon color="primary">fas fa-map-marker-alt</v-icon>
+                            <h3 class="ml-2">{{ currentCity }}</h3>
                         </div>
                     </v-col>
                 </v-row>
@@ -34,8 +34,8 @@
                     <v-col cols="8" lg="8" md="6" style="margin-left: 20px;">
                         <h3 style="margin-top: 2vh;font-weight: bold;">{{ user.username }}</h3>
                         <div class="" style="display: flex">
-                            <img class="" src="../../../src/assets/images/location.png" style="width: 25px;height: 25px;">
-                            <h5>{{ currentCity }}</h5>
+                            <v-icon small color="primary">fas fa-map-marker-alt</v-icon>
+                            <h5 class="ml-2">{{ currentCity }}</h5>
                         </div>
                     </v-col>
                 </v-row>
