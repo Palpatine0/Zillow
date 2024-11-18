@@ -7,14 +7,12 @@
             <h3>
                 {{ item.username }}
             </h3>
-            <!--<Star :star='item.star'/>-->
             <p>{{ item.comment }}</p>
         </div>
     </div>
 </template>
 <script>
 import LoadMore from '../../../components/LoadMore/LoadMore'
-import Star from '../Star/Star'
 
 export default {
     name: 'DetailsComment',
@@ -26,8 +24,7 @@ export default {
     },
     props: ['itemId'],
     components: {
-        LoadMore,
-        Star
+        LoadMore
     },
     methods: {
         http() {
