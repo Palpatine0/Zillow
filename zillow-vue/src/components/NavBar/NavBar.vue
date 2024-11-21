@@ -22,8 +22,7 @@
             </div>
         </div>
     </div>
-
-    <v-bottom-navigation v-else class="nav-footer">
+    <v-bottom-navigation v-else class="nav-mobile">
         <div class="manu-sector" @click="homeRedirect">
             <v-icon size="20" color="primary">fas fa-home</v-icon>
         </div>
@@ -34,7 +33,6 @@
             <v-icon size="16" color="primary">fas fa-user</v-icon>
         </div>
     </v-bottom-navigation>
-
 </div>
 </template>
 
@@ -42,7 +40,7 @@
 import {mapState} from "vuex";
 
 export default {
-    name: "Mine",
+    name: "NavBar",
     data() {
         return {};
     },
@@ -98,7 +96,7 @@ export default {
     }
 }
 
-.nav-footer {
+.nav-mobile {
 
     border-right: 1px solid #FFFFFF;
 

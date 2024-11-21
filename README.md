@@ -45,7 +45,7 @@ Ensure you have the following installed:
 #### Project Installation
 
 1. Clone the repository:
-
+  
 ```bash
 git clone git@github.com:Palpatine0/Zillow.git
 ```

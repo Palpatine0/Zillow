@@ -1,6 +1,6 @@
 <template>
     <div>
-        <CityHeader title='Select a City'/>
+        <Header title='Select a City'/>
 
         <div class="current-city">
             <h2>Current City: {{ currentCity }}</h2>
@@ -9,7 +9,7 @@
     </div>
 </template>
 <script>
-import CityHeader from '../../../components/Header/Header.vue'
+import Header from '../../../components/Header/Header.vue'
 import Cities from './Cities/Cities.vue'
 import {mapState} from 'vuex'
 
@@ -19,7 +19,7 @@ export default {
         return {}
     },
     components: {
-        CityHeader,
+        Header,
         Cities
     },
     computed: {

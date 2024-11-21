@@ -3,16 +3,19 @@
     <NavBar/>
     <v-main>
         <router-view v-if="isRouterAlive"></router-view>
+        <ChatBox/>
     </v-main>
 </v-app>
 </template>
 <script>
 import NavBar from "@/components/NavBar/NavBar.vue";
+import ChatBox from "@/components/ChatBox/ChatBox.vue";
 
 export default {
     name: "App",
     components: {
-        NavBar
+        NavBar,
+        ChatBox
     },
     provide() {
         return {

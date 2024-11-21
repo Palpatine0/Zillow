@@ -7,7 +7,7 @@
                 <div class="top-row">
                     <div class="city-selector" @click="cityRedirect">
                         <span>{{ currentCity ? currentCity : 'Dallas' }}</span>
-                        <i class="icon-angle-down"></i>
+                        <v-icon class="ml-2" size="20" color="#FFF">fas fa-chevron-down</v-icon>
                     </div>
                     <div class="logo">
                         <img alt="Zillow logo" class="" decoding="auto" focusable="false" height="25" loading="eager" src="https://s.zillowstatic.com/pfs/static/z-logo-white.svg" type="image/svg+xml" width="120">
