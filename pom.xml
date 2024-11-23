@@ -32,6 +32,7 @@
         <module>zillow-file</module>
         <module>zillow-user</module>
         <module>zillow-item</module>
+        <module>zillow-llm</module>
     </modules>
 
 

@@ -4,12 +4,12 @@
     <div v-if="!isChatOpen">
         <v-btn
             elevation="2"
-            icon
+            text
             fab
             style="background-color: #FFF"
             @click="toggleChat"
         >
-            <v-icon size="18" color="primary">fas fa-robot</v-icon>
+            <span style="font-size: 20px">🤖</span>
         </v-btn>
     </div>
 
@@ -62,7 +62,7 @@ export default {
             isChatOpen: false,
             userInput: '',
             messages: [
-                { text: 'Hello! How can I assist you today? Hello! How can I assist you today? Hello! How can I assist you today? Hello! How can I assist you today? Hello! How can I assist you today?', sender: 'bot' },
+                { text: 'Hi there! How can I help you today?', sender: 'bot' },
             ],
         };
     },

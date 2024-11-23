@@ -95,6 +95,10 @@ const api = {
         return axios.get(base.baseUrl + base.getOrdersByUserId + "?" + qs.stringify(params));
     },
 
+    // llm
+    chat(params){
+        return axios.get(base.baseUrl + base.chat + "?" + qs.stringify(params));
+    }
 
 }
 

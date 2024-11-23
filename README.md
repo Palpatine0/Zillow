@@ -116,6 +116,7 @@ db.auth("root", "root");
 - **User:** 9007
 - **Buy Action:** 9008
 - **Order:** 9009
+- **LLM:** 9010
 
 #### Databases
 

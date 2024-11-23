@@ -25,32 +25,4 @@ public class FileController {
     public BaseResult uploadFile(MultipartFile file, String path) {
         return fileService.uploadFile(file, path);
     }
-
-    @PostMapping("/uploadImage")
-    public BaseResult uploadImage(MultipartFile file) throws IOException {
-        byte[] bytes = file.getBytes();
-        return fileService.uploadImage(bytes, file.getOriginalFilename());
-    }
-
-    @PostMapping("/uploadImageNoPrefix")
-    public BaseResult uploadImageNoPrefix(@RequestParam("file") MultipartFile file) throws IOException {
-        try {
-            byte[] bytes = file.getBytes();
-            return fileService.uploadImageNoPrefix(bytes, file.getOriginalFilename());
-        } catch (Exception e) {
-            e.printStackTrace();
-            BaseResult result = new BaseResult();
-            result.setStatus(500);
-            result.setMsg("Failed to upload file due to an error: " + e.getMessage());
-            return result;
-        }
-    }
-
-
-    @DeleteMapping("/delete")
-    public BaseResult delete(String filePath) {
-        return fileService.delete(filePath);
-    }
-
-
 }

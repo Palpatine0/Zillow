@@ -40,7 +40,10 @@ const base = {
     getBuyTime: '/buyTime/getBuyTime',
 
     // order
-    getOrdersByUserId: "/order/getOrdersByUserId"
+    getOrdersByUserId: "/order/getOrdersByUserId",
+
+    // llm
+    chat: "/llm/chat"
 }
 
 export default base;
