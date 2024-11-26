@@ -11,8 +11,7 @@ import com.example.entity.Banner;
 import com.example.entity.HouseImage;
 import com.example.service.FileService;
 import com.example.vo.BaseResult;
-import com.github.tobato.fastdfs.domain.fdfs.StorePath;
-import com.github.tobato.fastdfs.service.FastFileStorageClient;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
@@ -33,9 +32,6 @@ import java.util.List;
 public class FileServiceImpl implements FileService {
     @Autowired
     private FileDao fileDao;
-
-    @Autowired
-    private FastFileStorageClient fastFileStorageClient;
 
     private AmazonS3 s3Client;
 

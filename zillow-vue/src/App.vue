@@ -3,19 +3,19 @@
     <NavBar/>
     <v-main>
         <router-view v-if="isRouterAlive"></router-view>
-        <ChatBox/>
+        <ChatBot/>
     </v-main>
 </v-app>
 </template>
 <script>
 import NavBar from "@/components/NavBar/NavBar.vue";
-import ChatBox from "@/components/ChatBox/ChatBox.vue";
+import ChatBot from "@/components/ChatBot/ChatBot.vue";
 
 export default {
     name: "App",
     components: {
         NavBar,
-        ChatBox
+        ChatBot
     },
     provide() {
         return {
@@ -46,9 +46,7 @@ export default {
 <style lang="less">
 * {
     font-family: Arial;
-}
-
-* {
     //outline: 1px solid red;
 }
+
 </style>

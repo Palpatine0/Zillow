@@ -165,12 +165,7 @@ export default {
         DetailsComment,
     },
     mounted() {
-        this.$api.getItemById({
-            id: this.itemId
-        }).then(data => {
-            this.swiperSlides = data.data.imgs;
-            this.itemInfo = data.data;
-        });
+        this.getItemById()
     },
 
     methods: {
@@ -182,6 +177,15 @@ export default {
         },
         back() {
             window.history.back()
+        },
+
+        getItemById(){
+            this.$api.getItemById({
+                id: this.itemId
+            }).then(data => {
+                this.swiperSlides = data.data.imgs;
+                this.itemInfo = data.data;
+            });
         }
     }
 };

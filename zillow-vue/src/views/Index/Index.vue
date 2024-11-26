@@ -107,7 +107,7 @@ export default {
     height: 90px;
     width: 100%;
     position: absolute;
-    z-index: 10000;
+    z-index: 1000;
 
 
 

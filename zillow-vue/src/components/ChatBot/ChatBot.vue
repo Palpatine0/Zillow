@@ -1,5 +1,5 @@
 <template>
-<div :class="!isMobile? 'chat-box':'chat-box-mobile'">
+<div :class="!isMobile ? 'chat-box' : 'chat-box-mobile'" style="z-index: 10000">
     <!-- Chat Bot Button -->
     <div v-if="!isChatOpen">
         <v-btn
@@ -33,7 +33,8 @@
                 :class="message.sender === 'user' ? 'user-message' : 'bot-message'"
             >
                 <div class="message-content">
-                    <span>{{ message.text }}</span>
+                    <span v-if="message.sender === 'user'">{{ message.text }}</span>
+                    <span v-else v-html="renderMarkdown(message.text)"></span>
                 </div>
             </div>
         </div>
@@ -56,13 +57,23 @@
 </template>
 
 <script>
+import MarkdownIt from 'markdown-it';
+const md = new MarkdownIt({
+    breaks: true, // Allows newlines to break paragraphs
+});
+
 export default {
+    name: "ChatBot",
     data() {
         return {
             isChatOpen: false,
             userInput: '',
             messages: [
-                { text: 'Hi there! How can I help you today?', sender: 'bot' },
+                { text: `1. **Property**: 4231 W Lawther Dr, Dallas, TX 75214
+   - **Price**: $1,397
+   - **Type**: Single Family Residence
+   - **Bedrooms**: 8
+   - **Bathrooms**: 8`, sender: 'bot' },
             ],
         };
     },
@@ -76,17 +87,36 @@ export default {
             this.isChatOpen = !this.isChatOpen;
         },
         sendMessage() {
-            if (this.userInput.trim()) {
-                this.messages.push({ text: this.userInput, sender: 'user' });
+            if(this.userInput.trim()) {
+                // Add user's message to the chat
+                this.messages.push({text: this.userInput, sender: 'user'});
+                const question = this.userInput;
                 this.userInput = '';
-                // Simulate bot response
-                setTimeout(() => {
-                    this.messages.push({
-                        text: "I'm here to help! What can I do for you?",
-                        sender: 'bot',
-                    });
-                }, 1000);
+
+                // Call the LLM API with the user's question
+                this.chatLLM(question);
             }
+        },
+        chatLLM(question) {
+            this.$api.chat({
+                question: question
+            })
+            .then((res) => {
+                this.messages.push({
+                    text: res.data,
+                    sender: 'bot',
+                });
+            })
+            .catch((error) => {
+                console.error('Error in chatLLM:', error);
+                this.messages.push({
+                    text: 'Sorry, there was an error processing your request.',
+                    sender: 'bot',
+                });
+            });
+        },
+        renderMarkdown(text) {
+            return md.render(text);
         },
     },
 };
@@ -157,7 +187,6 @@ export default {
     border-radius: 12px;
     padding: 3px 2px;
     max-width: 100%;
-    font-weight: bold;
     font-size: 14px;
 }
 
