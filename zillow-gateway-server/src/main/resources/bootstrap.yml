@@ -156,6 +156,14 @@ spring:
           predicates:
             - Path=/order/getOrdersByUserId
             - Query=userId
+
+        # llm
+        - id: chat
+          uri: lb://zillow-llm
+          predicates:
+            - Path=/llm/chat
+            - Query=question
+
     config:
       uri: http://localhost:9010
       label: master

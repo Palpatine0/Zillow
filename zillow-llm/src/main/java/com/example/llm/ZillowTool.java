@@ -9,13 +9,10 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class Tools {
+public class ZillowTool {
 
-    private final LLMService llmService;
-
-    public Tools(LLMService llmService) {
-        this.llmService = llmService;
-    }
+    @Autowired
+    private LLMService llmService;
 
     @Tool
     public List<Item> getItemsByCity(String city) {

@@ -16,8 +16,6 @@ public class LLMController {
 
     @GetMapping("/chat")
     public String chat(@RequestParam("question") String question) {
-        String resp = agent.chat(question);
-        System.out.println(resp);
-        return resp;
+        return agent.chat(question);
     }
 }

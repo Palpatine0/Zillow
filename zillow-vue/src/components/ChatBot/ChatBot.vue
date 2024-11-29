@@ -69,11 +69,7 @@ export default {
             isChatOpen: false,
             userInput: '',
             messages: [
-                { text: `1. **Property**: 4231 W Lawther Dr, Dallas, TX 75214
-   - **Price**: $1,397
-   - **Type**: Single Family Residence
-   - **Bedrooms**: 8
-   - **Bathrooms**: 8`, sender: 'bot' },
+                { text: 'Hi there! How can I help you today?', sender: 'bot' },
             ],
         };
     },
