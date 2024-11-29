@@ -51,7 +51,7 @@ public class Config {
     @Bean
     ContentRetriever webSearchContentRetriever() {
         WebSearchEngine webSearchEngine = TavilyWebSearchEngine.builder()
-            .apiKey("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")
+            .apiKey(LLMConstant.TAVILI_API_KEY)
             .build();
 
         return WebSearchContentRetriever.builder()
