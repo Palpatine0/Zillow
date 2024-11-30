@@ -43,7 +43,7 @@ const base = {
     getOrdersByUserId: "/order/getOrdersByUserId",
 
     // llm
-    chat: "/llm/chat"
+    chat: "/llm/chat",
 }
 
 export default base;

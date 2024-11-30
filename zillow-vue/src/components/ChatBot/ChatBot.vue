@@ -58,6 +58,7 @@
 
 <script>
 import MarkdownIt from 'markdown-it';
+
 const md = new MarkdownIt({
     breaks: true, // Allows newlines to break paragraphs
 });
@@ -69,7 +70,7 @@ export default {
             isChatOpen: false,
             userInput: '',
             messages: [
-                { text: 'Hi there! How can I help you today?', sender: 'bot' },
+                {text: 'Hi there! How can I help you today?', sender: 'bot'},
             ],
         };
     },
@@ -94,23 +95,32 @@ export default {
             }
         },
         chatLLM(question) {
-            this.$api.chat({
-                question: question
-            })
-            .then((res) => {
-                this.messages.push({
-                    text: res.data,
-                    sender: 'bot',
-                });
-            })
-            .catch((error) => {
-                console.error('Error in chatLLM:', error);
-                this.messages.push({
-                    text: 'Sorry, there was an error processing your request.',
-                    sender: 'bot',
-                });
-            });
+            const eventSource = new EventSource(
+                this.$api.chat({
+                    question: question,
+                    chatId: 0
+                })
+            );
+
+            let botMessage = '';
+
+            eventSource.onmessage = (event) => {
+                const data = event.data;
+                botMessage += data;
+                // Update the last bot message in the messages array
+                if (this.messages.length && this.messages[this.messages.length - 1].sender === 'bot') {
+                    this.messages[this.messages.length - 1].text = botMessage;
+                } else {
+                    this.messages.push({ text: botMessage, sender: 'bot' });
+                }
+            };
+
+            eventSource.onerror = (err) => {
+                console.error('EventSource failed:', err);
+                eventSource.close();
+            };
         },
+
         renderMarkdown(text) {
             return md.render(text);
         },

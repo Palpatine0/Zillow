@@ -4,10 +4,14 @@ import com.example.constant.LLMConstant;
 import com.example.llm.Agent;
 import com.example.llm.ZillowTool;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
+import dev.langchain4j.memory.chat.TokenWindowChatMemory;
+import dev.langchain4j.model.Tokenizer;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.chat.StreamingChatLanguageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.model.openai.OpenAiChatModelName;
 import dev.langchain4j.model.openai.OpenAiStreamingChatModel;
+import dev.langchain4j.model.openai.OpenAiTokenizer;
 import dev.langchain4j.rag.DefaultRetrievalAugmentor;
 import dev.langchain4j.rag.RetrievalAugmentor;
 import dev.langchain4j.rag.content.retriever.ContentRetriever;
@@ -25,6 +29,7 @@ public class Config {
     Agent agent(
         StreamingChatLanguageModel streamingChatLanguageModel,
         ChatLanguageModel chatLanguageModel,
+        Tokenizer tokenizer,
         RetrievalAugmentor retrievalAugmentor,
         ZillowTool zillowTool
     ) {
@@ -33,19 +38,38 @@ public class Config {
             .chatLanguageModel(chatLanguageModel)
             .streamingChatLanguageModel(streamingChatLanguageModel)
             .retrievalAugmentor(retrievalAugmentor)
-            .chatMemory(MessageWindowChatMemory.withMaxMessages(LLMConstant.CHAT_MEMORY))
+            // Content in session after "LLMConstant.MAX_TOKEN" will be forgotten
+            .chatMemoryProvider(chatId -> TokenWindowChatMemory.builder()
+                .id(chatId)
+                .maxTokens(LLMConstant.MAX_TOKEN, tokenizer)
+                .build()
+            )
+            // .chatMemory(MessageWindowChatMemory.withMaxMessages(LLMConstant.CHAT_MEMORY))
             .tools(zillowTool)
             .build();
     }
 
     @Bean
     StreamingChatLanguageModel streamingModel() {
-        return OpenAiStreamingChatModel.withApiKey(LLMConstant.OPENAI_API_KEY);
+        return OpenAiStreamingChatModel
+            .builder()
+            .modelName(OpenAiChatModelName.GPT_3_5_TURBO)
+            .apiKey(LLMConstant.OPENAI_API_KEY)
+            .build();
     }
 
     @Bean
     ChatLanguageModel chatLanguageModel() {
-        return OpenAiChatModel.withApiKey(LLMConstant.OPENAI_API_KEY);
+        return OpenAiChatModel
+            .builder()
+            .modelName(OpenAiChatModelName.GPT_3_5_TURBO)
+            .apiKey(LLMConstant.OPENAI_API_KEY)
+            .build();
+    }
+
+    @Bean
+    Tokenizer tokenizer() {
+        return new OpenAiTokenizer(OpenAiChatModelName.GPT_3_5_TURBO);
     }
 
     @Bean
@@ -62,7 +86,8 @@ public class Config {
 
     @Bean
     RetrievalAugmentor retrievalAugmentor(ContentRetriever webSearchContentRetriever) {
-        return DefaultRetrievalAugmentor.builder()
+        return DefaultRetrievalAugmentor
+            .builder()
             .contentRetriever(webSearchContentRetriever)
             .build();
     }

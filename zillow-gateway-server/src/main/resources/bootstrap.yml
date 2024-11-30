@@ -163,6 +163,10 @@ spring:
           predicates:
             - Path=/llm/chat
             - Query=question
+        - id: chatStream
+          uri: lb://zillow-llm
+          predicates:
+            - Path=/llm/chatStream
 
     config:
       uri: http://localhost:9010
