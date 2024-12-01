@@ -2,9 +2,10 @@
 <div>
     <div v-if="!isMobile" class="nav clear-fix">
         <div class="manu-sector">
-            <router-Link exact to="/">
-                &nbsp;
-            </router-Link>
+            <div @click="cityRedirect" style="color: #000;display: flex;padding: 26px">
+                <h3>{{ currentCity ? currentCity : 'Dallas' }}</h3>
+                <v-icon class="ml-2 mt-1" size="20" color="#000">fas fa-chevron-down</v-icon>
+            </div>
         </div>
 
         <div class="manu-sector center-h">
@@ -45,7 +46,11 @@ export default {
         return {};
     },
     computed: {
-        ...mapState(["user", "awsS3RequestUrl"])
+        ...mapState([
+            "user",
+            "awsS3RequestUrl",
+            "currentCity"
+        ])
     },
     methods: {
         // Redirects
@@ -57,6 +62,9 @@ export default {
         },
         shopRedirect() {
             this.$router.push("/homes");
+        },
+        cityRedirect() {
+            this.$router.push('/city')
         }
     },
 };

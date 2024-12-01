@@ -1,6 +1,8 @@
 <template>
     <div>
-        <Header title='Select a City'/>
+        <div v-if="isMobile">
+            <Header title='Select a City'/>
+        </div>
 
         <div class="current-city">
             <h2>Current City: {{ currentCity }}</h2>
