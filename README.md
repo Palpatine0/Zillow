@@ -2,33 +2,31 @@
 
 ## Introduction
 
-Welcome to the Zillow Imitation Project. This repository houses a Spring Cloud-based house rental application that
-closely imitates the functionalities and design of Zillow. This project serves as a practical exploration of
-microservices architecture using modern technologies like MongoDB, Redis, Elasticsearch, and RabbitMQ.
+Welcome to the Zillow Imitation Project. 
+This repository houses a Spring Cloud-based house rental application that closely imitates the functionalities and design of Zillow. 
+This project serves as a practical exploration of microservices architecture using modern technologies like MongoDB, Redis, Elasticsearch, and RabbitMQ.
 
 ## Features
 
-- **Property Listings:** Users can view a variety of rental properties, each detailed with photos, prices, and
-  descriptions.
-- **Search Functionality:** Robust search capabilities powered by Elasticsearch, allowing filters for location, price
-  range, number of bedrooms, and more.
-- **User Accounts:** Users can create accounts to save favorite listings and contact property managers directly.
-- **Admin Panel:** A Vue.js and Vuetify-based dashboard for administrators to manage property listings.
-- **Microservices Architecture**: Built with Spring Boot and Spring Cloud for scalable and maintainable service
-  management.
-- **Data Storage**: Use MongoDB for flexible and efficient data storage solutions.
+- `Microservices Architecture`: Built with Spring Boot and Spring Cloud for scalable and maintainable service management.
+- `Property Listings`: Users can view a variety of rental properties, each detailed with photos, prices, and descriptions.
+- `Search Functionality`: Robust search capabilities powered by Elasticsearch, allowing filters for location, price range, number of bedrooms, and more.
+- `Client Portal`: A user-friendly interface for tenants and potential renters to browse properties, manage accounts, and interact with property managers.
+- `Admin Panel`: A dedicated platform for administrators to manage property listings, user inquiries, and system settings.
+- `Data Storage`: Uses MongoDB for flexible and efficient data storage solutions.
+- `Chatbot`: An AI-powered assistant for users to get instant help with rental property searches, account management, and general inquiries.
 
 ## Technologies Used
 
 - `Spring Boot`: Simplifies the bootstrapping and development of new Spring applications.
-- `Spring Cloud`: Facilitates building robust microservices using patterns like service discovery, configuration
-  management, and routing.
+- `Spring Cloud`: Facilitates building robust microservices using patterns like service discovery, configuration management, and routing.
 - `MongoDB`: NoSQL database used for storing application data.
 - `Redis`: In-memory data structure store, used as a database, cache, and message broker.
 - `Elasticsearch`: Search engine based on the Lucene library, perfect for powerful search functionalities.
 - `RabbitMQ`: Advanced message queuing protocol used for handling service-to-service communication.
-- `Vue.js` and `Vuetify`: Progressive JavaScript framework and material design component framework used for building both the
-  client app and admin panel.
+- `Vue.js` and `Vuetify`: Progressive JavaScript framework and material design component framework used for building both the client app and admin panel.
+- `LangChain`: Framework for building applications with LLMs (Large Language Models), enabling intelligent query processing and conversational AI.
+- `OpenAI API`: For natural language processing and chatbot functionality.
 
 ## Getting Started
 
@@ -45,7 +43,7 @@ Ensure you have the following installed:
 #### Project Installation
 
 1. Clone the repository:
-  
+
 ```bash
 git clone git@github.com:Palpatine0/Zillow.git
 ```
@@ -101,7 +99,7 @@ db.auth("root", "root");
 #### Core Services
 
 - **Eureka server:** 8761
-- **Config server:** 9010
+- **Config server:** 9020
 - **Gateway server:** 4006
 
 #### Microservices
