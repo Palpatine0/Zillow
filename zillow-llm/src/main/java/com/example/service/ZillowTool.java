@@ -1,10 +1,8 @@
-package com.example.llm;
+package com.example.service;
 
 import com.example.entity.Item;
-import com.example.service.LLMService;
 import dev.langchain4j.agent.tool.Tool;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

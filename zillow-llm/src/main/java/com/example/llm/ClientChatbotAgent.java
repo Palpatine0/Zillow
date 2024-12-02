@@ -5,7 +5,7 @@ import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.TokenStream;
 import dev.langchain4j.service.UserMessage;
 
-public interface Agent {
+public interface ClientChatbotAgent {
 
     @SystemMessage({
         "You are a virtual real estate assistant designed to help users with all their property-related needs.",

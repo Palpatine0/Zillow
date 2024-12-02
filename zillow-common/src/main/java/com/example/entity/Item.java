@@ -16,6 +16,7 @@ import java.util.Map;
 public class Item {
     private String id;
     private String title;
+    private String description;
     private Long sales;
     private Boolean recommendation;
     private Byte weight;
@@ -59,6 +60,14 @@ public class Item {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getImg() {
