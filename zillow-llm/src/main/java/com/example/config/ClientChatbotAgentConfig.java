@@ -5,6 +5,7 @@ import com.example.llm.ClientChatbotAgent;
 import com.example.service.ZillowTool;
 import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.memory.chat.TokenWindowChatMemory;
+import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.Tokenizer;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.chat.StreamingChatLanguageModel;
@@ -44,7 +45,6 @@ public class ClientChatbotAgentConfig {
             .chatLanguageModel(chatLanguageModel)
             .streamingChatLanguageModel(streamingChatLanguageModel)
             .retrievalAugmentor(retrievalAugmentor)
-            // Content in session after "LLMConstant.MAX_TOKEN" will be forgotten
             .chatMemoryProvider(chatId -> TokenWindowChatMemory.builder()
                 .id(chatId)
                 .maxTokens(LLMConstant.MAX_TOKEN, tokenizer)
@@ -76,36 +76,6 @@ public class ClientChatbotAgentConfig {
         return new AllMiniLmL6V2EmbeddingModel();
     }
 
-    // Tokenizer
-    @Bean
-    Tokenizer tokenizer() {
-        return new OpenAiTokenizer(OpenAiChatModelName.GPT_3_5_TURBO);
-    }
-
-
-    @Bean
-    RetrievalAugmentor retrievalAugmentor(ContentRetriever webSearchContentRetriever) {
-        return DefaultRetrievalAugmentor
-            .builder()
-            .contentRetriever(webSearchContentRetriever)
-            .build();
-    }
-
-    // Web search
-    @Bean
-    ContentRetriever webSearchContentRetriever() {
-        WebSearchEngine webSearchEngine = TavilyWebSearchEngine.builder()
-            .apiKey(LLMConstant.TAVILI_API_KEY)
-            .build();
-
-        return WebSearchContentRetriever
-            .builder()
-            .webSearchEngine(webSearchEngine)
-            .maxResults(3)
-            .build();
-    }
-
-    //
     @Bean
     ContentRetriever contentRetriever(
         EmbeddingModel embeddingModel,
@@ -129,5 +99,26 @@ public class ClientChatbotAgentConfig {
     @Bean
     FileSystemResourceLoader resourceLoader() {
         return new FileSystemResourceLoader();
+    }
+
+    // Web search
+    @Bean
+    ContentRetriever webSearchContentRetriever() {
+        WebSearchEngine webSearchEngine = TavilyWebSearchEngine.builder()
+            .apiKey(LLMConstant.TAVILI_API_KEY)
+            .build();
+
+        return WebSearchContentRetriever
+            .builder()
+            .webSearchEngine(webSearchEngine)
+            .maxResults(3)
+            .build();
+    }
+    @Bean
+    RetrievalAugmentor retrievalAugmentor(ContentRetriever webSearchContentRetriever) {
+        return DefaultRetrievalAugmentor
+            .builder()
+            .contentRetriever(webSearchContentRetriever)
+            .build();
     }
 }

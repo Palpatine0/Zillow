@@ -95,30 +95,23 @@ export default {
             }
         },
         chatLLM(question) {
-            const eventSource = new EventSource(
-                this.$api.chat({
-                    question: question,
-                    chatId: 0
-                })
-            );
-
-            let botMessage = '';
-
-            eventSource.onmessage = (event) => {
-                const data = event.data;
-                botMessage += data;
-                // Update the last bot message in the messages array
-                if (this.messages.length && this.messages[this.messages.length - 1].sender === 'bot') {
-                    this.messages[this.messages.length - 1].text = botMessage;
-                } else {
-                    this.messages.push({ text: botMessage, sender: 'bot' });
-                }
-            };
-
-            eventSource.onerror = (err) => {
-                console.error('EventSource failed:', err);
-                eventSource.close();
-            };
+            this.$api.chat({
+                question: question,
+                chatId: 4
+            })
+            .then((res) => {
+                this.messages.push({
+                    text: res.data,
+                    sender: 'bot',
+                });
+            })
+            .catch((error) => {
+                console.error('Error in chatLLM:', error);
+                this.messages.push({
+                    text: 'Sorry, there was an error processing your request.',
+                    sender: 'bot',
+                });
+            });
         },
 
         renderMarkdown(text) {

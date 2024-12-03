@@ -1,7 +1,7 @@
 package com.example.dao.impl;
 
-import com.example.dao.ItemDao;
-import com.example.entity.Item;
+import com.example.dao.CommentDao;
+import com.example.entity.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -12,13 +12,12 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class ItemDaoImpl implements ItemDao {
-
+public class CommentDaoImpl implements CommentDao {
     @Autowired
     private MongoTemplate mongoTemplate;
 
     @Override
-    public List<Item> findItemsByCriteria(Map<String, Object> criteria) {
+    public List<Comment> findCommentsByCriteria(Map<String, Object> criteria) {
         Query query = new Query();
 
         for (Map.Entry<String, Object> entry : criteria.entrySet()) {
@@ -65,6 +64,6 @@ public class ItemDaoImpl implements ItemDao {
             }
         }
 
-        return mongoTemplate.find(query, Item.class);
+        return mongoTemplate.find(query, Comment.class);
     }
 }

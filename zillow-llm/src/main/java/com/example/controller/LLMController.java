@@ -18,9 +18,12 @@ public class LLMController {
     private ClientChatbotAgent clientChatbotAgent;
 
 
-    @GetMapping(value = "/chat", produces = "text/event-stream")
-    public Flux<String> chat(String chatId, String question) {
-        return Flux.fromArray(clientChatbotAgent.chat(chatId, question).split("(?<=\\s)")).delayElements(Duration.ofMillis(20));
+    @GetMapping("/chat")
+    public String chat(String chatId, String question) {
+        System.out.println();System.out.println();
+        System.out.println("************************* CONTROLLER *************************");
+        System.out.println("Received chat request with question: " + question);
+        return clientChatbotAgent.chat(chatId, question);
     }
 
     @GetMapping(value = "/chatStream", produces = "text/event-stream")

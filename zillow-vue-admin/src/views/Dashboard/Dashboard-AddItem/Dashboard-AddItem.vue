@@ -205,8 +205,10 @@ export default {
         },
     },
     computed: {
-        ...mapState(['awsS3RequestUrl']),
-        ...mapState(['awsS3ImagePaths']),
+        ...mapState([
+            'awsS3RequestUrl',
+            'awsS3ImagePaths'
+        ]),
     },
     watch: {
         'recommendation'(newVal) {

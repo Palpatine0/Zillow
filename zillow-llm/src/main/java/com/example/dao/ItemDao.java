@@ -4,11 +4,10 @@ package com.example.dao;
 import com.example.entity.Item;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ItemDao {
 
-    List<Item> findItemsByCity(String city);
-
-    List<Item> findItems();
+    List<Item> findItemsByCriteria(Map<String, Object> criteria);
 
 }

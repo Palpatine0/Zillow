@@ -88,9 +88,9 @@ const api = {
     },
 
     // llm
-    chat(params) {
-        return base.baseUrl + base.chat + "?" + qs.stringify(params)
-    },
+    chat(params){
+        return axios.get(base.baseUrl + base.chat + "?" + qs.stringify(params));
+    }
 
 }
 
