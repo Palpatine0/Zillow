@@ -89,7 +89,7 @@ export default {
             console.log(this.imgs.img1)
             console.log(this.imgs.img2)
             console.log(this.imgs.img3)
-            this.$api.updateItemShowcasesById({
+            this.$api.item.updateItemShowcasesById({
                 id: this.itemInfo.id,
                 img1: this.imgs.img1,
                 img2: this.imgs.img2,
@@ -106,7 +106,7 @@ export default {
         },
         uploadFile(file, imgKey) {
             var path = this.awsS3ImagePaths.item + this.itemInfo.id
-            this.$api.uploadFile({file: file, path: path})
+            this.$api.file.uploadFile({file: file, path: path})
             .then((data) => {
                 if(data.data.status === 200 && data.data.data) {
                     this.imgs[imgKey] = data.data.data;

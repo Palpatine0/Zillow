@@ -173,7 +173,7 @@ export default {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         },
         deleteItemById() {
-            this.$api.deleteItemById({id: this.$route.params.id})
+            this.$api.item.deleteItemById({id: this.$route.params.id})
             .then(data => {
                 if(data.data.status == 200) {
                     window.history.back();
@@ -182,7 +182,7 @@ export default {
         }
     },
     mounted() {
-        this.$api.getItemById({id: this.$route.params.id})
+        this.$api.item.getItemById({id: this.$route.params.id})
         .then(data => {
             this.swiperSlides = data.data.imgs;
             this.itemInfo = data.data;

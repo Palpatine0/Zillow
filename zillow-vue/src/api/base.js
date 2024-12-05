@@ -8,7 +8,6 @@ const base = {
         uploadFile: '/file/uploadFile',
     },
 
-
     // trendy
     trendy: {
         getTrendies: '/trendy/getTrendies',

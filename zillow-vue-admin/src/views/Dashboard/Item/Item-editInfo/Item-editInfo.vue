@@ -177,7 +177,7 @@ export default {
     },
     methods: {
         updateItemInfoById() {
-            this.$api.updateItemInfoById({
+            this.$api.item.updateItemInfoById({
                 id: this.itemInfo.id,
                 recommendation: this.itemInfo.recommendation,
                 isRented: this.itemInfo.isRented,

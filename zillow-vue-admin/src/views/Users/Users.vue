@@ -57,7 +57,7 @@ export default {
             this.userId_delete = id;
         },
         deleteUser() {
-            this.$api.deleteUserById({
+            this.$api.user.deleteUserById({
                 id: this.userId_delete
             })
             .then(data => {
@@ -68,7 +68,7 @@ export default {
         }
     },
     mounted() {
-        this.$api.getUser()
+        this.$api.item.getUser()
         .then(data => {
             if (data.data.status) {
                 this.users = data.data.data

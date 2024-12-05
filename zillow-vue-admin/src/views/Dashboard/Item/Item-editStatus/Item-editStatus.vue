@@ -69,7 +69,7 @@ export default {
     methods: {
         updateItemStatusById() {
             console.log(this.itemInfo.recommendation, this.itemInfo.isRented)
-            this.$api.updateItemStatusById({
+            this.$api.item.updateItemStatusById({
                 id: this.itemInfo.id,
                 recommendation: this.itemInfo.recommendation,
                 isRented: this.itemInfo.isRented,

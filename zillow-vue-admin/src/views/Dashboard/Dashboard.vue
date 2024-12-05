@@ -67,7 +67,7 @@ export default {
     },
     methods: {
         adminGetItemByCity() {
-            this.$api.getItemsByCity({
+            this.$api.item.getItemsByCity({
                 city: this.selectedCity,
                 page: this.page - 1,
                 rows: 6

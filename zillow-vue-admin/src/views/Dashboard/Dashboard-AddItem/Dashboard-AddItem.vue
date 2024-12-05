@@ -153,7 +153,7 @@ export default {
     },
     methods: {
         addItem() {
-            this.$api.addItem({
+            this.$api.item.addItem({
                 id: this.item.id,
                 title: this.item.title,
                 sales: this.item.sales,
@@ -192,7 +192,7 @@ export default {
         },
         uploadFile(file, imgKey) {
             var path = this.awsS3ImagePaths.item + this.item.id
-            this.$api.uploadFile({file: file, path: path})
+            this.$api.file.uploadFile({file: file, path: path})
             .then((data) => {
                 if(data.data.status === 200 && data.data.data) {
                     this.item.imgs[imgKey] = data.data.data;
