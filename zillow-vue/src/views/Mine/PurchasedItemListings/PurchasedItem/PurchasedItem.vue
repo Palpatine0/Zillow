@@ -56,7 +56,7 @@ export default {
     },
     methods: {
         submit() {
-            this.$api.addComment({
+            this.$api.comment.addComment({
                 orderId: this.orderData.id,
                 commentContent: this.commentContent,
             })

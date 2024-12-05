@@ -40,16 +40,10 @@ const api = {
     buyAction(params) {
         return axios.get(base.baseUrl + base.buyAction + "?" + qs.stringify(params));
     },
-    buyTime(params) {
-        return axios.get(base.baseUrl + base.getBuyTime + '?id=' + params.id);
-    },
 
     // item
     getItemById(params) {
         return axios.get(base.baseUrl + base.getItemById + "?" + qs.stringify(params));
-    },
-    getItemsByCity(params) {
-        return axios.get(base.baseUrl + base.getItemsByCity + "?" + qs.stringify(params));
     },
 
 
@@ -63,23 +57,14 @@ const api = {
 
 
     // user
-    sendVerificationCode(params) {
-        return axios.post(base.baseUrl + base.sendVerificationCode, params)
-    },
     login(params) {
         return axios.post(base.baseUrl + base.login, qs.stringify(params));
     },
     register(params) {
         return axios.post(base.baseUrl + base.register, qs.stringify(params));
     },
-    getUsers(params) {
-        return axios.get(base.baseUrl + base.getUsers, params);
-    },
     getUserByUsername(params) {
         return axios.get(base.baseUrl + base.getUserByUsername + "?" + qs.stringify(params));
-    },
-    getUserById(params) {
-        return axios.get(base.baseUrl + base.getUserById + "?" + qs.stringify(params));
     },
 
     // order

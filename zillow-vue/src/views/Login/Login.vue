@@ -49,7 +49,7 @@ export default {
             this.$router.push('/');
         },
         login() {
-            this.$api.login({
+            this.$api.user.login({
                 username: this.user.username,
                 password: this.user.password
             })
@@ -66,7 +66,7 @@ export default {
         async getUserByUsername() {
             const getUserByUsername = () => {
                 return new Promise((resolve, reject) => {
-                    this.$api.getUserByUsername({
+                    this.$api.user.getUserByUsername({
                         username: this.user.username,
                     })
                     .then(data => {

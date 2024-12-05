@@ -3,47 +3,60 @@ const base = {
     baseUrl: "/api",
 
     // file
-    getBanners: '/file/getBanners',
-    uploadFile: '/file/uploadFile',
-    uploadImageNoPrefix: '/file/uploadImageNoPrefix',
+    file: {
+        getBanners: '/file/getBanners',
+        uploadFile: '/file/uploadFile',
+    },
+
 
     // trendy
-    getTrendies: '/trendy/getTrendies',
+    trendy: {
+        getTrendies: '/trendy/getTrendies',
+    },
 
     // recommendation
-    getRecommendations: "/recommendation/getRecommendations",
+    recommendation: {
+        getRecommendations: "/recommendation/getRecommendations",
+    },
 
     // item
-    getItemById: '/item/getItemById',
-    getItemsByCity: '/item/getItemsByCity',
+    item:{
+        getItemById: '/item/getItemById',
+    },
 
     // comment
-    getCommentsByItemId: '/comment/getCommentsByItemId',
-    addComment: "/comment/addComment",
+    comment:{
+        getCommentsByItemId: '/comment/getCommentsByItemId',
+        addComment: "/comment/addComment",
+    },
 
     // search
-    searchByKeyWord: "/search/searchByKeyWord",
-    searchByCity: "/search/searchByCity",
+    search:{
+        searchByKeyWord: "/search/searchByKeyWord",
+        searchByCity: "/search/searchByCity",
+    },
 
     // user
-    sendVerificationCode: '/user/sendVerificationCode',
-    login: '/user/login',
-    register: '/user/register',
-    getUsers: '/user/getUsers',
-    getUserByUsername: '/user/getUserByUsername',
-    getUserById: '/user/getUserById',
+    user:{
+        login: '/user/login',
+        register: '/user/register',
+        getUserByUsername: '/user/getUserByUsername',
+    },
 
     // buyAction
-    buyAction: "/buyAction/buyAction",
-
-    // buytime
-    getBuyTime: '/buyTime/getBuyTime',
+    buyAction:{
+        buyAction: "/buyAction/buyAction",
+    },
 
     // order
-    getOrdersByUserId: "/order/getOrdersByUserId",
+    order:{
+        getOrdersByUserId: "/order/getOrdersByUserId",
+    },
 
     // llm
-    chat: "/llm/chat",
+    llm:{
+        chat: "/llm/chat",
+    }
 }
 
 export default base;

@@ -1,15 +1,15 @@
 <template>
-    <div class="comment-list">
-        <div v-if="commentData == ''">
-            <div class="center-h" style="color:gainsboro;">There's no comment.</div>
-        </div>
-        <div v-for='(item,index) in commentData' :key='index' class="comment-item">
-            <h3>
-                {{ item.username }}
-            </h3>
-            <p>{{ item.comment }}</p>
-        </div>
+<div class="comment-list">
+    <div v-if="commentData == ''">
+        <div class="center-h" style="color:gainsboro;">There's no comment.</div>
     </div>
+    <div v-for='(item,index) in commentData' :key='index' class="comment-item">
+        <h3>
+            {{ item.username }}
+        </h3>
+        <p>{{ item.comment }}</p>
+    </div>
+</div>
 </template>
 <script>
 import LoadMore from '../../../components/LoadMore/LoadMore'
@@ -28,10 +28,10 @@ export default {
     },
     methods: {
         http() {
-            return this.$api.getCommentsByItemId({
-                        itemId: this.itemId, page: this.page
-                    }
-            )
+            return this.$api.comment.getCommentsByItemId({
+                itemId: this.itemId,
+                page: this.page
+            })
         },
         getMoreData() {
             this.page += 1;

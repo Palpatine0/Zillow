@@ -179,8 +179,8 @@ export default {
             window.history.back()
         },
 
-        getItemById(){
-            this.$api.getItemById({
+        getItemById() {
+            this.$api.item.getItemById({
                 id: this.itemId
             }).then(data => {
                 this.swiperSlides = data.data.imgs;

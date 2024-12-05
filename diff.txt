@@ -1,0 +1,1182 @@
+diff --git a/zillow-common/src/main/java/com/example/entity/Item.java b/zillow-common/src/main/java/com/example/entity/Item.java
+index ac67bb1..8f59482 100644
+--- a/zillow-common/src/main/java/com/example/entity/Item.java
++++ b/zillow-common/src/main/java/com/example/entity/Item.java
+@@ -1,6 +1,7 @@
+ package com.example.entity;
+ 
+ 
++import lombok.Data;
+ import lombok.EqualsAndHashCode;
+ import lombok.NoArgsConstructor;
+ import lombok.ToString;
+@@ -9,7 +10,7 @@ import java.util.Date;
+ import java.util.List;
+ import java.util.Map;
+ 
+-
++@Data
+ @EqualsAndHashCode
+ @ToString
+ @NoArgsConstructor
+@@ -22,6 +23,10 @@ public class Item {
+     private Byte weight;
+     private Long price;
+     private String city;
++    /**
++     *  Whole Rental
++     *  Room Rental
++     */
+     private String rentType;
+     private String houseType;
+     private Map<String, String> info;
+@@ -30,115 +35,6 @@ public class Item {
+     private Boolean isRented;
+ 
+ 
+-    public Boolean getIsRented() {
+-        return isRented;
+-    }
+-
+-    public void setIsRented(Boolean rented) {
+-        isRented = rented;
+-    }
+-
+-    public Date getBuytime() {
+-        return buytime;
+-    }
+-
+-    public void setBuytime(Date buytime) {
+-        this.buytime = buytime;
+-    }
+-
+-    public String getId() {
+-        return id;
+-    }
+-
+-    public void setId(String id) {
+-        this.id = id;
+-    }
+-
+-    public String getTitle() {
+-        return title;
+-    }
+-
+-    public void setTitle(String title) {
+-        this.title = title;
+-    }
+-
+-    public String getDescription() {
+-        return description;
+-    }
+-
+-    public void setDescription(String description) {
+-        this.description = description;
+-    }
+-
+-    public String getImg() {
+-        return imgs.get(0);
+-    }
+-
+-    public void setImg(String img) {
+-    }
+-
+-    public String getLink() {
+-        return "/item/" + id;
+-    }
+-
+-    public void setLink(String link) {
+-    }
+-
+-    public Long getSales() {
+-        return sales;
+-    }
+-
+-    public void setSales(Long sales) {
+-        this.sales = sales;
+-    }
+-
+-    public Boolean getRecommendation() {
+-        return recommendation;
+-    }
+-
+-    public void setRecommendation(Boolean recommendation) {
+-        this.recommendation = recommendation;
+-    }
+-
+-    public Byte getWeight() {
+-        return weight;
+-    }
+-
+-    public void setWeight(Byte weight) {
+-        this.weight = weight;
+-    }
+-
+-    public String getCity() {
+-        return city;
+-    }
+-
+-    public void setCity(String city) {
+-        this.city = city;
+-    }
+-
+-    public Long getPrice() {
+-        return price;
+-    }
+-
+-    public void setPrice(Long price) {
+-        this.price = price;
+-    }
+-
+-    public String getRentType() {
+-        return rentType;
+-    }
+-
+-    public void setRentType(String rentType) {
+-        this.rentType = rentType;
+-    }
+-
+-    public String getHouseType() {
+-        return houseType;
+-    }
+-
+-    public void setHouseType(String houseType) {
+-        this.houseType = houseType;
+-    }
+ 
+     public String getHouseType4Search() {
+         return info.get("level") + " | " + info.get("type") + " - " + houseType;
+@@ -163,12 +59,5 @@ public class Item {
+         this.imgs = imgs;
+     }
+ 
+-    public Boolean getRented() {
+-        return isRented;
+-    }
+-
+-    public void setRented(Boolean rented) {
+-        isRented = rented;
+-    }
+ 
+ }
+diff --git a/zillow-llm/src/main/java/com/example/config/ClientChatbotAgentConfig.java b/zillow-llm/src/main/java/com/example/config/ClientChatbotAgentConfig.java
+index bd16677..b321b36 100644
+--- a/zillow-llm/src/main/java/com/example/config/ClientChatbotAgentConfig.java
++++ b/zillow-llm/src/main/java/com/example/config/ClientChatbotAgentConfig.java
+@@ -1,12 +1,16 @@
+ package com.example.config;
+ 
+ import com.example.constant.LLMConstant;
+-import com.example.llm.Agent;
++import com.example.llm.ClientChatbotAgent;
+ import com.example.service.ZillowTool;
++import dev.langchain4j.data.segment.TextSegment;
+ import dev.langchain4j.memory.chat.TokenWindowChatMemory;
++import dev.langchain4j.memory.chat.MessageWindowChatMemory;
+ import dev.langchain4j.model.Tokenizer;
+ import dev.langchain4j.model.chat.ChatLanguageModel;
+ import dev.langchain4j.model.chat.StreamingChatLanguageModel;
++import dev.langchain4j.model.embedding.AllMiniLmL6V2EmbeddingModel;
++import dev.langchain4j.model.embedding.EmbeddingModel;
+ import dev.langchain4j.model.openai.OpenAiChatModel;
+ import dev.langchain4j.model.openai.OpenAiChatModelName;
+ import dev.langchain4j.model.openai.OpenAiStreamingChatModel;
+@@ -14,31 +18,33 @@ import dev.langchain4j.model.openai.OpenAiTokenizer;
+ import dev.langchain4j.rag.DefaultRetrievalAugmentor;
+ import dev.langchain4j.rag.RetrievalAugmentor;
+ import dev.langchain4j.rag.content.retriever.ContentRetriever;
++import dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever;
+ import dev.langchain4j.rag.content.retriever.WebSearchContentRetriever;
+ import dev.langchain4j.service.AiServices;
++import dev.langchain4j.store.embedding.EmbeddingStore;
++import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
+ import dev.langchain4j.web.search.WebSearchEngine;
+ import dev.langchain4j.web.search.tavily.TavilyWebSearchEngine;
+ import org.springframework.context.annotation.Bean;
+ import org.springframework.context.annotation.Configuration;
++import org.springframework.core.io.FileSystemResourceLoader;
+ 
+ @Configuration
+-public class Config {
++public class ClientChatbotAgentConfig {
+ 
+     @Bean
+-    Agent agent(
++    ClientChatbotAgent clientChatbotAgent(
+         StreamingChatLanguageModel streamingChatLanguageModel,
+         ChatLanguageModel chatLanguageModel,
+         Tokenizer tokenizer,
+         RetrievalAugmentor retrievalAugmentor,
+         ZillowTool zillowTool
+     ) {
+-        // Create the original agent
+         return AiServices
+-            .builder(Agent.class)
++            .builder(ClientChatbotAgent.class)
+             .chatLanguageModel(chatLanguageModel)
+             .streamingChatLanguageModel(streamingChatLanguageModel)
+             .retrievalAugmentor(retrievalAugmentor)
+-            // Content in session after "LLMConstant.MAX_TOKEN" will be forgotten
+             .chatMemoryProvider(chatId -> TokenWindowChatMemory.builder()
+                 .id(chatId)
+                 .maxTokens(LLMConstant.MAX_TOKEN, tokenizer)
+@@ -63,24 +69,37 @@ public class Config {
+             .builder()
+             .modelName(OpenAiChatModelName.GPT_3_5_TURBO)
+             .apiKey(LLMConstant.OPENAI_API_KEY)
+-            .temperature(0.0)
+             .build();
+     }
+-
+-    // Tokenizer
+     @Bean
+-    Tokenizer tokenizer() {
+-        return new OpenAiTokenizer(OpenAiChatModelName.GPT_3_5_TURBO);
++    EmbeddingModel embeddingModel() {
++        return new AllMiniLmL6V2EmbeddingModel();
+     }
+ 
+-
+     @Bean
+-    RetrievalAugmentor retrievalAugmentor(ContentRetriever webSearchContentRetriever) {
+-        return DefaultRetrievalAugmentor
++    ContentRetriever contentRetriever(
++        EmbeddingModel embeddingModel,
++        EmbeddingStore<TextSegment> embeddingStore
++    ) {
++        int maxResults = 1;
++        double minScore = 0.6;
++        return EmbeddingStoreContentRetriever
+             .builder()
+-            .contentRetriever(webSearchContentRetriever)
++            .embeddingStore(embeddingStore)
++            .embeddingModel(embeddingModel)
++            .maxResults(maxResults)
++            .minScore(minScore)
+             .build();
+     }
++    @Bean
++    EmbeddingStore<TextSegment> embeddingStore(){
++        return new InMemoryEmbeddingStore<>();
++    }
++
++    @Bean
++    FileSystemResourceLoader resourceLoader() {
++        return new FileSystemResourceLoader();
++    }
+ 
+     // Web search
+     @Bean
+@@ -95,4 +114,11 @@ public class Config {
+             .maxResults(3)
+             .build();
+     }
++    @Bean
++    RetrievalAugmentor retrievalAugmentor(ContentRetriever webSearchContentRetriever) {
++        return DefaultRetrievalAugmentor
++            .builder()
++            .contentRetriever(webSearchContentRetriever)
++            .build();
++    }
+ }
+\ No newline at end of file
+diff --git a/zillow-llm/src/main/java/com/example/constant/LLMConstant.java b/zillow-llm/src/main/java/com/example/constant/LLMConstant.java
+index 3f0c438..81b0339 100644
+--- a/zillow-llm/src/main/java/com/example/constant/LLMConstant.java
++++ b/zillow-llm/src/main/java/com/example/constant/LLMConstant.java
+@@ -6,8 +6,8 @@ import io.github.cdimascio.dotenv.Dotenv;
+ public class LLMConstant {
+     private static final Dotenv dotenv = Dotenv.configure().filename(".env").load();
+ 
++    public static final int MAX_TOKEN = 12000;
+     public static final int CHAT_MEMORY = 100;
+-    public static final int MAX_TOKEN = 1000;
+ 
+     public static final String OPENAI_API_KEY = dotenv.get("OPENAI_API_KEY");
+ 
+diff --git a/zillow-llm/src/main/java/com/example/controller/LLMController.java b/zillow-llm/src/main/java/com/example/controller/LLMController.java
+index 47c0919..e041bb3 100644
+--- a/zillow-llm/src/main/java/com/example/controller/LLMController.java
++++ b/zillow-llm/src/main/java/com/example/controller/LLMController.java
+@@ -18,9 +18,12 @@ public class LLMController {
+     private ClientChatbotAgent clientChatbotAgent;
+ 
+ 
+-    @GetMapping(value = "/chat", produces = "text/event-stream")
+-    public Flux<String> chat(String chatId, String question) {
+-        return Flux.fromArray(clientChatbotAgent.chat(chatId, question).split("(?<=\\s)")).delayElements(Duration.ofMillis(20));
++    @GetMapping("/chat")
++    public String chat(String chatId, String question) {
++        System.out.println();System.out.println();
++        System.out.println("************************* CONTROLLER *************************");
++        System.out.println("Received chat request with question: " + question);
++        return clientChatbotAgent.chat(chatId, question);
+     }
+ 
+     @GetMapping(value = "/chatStream", produces = "text/event-stream")
+diff --git a/zillow-llm/src/main/java/com/example/dao/CommentDao.java b/zillow-llm/src/main/java/com/example/dao/CommentDao.java
+index de8771b..9b32abc 100644
+--- a/zillow-llm/src/main/java/com/example/dao/CommentDao.java
++++ b/zillow-llm/src/main/java/com/example/dao/CommentDao.java
+@@ -1,11 +1,12 @@
+ package com.example.dao;
+ 
+ import com.example.entity.Comment;
++import com.example.entity.Item;
+ import org.springframework.data.mongodb.core.query.Query;
+ 
+ import java.util.List;
++import java.util.Map;
+ 
+ public interface CommentDao {
+-    void saveComment(Comment comment);
+-    List<Comment> findCommentsByItemId(Query query);
++    List<Comment> findCommentsByCriteria(Map<String, Object> criteria);
+ }
+diff --git a/zillow-llm/src/main/java/com/example/dao/ItemDao.java b/zillow-llm/src/main/java/com/example/dao/ItemDao.java
+index d6a8768..9270efa 100644
+--- a/zillow-llm/src/main/java/com/example/dao/ItemDao.java
++++ b/zillow-llm/src/main/java/com/example/dao/ItemDao.java
+@@ -4,11 +4,10 @@ package com.example.dao;
+ import com.example.entity.Item;
+ 
+ import java.util.List;
++import java.util.Map;
+ 
+ public interface ItemDao {
+ 
+-    List<Item> findItemsByCity(String city);
+-
+-    List<Item> findItems();
++    List<Item> findItemsByCriteria(Map<String, Object> criteria);
+ 
+ }
+diff --git a/zillow-llm/src/main/java/com/example/dao/impl/CommentDaoImpl.java b/zillow-llm/src/main/java/com/example/dao/impl/CommentDaoImpl.java
+index 305df4e..0bf9d12 100644
+--- a/zillow-llm/src/main/java/com/example/dao/impl/CommentDaoImpl.java
++++ b/zillow-llm/src/main/java/com/example/dao/impl/CommentDaoImpl.java
+@@ -4,10 +4,12 @@ import com.example.dao.CommentDao;
+ import com.example.entity.Comment;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.data.mongodb.core.MongoTemplate;
++import org.springframework.data.mongodb.core.query.Criteria;
+ import org.springframework.data.mongodb.core.query.Query;
+ import org.springframework.stereotype.Repository;
+ 
+ import java.util.List;
++import java.util.Map;
+ 
+ @Repository
+ public class CommentDaoImpl implements CommentDao {
+@@ -15,12 +17,53 @@ public class CommentDaoImpl implements CommentDao {
+     private MongoTemplate mongoTemplate;
+ 
+     @Override
+-    public void saveComment(Comment comment) {
+-        mongoTemplate.save(comment);
+-    }
++    public List<Comment> findCommentsByCriteria(Map<String, Object> criteria) {
++        Query query = new Query();
+ 
+-    @Override
+-    public List<Comment> findCommentsByItemId(Query query) {
+-        return mongoTemplate.find(query,Comment.class);
++        for (Map.Entry<String, Object> entry : criteria.entrySet()) {
++            String key = entry.getKey();
++            Object value = entry.getValue();
++
++            if (value instanceof Map) {
++                Map<String, Object> operatorMap = (Map<String, Object>) value;
++                Criteria criteriaObj = Criteria.where(key);
++
++                for (Map.Entry<String, Object> opEntry : operatorMap.entrySet()) {
++                    String operator = opEntry.getKey();
++                    Object opValue = opEntry.getValue();
++
++                    switch (operator) {
++                        case "$lt":
++                            criteriaObj.lt(opValue);
++                            break;
++                        case "$lte":
++                            criteriaObj.lte(opValue);
++                            break;
++                        case "$gt":
++                            criteriaObj.gt(opValue);
++                            break;
++                        case "$gte":
++                            criteriaObj.gte(opValue);
++                            break;
++                        case "$ne":
++                            criteriaObj.ne(opValue);
++                            break;
++                        case "$in":
++                            criteriaObj.in((List<?>) opValue);
++                            break;
++                        case "$exists":
++                            criteriaObj.exists((Boolean) opValue);
++                            break;
++                        default:
++                            throw new IllegalArgumentException("Unsupported operator: " + operator);
++                    }
++                }
++                query.addCriteria(criteriaObj);
++            } else {
++                query.addCriteria(Criteria.where(key).is(value));
++            }
++        }
++
++        return mongoTemplate.find(query, Comment.class);
+     }
+-}
++}
+\ No newline at end of file
+diff --git a/zillow-llm/src/main/java/com/example/dao/impl/ItemDaoImpl.java b/zillow-llm/src/main/java/com/example/dao/impl/ItemDaoImpl.java
+index c9cb138..2a7c3fd 100644
+--- a/zillow-llm/src/main/java/com/example/dao/impl/ItemDaoImpl.java
++++ b/zillow-llm/src/main/java/com/example/dao/impl/ItemDaoImpl.java
+@@ -6,11 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.data.mongodb.core.MongoTemplate;
+ import org.springframework.data.mongodb.core.query.Criteria;
+ import org.springframework.data.mongodb.core.query.Query;
+-import org.springframework.data.mongodb.core.query.Update;
+ import org.springframework.stereotype.Repository;
+ 
+-import java.util.ArrayList;
+-import java.util.Collections;
+ import java.util.List;
+ import java.util.Map;
+ 
+@@ -21,15 +18,53 @@ public class ItemDaoImpl implements ItemDao {
+     private MongoTemplate mongoTemplate;
+ 
+     @Override
+-    public List<Item> findItemsByCity(String city) {
++    public List<Item> findItemsByCriteria(Map<String, Object> criteria) {
+         Query query = new Query();
+-        query.addCriteria(Criteria.where("city").is(city));
+-        return mongoTemplate.find(query, Item.class);
+-    }
+ 
+-    @Override
+-    public List<Item> findItems() {
+-        Query query = new Query();
++        for (Map.Entry<String, Object> entry : criteria.entrySet()) {
++            String key = entry.getKey();
++            Object value = entry.getValue();
++
++            if (value instanceof Map) {
++                Map<String, Object> operatorMap = (Map<String, Object>) value;
++                Criteria criteriaObj = Criteria.where(key);
++
++                for (Map.Entry<String, Object> opEntry : operatorMap.entrySet()) {
++                    String operator = opEntry.getKey();
++                    Object opValue = opEntry.getValue();
++
++                    switch (operator) {
++                        case "$lt":
++                            criteriaObj.lt(opValue);
++                            break;
++                        case "$lte":
++                            criteriaObj.lte(opValue);
++                            break;
++                        case "$gt":
++                            criteriaObj.gt(opValue);
++                            break;
++                        case "$gte":
++                            criteriaObj.gte(opValue);
++                            break;
++                        case "$ne":
++                            criteriaObj.ne(opValue);
++                            break;
++                        case "$in":
++                            criteriaObj.in((List<?>) opValue);
++                            break;
++                        case "$exists":
++                            criteriaObj.exists((Boolean) opValue);
++                            break;
++                        default:
++                            throw new IllegalArgumentException("Unsupported operator: " + operator);
++                    }
++                }
++                query.addCriteria(criteriaObj);
++            } else {
++                query.addCriteria(Criteria.where(key).is(value));
++            }
++        }
++
+         return mongoTemplate.find(query, Item.class);
+     }
+-}
++}
+\ No newline at end of file
+diff --git a/zillow-llm/src/main/java/com/example/llm/ClientChatbotAgent.java b/zillow-llm/src/main/java/com/example/llm/ClientChatbotAgent.java
+index 1a81058..31ae3fd 100644
+--- a/zillow-llm/src/main/java/com/example/llm/ClientChatbotAgent.java
++++ b/zillow-llm/src/main/java/com/example/llm/ClientChatbotAgent.java
+@@ -5,7 +5,7 @@ import dev.langchain4j.service.SystemMessage;
+ import dev.langchain4j.service.TokenStream;
+ import dev.langchain4j.service.UserMessage;
+ 
+-public interface Agent {
++public interface ClientChatbotAgent {
+ 
+     @SystemMessage({
+         "You are a virtual real estate assistant designed to help users with all their property-related needs.",
+diff --git a/zillow-llm/src/main/java/com/example/service/LLMService.java b/zillow-llm/src/main/java/com/example/service/LLMService.java
+index 1071b58..8707809 100644
+--- a/zillow-llm/src/main/java/com/example/service/LLMService.java
++++ b/zillow-llm/src/main/java/com/example/service/LLMService.java
+@@ -1,11 +1,19 @@
+ package com.example.service;
+ 
+ import com.example.dao.ItemDao;
++import com.example.dao.CommentDao;
+ import com.example.entity.Item;
++import com.example.entity.Comment;
++import com.fasterxml.jackson.core.type.TypeReference;
++import com.fasterxml.jackson.databind.ObjectMapper;
++import dev.langchain4j.model.chat.ChatLanguageModel;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.stereotype.Service;
+ 
++import java.io.IOException;
++import java.util.HashMap;
+ import java.util.List;
++import java.util.Map;
+ 
+ @Service
+ public class LLMService {
+@@ -13,14 +21,122 @@ public class LLMService {
+     @Autowired
+     private ItemDao itemDao;
+ 
+-    public List<Item> getItemsByCity(String city) {
+-        List<Item> itemList = itemDao.findItemsByCity(city);
+-        return itemList;
++    @Autowired
++    private CommentDao commentDao;
++
++    @Autowired
++    private ChatLanguageModel chatLanguageModel;
++
++    /**
++     * Searches items based on a natural language query.
++     *
++     * @param query the natural language query
++     * @return a list of items matching the criteria
++     */
++    public List<Item> searchItems(String query) {
++        Map<String, Object> criteria = parseQueryToCriteria(query, "item");
++        return itemDao.findItemsByCriteria(criteria);
+     }
+ 
+-    public List<Item> getItems() {
+-        List<Item> itemList = itemDao.findItems();
+-        return itemList;
++    /**
++     * Searches comments based on a natural language query.
++     *
++     * @param query the natural language query
++     * @return a list of comments matching the criteria
++     */
++    public List<Comment> searchComments(String query) {
++        Map<String, Object> criteria = parseQueryToCriteria(query, "comment");
++        return commentDao.findCommentsByCriteria(criteria);
+     }
+ 
+-}
++    /**
++     * Parses a natural language query into MongoDB criteria.
++     *
++     * @param query      the natural language query
++     * @param entityType the type of entity ("item" or "comment")
++     * @return a map representing the criteria
++     */
++    private Map<String, Object> parseQueryToCriteria(String query, String entityType) {
++        // System.out.println("--------------------------------------------------------");
++        // System.out.println("Query to temp LLM:\n" + query);
++        // System.out.println("--------------------------------------------------------");
++        String prompt = buildPrompt(query, entityType);
++
++
++        // System.out.println("--------------------------------------------------------");
++        // System.out.println("Prompt sent to LLM:\n" + prompt);
++        // System.out.println("--------------------------------------------------------");
++
++        // Generate the criteria using the LLM
++        String jsonCriteria = chatLanguageModel.generate(prompt);
++        // System.out.println("--------------------------------------------------------");
++        // System.out.println("LLM response:\n" + jsonCriteria);
++        // System.out.println("--------------------------------------------------------");
++
++        // Convert JSON string to Map
++        ObjectMapper objectMapper = new ObjectMapper();
++        try {
++            return objectMapper.readValue(jsonCriteria, new TypeReference<Map<String, Object>>() {
++            });
++        } catch (IOException e) {
++            e.printStackTrace();
++            return new HashMap<>();
++        }
++    }
++
++    /**
++     * Builds the LLM prompt based on the entity type.
++     *
++     * @param query      the natural language query
++     * @param entityType the type of entity ("item" or "comment")
++     * @return the constructed prompt
++     */
++    private String buildPrompt(String query, String entityType) {
++        String validFields;
++        String examples;
++        String constraints = "";
++
++        switch (entityType.toLowerCase()) {
++            case "item":
++                validFields = "id, title, description, sales, recommendation, weight, price, city, rentType, " +
++                    "info (area, orientation, baths, level, style, type, beds, years), imgs, buytime, isRented";
++                constraints = "- When the user mentions \"type\", map it to \"info.type\".\n" +
++                    "- The possible values for \"info.type\" are: \"Single Family Residence\", \"Condominium\".\n" +
++                    "- The possible values for \"rentType\" are: \"Whole Rental\", \"Room Rental\", \"Shared Rental\".\n" +
++                    "For nested fields in 'info', represent them as 'info.fieldName'.\n";
++                examples = "Query: \"Find single family residences in Dallas\"\n" +
++                    "Output: { \"city\": \"Dallas\", \"info.type\": \"Single Family Residence\" }\n" +
++                    "Query: \"Show me condominiums for shared rental in Dallas under $500,000\"\n" +
++                    "Output: { \"city\": \"Dallas\", \"price\": { \"$lt\": 500000 }, \"info.type\": \"Condominium\", \"rentType\": \"Shared Rental\" }\n" +
++                    "Query: \"Dallas properties\"\n" +
++                    "Output: { \"city\": \"Dallas\" }";
++                break;
++
++            case "comment":
++                validFields = "username, comment, itemId";
++                examples = "Query: \"Find all comments for item ID 12345\"\n" +
++                    "Output: { \"itemId\": \"12345\" }\n" +
++                    "Query: \"Show me comments from user 'john_doe'\"\n" +
++                    "Output: { \"username\": \"john_doe\" }\n" +
++                    "Query: \"What did people say about item ID 67890?\"\n" +
++                    "Output: { \"itemId\": \"67890\" }";
++                break;
++
++            default:
++                throw new IllegalArgumentException("Unsupported entity type: " + entityType);
++        }
++
++        return String.format(
++            "As a virtual assistant, convert the following natural language query into a JSON object representing search criteria for MongoDB.\n" +
++                "Only use the fields from the %s class: %s.\n" +
++                "%s" +
++                "Do not include any other fields.\n" +
++                "Ensure the criteria match the query exactly.\n" +
++                "Here are some examples:\n" +
++                "%s\n" +
++                "Query: \"%s\"\n" +
++                "Output only the JSON object.",
++            entityType, validFields, constraints, examples, query
++        );
++    }
++}
+\ No newline at end of file
+diff --git a/zillow-llm/src/main/java/com/example/service/ZillowTool.java b/zillow-llm/src/main/java/com/example/service/ZillowTool.java
+index ef506bd..aac2677 100644
+--- a/zillow-llm/src/main/java/com/example/service/ZillowTool.java
++++ b/zillow-llm/src/main/java/com/example/service/ZillowTool.java
+@@ -1,10 +1,12 @@
+ package com.example.service;
+ 
++import com.example.entity.Comment;
+ import com.example.entity.Item;
+ import dev.langchain4j.agent.tool.Tool;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.stereotype.Component;
+ 
++import java.time.LocalDateTime;
+ import java.util.List;
+ 
+ @Component
+@@ -14,13 +16,24 @@ public class ZillowTool {
+     private LLMService llmService;
+ 
+     @Tool
+-    public List<Item> getItemsByCity(String city) {
+-        return llmService.getItemsByCity(city);
++    public List<Item> searchItems(String query) {
++        // System.out.println("[" + LocalDateTime.now() + "] Entering searchItems with query: " + query);
++        List<Item> items = llmService.searchItems(query);
++        // System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
++        // System.out.println(items);
++        // System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
++        // System.out.println("[" + LocalDateTime.now() + "] Exiting searchItems");
++        return items;
+     }
+ 
+     @Tool
+-    public List<Item> getItems() {
+-        return llmService.getItems();
++    public List<Comment> searchComments(String query) {
++        // System.out.println("[" + LocalDateTime.now() + "] Entering searchComments with query: " + query);
++        List<Comment> comments = llmService.searchComments(query);
++        // System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
++        // System.out.println(comments);
++        // System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
++        // System.out.println("[" + LocalDateTime.now() + "] Exiting searchComments");
++        return comments;
+     }
+-
+ }
+diff --git a/zillow-vue-admin/src/views/Dashboard/Dashboard-AddItem/Dashboard-AddItem.vue b/zillow-vue-admin/src/views/Dashboard/Dashboard-AddItem/Dashboard-AddItem.vue
+index 576820f..984a2b4 100644
+--- a/zillow-vue-admin/src/views/Dashboard/Dashboard-AddItem/Dashboard-AddItem.vue
++++ b/zillow-vue-admin/src/views/Dashboard/Dashboard-AddItem/Dashboard-AddItem.vue
+@@ -205,8 +205,10 @@ export default {
+         },
+     },
+     computed: {
+-        ...mapState(['awsS3RequestUrl']),
+-        ...mapState(['awsS3ImagePaths']),
++        ...mapState([
++            'awsS3RequestUrl',
++            'awsS3ImagePaths'
++        ]),
+     },
+     watch: {
+         'recommendation'(newVal) {
+diff --git a/zillow-vue/src/api/index.js b/zillow-vue/src/api/index.js
+index d8dd270..bed1fb5 100755
+--- a/zillow-vue/src/api/index.js
++++ b/zillow-vue/src/api/index.js
+@@ -88,9 +88,9 @@ const api = {
+     },
+ 
+     // llm
+-    chat(params) {
+-        return base.baseUrl + base.chat + "?" + qs.stringify(params)
+-    },
++    chat(params){
++        return axios.get(base.baseUrl + base.chat + "?" + qs.stringify(params));
++    }
+ 
+ }
+ 
+diff --git a/zillow-vue/src/components/ChatBot/ChatBot.vue b/zillow-vue/src/components/ChatBot/ChatBot.vue
+index 6114e2a..27664eb 100644
+--- a/zillow-vue/src/components/ChatBot/ChatBot.vue
++++ b/zillow-vue/src/components/ChatBot/ChatBot.vue
+@@ -95,30 +95,23 @@ export default {
+             }
+         },
+         chatLLM(question) {
+-            const eventSource = new EventSource(
+-                this.$api.chat({
+-                    question: question,
+-                    chatId: 0
+-                })
+-            );
+-
+-            let botMessage = '';
+-
+-            eventSource.onmessage = (event) => {
+-                const data = event.data;
+-                botMessage += data;
+-                // Update the last bot message in the messages array
+-                if (this.messages.length && this.messages[this.messages.length - 1].sender === 'bot') {
+-                    this.messages[this.messages.length - 1].text = botMessage;
+-                } else {
+-                    this.messages.push({ text: botMessage, sender: 'bot' });
+-                }
+-            };
+-
+-            eventSource.onerror = (err) => {
+-                console.error('EventSource failed:', err);
+-                eventSource.close();
+-            };
++            this.$api.chat({
++                question: question,
++                chatId: 4
++            })
++            .then((res) => {
++                this.messages.push({
++                    text: res.data,
++                    sender: 'bot',
++                });
++            })
++            .catch((error) => {
++                console.error('Error in chatLLM:', error);
++                this.messages.push({
++                    text: 'Sorry, there was an error processing your request.',
++                    sender: 'bot',
++                });
++            });
+         },
+ 
+         renderMarkdown(text) {
+diff --git a/zillow-vue/src/api/base.js b/zillow-vue/src/api/base.js
+index 9147dc7..ee1c1dc 100755
+--- a/zillow-vue/src/api/base.js
++++ b/zillow-vue/src/api/base.js
+@@ -3,47 +3,60 @@ const base = {
+     baseUrl: "/api",
+ 
+     // file
+-    getBanners: '/file/getBanners',
+-    uploadFile: '/file/uploadFile',
+-    uploadImageNoPrefix: '/file/uploadImageNoPrefix',
++    file: {
++        getBanners: '/file/getBanners',
++        uploadFile: '/file/uploadFile',
++    },
++
+ 
+     // trendy
+-    getTrendies: '/trendy/getTrendies',
++    trendy: {
++        getTrendies: '/trendy/getTrendies',
++    },
+ 
+     // recommendation
+-    getRecommendations: "/recommendation/getRecommendations",
++    recommendation: {
++        getRecommendations: "/recommendation/getRecommendations",
++    },
+ 
+     // item
+-    getItemById: '/item/getItemById',
+-    getItemsByCity: '/item/getItemsByCity',
++    item:{
++        getItemById: '/item/getItemById',
++    },
+ 
+     // comment
+-    getCommentsByItemId: '/comment/getCommentsByItemId',
+-    addComment: "/comment/addComment",
++    comment:{
++        getCommentsByItemId: '/comment/getCommentsByItemId',
++        addComment: "/comment/addComment",
++    },
+ 
+     // search
+-    searchByKeyWord: "/search/searchByKeyWord",
+-    searchByCity: "/search/searchByCity",
++    search:{
++        searchByKeyWord: "/search/searchByKeyWord",
++        searchByCity: "/search/searchByCity",
++    },
+ 
+     // user
+-    sendVerificationCode: '/user/sendVerificationCode',
+-    login: '/user/login',
+-    register: '/user/register',
+-    getUsers: '/user/getUsers',
+-    getUserByUsername: '/user/getUserByUsername',
+-    getUserById: '/user/getUserById',
++    user:{
++        login: '/user/login',
++        register: '/user/register',
++        getUserByUsername: '/user/getUserByUsername',
++    },
+ 
+     // buyAction
+-    buyAction: "/buyAction/buyAction",
+-
+-    // buytime
+-    getBuyTime: '/buyTime/getBuyTime',
++    buyAction:{
++        buyAction: "/buyAction/buyAction",
++    },
+ 
+     // order
+-    getOrdersByUserId: "/order/getOrdersByUserId",
++    order:{
++        getOrdersByUserId: "/order/getOrdersByUserId",
++    },
+ 
+     // llm
+-    chat: "/llm/chat",
++    llm:{
++        chat: "/llm/chat",
++    }
+ }
+ 
+ export default base;
+\ No newline at end of file
+diff --git a/zillow-vue/src/api/index.js b/zillow-vue/src/api/index.js
+index bed1fb5..fcbacdc 100755
+--- a/zillow-vue/src/api/index.js
++++ b/zillow-vue/src/api/index.js
+@@ -40,17 +40,11 @@ const api = {
+     buyAction(params) {
+         return axios.get(base.baseUrl + base.buyAction + "?" + qs.stringify(params));
+     },
+-    buyTime(params) {
+-        return axios.get(base.baseUrl + base.getBuyTime + '?id=' + params.id);
+-    },
+ 
+     // item
+     getItemById(params) {
+         return axios.get(base.baseUrl + base.getItemById + "?" + qs.stringify(params));
+     },
+-    getItemsByCity(params) {
+-        return axios.get(base.baseUrl + base.getItemsByCity + "?" + qs.stringify(params));
+-    },
+ 
+ 
+     // comment
+@@ -63,24 +57,15 @@ const api = {
+ 
+ 
+     // user
+-    sendVerificationCode(params) {
+-        return axios.post(base.baseUrl + base.sendVerificationCode, params)
+-    },
+     login(params) {
+         return axios.post(base.baseUrl + base.login, qs.stringify(params));
+     },
+     register(params) {
+         return axios.post(base.baseUrl + base.register, qs.stringify(params));
+     },
+-    getUsers(params) {
+-        return axios.get(base.baseUrl + base.getUsers, params);
+-    },
+     getUserByUsername(params) {
+         return axios.get(base.baseUrl + base.getUserByUsername + "?" + qs.stringify(params));
+     },
+-    getUserById(params) {
+-        return axios.get(base.baseUrl + base.getUserById + "?" + qs.stringify(params));
+-    },
+ 
+     // order
+     getOrdersByUserId(params) {
+diff --git a/zillow-vue/src/components/ChatBot/ChatBot.vue b/zillow-vue/src/components/ChatBot/ChatBot.vue
+index 27664eb..044a0d6 100644
+--- a/zillow-vue/src/components/ChatBot/ChatBot.vue
++++ b/zillow-vue/src/components/ChatBot/ChatBot.vue
+@@ -95,7 +95,7 @@ export default {
+             }
+         },
+         chatLLM(question) {
+-            this.$api.chat({
++            this.$api.llm.chat({
+                 question: question,
+                 chatId: 4
+             })
+diff --git a/zillow-vue/src/views/Buy/Buy.vue b/zillow-vue/src/views/Buy/Buy.vue
+index 112b0f9..9f3f174 100755
+--- a/zillow-vue/src/views/Buy/Buy.vue
++++ b/zillow-vue/src/views/Buy/Buy.vue
+@@ -23,7 +23,7 @@ export default {
+         Header
+     },
+     mounted() {
+-        this.$api.buyAction({
++        this.$api.buyAction.buyAction({
+             itemId: this.$route.params.itemId,
+             userId: this.$route.params.userId,
+             startDate: this.$route.params.startDate,
+diff --git a/zillow-vue/src/views/Homes/ItemListings/ItemListings.vue b/zillow-vue/src/views/Homes/ItemListings/ItemListings.vue
+index 6a8de39..014c40a 100755
+--- a/zillow-vue/src/views/Homes/ItemListings/ItemListings.vue
++++ b/zillow-vue/src/views/Homes/ItemListings/ItemListings.vue
+@@ -13,7 +13,6 @@
+         <br>
+         <br>
+         <br>
+-        <!--        <LoadMore @getMoreData="getMoreData"/>-->
+     </div>
+ </template>
+ 
+@@ -45,7 +44,10 @@ export default {
+             });
+         },
+         http() {
+-            return this.$api.searchByCity({city: this.currentCity, page: this.page})
++            return this.$api.search.searchByCity({
++                city: this.currentCity,
++                page: this.page
++            })
+             .then((data) => {
+                 this.searchListData = this.searchListData.concat(data.data.data)
+                 return data;
+diff --git a/zillow-vue/src/views/Index/Featured/Featured.vue b/zillow-vue/src/views/Index/Featured/Featured.vue
+index 47dabab..5a38a61 100644
+--- a/zillow-vue/src/views/Index/Featured/Featured.vue
++++ b/zillow-vue/src/views/Index/Featured/Featured.vue
+@@ -34,7 +34,7 @@ export default {
+         FeaturedView
+     },
+     mounted() {
+-        this.$api.getTrendies({
++        this.$api.trendy.getTrendies({
+             city: this.currentCity
+         })
+         .then(data => {
+@@ -43,7 +43,7 @@ export default {
+             }
+         })
+ 
+-        this.$api.getRecommendations({
++        this.$api.recommendation.getRecommendations({
+             city: this.currentCity
+         })
+         .then(data => {
+diff --git a/zillow-vue/src/views/Index/Index.vue b/zillow-vue/src/views/Index/Index.vue
+index 2391d12..67b0ddf 100755
+--- a/zillow-vue/src/views/Index/Index.vue
++++ b/zillow-vue/src/views/Index/Index.vue
+@@ -78,7 +78,7 @@ export default {
+         }
+     },
+     created() {
+-        this.$api.getBanners()
++        this.$api.file.getBanners()
+         .then(data => {
+             if(data.data.status == 200) {
+                 this.swiperSlides = data.data.results;
+diff --git a/zillow-vue/src/views/Index/Search/SearchItemListings/SearchItemListings.vue b/zillow-vue/src/views/Index/Search/SearchItemListings/SearchItemListings.vue
+index e959884..c28f42e 100755
+--- a/zillow-vue/src/views/Index/Search/SearchItemListings/SearchItemListings.vue
++++ b/zillow-vue/src/views/Index/Search/SearchItemListings/SearchItemListings.vue
+@@ -42,7 +42,7 @@ export default {
+             })
+         },
+         http(keyword, city) {
+-            return this.$api.searchByKeyWord({
++            return this.$api.search.searchByKeyWord({
+                 city: city,
+                 content: keyword,
+                 page: this.page
+diff --git a/zillow-vue/src/views/Item/Item.vue b/zillow-vue/src/views/Item/Item.vue
+index 2871991..47a220b 100755
+--- a/zillow-vue/src/views/Item/Item.vue
++++ b/zillow-vue/src/views/Item/Item.vue
+@@ -179,8 +179,8 @@ export default {
+             window.history.back()
+         },
+ 
+-        getItemById(){
+-            this.$api.getItemById({
++        getItemById() {
++            this.$api.item.getItemById({
+                 id: this.itemId
+             }).then(data => {
+                 this.swiperSlides = data.data.imgs;
+diff --git a/zillow-vue/src/views/Item/ItemComment/ItemComment.vue b/zillow-vue/src/views/Item/ItemComment/ItemComment.vue
+index 79bb6d4..cac1a56 100755
+--- a/zillow-vue/src/views/Item/ItemComment/ItemComment.vue
++++ b/zillow-vue/src/views/Item/ItemComment/ItemComment.vue
+@@ -1,15 +1,15 @@
+ <template>
+-    <div class="comment-list">
+-        <div v-if="commentData == ''">
+-            <div class="center-h" style="color:gainsboro;">There's no comment.</div>
+-        </div>
+-        <div v-for='(item,index) in commentData' :key='index' class="comment-item">
+-            <h3>
+-                {{ item.username }}
+-            </h3>
+-            <p>{{ item.comment }}</p>
+-        </div>
++<div class="comment-list">
++    <div v-if="commentData == ''">
++        <div class="center-h" style="color:gainsboro;">There's no comment.</div>
+     </div>
++    <div v-for='(item,index) in commentData' :key='index' class="comment-item">
++        <h3>
++            {{ item.username }}
++        </h3>
++        <p>{{ item.comment }}</p>
++    </div>
++</div>
+ </template>
+ <script>
+ import LoadMore from '../../../components/LoadMore/LoadMore'
+@@ -28,10 +28,10 @@ export default {
+     },
+     methods: {
+         http() {
+-            return this.$api.getCommentsByItemId({
+-                        itemId: this.itemId, page: this.page
+-                    }
+-            )
++            return this.$api.comment.getCommentsByItemId({
++                itemId: this.itemId,
++                page: this.page
++            })
+         },
+         getMoreData() {
+             this.page += 1;
+diff --git a/zillow-vue/src/views/Login/Login.vue b/zillow-vue/src/views/Login/Login.vue
+index 6c58c9e..91b24ba 100755
+--- a/zillow-vue/src/views/Login/Login.vue
++++ b/zillow-vue/src/views/Login/Login.vue
+@@ -49,7 +49,7 @@ export default {
+             this.$router.push('/');
+         },
+         login() {
+-            this.$api.login({
++            this.$api.user.login({
+                 username: this.user.username,
+                 password: this.user.password
+             })
+@@ -66,7 +66,7 @@ export default {
+         async getUserByUsername() {
+             const getUserByUsername = () => {
+                 return new Promise((resolve, reject) => {
+-                    this.$api.getUserByUsername({
++                    this.$api.user.getUserByUsername({
+                         username: this.user.username,
+                     })
+                     .then(data => {
+diff --git a/zillow-vue/src/views/Mine/PurchasedItemListings/PurchasedItem/PurchasedItem.vue b/zillow-vue/src/views/Mine/PurchasedItemListings/PurchasedItem/PurchasedItem.vue
+index 1142187..192ebbb 100755
+--- a/zillow-vue/src/views/Mine/PurchasedItemListings/PurchasedItem/PurchasedItem.vue
++++ b/zillow-vue/src/views/Mine/PurchasedItemListings/PurchasedItem/PurchasedItem.vue
+@@ -56,7 +56,7 @@ export default {
+     },
+     methods: {
+         submit() {
+-            this.$api.addComment({
++            this.$api.comment.addComment({
+                 orderId: this.orderData.id,
+                 commentContent: this.commentContent,
+             })
+diff --git a/zillow-vue/src/views/Mine/PurchasedItemListings/PurchasedItemListings.vue b/zillow-vue/src/views/Mine/PurchasedItemListings/PurchasedItemListings.vue
+index 2f311f8..1eb701e 100755
+--- a/zillow-vue/src/views/Mine/PurchasedItemListings/PurchasedItemListings.vue
++++ b/zillow-vue/src/views/Mine/PurchasedItemListings/PurchasedItemListings.vue
+@@ -40,12 +40,12 @@ export default {
+     methods: {
+         async getPurchasedItemsByUserId() {
+             try {
+-                const getOrdersByUserId = await this.$api.getOrdersByUserId({
++                const getOrdersByUserId = await this.$api.order.getOrdersByUserId({
+                     userId: this.user.id,
+                 });
+                 const orderList = getOrdersByUserId.data.data;
+                 const getItemById = orderList.map(async(order) => {
+-                    const itemResponse = await this.$api.getItemById({
++                    const itemResponse = await this.$api.item.getItemById({
+                         id: order.itemId,
+                     });
+                     order.itemDetails = itemResponse.data;
+diff --git a/zillow-vue/src/views/Register/Regiser.vue b/zillow-vue/src/views/Register/Regiser.vue
+index 7eedc0d..7759733 100755
+--- a/zillow-vue/src/views/Register/Regiser.vue
++++ b/zillow-vue/src/views/Register/Regiser.vue
+@@ -97,7 +97,7 @@ export default {
+             this.setRandomAvatar();
+         },
+         register() {
+-            this.$api.register({
++            this.$api.user.register({
+                 id: this.user.id,
+                 username: this.user.username,
+                 password: this.user.password,
+@@ -116,7 +116,7 @@ export default {
+ 
+         uploadFile(file) {
+             var path = this.awsS3ImagePaths.user + this.user.id
+-            this.$api.uploadFile({file: file, path: path})
++            this.$api.file.uploadFile({file: file, path: path})
+             .then((data) => {
+                 if(data.data.status === 200 && data.data.data) {
+                     this.user.avatar = data.data.data;

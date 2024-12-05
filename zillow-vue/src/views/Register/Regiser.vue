@@ -97,7 +97,7 @@ export default {
             this.setRandomAvatar();
         },
         register() {
-            this.$api.register({
+            this.$api.user.register({
                 id: this.user.id,
                 username: this.user.username,
                 password: this.user.password,
@@ -116,7 +116,7 @@ export default {
 
         uploadFile(file) {
             var path = this.awsS3ImagePaths.user + this.user.id
-            this.$api.uploadFile({file: file, path: path})
+            this.$api.file.uploadFile({file: file, path: path})
             .then((data) => {
                 if(data.data.status === 200 && data.data.data) {
                     this.user.avatar = data.data.data;

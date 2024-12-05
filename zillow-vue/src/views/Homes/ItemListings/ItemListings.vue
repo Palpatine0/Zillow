@@ -13,7 +13,6 @@
         <br>
         <br>
         <br>
-        <!--        <LoadMore @getMoreData="getMoreData"/>-->
     </div>
 </template>
 
@@ -45,7 +44,10 @@ export default {
             });
         },
         http() {
-            return this.$api.searchByCity({city: this.currentCity, page: this.page})
+            return this.$api.search.searchByCity({
+                city: this.currentCity,
+                page: this.page
+            })
             .then((data) => {
                 this.searchListData = this.searchListData.concat(data.data.data)
                 return data;

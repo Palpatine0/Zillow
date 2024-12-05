@@ -40,12 +40,12 @@ export default {
     methods: {
         async getPurchasedItemsByUserId() {
             try {
-                const getOrdersByUserId = await this.$api.getOrdersByUserId({
+                const getOrdersByUserId = await this.$api.order.getOrdersByUserId({
                     userId: this.user.id,
                 });
                 const orderList = getOrdersByUserId.data.data;
                 const getItemById = orderList.map(async(order) => {
-                    const itemResponse = await this.$api.getItemById({
+                    const itemResponse = await this.$api.item.getItemById({
                         id: order.itemId,
                     });
                     order.itemDetails = itemResponse.data;

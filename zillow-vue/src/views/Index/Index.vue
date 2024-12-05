@@ -78,7 +78,7 @@ export default {
         }
     },
     created() {
-        this.$api.getBanners()
+        this.$api.file.getBanners()
         .then(data => {
             if(data.data.status == 200) {
                 this.swiperSlides = data.data.results;

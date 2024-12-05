@@ -95,7 +95,7 @@ export default {
             }
         },
         chatLLM(question) {
-            this.$api.chat({
+            this.$api.llm.chat({
                 question: question,
                 chatId: 4
             })

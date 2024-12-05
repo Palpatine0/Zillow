@@ -34,7 +34,7 @@ export default {
         FeaturedView
     },
     mounted() {
-        this.$api.getTrendies({
+        this.$api.trendy.getTrendies({
             city: this.currentCity
         })
         .then(data => {
@@ -43,7 +43,7 @@ export default {
             }
         })
 
-        this.$api.getRecommendations({
+        this.$api.recommendation.getRecommendations({
             city: this.currentCity
         })
         .then(data => {
