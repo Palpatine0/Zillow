@@ -28,21 +28,4 @@ public class ZillowTool {
         return comments;
     }
 
-    @Tool
-    Preference findPreferenceByUserId(String userId) {
-        return llmService.findPreferenceByUserId(userId);
-    }
-
-    @Tool
-    void savePreference(String userId, String description) {
-        Preference preference = new Preference();
-        preference.setUserId(userId);
-        preference.setDescription(description);
-        llmService.savePreference(preference);
-    }
-
-    @Tool
-    void updatePreferenceByUserId(String userId, String description) {
-        llmService.updatePreferenceByUserId(userId, description);
-    }
 }

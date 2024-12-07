@@ -58,6 +58,7 @@
 
 <script>
 import MarkdownIt from 'markdown-it';
+import {mapState} from "vuex";
 
 const md = new MarkdownIt({
     breaks: true, // Allows newlines to break paragraphs
@@ -75,9 +76,7 @@ export default {
         };
     },
     computed: {
-        isMobile() {
-            return window.innerWidth <= 768;
-        },
+        ...mapState(["user"]),
     },
     methods: {
         toggleChat() {
@@ -87,17 +86,18 @@ export default {
             if(this.userInput.trim()) {
                 // Add user's message to the chat
                 this.messages.push({text: this.userInput, sender: 'user'});
-                const question = this.userInput;
+                const query = this.userInput;
                 this.userInput = '';
 
                 // Call the LLM API with the user's question
-                this.chatLLM(question);
+                this.chatLLM(query);
             }
         },
-        chatLLM(question) {
+        chatLLM(query) {
             this.$api.llm.chat({
-                question: question,
-                chatId: 4
+                userId: this.user.id,
+                query: query,
+                chatId: 5
             })
             .then((res) => {
                 this.messages.push({

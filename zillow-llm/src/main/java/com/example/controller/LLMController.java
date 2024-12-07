@@ -1,6 +1,8 @@
 package com.example.controller;
 
 import com.example.llm.ClientChatbotAgent;
+import com.example.llm.UserPreferenceAgent;
+import com.example.service.LLMService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -17,24 +19,14 @@ public class LLMController {
     @Autowired
     private ClientChatbotAgent clientChatbotAgent;
 
+    @Autowired
+    private LLMService llmService;
 
     @GetMapping("/chat")
-    public String chat(String chatId, String question) {
-        System.out.println();System.out.println();
-        System.out.println("************************* CONTROLLER *************************");
-        System.out.println("Received chat request with question: " + question);
-        return clientChatbotAgent.chat(chatId, question);
-    }
-
-    @GetMapping(value = "/chatStream", produces = "text/event-stream")
-    public Flux<String> chatStream(String chatId, String question) {
-        Sinks.Many<String> sink = Sinks.many().unicast().onBackpressureBuffer();
-        clientChatbotAgent.chatStream(chatId, question)
-            .onNext(sink::tryEmitNext)
-            .onComplete(c -> sink.tryEmitComplete())
-            .onError(sink::tryEmitError)
-            .start();
-        return sink.asFlux();
+    public String chat(String userId, String chatId, String query) {
+        llmService.managePreferences(userId, query);
+        String answer = clientChatbotAgent.chat(chatId, query);
+        return answer;
     }
 
 }

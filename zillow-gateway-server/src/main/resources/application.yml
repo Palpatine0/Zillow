@@ -162,7 +162,6 @@ spring:
           uri: lb://zillow-llm
           predicates:
             - Path=/llm/chat
-            - Query=question
         - id: chatStream
           uri: lb://zillow-llm
           predicates:

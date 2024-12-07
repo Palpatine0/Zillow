@@ -2,10 +2,11 @@ package com.example.config;
 
 import com.example.constant.LLMConstant;
 import com.example.llm.ClientChatbotAgent;
+import com.example.llm.UserPreferenceAgent;
 import com.example.service.ZillowTool;
 import dev.langchain4j.data.segment.TextSegment;
-import dev.langchain4j.memory.chat.TokenWindowChatMemory;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
+import dev.langchain4j.memory.chat.TokenWindowChatMemory;
 import dev.langchain4j.model.Tokenizer;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.chat.StreamingChatLanguageModel;
@@ -14,7 +15,6 @@ import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.model.openai.OpenAiChatModelName;
 import dev.langchain4j.model.openai.OpenAiStreamingChatModel;
-import dev.langchain4j.model.openai.OpenAiTokenizer;
 import dev.langchain4j.rag.DefaultRetrievalAugmentor;
 import dev.langchain4j.rag.RetrievalAugmentor;
 import dev.langchain4j.rag.content.retriever.ContentRetriever;
@@ -30,11 +30,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResourceLoader;
 
 @Configuration
-public class ClientChatbotAgentConfig {
+public class LLMConfig {
 
+    // Agents
     @Bean
     ClientChatbotAgent clientChatbotAgent(
-        StreamingChatLanguageModel streamingChatLanguageModel,
         ChatLanguageModel chatLanguageModel,
         Tokenizer tokenizer,
         RetrievalAugmentor retrievalAugmentor,
@@ -43,7 +43,6 @@ public class ClientChatbotAgentConfig {
         return AiServices
             .builder(ClientChatbotAgent.class)
             .chatLanguageModel(chatLanguageModel)
-            .streamingChatLanguageModel(streamingChatLanguageModel)
             .retrievalAugmentor(retrievalAugmentor)
             .chatMemoryProvider(chatId -> TokenWindowChatMemory.builder()
                 .id(chatId)
@@ -54,15 +53,23 @@ public class ClientChatbotAgentConfig {
             .build();
     }
 
-    // Models
     @Bean
-    StreamingChatLanguageModel streamingModel() {
-        return OpenAiStreamingChatModel
-            .builder()
-            .modelName(OpenAiChatModelName.GPT_3_5_TURBO)
-            .apiKey(LLMConstant.OPENAI_API_KEY)
+    UserPreferenceAgent userPreferenceAgent(
+        ChatLanguageModel chatLanguageModel,
+        Tokenizer tokenizer
+    ) {
+        return AiServices
+            .builder(UserPreferenceAgent.class)
+            .chatLanguageModel(chatLanguageModel)
+            .chatMemoryProvider(chatId -> TokenWindowChatMemory.builder()
+                .id(chatId)
+                .maxTokens(LLMConstant.MAX_TOKEN, tokenizer)
+                .build()
+            )
             .build();
     }
+
+    // Models
     @Bean
     ChatLanguageModel chatLanguageModel() {
         return OpenAiChatModel

@@ -23,3 +23,14 @@ management:
     web:
       exposure:
         include: refresh
+
+langchain4j:
+  open-ai.chat-model:
+    log-requests: true
+    log-responses: true
+logging:
+  level:
+    dev:
+      langchain4j: DEBUG
+      ai4j:
+        openai4j: DEBUG

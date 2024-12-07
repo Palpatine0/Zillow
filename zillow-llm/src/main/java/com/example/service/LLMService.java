@@ -6,6 +6,8 @@ import com.example.dao.PreferenceDao;
 import com.example.entity.Item;
 import com.example.entity.Comment;
 import com.example.entity.Preference;
+import com.example.llm.UserPreferenceAgent;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.langchain4j.model.chat.ChatLanguageModel;
@@ -31,6 +33,9 @@ public class LLMService {
 
     @Autowired
     private ChatLanguageModel chatLanguageModel;
+
+    @Autowired
+    private UserPreferenceAgent userPreferenceAgent;
 
     /**
      * Searches items based on a natural language query.
@@ -145,16 +150,39 @@ public class LLMService {
         );
     }
 
-    Preference findPreferenceByUserId(String userId) {
-        return preferenceDao.findPreferenceByUserId(userId);
-    }
 
-    void savePreference(Preference preference) {
-        preferenceDao.savePreference(preference);
-    }
+    public void managePreferences(String userId, String query) {
+        try {
+            // Retrieve existing preference
+            Preference existingPreference = preferenceDao.findPreferenceByUserId(userId);
+            String existingPreferenceDesc = null;
+            if (existingPreference != null) {
+                existingPreferenceDesc = existingPreference.getDescription();
+            }
 
-    void updatePreferenceByUserId(String userId, String description) {
-        preferenceDao.updatePreferenceByUserId(userId, description);
+            // Build JSON payload manually
+            HashMap<String, String> jsonPayloadMap = new HashMap<>();
+            jsonPayloadMap.put("existingPreference", existingPreferenceDesc);
+            jsonPayloadMap.put("query", query);
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            String jsonPayload = objectMapper.writeValueAsString(jsonPayloadMap);
+
+            // Call the agent
+            String updatedPreference = userPreferenceAgent.analyzePreferences(jsonPayload);
+
+            // Handle preference updates
+            if (existingPreference == null && updatedPreference != null) {
+                Preference newPreference = new Preference();
+                newPreference.setUserId(userId);
+                newPreference.setDescription(updatedPreference);
+                preferenceDao.savePreference(newPreference);
+            } else if (updatedPreference != null && !updatedPreference.equals(existingPreferenceDesc)) {
+                preferenceDao.updatePreferenceByUserId(userId, updatedPreference);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 
