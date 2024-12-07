@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.example.entity.Comment;
 import com.example.entity.Item;
+import com.example.entity.Preference;
 import dev.langchain4j.agent.tool.Tool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,23 +18,31 @@ public class ZillowTool {
 
     @Tool
     public List<Item> searchItems(String query) {
-        // System.out.println("[" + LocalDateTime.now() + "] Entering searchItems with query: " + query);
         List<Item> items = llmService.searchItems(query);
-        // System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        // System.out.println(items);
-        // System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        // System.out.println("[" + LocalDateTime.now() + "] Exiting searchItems");
         return items;
     }
 
     @Tool
     public List<Comment> searchComments(String query) {
-        // System.out.println("[" + LocalDateTime.now() + "] Entering searchComments with query: " + query);
         List<Comment> comments = llmService.searchComments(query);
-        // System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        // System.out.println(comments);
-        // System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        // System.out.println("[" + LocalDateTime.now() + "] Exiting searchComments");
         return comments;
+    }
+
+    @Tool
+    Preference findPreferenceByUserId(String userId) {
+        return llmService.findPreferenceByUserId(userId);
+    }
+
+    @Tool
+    void savePreference(String userId, String description) {
+        Preference preference = new Preference();
+        preference.setUserId(userId);
+        preference.setDescription(description);
+        llmService.savePreference(preference);
+    }
+
+    @Tool
+    void updatePreferenceByUserId(String userId, String description) {
+        llmService.updatePreferenceByUserId(userId, description);
     }
 }

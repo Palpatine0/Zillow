@@ -2,8 +2,10 @@ package com.example.service;
 
 import com.example.dao.ItemDao;
 import com.example.dao.CommentDao;
+import com.example.dao.PreferenceDao;
 import com.example.entity.Item;
 import com.example.entity.Comment;
+import com.example.entity.Preference;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.langchain4j.model.chat.ChatLanguageModel;
@@ -23,6 +25,9 @@ public class LLMService {
 
     @Autowired
     private CommentDao commentDao;
+
+    @Autowired
+    private PreferenceDao preferenceDao;
 
     @Autowired
     private ChatLanguageModel chatLanguageModel;
@@ -139,4 +144,18 @@ public class LLMService {
             entityType, validFields, constraints, examples, query
         );
     }
+
+    Preference findPreferenceByUserId(String userId) {
+        return preferenceDao.findPreferenceByUserId(userId);
+    }
+
+    void savePreference(Preference preference) {
+        preferenceDao.savePreference(preference);
+    }
+
+    void updatePreferenceByUserId(String userId, String description) {
+        preferenceDao.updatePreferenceByUserId(userId, description);
+    }
+
+
 }
