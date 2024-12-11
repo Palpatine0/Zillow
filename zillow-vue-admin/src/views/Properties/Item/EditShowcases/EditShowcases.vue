@@ -53,6 +53,7 @@
 import {mapState} from "vuex";
 
 export default {
+    name: "EditShowcases",
     props: [
         'showcasesUpdate_dialog',
         'itemInfo'

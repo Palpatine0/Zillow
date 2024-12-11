@@ -133,27 +133,27 @@
         </v-card>
     </v-dialog>
 
-    <ItemEditStatus :item-info="itemInfo" :statusUpdate_dialog="statusUpdate_dialog"/>
-    <ItemEditInfo :infoUpdate_dialog="infoUpdate_dialog" :item-info="itemInfo"/>
-    <ItemEditShowcases :item-info="itemInfo" :showcasesUpdate_dialog="showcasesUpdate_dialog"/>
+    <EditStatus :item-info="itemInfo" :statusUpdate_dialog="statusUpdate_dialog"/>
+    <EditInfo :infoUpdate_dialog="infoUpdate_dialog" :item-info="itemInfo"/>
+    <EditShowcases :item-info="itemInfo" :showcasesUpdate_dialog="showcasesUpdate_dialog"/>
 
 </v-app>
 </template>
 
 <script>
 import Swiper from "@/components/Swiper.vue";
-import ItemEditStatus from "@/views/Dashboard/Item/Item-editStatus/Item-editStatus.vue";
-import ItemEditInfo from "@/views/Dashboard/Item/Item-editInfo/Item-editInfo.vue";
-import ItemEditShowcases from "@/views/Dashboard/Item/Item-editShowcases/Item-editShowcases.vue";
+import EditStatus from "@/views/Properties/Item/EditStatus/EditStatus.vue";
+import EditInfo from "@/views/Properties/Item/EditInfo/EditInfo.vue";
+import EditShowcases from "@/views/Properties/Item/EditShowcases/EditShowcases.vue";
 import {mapState} from "vuex";
 
 export default {
     name: "Item",
     components: {
         Swiper,
-        ItemEditStatus,
-        ItemEditInfo,
-        ItemEditShowcases
+        EditStatus,
+        EditInfo,
+        EditShowcases
     },
     data() {
         return {
@@ -168,7 +168,24 @@ export default {
             itemDelete_dialog: false
         };
     },
+
+    mounted() {
+        this.getItemById(this.$route.params.id)
+    },
+    computed: {
+        ...mapState(['city']),
+    },
     methods: {
+        getItemById(id){
+            this.$api.item.getItemById({
+                id: id
+            })
+            .then(data => {
+                this.swiperSlides = data.data.imgs;
+                this.itemInfo = data.data;
+                this.title = data.data.title;
+            });
+        },
         commasNumber(x) {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         },
@@ -181,18 +198,6 @@ export default {
             });
         }
     },
-    mounted() {
-        this.$api.item.getItemById({id: this.$route.params.id})
-        .then(data => {
-            this.swiperSlides = data.data.imgs;
-            this.itemInfo = data.data;
-            this.title = data.data.title;
-        });
-    },
-    computed: {
-        ...mapState(['city']),
-    }
-
 }
 </script>
 <style scoped>
@@ -220,8 +225,7 @@ export default {
     bottom: 10px;
 }
 
-a
-.info-body {
+a .info-body {
     color: rgb(0, 0, 0);
     text-transform: none;
     font-family: "Roboto Thin", "Helvetica Neue UltraLight", Tahoma, Geneva, sans-serif !important;

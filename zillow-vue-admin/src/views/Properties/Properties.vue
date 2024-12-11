@@ -1,6 +1,6 @@
 <template>
 <v-app style="padding: 20px">
-    <v-subheader as="h1" class="subheading grey--text">Dashboard</v-subheader>
+    <v-subheader as="h1" class="subheading grey--text">Properties</v-subheader>
     <v-container>
         <v-row style="justify-content: space-between">
             <v-col cols="2">
@@ -13,7 +13,7 @@
 
         <v-row>
             <v-col v-for="(item, index) in searchListData" :key="index" cols="12" lg="4" md="6">
-                <v-card :href="item.link" class="mx-auto" max-width="400">
+                <v-card class="mx-auto" max-width="400" @click="itemRedirect(item.id)">
                     <v-img :src="awsS3RequestUrl+item.imgs[0]" class="white--text align-end" height="200px">
                         <v-card-title>{{ getHeadAddr(item.title) }}</v-card-title>
                     </v-img>
@@ -41,7 +41,7 @@
 
     </v-container>
 
-    <DashboardAddItem class="mt-5"></DashboardAddItem>
+    <AddItem class="mt-5"></AddItem>
 
 
 </v-app>
@@ -49,20 +49,40 @@
 
 <script>
 import {mapState} from "vuex";
-import DashboardAddItem from "@/views/Dashboard/Dashboard-AddItem/Dashboard-AddItem.vue";
+import AddItem from "@/views/Properties/AddItem/AddItem.vue";
 
 export default {
+    name: "Properties",
     components: {
-        DashboardAddItem
+        AddItem
     },
     data() {
         return {
-
             // page vars
             page: 1,
             pagination: 0,
             totalCount_item: 0,
             searchListData: [],
+        }
+    },
+
+    mounted() {
+        this.adminGetItemByCity();
+    },
+    computed: {
+        ...mapState(['city']),
+        ...mapState(['cities']),
+        ...mapState(['awsS3RequestUrl']),
+        selectedCity: {
+            get() {
+                console.log("Getting city:", this.$store.state.city);
+                return this.$store.state.city;
+            },
+            set(value) {
+                console.log("Setting city to:", value);
+                this.$store.commit('setCity', value);
+                this.adminGetItemByCity();
+            }
         }
     },
     methods: {
@@ -97,28 +117,12 @@ export default {
             return parts[0]; // Return the first part before the comma
         },
 
-    },
-
-    mounted() {
-        this.adminGetItemByCity();
-    },
-    computed: {
-        ...mapState(['city']),
-        ...mapState(['cities']),
-        ...mapState(['awsS3RequestUrl']),
-        selectedCity: {
-            get() {
-                console.log("Getting city:", this.$store.state.city);
-                return this.$store.state.city;
-            },
-            set(value) {
-                console.log("Setting city to:", value);
-                this.$store.commit('setCity', value);
-                this.adminGetItemByCity();
-            }
+        // Redirects
+        itemRedirect(id) {
+            this.$router.push('/item/' + id);
         }
 
-    }
+    },
 
 }
 </script>

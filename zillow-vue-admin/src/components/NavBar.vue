@@ -12,8 +12,8 @@
 
     <v-row align="center" justify="center">
         <v-list width="300">
-            <v-list-item-group color="grey lighten-5">
-                <v-list-item v-for="(item, i) in links" :key="i" link @click="navigateTo(item.route)">
+            <v-list-item-group>
+                <v-list-item v-for="(item, i) in links" :key="i" link @click="navigateTo(item.route)" >
                     <v-list-item-icon>
                         <v-icon size="16" v-text="item.icon"></v-icon>
                     </v-list-item-icon>
@@ -33,17 +33,24 @@ import {mapState} from 'vuex'
 
 export default {
     data() {
-        return {};
+        return {
+            links: [
+                {icon: 'fa-lg fas fa-home', text: 'Properties', route: '/properties'},
+                {icon: 'fa-lg fa-solid fa-user', text: 'Users', route: '/users'},
+            ],
+        };
+    },
+
+    computed: {
+        ...mapState(['drawer']),
+        ...mapState(['links'])
     },
     methods: {
         navigateTo(route) {
             this.$router.push(route);
         }
     },
-    computed: {
-        ...mapState(['drawer']),
-        ...mapState(['links'])
-    },
+
 
 };
 </script>

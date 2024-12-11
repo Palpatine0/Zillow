@@ -77,6 +77,7 @@
 
 <script>
 export default {
+    name: "EditInfo",
     props: ['infoUpdate_dialog', 'itemInfo'],
     computed: {
         computedTitle: {

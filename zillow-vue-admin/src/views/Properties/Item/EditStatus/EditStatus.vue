@@ -41,6 +41,7 @@
 
 <script>
 export default {
+    name: "EditStatus",
     props: ['statusUpdate_dialog', 'itemInfo'],
     computed: {
         computedRecommendation: {
