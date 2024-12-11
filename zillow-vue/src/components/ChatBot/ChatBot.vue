@@ -37,6 +37,10 @@
                     <span v-else v-html="renderMarkdown(message.text)"></span>
                 </div>
             </div>
+            <div v-if="loading" class="loading" style="font-size: 14px;color: #999999">
+                <span style="position: relative;top: 1.5px;margin-right: 4px;">Generating response</span>
+                <v-icon  size="14" color="info">fas fa-spinner fa-pulse</v-icon>
+            </div>
         </div>
         <div class="chat-footer">
             <v-text-field
@@ -61,7 +65,7 @@ import MarkdownIt from 'markdown-it';
 import {mapState} from "vuex";
 
 const md = new MarkdownIt({
-    breaks: true, // Allows newlines to break paragraphs
+    breaks: true,
 });
 
 export default {
@@ -73,6 +77,9 @@ export default {
             messages: [
                 {text: 'Hi there! How can I help you today?', sender: 'bot'},
             ],
+
+            // config
+            loading: false
         };
     },
     computed: {
@@ -84,6 +91,7 @@ export default {
         },
         sendMessage() {
             if(this.userInput.trim()) {
+                this.loading = !this.loading
                 // Add user's message to the chat
                 this.messages.push({text: this.userInput, sender: 'user'});
                 const query = this.userInput;
@@ -100,12 +108,14 @@ export default {
                 chatId: 5
             })
             .then((res) => {
+                this.loading = !this.loading
                 this.messages.push({
                     text: res.data,
                     sender: 'bot',
                 });
             })
             .catch((error) => {
+                this.loading = !this.loading
                 console.error('Error in chatLLM:', error);
                 this.messages.push({
                     text: 'Sorry, there was an error processing your request.',
