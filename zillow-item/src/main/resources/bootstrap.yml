@@ -1,10 +1,11 @@
 server:
   port: 9004
+
 spring:
   application:
     name: zillow-item
   profiles:
-    active: bannerNginx,mongodb,redis, fdfsBasePathNginx
+    active: mongodb, redis
   cloud:
     config:
       uri: http://localhost:9010
@@ -12,11 +13,7 @@ spring:
       name: zillow
       profile: dev
 
-logging:
-  pattern:
-    console: '%d{MM/dd HH:mm:ss.SSS} %clr(%-5level) ---  [%-15thread] %cyan(%-50logger{50}):%msg%n'
-
-    #resilience4j config
+    #resilience4j circuitbreaker
     resilience4j.circuitbreaker:
       configs:
         default:
@@ -58,8 +55,6 @@ logging:
           failureRateThreshold: 50
           eventConsumerBufferSize: 10
           # recordFailurePredicate: com.zillow.detail.exception.RecordFailurePredicate
-
-
     #ratelimiter
     resilience4j.ratelimiter:
       configs:
@@ -77,3 +72,6 @@ logging:
           limitRefreshPeriod: 1s
           timeoutDuration: 3s
 
+logging:
+  pattern:
+    console: '%d{MM/dd HH:mm:ss.SSS} %clr(%-5level) ---  [%-15thread] %cyan(%-50logger{50}):%msg%n'

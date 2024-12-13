@@ -61,6 +61,7 @@
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
 
+        <!--this project-->
         <dependency>
             <groupId>com.example</groupId>
             <artifactId>zillow-common</artifactId>
@@ -90,22 +91,13 @@
             <artifactId>gson</artifactId>
             <version>2.9.0</version>
         </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>io.github.cdimascio</groupId>
             <artifactId>java-dotenv</artifactId>
             <version>5.2.2</version>
         </dependency>
+
 
         <!-- llm -->
         <dependency>
@@ -143,12 +135,12 @@
             <artifactId>langchain4j-document-parser-apache-poi</artifactId>
             <version>${langchain.version}</version>
         </dependency>
-
         <dependency>
             <groupId>dev.langchain4j</groupId>
             <artifactId>langchain4j-web-search-engine-tavily</artifactId>
             <version>${langchain.version}</version>
         </dependency>
+
 
     </dependencies>
 

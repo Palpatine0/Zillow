@@ -64,6 +64,13 @@ const api = {
         getOrder(params) {
             return axios.get(base.baseUrl + base.order.getOrders + "?" + qs.stringify(params));
         },
+    },
+
+    // llm
+    llm: {
+        getConstructionStatValues(params) {
+            return axios.get(base.baseUrl + base.llm.getConstructionStatValues + "?" + qs.stringify(params));
+        }
     }
 
 }

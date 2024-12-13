@@ -10,7 +10,6 @@
                 <v-pagination v-model="page" :length="pagination" class="float-right" color="#156ff6" @input="adminGetItemByCity"></v-pagination>
             </div>
         </v-row>
-
         <v-row>
             <v-col v-for="(item, index) in searchListData" :key="index" cols="12" lg="4" md="6">
                 <v-card class="mx-auto" max-width="400" @click="itemRedirect(item.id)">

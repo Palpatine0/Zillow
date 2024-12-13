@@ -18,6 +18,11 @@ export default new Vuex.Store({
             'Cape Coral',
             'Beverly Hills'
         ],
+        links: [
+            {icon: 'fa-solid fa-layer-group', text: 'Dashboard', route: '/'},
+            {icon: 'fas fa-laptop-house', text: 'Properties', route: '/properties'},
+            {icon: 'fa-lg fa-solid fa-user', text: 'Users', route: '/users'},
+        ]
     },
     mutations: {
         toggleDrawer(state) {

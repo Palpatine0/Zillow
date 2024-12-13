@@ -4,7 +4,7 @@ spring:
   application:
     name: zillow-trendy
   profiles:
-    active: mongodb,bannerNginx
+    active: mongodb
   cloud:
     config:
       uri: http://localhost:9010

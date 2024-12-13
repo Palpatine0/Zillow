@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: mongodb,fdfsBasePathNginx
+    active: mongodb
   application:
     name: zillow-search
   elasticsearch:

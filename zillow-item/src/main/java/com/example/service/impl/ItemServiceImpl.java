@@ -7,7 +7,6 @@ import com.example.vo.BaseResult;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -25,7 +24,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     @CircuitBreaker(name = BACKEND_B)
     @RateLimiter(name = BACKEND_B)
-    @Cacheable(cacheNames = "com:example", key = "'getDetails('+#id+')'")
+    @Cacheable(cacheNames = "item", key = "'item('+#id+')'")
     public Item getItemById(String id) {
         Item items = itemDao.findItemById(id);
         ArrayList<String> newImgs = new ArrayList<>();
@@ -75,7 +74,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    @CacheEvict(cacheNames = "com:example", key = "'getDetails('+#id+')'")
+    @CacheEvict(cacheNames = "item", key = "'id('+#id+')'")
     public BaseResult updateItemStatusById(String id, Boolean isRented, Boolean recommendation) {
         try {
             itemDao.updateItemStatusById(id, isRented, recommendation);
@@ -87,7 +86,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    @CacheEvict(cacheNames = "com:example", key = "'getDetails('+#id+')'")
+    @CacheEvict(cacheNames = "item", key = "'id('+#id+')'")
     public BaseResult updateItemInfoById(String id, Item item) {
         try {
             itemDao.updateItemInfoById(id, item);
@@ -99,7 +98,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    @CacheEvict(cacheNames = "com:example", key = "'getDetails('+#id+')'")
+    @CacheEvict(cacheNames = "item", key = "'id('+#id+')'")
     public BaseResult updateItemShowcasesById(String id, ArrayList<String> imgs) {
         try {
             BaseResult ok = BaseResult.ok();
@@ -111,18 +110,6 @@ public class ItemServiceImpl implements ItemService {
             BaseResult result = BaseResult.error();
             result.setMsg("Showcases update successfully.");
             return BaseResult.error("Showcases update failed");
-        }   
-    }
-
-    private List<Item> imgUrlAppend(List<Item> items) {
-        for (Item item : items) {
-            List<String> newImgs = new ArrayList<>();
-            for (String img : item.getImgs()) {
-                newImgs.add(img);
-            }
-            item.setImgs(newImgs);
         }
-        return items;
     }
-
 }

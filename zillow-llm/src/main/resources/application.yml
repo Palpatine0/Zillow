@@ -5,7 +5,7 @@ spring:
   application:
     name: zillow-llm
   profiles:
-    active: mongodb
+    active: mongodb, redis
   cloud:
     config:
       uri: http://localhost:9010
@@ -28,7 +28,10 @@ langchain4j:
   open-ai.chat-model:
     log-requests: true
     log-responses: true
+
 logging:
+  pattern:
+    console: '%d{MM/dd HH:mm:ss.SSS} %clr(%-5level) ---  [%-15thread] %cyan(%-50logger{50}):%msg%n'
   level:
     dev:
       langchain4j: DEBUG

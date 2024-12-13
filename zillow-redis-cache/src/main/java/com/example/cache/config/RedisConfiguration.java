@@ -12,7 +12,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import java.time.Duration;
 
 public abstract class RedisConfiguration {
-    // to operate redis, other modules have to extend this class, call the redisTemplate below
+    // To operate redis, other modules have to extend this class, call the redisTemplate below
     protected RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
 
@@ -23,7 +23,7 @@ public abstract class RedisConfiguration {
         return redisTemplate;
     }
 
-    // serializes the data before storing it to redis
+    // Serializes the data before storing it to redis
     protected CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
         org.springframework.data.redis.cache.RedisCacheConfiguration configuration =
                 org.springframework.data.redis.cache.RedisCacheConfiguration.defaultCacheConfig();

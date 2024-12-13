@@ -7,7 +7,6 @@ import com.example.entity.Item;
 import com.example.entity.Comment;
 import com.example.entity.Preference;
 import com.example.llm.UserPreferenceAgent;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.langchain4j.model.chat.ChatLanguageModel;
@@ -20,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class LLMService {
+public class ZillowService {
 
     @Autowired
     private ItemDao itemDao;

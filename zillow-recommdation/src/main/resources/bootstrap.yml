@@ -5,7 +5,7 @@ spring:
   application:
     name: zillow-recommendation
   profiles:
-    active: bannerNginx,mongodb
+    active: mongodb
   cloud:
     config:
       uri: http://localhost:9010

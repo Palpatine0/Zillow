@@ -15,12 +15,12 @@ import java.io.Serializable;
 import java.time.Duration;
 
 @Configuration
-public class ItemRedisConfiguration extends RedisConfiguration implements Serializable {
+public class CensusRedisConfiguration extends RedisConfiguration implements Serializable {
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
         org.springframework.data.redis.cache.RedisCacheConfiguration configuration = org.springframework.data.redis.cache.RedisCacheConfiguration.defaultCacheConfig();
         configuration = configuration
-            .entryTtl(Duration.ofMinutes(30L))
+            .entryTtl(Duration.ofDays(1L))
             .disableCachingNullValues()
             .serializeKeysWith(
                 RedisSerializationContext

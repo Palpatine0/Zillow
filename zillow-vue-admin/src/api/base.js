@@ -29,6 +29,11 @@ const base = {
     // order
     order:{
         getOrders: "/order/getOrders"
+    },
+
+    // llm
+    llm:{
+        getConstructionStatValues: "/llm/getConstructionStatValues",
     }
 }
 
