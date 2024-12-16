@@ -2,19 +2,17 @@ package com.example.config;
 
 import com.example.constant.LLMConstant;
 import com.example.llm.ClientChatbotAgent;
+import com.example.llm.DataSummaryAgent;
 import com.example.llm.UserPreferenceAgent;
 import com.example.service.ZillowTool;
 import dev.langchain4j.data.segment.TextSegment;
-import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.memory.chat.TokenWindowChatMemory;
 import dev.langchain4j.model.Tokenizer;
 import dev.langchain4j.model.chat.ChatLanguageModel;
-import dev.langchain4j.model.chat.StreamingChatLanguageModel;
 import dev.langchain4j.model.embedding.AllMiniLmL6V2EmbeddingModel;
 import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.model.openai.OpenAiChatModelName;
-import dev.langchain4j.model.openai.OpenAiStreamingChatModel;
 import dev.langchain4j.rag.DefaultRetrievalAugmentor;
 import dev.langchain4j.rag.RetrievalAugmentor;
 import dev.langchain4j.rag.content.retriever.ContentRetriever;
@@ -30,7 +28,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResourceLoader;
 
 @Configuration
-public class LLMConfig {
+public class LLMConfiguration {
 
     // Agents
     @Bean
@@ -68,6 +66,23 @@ public class LLMConfig {
             )
             .build();
     }
+
+    @Bean
+    DataSummaryAgent summaryAgent(
+        ChatLanguageModel chatLanguageModel,
+        Tokenizer tokenizer
+    ) {
+        return AiServices
+            .builder(DataSummaryAgent.class)
+            .chatLanguageModel(chatLanguageModel)
+            .chatMemoryProvider(chatId -> TokenWindowChatMemory.builder()
+                .id(chatId)
+                .maxTokens(LLMConstant.MAX_TOKEN, tokenizer)
+                .build()
+            )
+            .build();
+    }
+
 
     // Models
     @Bean

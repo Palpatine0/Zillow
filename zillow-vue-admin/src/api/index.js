@@ -68,8 +68,20 @@ const api = {
 
     // llm
     llm: {
-        getConstructionStatValues(params) {
-            return axios.get(base.baseUrl + base.llm.getConstructionStatValues + "?" + qs.stringify(params));
+        getNewConstructionStatValues(params) {
+            return axios.get(base.baseUrl + base.llm.getNewConstructionStatValues);
+        },
+        getNewConstructionStatSummary(){
+            return axios.get(base.baseUrl + base.llm.getNewConstructionStatSummary);
+        },
+        getHousingVacanciesStatSummary(){
+            return axios.get(base.baseUrl + base.llm.getHousingVacanciesStatSummary);
+        },
+        getHomeownershipStatSummary(){
+            return axios.get(base.baseUrl + base.llm.getHomeownershipStatSummary);
+        },
+        getEstimatedRentedUnitsStatSummary(){
+            return axios.get(base.baseUrl + base.llm.getEstimatedRentedUnitsStatSummary);
         }
     }
 

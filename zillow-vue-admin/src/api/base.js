@@ -33,7 +33,11 @@ const base = {
 
     // llm
     llm:{
-        getConstructionStatValues: "/llm/getConstructionStatValues",
+        getNewConstructionStatValues: "/llm/getNewConstructionStatValues",
+        getNewConstructionStatSummary: "/llm/getNewConstructionStatSummary",
+        getHousingVacanciesStatSummary: "/llm/getHousingVacanciesStatSummary",
+        getHomeownershipStatSummary: "/llm/getHomeownershipStatSummary",
+        getEstimatedRentedUnitsStatSummary: "/llm/getEstimatedRentedUnitsStatSummary",
     }
 }
 

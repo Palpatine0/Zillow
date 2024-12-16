@@ -15,8 +15,7 @@ public class LLMConstant {
 
     // Census
     public static final String CENSUS_DATA_API_KEY = dotenv.get("CENSUS_DATA_API_KEY");
-    public static final String NEW_RESID_CONST_STAT_URL = "https://api.census.gov/data/timeseries/eits/resconst?get=data_type_code,category_code,time_slot_id,seasonally_adj,cell_value&time=2024&key=";
-
-
+    public static final String NEW_RESID_CONST_STAT_URL = "https://api.census.gov/data/timeseries/eits/resconst?get=data_type_code,category_code,time_slot_id,seasonally_adj,cell_value,error_data&time=2024&key=";
+    public static final String HOMEOWNERSHIP_STAT_URL = "https://api.census.gov/data/timeseries/eits/hv.html?get=data_type_code,category_code,time_slot_id,seasonally_adj,cell_value,error_data&time=2024&key=";
 
 }

@@ -162,10 +162,26 @@ spring:
           uri: lb://zillow-llm
           predicates:
             - Path=/llm/chat
-        - id: chat
+        - id: getNewConstructionStatValues
           uri: lb://zillow-llm
           predicates:
-            - Path=/llm/getConstructionStatValues
+            - Path=/llm/getNewConstructionStatValues
+        - id: getNewConstructionStatSummary
+          uri: lb://zillow-llm
+          predicates:
+            - Path=/llm/getNewConstructionStatSummary
+        - id: getHousingVacanciesStatSummary
+          uri: lb://zillow-llm
+          predicates:
+            - Path=/llm/getHousingVacanciesStatSummary
+        - id: getHomeownershipStatSummary
+          uri: lb://zillow-llm
+          predicates:
+            - Path=/llm/getHomeownershipStatSummary
+        - id: getEstimatedRentedUnitsStatSummary
+          uri: lb://zillow-llm
+          predicates:
+            - Path=/llm/getEstimatedRentedUnitsStatSummary
 
     config:
       uri: http://localhost:9010

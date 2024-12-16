@@ -31,9 +31,29 @@ public class LLMController {
     }
 
     // Admin stat board
-    @GetMapping("/getConstructionStatValues")
-    public List<Double> getConstructionStatValues() {
-        return censusService.getConstructionStatValues();
+    @GetMapping("/getNewConstructionStatValues")
+    public List<Double> getNewConstructionStatValues() {
+        return censusService.getNewConstructionStatValues();
+    }
+
+    @GetMapping("/getNewConstructionStatSummary")
+    public String getNewConstructionStatSummary() {
+        return censusService.getNewConstructionStatSummary();
+    }
+
+    @GetMapping("/getHousingVacanciesStatSummary")
+    public String getHousingVacanciesStatSummary() {
+        return censusService.getHousingVacanciesStatSummary();
+    }
+
+    @GetMapping("/getHomeownershipStatSummary")
+    public String getHomeownershipStatSummary() {
+        return censusService.getHomeownershipStatSummary();
+    }
+
+    @GetMapping("/getEstimatedRentedUnitsStatSummary")
+    public String getEstimatedRentedUnitsStatSummary() {
+        return censusService.getEstimatedRentedUnitsStatSummary();
     }
 
 }
