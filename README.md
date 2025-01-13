@@ -59,8 +59,15 @@ cd Zillow
 ```bash
 mvn clean install
 ```
+#### Consul Deployment
 
-#### Redis Deployment (Mac)
+1. Create container
+
+```bash
+docker run -d -p 8500:8500 -p 8600:8600/udp --name=dev_zillow_svc_consul consul:1.14.0
+```
+
+#### Redis Deployment
 
 1. Create container
 
@@ -68,7 +75,7 @@ mvn clean install
 docker run -d -p 6379:6379 --name dev_zillow_svc_redis redis:7.2-rc2 --requirepass root
 ```
 
-#### MongoDB Deployment (Mac)
+#### MongoDB Deployment
 
 1. Create container
 
@@ -98,8 +105,8 @@ db.auth("root", "root");
 
 #### Core Services
 
-- **Eureka server:** 8761
-- **Config server:** 9020
+- **Consul server:** 8500
+- **Config server:** 3355
 - **Gateway server:** 4006
 
 #### Microservices
@@ -120,6 +127,11 @@ db.auth("root", "root");
 
 - **MongoDB:** 27017
 - **Redis:** 6379
+
+#### UI
+
+- **Client:** 3010
+- **Admin Dashboard:** 3011
 
 ## Contributing
 

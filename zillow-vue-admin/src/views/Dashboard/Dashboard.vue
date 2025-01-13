@@ -37,7 +37,7 @@
             </v-container>
         </v-flex>
         <v-flex md9>
-            <v-container class="white" style="margin-top: 12px;padding: 10px 30px 40px 30px;border-radius: 40px 0 0 40px">
+            <v-container class="white" style="margin-top: 12px;padding: 10px 30px 40px 30px;border-radius: 40px">
                 <v-row>
                     <v-col cols="12" md="4">
                         <h2 class="mt-5" :style="{ color: $vuetify.theme.themes.light.secondary, fontWeight: 'bold' }">Real Estate Market Pulse</h2>
@@ -100,7 +100,7 @@
                     </v-col>
                 </v-row>
             </v-container>
-            <v-container class="white" style="margin-top: 12px;padding: 10px 30px 60px 30px;border-radius: 40px 0 0 40px;">
+            <v-container class="white" style="margin-top: 12px;padding: 10px 30px 60px 30px;border-radius: 40px">
                 <v-row>
                     <v-col cols="12" md="12">
                         <h2 class="mt-5" :style="{ color: $vuetify.theme.themes.light.secondary, fontWeight: 'bold' }">New Residential Construction This Year</h2>

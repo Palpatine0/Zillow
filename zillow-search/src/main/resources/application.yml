@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: mongodb
+    active: mongodb, itemCacheName
   application:
     name: zillow-search
   elasticsearch:

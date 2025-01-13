@@ -8,15 +8,7 @@ spring:
     active: mongodb
   cloud:
     config:
-      uri: http://localhost:9010
+      uri: http://localhost:3355
       label: master
       name: zillow
       profile: dev
-
-zillow:
-  fdfsBasePath:
-    nginx:
-      prefix: http://111.231.19.137:8888/
-  banner:
-    nginx:
-      prefix: http://111.231.19.137:8888/

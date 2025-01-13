@@ -1,5 +1,10 @@
 # MongoDB Configure Guide
 
+## Create Collection
+```bash
+db.createCollection("zillow")
+```
+
 ### Item
 
 ```bash

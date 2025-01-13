@@ -22,7 +22,6 @@ public class SearchServiceImpl implements SearchService {
     @Autowired
     private SearchDao searchDao;
 
-    @Value("${zillow.fdfsBasePath.nginx.prefix}")
     private String nginxPrefix;
 
 
@@ -48,7 +47,7 @@ public class SearchServiceImpl implements SearchService {
             item4ES.setTitle(item.getTitle());
             item4ES.setCity(item.getCity());
             item4ES.setAptType(item.getHouseType());
-            item4ES.setImgs(nginxPrefix + item.getImgs());
+            item4ES.setImgs(item.getImgs().get(0));
             item4ES.setPrice(String.valueOf(item.getPrice()));
             item4ES.setRentType(item.getRentType());
             arrayList.add(item4ES);

@@ -1,10 +1,19 @@
 server:
-  port: 9020
+  port: 3355
 
 spring:
   application:
     name: zillow-config-server
   cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+        prefer-ip-address: true
+        health-check-path: /actuator/health
+        health-check-interval: 10s
+
     config:
       server:
         git:

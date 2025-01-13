@@ -29,10 +29,6 @@ public class CommentServiceImpl implements CommentService {
     private UserDao userDao;
 
 
-    @Value("${zillow.fdfsBasePath.nginx.prefix}")
-    private String nginxPrefix;
-
-
     @Override
     public BaseResult addComment(String orderId, String commentContent) {
         if (orderId == null) {

@@ -8,10 +8,11 @@ spring:
     active: mongodb
   cloud:
     config:
-      uri: http://localhost:9010
+      uri: http://localhost:3355
       label: master
       name: zillow
       profile: dev
+
   servlet:
     multipart:
       enabled: true

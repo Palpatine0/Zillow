@@ -72,12 +72,6 @@
             </dependency>
 
             <dependency>
-                <groupId>cn.bestwu</groupId>
-                <artifactId>fastdfs-client-java</artifactId>
-                <version>1.27</version>
-            </dependency>
-
-            <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang-version}</version>
