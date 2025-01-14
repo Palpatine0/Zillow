@@ -11,7 +11,7 @@ spring:
       uri: http://zillow-config-server:3355
       label: master
       name: zillow
-      profile: dev
+      profile: prd
   servlet:
     multipart:
       enabled: true
