@@ -7,6 +7,11 @@ spring:
   profiles:
     active: itemCacheName,redis,rabbit
   cloud:
+    config:
+      uri: http://zillow-config-server:3355
+      label: master
+      name: zillow
+      profile: dev
 
     stream:
       bindings:
