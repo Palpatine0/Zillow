@@ -7,7 +7,7 @@ spring:
   application:
     name: zillow-search
   elasticsearch:
-    uris: http://111.231.19.137:9200
+    uris: http://3.82.238.126:9200
 
 zillow:
   search:

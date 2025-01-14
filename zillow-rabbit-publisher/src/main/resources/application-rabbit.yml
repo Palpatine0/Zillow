@@ -1,6 +1,6 @@
 spring:
   rabbitmq:
-    # host: 3.82.238.126
-    host: localhost
+    host: 3.82.238.126
+    # host: localhost
     username: admin
     password: admin

@@ -55,7 +55,7 @@ export default {
             imagePath = imagePath.trim();
 
             if (imagePath) {
-                const imageUrl = `http://111.231.19.137:8888/${imagePath}`;
+                const imageUrl = `http://3.82.238.126:8888/${imagePath}`;
                 // console.log("Generated image URL:", imageUrl);
                 return imageUrl;
             } else {

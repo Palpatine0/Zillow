@@ -12,7 +12,6 @@
     <description>Zillow</description>
 
     <modules>
-        <module>zillow-eureka-server</module>
         <module>zillow-config-server</module>
         <module>zillow-gateway-server</module>
 
