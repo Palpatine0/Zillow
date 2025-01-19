@@ -1,6 +1,7 @@
 spring:
-  redis:
-    host: percival.services
-    # host: localhost
-    port: 6379
-    password: root
+  cloud:
+    config:
+      uri: http://zillow-config-server:3355
+      label: master
+      name: redis
+      profile: prd
