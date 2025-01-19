@@ -20,4 +20,4 @@ spring:
           uri: https://github.com/Palpatine0/Zillow.git
           search-paths:
             - zillow-config
-      label: master
+          default-label: master
