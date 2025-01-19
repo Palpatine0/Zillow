@@ -22,8 +22,7 @@ spring:
         definition: zillowMessenger
 
   rabbitmq:
-    host: 3.82.238.126
+    host: percival.services
     # host: localhost
     username: admin
     password: admin
-
