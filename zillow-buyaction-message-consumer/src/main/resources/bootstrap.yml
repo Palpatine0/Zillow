@@ -20,9 +20,3 @@ spring:
           destination: zillowTopic
       function:
         definition: zillowMessenger
-
-  rabbitmq:
-    host: percival.services
-    # host: localhost
-    username: admin
-    password: admin
