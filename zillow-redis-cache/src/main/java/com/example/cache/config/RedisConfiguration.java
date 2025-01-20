@@ -25,15 +25,13 @@ public abstract class RedisConfiguration {
 
     // Serializes the data before storing it to redis
     protected CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
-        org.springframework.data.redis.cache.RedisCacheConfiguration configuration =
-                org.springframework.data.redis.cache.RedisCacheConfiguration.defaultCacheConfig();
+        org.springframework.data.redis.cache.RedisCacheConfiguration configuration = org.springframework.data.redis.cache.RedisCacheConfiguration.defaultCacheConfig();
 
         configuration = configuration.entryTtl(Duration.ofMinutes(30L))
-                .disableCachingNullValues()
-                .serializeKeysWith(
-                        RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
-                .serializeValuesWith(
-                        RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
+            .disableCachingNullValues()
+            .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
+            .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
+
         return RedisCacheManager.builder(RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory)).cacheDefaults(configuration).build();
     }
 }

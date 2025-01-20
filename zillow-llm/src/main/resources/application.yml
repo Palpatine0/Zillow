@@ -4,8 +4,6 @@ server:
 spring:
   application:
     name: zillow-llm
-  profiles:
-    active: mongodb, redis
   cloud:
     config:
       uri: http://zillow-config-server:3355

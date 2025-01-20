@@ -9,6 +9,25 @@ spring:
         health-check-path: /actuator/health
         health-check-interval: 10s
 
+  data:
+    mongodb:
+      host: percival.services
+      port: 27017
+      username: root
+      password: root
+      database: zillow
+      authentication-database: admin
+
+  redis:
+    host: percival.services
+    port: 6379
+    password: root
+
+  rabbitmq:
+    host: percival.services
+    username: admin
+    password: admin
+
 logging:
   pattern:
     console: '%d{MM/dd HH:mm:ss.SSS} %clr(%-5level) ---  [%-15thread] %cyan(%-50logger{50}):%msg%n'
