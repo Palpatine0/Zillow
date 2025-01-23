@@ -9,7 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>zillow-recommdation</artifactId>
+    <artifactId>zillow-recommendation</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
