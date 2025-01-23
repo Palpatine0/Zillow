@@ -4,6 +4,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: prd_zillow_web_vue-cli
+    container_name: prd_zillow_web_vue-admin
     ports:
       - 3011:80
