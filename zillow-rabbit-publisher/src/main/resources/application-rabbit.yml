@@ -1,6 +1,5 @@
 spring:
   rabbitmq:
     host: percival.services
-    # host: localhost
     username: admin
     password: admin

@@ -184,7 +184,7 @@ spring:
             - Path=/llm/getEstimatedRentedUnitsStatSummary
 
     config:
-      uri: http://zillow-config-server:3355
+      uri: http://percival.services:3355
       label: master
       name: zillow
       profile: prd

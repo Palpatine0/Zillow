@@ -6,15 +6,11 @@ spring:
     name: zillow-item
   cloud:
     config:
-      uri: http://zillow-config-server:3355
+      uri: http://percival.services:3355
       label: master
       name: zillow
       profile: prd
 
-  redis:
-    host: localhost
-    port: 6379
-    password: root
 
     #resilience4j circuitbreaker
     resilience4j.circuitbreaker:
