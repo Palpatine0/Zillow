@@ -1,7 +1,7 @@
 spring:
   cloud:
     consul:
-      host: localhost
+      host: percival.services
       port: 8500
       discovery:
         service-name: ${spring.application.name}
@@ -11,7 +11,7 @@ spring:
 
   data:
     mongodb:
-      host: localhost
+      host: percival.services
       port: 27017
       username: root
       password: root
@@ -19,12 +19,12 @@ spring:
       authentication-database: admin
 
   redis:
-    host: localhost
+    host: percival.services
     port: 6379
     password: root
 
   rabbitmq:
-    host: localhost
+    host: percival.services
     username: admin
     password: admin
 

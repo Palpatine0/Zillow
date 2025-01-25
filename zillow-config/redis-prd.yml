@@ -1,0 +1,5 @@
+spring:
+  redis:
+    host: percival.services
+    port: 6379
+    password: root

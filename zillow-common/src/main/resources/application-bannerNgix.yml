@@ -1,4 +1,0 @@
-zillow:
-  banner:
-    nginx:
-      prefix: http://111.231.19.137:8888/
