@@ -3,7 +3,7 @@
 <div>
     <v-row>
         <v-col>
-            <v-img :src="awsS3RequestUrl+orderData.itemDetails.img" class="white--text align-end" :height="!isMobile?'300px':'200px'" style="border-radius: 15px"></v-img>
+            <v-img :src="awsS3RequestUrl+orderData.itemDetails.imgs[0]" class="white--text align-end" :height="!isMobile?'300px':'200px'" style="border-radius: 15px"></v-img>
         </v-col>
         <v-col>
             <v-row>
@@ -53,6 +53,9 @@ export default {
             type: Object,
             required: true
         }
+    },
+    mounted() {
+        console.log(this.orderData)
     },
     methods: {
         submit() {
