@@ -85,8 +85,7 @@ public class ZillowService {
         // Convert JSON string to Map
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            return objectMapper.readValue(jsonCriteria, new TypeReference<Map<String, Object>>() {
-            });
+            return objectMapper.readValue(jsonCriteria, new TypeReference<Map<String, Object>>() {});
         } catch (IOException e) {
             e.printStackTrace();
             return new HashMap<>();

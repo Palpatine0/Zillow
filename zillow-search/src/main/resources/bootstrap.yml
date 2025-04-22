@@ -8,8 +8,13 @@ spring:
     name: zillow-search
   elasticsearch:
     uris: http://percival.services:9200
+  cloud:
+    config:
+      uri: http://percival.services:3355
+      label: master
+      name: zillow
+      profile: prd
 
 zillow:
   search:
-    init:
-      enabled: true
+    item-index-name: "zillow-item"

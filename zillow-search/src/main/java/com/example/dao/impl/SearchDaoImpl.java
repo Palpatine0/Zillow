@@ -3,6 +3,10 @@ package com.example.dao.impl;
 
 import com.example.dao.SearchDao;
 import com.example.entity.Item4ES;
+import org.elasticsearch.ElasticsearchStatusException;
+import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
+import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +32,11 @@ public class SearchDaoImpl implements SearchDao {
     @Autowired
     private ElasticsearchRestTemplate elasticsearchRestTemplate;
 
-    @Value("${zillow.search.init.enabled}")
-    private boolean initEnabled = false;
+    @Autowired
+    private RestHighLevelClient restHighLevelClient;
+
+    @Value("${zillow.search.item-index-name}")
+    private String itemIndexName;
 
 
     @Override
@@ -41,9 +48,9 @@ public class SearchDaoImpl implements SearchDao {
 
         // Create search condition object
         NativeSearchQuery query = new NativeSearchQueryBuilder()
-                .withQuery(queryBuilder)
-                .withPageable(PageRequest.of(page, rows))
-                .build();
+            .withQuery(queryBuilder)
+            .withPageable(PageRequest.of(page, rows))
+            .build();
 
         long totalCount = elasticsearchRestTemplate.count(query, Item4ES.class);
 
@@ -77,9 +84,9 @@ public class SearchDaoImpl implements SearchDao {
         // S1: create search condition object
         // query condition
         BoolQueryBuilder shouldBuilder = QueryBuilders.boolQuery()
-                .should(QueryBuilders.matchQuery("title", content))
-                .should(QueryBuilders.matchQuery("houseType", content))
-                .should(QueryBuilders.matchQuery("rentType", content));
+            .should(QueryBuilders.matchQuery("title", content))
+            .should(QueryBuilders.matchQuery("houseType", content))
+            .should(QueryBuilders.matchQuery("rentType", content));
 
         // relation with condition. everything must base on current city
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
@@ -87,9 +94,9 @@ public class SearchDaoImpl implements SearchDao {
 
         // create search condition object
         NativeSearchQuery query = new NativeSearchQueryBuilder()
-                .withQuery(queryBuilder)
-                .withPageable(PageRequest.of(page, rows))
-                .build();
+            .withQuery(queryBuilder)
+            .withPageable(PageRequest.of(page, rows))
+            .build();
 
         // S2: search
         SearchHits<Item4ES> resultPage = elasticsearchRestTemplate.search(query, Item4ES.class);
@@ -111,22 +118,33 @@ public class SearchDaoImpl implements SearchDao {
     }
 
 
-    // use test function in springboot to call this method and create index in ES
     @Override
     public void batchInsertToES(List<Item4ES> items) {
-        // creating an Elasticsearch index if it doesn't already exist.
-        if (initEnabled) {
-            createIndex();
-        }
+        deleteIndex();
+        createIndex();
 
-        // convert to Index, so it can be inserted to ES
         ArrayList<IndexQuery> list = new ArrayList<>();
         for (Item4ES item : items) {
             list.add(new IndexQueryBuilder().withObject(item).build());
         }
 
-        // insert
         elasticsearchRestTemplate.bulkIndex(list, Item4ES.class);
+    }
+
+    public void deleteIndex() {
+        try {
+            DeleteIndexRequest request = new DeleteIndexRequest(itemIndexName);
+            restHighLevelClient.indices().delete(request, RequestOptions.DEFAULT);
+            System.out.println("Index deleted: " + itemIndexName);
+        } catch (ElasticsearchStatusException e) {
+            if (e.status().getStatus() == 404) {
+                System.out.println("Index not found: " + itemIndexName);
+            } else {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to delete index: " + e.getMessage(), e);
+        }
     }
 
     private void createIndex() {

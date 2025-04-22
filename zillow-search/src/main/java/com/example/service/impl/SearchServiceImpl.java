@@ -22,9 +22,6 @@ public class SearchServiceImpl implements SearchService {
     @Autowired
     private SearchDao searchDao;
 
-    private String nginxPrefix;
-
-
     @Override
     public BaseResult searchByCity(String city, int page, int rows) {
         List<Item4ES> item4ESList = searchDao.searchByCity(city, page, rows);
