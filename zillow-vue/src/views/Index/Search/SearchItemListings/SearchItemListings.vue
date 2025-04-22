@@ -1,4 +1,3 @@
-<!--ItemListings.vue-->
 <template>
     <div>
         <div v-if='searchListData.length>0'>
@@ -14,11 +13,11 @@
 </template>
 
 <script>
-import Item from './Item/Item.vue'
+import Item from "@/components/Item/Item.vue";
 import LoadMore from '../../../../components/LoadMore/LoadMore.vue'
 
 export default {
-    name: 'SearchList',
+    name: 'SearchItemListings',
     data() {
         return {
             searchListData: [],
@@ -54,7 +53,6 @@ export default {
             if (n === o) {
                 return;
             }
-            // console.log(n,o)
             this.http(this.kw, this.currentCity)
             .then(data => {
                 this.searchListData = data.data.data

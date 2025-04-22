@@ -1,19 +1,18 @@
-<!--PurchasedItem.vue-->
 <template>
     <div class="list-item">
         <router-link :to="`/item/${ curdata.id }`">
 
-            <img :src="getFirstImageUrl(curdata.imgs)" alt/>
+            <img :src="awsS3RequestUrl+curdata.imgs" alt/>
 
             <div class="mask">
                 <div class="left">
-                    <b><p>{{ curdata.title }}</p></b>
-                    <p>{{ curdata.houseType }}</p>
+                    <p>{{ curdata.title }}</p>
+                    <p>{{ curdata.aptType }}</p>
                 </div>
                 <div class="right">
                     <div class="btn">{{ curdata.rentType }}</div>
                     <p>
-                        ${{ curdata.price }} / Month
+                        <span v-html="curdata.price"></span>$ / Month
                     </p>
                 </div>
             </div>
@@ -21,48 +20,20 @@
     </div>
 </template>
 <script>
+import {mapState} from "vuex";
+
 export default {
     name: "Item",
 
-
+    props: ["curdata"],
     data() {
         return {};
     },
-    props: ["curdata"],
 
     methods: {
-        getFirstImageUrl(imgs) {
-            let isInBrackets = false;
-            let imagePath = '';
-
-            // Iterate through each character in the string
-            for (let i = 0; i < imgs.length; i++) {
-                const char = imgs[i];
-
-                if (char === '[') {
-                    // Start recording characters when "[" is encountered
-                    isInBrackets = true;
-                } else if (char === ',' && isInBrackets) {
-                    // Stop recording when "," is encountered
-                    break;
-                } else if (isInBrackets) {
-                    // Add the character to the image path
-                    imagePath += char;
-                }
-            }
-
-            // Trim any leading or trailing whitespace
-            imagePath = imagePath.trim();
-
-            if (imagePath) {
-                const imageUrl = `http://percival.services:8888/${imagePath}`;
-                // console.log("Generated image URL:", imageUrl);
-                return imageUrl;
-            } else {
-                // console.error("Failed to extract image path:", imgs);
-                return "default-image-url";
-            }
-        },
+    },
+    computed: {
+        ...mapState(['awsS3RequestUrl']),
     },
 };
 </script>
@@ -97,6 +68,11 @@ export default {
             text-align: center;
             padding: 10px 10px;
             flex: 1;
+
+            p:nth-child(1) {
+                font-weight: bold;
+                font-size: 16px;
+            }
 
             p {
                 padding: 5px 10px;

@@ -1,4 +1,3 @@
-<!-- ItemListings.vue -->
 <template>
     <div>
         <div v-if="searchListData.length > 0">
@@ -17,11 +16,11 @@
 </template>
 
 <script>
-import Item from './Item/Item';
+import Item from "@/components/Item/Item.vue";
 import LoadMore from '../../../components/LoadMore/LoadMore';
 
 export default {
-    name: 'SearchListShop',
+    name: 'ItemListings',
     data() {
         return {
             searchListData: [],
