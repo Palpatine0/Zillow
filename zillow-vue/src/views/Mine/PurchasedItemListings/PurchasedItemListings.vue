@@ -22,21 +22,25 @@ import {mapState} from 'vuex';
 
 export default {
     name: 'PurchasedItemListings',
-    data() {
-        return {
-            purchasedItemList: [],
-            loading: true,
-        };
-    },
+
     components: {
         PurchasedItem,
     },
     computed: {
         ...mapState(['user']),
     },
+    data() {
+        return {
+            purchasedItemList: [],
+            loading: true,
+        };
+    },
+
+
     mounted() {
         this.getPurchasedItemsByUserId()
     },
+
     methods: {
         async getPurchasedItemsByUserId() {
             try {

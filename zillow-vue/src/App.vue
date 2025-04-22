@@ -13,6 +13,7 @@ import ChatBot from "@/components/ChatBot/ChatBot.vue";
 
 export default {
     name: "App",
+
     components: {
         NavBar,
         ChatBot
@@ -31,6 +32,7 @@ export default {
             isRouterAlive: true
         };
     },
+
     methods: {
         reload() {
             this.isRouterAlive = false;
@@ -49,4 +51,10 @@ export default {
     //outline: 1px solid red;
 }
 
+.center-h {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 0 auto;
+}
 </style>

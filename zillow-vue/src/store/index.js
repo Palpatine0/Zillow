@@ -13,7 +13,7 @@ export default new Vuex.Store({
             item: 'public/image/item/',
             user: 'public/image/user/',
         },
-        searchMsg: '',
+        searchContent: '',
         collect: [],
         userId: '',
         user: '',
@@ -22,8 +22,8 @@ export default new Vuex.Store({
         setCity(state, payload) {
             state.currentCity = payload.data
         },
-        setSearchMsg(state, payload) {
-            state.searchMsg = payload.data
+        setSearchContent(state, payload) {
+            state.searchContent = payload.data
         },
         addCollect(state, payload) {
             state.collect.push(payload.data)
@@ -50,22 +50,22 @@ export default new Vuex.Store({
         initializeStore({commit}) {
             const currentCity = localStorage.getItem('currentCity');
             if(currentCity) {
-                commit('setCity', currentCity);
+                commit('setCity', { data: currentCity });
             }
             const user = localStorage.getItem('user');
             if (user) {
                 commit('setUser', JSON.parse(user));
             }
         },
-        setCity(state, city) {
-            state.city = city;
-            localStorage.setItem('city', city);
+        setCity({commit}, city) {
+            commit('setCity', { data: city });
+            localStorage.setItem('currentCity', city);
         },
         setCityAciton(context, payload) {
             context.commit('setCity', payload)
         },
-        setSearchMsgAction(context, payload) {
-            context.commit('setSearchMsg', payload)
+        setSearchContentAction(context, payload) {
+            context.commit('setSearchContent', payload)
         },
         addCollectAction(context, payload) {
             context.commit('addCollect', payload)

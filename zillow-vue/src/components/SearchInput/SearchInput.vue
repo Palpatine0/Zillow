@@ -1,6 +1,6 @@
 <!--SearchInput.vue-->
 <template>
-    <input v-model="msg" class='search-input' placeholder="Address, neighborhood, city, Zip, etc" type="text" @keyup="search($event)">
+    <input v-model="content" class='search-input' placeholder="Address, neighborhood, city, Zip, etc" type="text" @keyup="search($event)">
 </template>
 
 <script>
@@ -9,30 +9,30 @@ export default {
     inject: ['reload'],
     data() {
         return {
-            msg: ''
+            content: ''
         }
     },
     props: ['pk'],
     methods: {
         search(e) {
             if (e.keyCode === 13) {
-                this.$router.push('/search/' + this.msg)
-                if (this.msg == this.pk) {
+                this.$router.push('/search/' + this.content)
+                if (this.content == this.pk) {
                     return
                 }
-                this.$emit('setSearchMsgAction', {data: this.msg})
+                this.$emit('setSearchContentAction', {data: this.content})
             }
         }
     },
     mounted() {
-        this.msg = this.pk
-        this.$emit('setSearchMsgAction', {data: this.pk})
+        this.content = this.pk
+        this.$emit('setSearchContentAction', {data: this.pk})
     },
     watch: {
         'pk': function (n, o) {
-            if (n !== this.msg) {
-                this.msg = n;
-                this.$emit('setSearchMsgAction', {data: n})
+            if (n !== this.content) {
+                this.content = n;
+                this.$emit('setSearchContentAction', {data: n})
             }
         }
     },

@@ -1,8 +1,8 @@
 <template>
 <v-app style="padding: 4vw">
-    <Header v-if="isMobile" title='Mine'/>
     <v-container>
         <v-row style="display: flex;justify-content: space-between" cols="12" lg="4" md="6">
+
             <v-col v-if="!isMobile" cols="12" lg="4" md="6" style="margin-top: 60px">
                 <v-row style="position: fixed;top: 30vh;">
                     <v-col cols="4" lg="4" md="6">
@@ -24,6 +24,7 @@
                     </v-btn>
                 </v-row>
             </v-col>
+
             <v-col v-else cols="12" lg="4" md="6">
                 <v-row>
                     <v-col cols="3" lg="3" md="6">
@@ -62,18 +63,11 @@ import NavBar from "@/components/NavBar/NavBar.vue";
 
 export default {
     name: "Mine",
-    data() {
-        return {};
-    },
+
     components: {
         Header,
         PurchasedItemListings,
         NavBar
-    },
-    mounted() {
-        if(!this.user) {
-            this.$router.push("/login");
-        }
     },
     computed: {
         ...mapState([
@@ -82,6 +76,16 @@ export default {
             "currentCity"
         ])
     },
+    data() {
+        return {};
+    },
+
+    mounted() {
+        if(!this.user) {
+            this.$router.push("/login");
+        }
+    },
+
     methods: {
         signOut() {
             this.$store.dispatch('clearUserAction');

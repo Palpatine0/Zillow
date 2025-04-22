@@ -19,7 +19,6 @@ export default {
     },
     computed: {
         active() {
-            // 不修改props属性
             return this.$parent.currentIndex == this.index;
         }
     },

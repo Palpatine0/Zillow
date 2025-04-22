@@ -1,36 +1,33 @@
 <template>
-    <div>
-        <ItemListings :currentCity="currentCity"/>
-    </div>
+<v-app style="padding: 4vw">
+    <v-container>
+        <v-row style="display: flex;justify-content: space-between" cols="12" lg="4" md="6">
+            <v-col cols="12" lg="12" md="12">
+                <ItemListings/>
+            </v-col>
+        </v-row>
+    </v-container>
+</v-app>
 </template>
 
 <script>
 import NavBar from '../../components/NavBar/NavBar';
 import LoadMore from "@/components/LoadMore/LoadMore.vue";
-import {mapActions, mapState} from 'vuex';
-import ItemListings from "@/views/Homes/ItemListings/ItemListings.vue";
+import ItemListings from "@/components/ItemListings/ItemListings.vue";
 
 export default {
     name: 'Homes',
+
     components: {
         ItemListings,
         LoadMore,
         NavBar
     },
-    computed: {
-        ...mapState(['currentCity', 'page'])
-    },
+
     methods: {
         back() {
             window.history.back();
         }
     }
-
 }
 </script>
-<style>
-.foot-nav-wrapper {
-    position: relative; /* This will ensure z-index is applied */
-    z-index: 10; /* Example value, make sure this is higher than other elements */
-}
-</style>

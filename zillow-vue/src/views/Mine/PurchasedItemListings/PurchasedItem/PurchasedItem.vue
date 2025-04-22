@@ -1,4 +1,3 @@
-<!--PurchasedItem.vue-->
 <template>
 <div>
     <v-row>
@@ -34,7 +33,6 @@
         </v-col>
     </v-row>
 </div>
-
 </template>
 
 <script>
@@ -42,11 +40,9 @@ import {mapState} from 'vuex'
 
 export default {
     name: "PurchasedItem",
-    data() {
-        return {
-            commentContent: '',
-            commentToggle: false,
-        };
+
+    computed: {
+        ...mapState(['awsS3RequestUrl']),
     },
     props: {
         orderData: {
@@ -54,6 +50,13 @@ export default {
             required: true
         }
     },
+    data() {
+        return {
+            commentContent: '',
+            commentToggle: false,
+        };
+    },
+
     mounted() {
         console.log(this.orderData)
     },
@@ -73,9 +76,6 @@ export default {
         cancel() {
             this.commentToggle = !this.commentToggle
         },
-    },
-    computed: {
-        ...mapState(['awsS3RequestUrl']),
     },
 };
 </script>
