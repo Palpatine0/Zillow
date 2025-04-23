@@ -57,6 +57,7 @@ import Advise from "@/views/Index/Advise/Advise.vue";
 
 export default {
     name: "Index",
+
     components: {
         Swiper,
         SearchInput,
@@ -64,9 +65,6 @@ export default {
         Loan,
         ServiceOptions,
         Advise,
-    },
-    computed: {
-        ...mapState(['currentCity'])
     },
     data() {
         return {
@@ -76,6 +74,12 @@ export default {
             startY: 0,
             isPullingDown: false,
         }
+    },
+
+    computed: {
+        ...mapState([
+            'currentCity'
+        ])
     },
     created() {
         this.$api.file.getBanners()

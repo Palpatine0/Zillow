@@ -1,63 +1,71 @@
 <template>
-<div class="comment-list">
-    <div v-if="commentData == ''">
-        <div class="center-h" style="color:gainsboro;">There's no comment.</div>
-    </div>
-    <div v-for='(item,index) in commentData' :key='index' class="comment-item">
-        <h3>
-            {{ item.username }}
-        </h3>
-        <p>{{ item.comment }}</p>
-    </div>
-</div>
+<v-app style="padding: 4vw">
+    <v-container>
+        <div v-if="commentData == ''">
+            <div class="center-h" style="color:gainsboro;">There's no comment.</div>
+        </div>
+        <div v-for='(comment,index) in commentData' :key='index' class="comment-item">
+            <v-row>
+                <h3>{{ comment.username }}</h3>
+            </v-row>
+            <v-row>
+                <p>{{ comment.comment }}</p>
+            </v-row>
+        </div>
+    </v-container>
+</v-app>
+
 </template>
 <script>
 import LoadMore from '../../../components/LoadMore/LoadMore'
+import {mapState} from "vuex";
 
 export default {
     name: 'Comment',
-    data() {
-        return {
-            commentData: {},
-            page: 0
-        }
-    },
-    props: ['itemId'],
+
     components: {
         LoadMore
     },
+    props: ['itemId'],
+    data() {
+        return {
+            commentData: {},
+            page: 0,
+
+            defaultAvatar:'public/image/user/6808979ab054b50e0280128d/profile.jpg'
+        }
+    },
+
+    computed: {
+        ...mapState([
+            'awsS3RequestUrl'
+        ])
+    },
+    mounted() {
+        this.getCommentsByItemId()
+    },
     methods: {
-        http() {
+        getCommentsByItemId() {
             return this.$api.comment.getCommentsByItemId({
                 itemId: this.itemId,
                 page: this.page
             })
+            .then(data => {
+                this.commentData = data.data.data
+            })
         },
         getMoreData() {
             this.page += 1;
-            this.http()
+            this.getCommentsByItemId()
             .then(data => {
                 this.commentData = this.commentData.concat(data.data.data)
             })
         }
     },
-    mounted() {
-        this.http()
-        .then(data => {
-            console.log("comment")
-            console.log(data.data.data)
-            console.log("/comment")
-            this.commentData = data.data.data
-        })
-    },
 }
 </script>
 <style lang="less" scoped>
 .comment-item {
-    * {
-        font-family: Arial;
-    }
-
     border-bottom: 1px solid #f1f1f1;
     padding-bottom: 10px;
     margin-bottom: 10px;

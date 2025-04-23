@@ -26,9 +26,6 @@ export default {
     components: {
         PurchasedItem,
     },
-    computed: {
-        ...mapState(['user']),
-    },
     data() {
         return {
             purchasedItemList: [],
@@ -36,11 +33,12 @@ export default {
         };
     },
 
-
+    computed: {
+        ...mapState(['user']),
+    },
     mounted() {
         this.getPurchasedItemsByUserId()
     },
-
     methods: {
         async getPurchasedItemsByUserId() {
             try {

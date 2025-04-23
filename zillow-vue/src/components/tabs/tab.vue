@@ -1,9 +1,7 @@
 <script>
 export default {
     name: "Tab",
-    data() {
-        return {};
-    },
+
     props: {
         label: {
             type: String,
@@ -14,18 +12,17 @@ export default {
             default: 1
         }
     },
-    mounted() {
-        this.$parent.showContent.push(this);
+    data() {
+        return {};
     },
+
     computed: {
         active() {
             return this.$parent.currentIndex == this.index;
         }
     },
-    methods: {
-        clickTabHandler() {
-            this.$parent.updateCurrentIndex(this.index);
-        }
+    mounted() {
+        this.$parent.showContent.push(this);
     },
     render() {
         const classStyle = {
@@ -33,11 +30,16 @@ export default {
             active: this.active
         };
         return (
-                <li onClick={this.clickTabHandler} class={classStyle}>
-                    {this.label}
-                </li>
+            <li onClick={this.clickTabHandler} class={classStyle}>
+                {this.label}
+            </li>
         );
-    }
+    },
+    methods: {
+        clickTabHandler() {
+            this.$parent.updateCurrentIndex(this.index);
+        }
+    },
 };
 </script>
 <style scoped>

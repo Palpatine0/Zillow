@@ -108,7 +108,7 @@
                     <v-col cols="12" lg="4" md="6" class="mb-10">
 
                         <v-card class="mx-auto " max-width="344" outlined style="border-radius: 14px;padding: 20px;margin: 40px 0">
-                            <v-btn block color="primary" @click="itemPurchase_dialog=!itemPurchase_dialog">
+                            <v-btn block color="primary" @click="itemPurchase_dialog=!itemPurchase_dialog" :disabled="itemInfo.isRented==true?true:false">
                                 Rent
                             </v-btn>
                         </v-card>

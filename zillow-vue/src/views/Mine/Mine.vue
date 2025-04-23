@@ -69,6 +69,10 @@ export default {
         PurchasedItemListings,
         NavBar
     },
+    data() {
+        return {};
+    },
+
     computed: {
         ...mapState([
             "user",
@@ -76,16 +80,11 @@ export default {
             "currentCity"
         ])
     },
-    data() {
-        return {};
-    },
-
     mounted() {
         if(!this.user) {
             this.$router.push("/login");
         }
     },
-
     methods: {
         signOut() {
             this.$store.dispatch('clearUserAction');

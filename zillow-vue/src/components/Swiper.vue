@@ -22,13 +22,15 @@ import {mapState} from "vuex";
 
 export default {
     name: "Swiper",
-    data() {
-        return {}
-    },
+
     props: [
         'slides',
         'title'
     ],
+    data() {
+        return {}
+    },
+
     computed: {
         ...mapState(['awsS3RequestUrl']),
     }

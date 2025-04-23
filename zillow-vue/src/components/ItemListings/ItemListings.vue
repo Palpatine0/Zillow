@@ -33,9 +33,6 @@ export default {
         LoadMore,
     },
     props: ['searchContent'],
-    computed: {
-        ...mapState(['currentCity'])
-    },
     data() {
         return {
             itemList: [],
@@ -45,6 +42,11 @@ export default {
         };
     },
 
+    computed: {
+        ...mapState([
+            'currentCity'
+        ])
+    },
     mounted() {
         if (this.searchContent !== undefined) {
             this.search();

@@ -64,13 +64,15 @@ export default {
         'title',
         'itemData'
     ],
-    computed: {
-        ...mapState(['awsS3RequestUrl']),
-    },
     data() {
         return {}
     },
 
+    computed: {
+        ...mapState([
+            'awsS3RequestUrl'
+        ]),
+    },
     methods: {
         // Redirects
         itemRedirect(id) {

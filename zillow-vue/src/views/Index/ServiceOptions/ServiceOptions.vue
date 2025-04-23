@@ -37,9 +37,7 @@ import {mapState} from "vuex";
 
 export default {
     name: "ServiceOptions",
-    computed: {
-        ...mapState(['awsS3RequestUrl'])
-    },
+
     data() {
         return {
             options: [
@@ -57,6 +55,12 @@ export default {
                 },
             ],
         };
+    },
+
+    computed: {
+        ...mapState([
+            'awsS3RequestUrl'
+        ])
     },
     created() {
         window.xx = this

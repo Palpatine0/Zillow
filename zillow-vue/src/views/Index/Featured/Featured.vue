@@ -21,17 +21,21 @@ import FeaturedView from "./FeaturedView/FeaturedView.vue";
 
 export default {
     name: "Featured",
+
+    components: {
+        FeaturedView
+    },
     data() {
         return {
             trendies: [],
             recommendations: []
         };
     },
+
     computed: {
-        ...mapState(['currentCity'])
-    },
-    components: {
-        FeaturedView
+        ...mapState([
+            'currentCity'
+        ])
     },
     mounted() {
         this.$api.trendy.getTrendies({
@@ -51,6 +55,6 @@ export default {
                 this.recommendations = data.data.data
             }
         })
-    }
+    },
 };
 </script>

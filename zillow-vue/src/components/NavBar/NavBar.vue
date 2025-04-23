@@ -42,9 +42,11 @@ import {mapState} from "vuex";
 
 export default {
     name: "NavBar",
+
     data() {
         return {};
     },
+
     computed: {
         ...mapState([
             "user",

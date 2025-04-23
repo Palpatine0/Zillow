@@ -36,9 +36,6 @@ import {mapState} from "vuex";
 export default {
     name: "Item",
 
-    computed: {
-        ...mapState(['awsS3RequestUrl']),
-    },
     props: {
         itemData: {
             type: Object,
@@ -49,6 +46,11 @@ export default {
         return {};
     },
 
+    computed: {
+        ...mapState([
+            'awsS3RequestUrl'
+        ]),
+    },
     methods: {
         itemRedirect(id) {
             this.$router.push('/item/' + id);

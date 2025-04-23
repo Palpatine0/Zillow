@@ -41,9 +41,6 @@ import {mapState} from 'vuex'
 export default {
     name: "PurchasedItem",
 
-    computed: {
-        ...mapState(['awsS3RequestUrl']),
-    },
     props: {
         orderData: {
             type: Object,
@@ -57,6 +54,11 @@ export default {
         };
     },
 
+    computed: {
+        ...mapState([
+            'awsS3RequestUrl'
+        ]),
+    },
     mounted() {
         console.log(this.orderData)
     },

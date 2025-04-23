@@ -70,6 +70,7 @@ const md = new MarkdownIt({
 
 export default {
     name: "ChatBot",
+
     data() {
         return {
             isChatOpen: false,
@@ -82,8 +83,11 @@ export default {
             loading: false
         };
     },
+
     computed: {
-        ...mapState(["user"]),
+        ...mapState([
+            "user"
+        ]),
     },
     methods: {
         toggleChat() {

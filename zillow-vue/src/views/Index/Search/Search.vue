@@ -31,15 +31,21 @@ export default {
         ItemListings,
         SearchInput,
     },
-    computed: {
-        ...mapState(['searchContent', 'currentCity', 'page'])
-    },
     data() {
         return {}
     },
 
+    computed: {
+        ...mapState([
+            'searchContent',
+            'currentCity',
+            'page'
+        ])
+    },
     methods: {
-        ...mapActions(['setSearchContentAction']),
+        ...mapActions([
+            'setSearchContentAction'
+        ]),
         back() {
             window.history.back();
         }

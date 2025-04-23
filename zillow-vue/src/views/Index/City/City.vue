@@ -17,15 +17,19 @@ import {mapState} from 'vuex'
 
 export default {
     name: 'City',
-    data() {
-        return {}
-    },
+
     components: {
         Header,
         Cities
     },
+    data() {
+        return {}
+    },
+
     computed: {
-        ...mapState(['currentCity'])
+        ...mapState([
+            'currentCity'
+        ])
     },
 }
 </script>

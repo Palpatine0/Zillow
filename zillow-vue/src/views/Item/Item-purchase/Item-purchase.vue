@@ -45,17 +45,12 @@ import {mapActions, mapState} from "vuex";
 
 export default {
     name: "Item-purchase",
+
     props: [
         "itemPurchase_dialog",
         "itemId",
         "price"
     ],
-    computed: {
-        ...mapState([
-            "collect",
-            'user'
-        ])
-    },
     data() {
         return {
             startDate: new Date().toISOString().substring(0, 10),
@@ -63,12 +58,21 @@ export default {
             price: this.price,
         };
     },
+
+    computed: {
+        ...mapState([
+            "collect",
+            'user'
+        ])
+    },
     methods: {
-        ...mapActions(["addCollectAction", "delCollectAction"]),
+        ...mapActions([
+            "addCollectAction",
+            "delCollectAction"
+        ]),
 
         toggleDatePicker() {
             this.showDatePicker = !this.showDatePicker;
-            console.log("Toggle DatePicker: ", this.showDatePicker);
         },
 
         purchase() {

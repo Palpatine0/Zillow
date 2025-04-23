@@ -25,12 +25,9 @@ import NavBar from "@/components/NavBar/NavBar.vue";
 
 export default {
     name: 'Login',
-    components: {NavBar},
-    computed: {
-        ...mapState([
-            "awsS3ImagePaths",
-            "awsS3RequestUrl"
-        ])
+
+    components: {
+        NavBar
     },
     data() {
         return {
@@ -42,6 +39,13 @@ export default {
             validationMsg: '',
             validationSnackbar: false,
         }
+    },
+
+    computed: {
+        ...mapState([
+            "awsS3ImagePaths",
+            "awsS3RequestUrl"
+        ])
     },
     methods: {
         ...mapActions(['setUserAction']),
