@@ -7,6 +7,7 @@ import vuetify from './plugins/vuetify'
 import axios from "axios";
 import api from './api/index.js'
 import common from "./utils/common";
+import globalMixin from './utils/globalMixin'
 
 axios.interceptors.request.use(
     function(config) {
@@ -20,6 +21,8 @@ store.dispatch('initializeStore');
 Vue.prototype.axios = axios;
 Vue.prototype.$api = api;
 Vue.prototype.$common = common;
+
+Vue.mixin(globalMixin)
 
 Vue.config.productionTip = false
 

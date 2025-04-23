@@ -3,37 +3,28 @@
     <v-subheader as="h1" class="subheading grey--text">Properties</v-subheader>
     <v-container>
         <v-row style="justify-content: space-between">
-            <v-col cols="2">
+            <v-col cols="12" lg="3" md="6">
                 <v-select v-model="selectedCity" :items="cities" label="Location"></v-select>
             </v-col>
-            <div class="mt-5">
+            <v-col cols="12" lg="9" md="6">
                 <v-pagination v-model="page" :length="pagination" class="float-right" color="#156ff6" @input="adminGetItemByCity"></v-pagination>
-            </div>
+            </v-col>
         </v-row>
         <v-row>
             <v-col v-for="(item, index) in searchListData" :key="index" cols="12" lg="4" md="6">
-                <v-card class="mx-auto" max-width="400" @click="itemRedirect(item.id)">
-                    <v-img :src="awsS3RequestUrl+item.imgs[0]" class="white--text align-end" height="200px">
+                <v-card class="mx-auto" @click="itemRedirect(item.id)" :style="!isMobile?{'width':'40vw','height': '33vh'}:{'width':'90vw','height': '32vh'}">
+                    <v-img :src="awsS3RequestUrl+item.imgs[0]" class="white--text align-end" height="24vh">
                         <v-card-title>{{ getHeadAddr(item.title) }}</v-card-title>
                     </v-img>
-                    <v-card-subtitle class="pb-0">
-                        {{ getSubAddr(item.title) }}
-                    </v-card-subtitle>
-                    <v-card-text class="text--primary">
-                        <b>
-                            <div>{{ item.rentType }}</div>
-                        </b>
-                        <div>{{ item.aptType }}</div>
-                    </v-card-text>
-
-                    <v-card-actions v-if="false">
-                        <v-btn color="orange" text>
-                            Share
-                        </v-btn>
-                        <v-btn color="orange" text>
-                            Explore
-                        </v-btn>
-                    </v-card-actions>
+                    <div style="flex-direction: column;align-items: start">
+                        <v-card-subtitle class="pb-0">
+                            <div>{{ getSubAddr(item.title) }}</div>
+                        </v-card-subtitle>
+                        <v-card-text class="text--primary">
+                            <div style="font-weight: bold">{{ item.rentType }}</div>
+                            <div>{{ item.aptType }}</div>
+                        </v-card-text>
+                    </div>
                 </v-card>
             </v-col>
         </v-row>

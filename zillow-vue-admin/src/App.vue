@@ -47,9 +47,16 @@ export default {
 <style lang="less">
 * {
     font-family: Arial;
-}
-
-* {
     //outline: 1px solid red;
+}
+.center-h {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 0 auto;
+}
+.center-v {
+    display: flex;
+    align-items: center;
 }
 </style>

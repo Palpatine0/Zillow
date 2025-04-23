@@ -103,7 +103,7 @@
             <v-container class="white" style="margin-top: 12px;padding: 10px 30px 60px 30px;border-radius: 40px">
                 <v-row>
                     <v-col cols="12" md="12">
-                        <h2 class="mt-5" :style="{ color: $vuetify.theme.themes.light.secondary, fontWeight: 'bold' }">New Residential Construction This Year</h2>
+                        <h2 class="mt-5" :style="{ color: $vuetify.theme.themes.light.secondary, fontWeight: 'bold' }">New Residential Construction Recently</h2>
                     </v-col>
                 </v-row>
                 <v-row>
@@ -128,6 +128,7 @@ import MarkdownIt from 'markdown-it';
 
 const md = new MarkdownIt({
     breaks: true,
+    html: true
 });
 
 export default {
@@ -195,3 +196,10 @@ export default {
 
 }
 </script>
+
+<style>
+li {
+    display: list-item !important;
+    margin-bottom: 18px !important;
+}
+</style>

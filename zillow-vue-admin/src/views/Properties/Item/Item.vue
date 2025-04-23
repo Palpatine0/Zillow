@@ -134,7 +134,7 @@
     </v-dialog>
 
     <EditStatus :item-info="itemInfo" :statusUpdate_dialog="statusUpdate_dialog"/>
-    <EditInfo :infoUpdate_dialog="infoUpdate_dialog" :item-info="itemInfo"/>
+    <EditInfo :item-info="itemInfo" :infoUpdate_dialog="infoUpdate_dialog"/>
     <EditShowcases :item-info="itemInfo" :showcasesUpdate_dialog="showcasesUpdate_dialog"/>
 
 </v-app>
@@ -149,11 +149,15 @@ import {mapState} from "vuex";
 
 export default {
     name: "Item",
+
     components: {
         Swiper,
         EditStatus,
         EditInfo,
         EditShowcases
+    },
+    computed: {
+        ...mapState(['city']),
     },
     data() {
         return {
@@ -171,9 +175,6 @@ export default {
 
     mounted() {
         this.getItemById(this.$route.params.id)
-    },
-    computed: {
-        ...mapState(['city']),
     },
     methods: {
         getItemById(id){
