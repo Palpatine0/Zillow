@@ -25,13 +25,21 @@ public class SearchServiceImpl implements SearchService {
     @Override
     public BaseResult searchByCity(String city, int page, int rows) {
         List<Item4ES> item4ESList = searchDao.searchByCity(city, page, rows);
-        return BaseResult.ok(item4ESList);
+        BaseResult result = BaseResult.ok(item4ESList);
+        long count = item4ESList.get(0).getTotalCount();
+        long totalPages = ((count % rows == 0) ? (count / rows) : (count / rows + 1));
+            result.setHasMore((page + 1) < totalPages?true:false);
+        return result;
     }
 
     @Override
     public BaseResult searchByKeyWord(String city, String content, int page, int rows) {
         List<Item4ES> item4ESList = searchDao.searchByKeyWord(city, content, page, rows);
-        return BaseResult.ok(item4ESList);
+        BaseResult result = BaseResult.ok(item4ESList);
+        long count = item4ESList == null ? 0 : item4ESList.size();
+        long totalPages = ((count % rows == 0) ? (count / rows) : (count / rows + 1));
+        result.setHasMore((page + 1) < totalPages?true:false);
+        return result;
     }
 
     @Override

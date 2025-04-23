@@ -36,7 +36,6 @@ public class Item4ES {
         return "/item/" + id;
     }
 
-    public void setLink(String link) {
-    }
+    public void setLink(String link) {}
 
 }

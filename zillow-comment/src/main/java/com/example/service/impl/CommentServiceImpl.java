@@ -64,24 +64,11 @@ public class CommentServiceImpl implements CommentService {
         query.addCriteria(Criteria.where("itemId").is(itemId));
         query.with(PageRequest.of(page, rows));
 
-        List<Comment> comments = commentDao.findCommentsByItemId(query);
-
-        for (Comment comment : comments) {
-            String username = comment.getUsername().replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2");
-            comment.setUsername(username);
-        }
-        BaseResult result = BaseResult.ok(comments);
-
-
-        long count = comments == null ? 0 : comments.size();
+        List<Comment> commentList = commentDao.findCommentsByItemId(query);
+        BaseResult result = BaseResult.ok(commentList);
+        long count = commentList == null ? 0 : commentList.size();
         long totalPages = ((count % rows == 0) ? (count / rows) : (count / rows + 1));
-
-        if ((page + 1) < totalPages) {
-            result.setHasMore(true);
-        } else {
-            result.setHasMore(false);
-        }
-
+        result.setHasMore((page + 1) < totalPages ? true : false);
         return result;
     }
 }

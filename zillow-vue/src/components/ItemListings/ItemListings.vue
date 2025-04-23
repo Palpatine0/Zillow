@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div v-if="itemList.length > 0">
+    <div v-if="itemList.length">
         <v-row v-if="!isMobile">
             <v-col v-for="(item, index) in itemList" :key="index" cols="12" lg="6" md="6">
                 <Item :key="index" :itemData="item"/>
@@ -9,16 +9,14 @@
         <div v-else>
             <Item v-for="(item, index) in itemList" :key="index" :itemData="item" class="mb-10"/>
         </div>
+
+        <LoadMore v-if="!loading&&hasMore" @getMoreData='getMoreData'/>
     </div>
-    <div v-else>
+    <div v-if="loading">
         <div style="padding: 10px;color: gainsboro;" align="center">
             Loading...
         </div>
     </div>
-    <LoadMore @getMoreData='getMoreData'/>
-    <br>
-    <br>
-    <br>
 </div>
 </template>
 
@@ -41,7 +39,8 @@ export default {
     data() {
         return {
             itemList: [],
-            hasMore: false,
+            loading: true,
+            hasMore: true,
             page: 0,
         };
     },
@@ -54,7 +53,7 @@ export default {
         }
     },
     watch: {
-        'searchContent': function (n, o) {
+        'searchContent': function(n, o) {
             if (n === o) {
                 return;
             }
@@ -64,8 +63,9 @@ export default {
         }
     },
     methods: {
-        search(){
-            if (this.searchContent === undefined){
+        search() {
+            this.loading = true;
+            if (this.searchContent === undefined) {
                 this.searchByCity();
             } else {
                 this.searchByKeyWord();
@@ -80,6 +80,8 @@ export default {
             .then((res) => {
                 this.itemList = this.itemList.concat(res.data.data)
                 this.hasMore = res.data.hasMore;
+                console.log(this.hasMore);
+                this.loading = false;
                 return res;
             })
         },
@@ -93,6 +95,7 @@ export default {
             .then((res) => {
                 this.itemList = this.itemList.concat(res.data.data)
                 this.hasMore = res.data.hasMore;
+                this.loading = false;
                 return res;
             })
         },

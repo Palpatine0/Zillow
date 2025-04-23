@@ -45,7 +45,6 @@ public class SearchDaoImpl implements SearchDao {
         // Create search condition object
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery().must(QueryBuilders.matchQuery("city", city));
 
-
         // Create search condition object
         NativeSearchQuery query = new NativeSearchQueryBuilder()
             .withQuery(queryBuilder)
