@@ -15,7 +15,7 @@
 import LoadMore from '../../../components/LoadMore/LoadMore'
 
 export default {
-    name: 'DetailsComment',
+    name: 'Comment',
     data() {
         return {
             commentData: {},

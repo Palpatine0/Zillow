@@ -17,7 +17,7 @@
     <tabs :currentIndex="currentIndex" class="tabb" @changeCurrentIndex="changeCurrentIndexHandler">
         <tab class="t" index="1" label="Info">
 
-            <v-container style="max-width: 98vw;">
+            <v-container style="max-width: 80vw;">
                 <v-row cols="12" lg="12" md="12" class="detail-info">
                     <v-col cols="12" lg="8" md="6">
                         <v-row><h1 class="mt-4">${{ commasNumber(itemInfo.price) }} / mo</h1></v-row>
@@ -107,14 +107,13 @@
                     </v-col>
                     <v-col cols="12" lg="4" md="6" class="mb-10">
 
-
-                        <v-card class="mx-auto " max-width="344" outlined style="border-radius: 14px;padding: 20px">
+                        <v-card class="mx-auto " max-width="344" outlined style="border-radius: 14px;padding: 20px;margin: 40px 0">
                             <v-btn block color="primary" @click="itemPurchase_dialog=!itemPurchase_dialog">
                                 Rent
                             </v-btn>
                         </v-card>
 
-                        <div class="center-h mt-10">
+                        <v-row class="center-h mt-10">
                             <div class="box">
                                 <img src="../../assets/images/advise-c.png">
                                 <div class="content">
@@ -122,7 +121,7 @@
                                     <p>learn what services and loan types we offer, and hear from happy customers</p>
                                 </div>
                             </div>
-                        </div>
+                        </v-row>
                     </v-col>
                 </v-row>
             </v-container>

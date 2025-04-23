@@ -22,7 +22,7 @@ const base = {
     user:{
         login: '/user/login',
         register: '/user/Register',
-        getUser: '/user/getUsers',
+        getUsers: '/user/getUsers',
         deleteUserById: '/user/deleteUserById',
     },
 

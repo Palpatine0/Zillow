@@ -11,7 +11,7 @@
             </v-col>
         </v-row>
         <v-row>
-            <v-col v-for="(item, index) in searchListData" :key="index" cols="12" lg="4" md="6">
+            <v-col v-for="(item, index) in itemListData" :key="index" cols="12" lg="4" md="6">
                 <v-card class="mx-auto" @click="itemRedirect(item.id)" :style="!isMobile?{'width':'40vw','height': '33vh'}:{'width':'90vw','height': '32vh'}">
                     <v-img :src="awsS3RequestUrl+item.imgs[0]" class="white--text align-end" height="24vh">
                         <v-card-title>{{ getHeadAddr(item.title) }}</v-card-title>
@@ -43,16 +43,17 @@ import AddItem from "@/views/Properties/AddItem/AddItem.vue";
 
 export default {
     name: "Properties",
+
     components: {
         AddItem
     },
     data() {
         return {
-            // page vars
             page: 1,
             pagination: 0,
             totalCount_item: 0,
-            searchListData: [],
+
+            itemListData: [],
         }
     },
 
@@ -83,12 +84,12 @@ export default {
                 rows: 6
             })
             .then((data) => {
-                this.searchListData = []
+                this.itemListData = []
                 this.totalCount_item = data.data.cnt
                 this.pagination = Math.ceil(this.totalCount_item / 6);
-                this.searchListData = this.searchListData.concat(data.data.data)
+                this.itemListData = this.itemListData.concat(data.data.data)
                 console.log("this.searchListData")
-                console.log(this.searchListData)
+                console.log(this.itemListData)
             })
         },
 

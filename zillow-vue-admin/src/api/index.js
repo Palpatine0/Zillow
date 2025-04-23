@@ -51,8 +51,8 @@ const api = {
         register(params) {
             return axios.post(base.baseUrl + base.user.register, params);
         },
-        getUser(params) {
-            return axios.get(base.baseUrl + base.user.getUser, params);
+        getUsers(params) {
+            return axios.get(base.baseUrl + base.user.getUsers, params);
         },
         deleteUserById(params) {
             return axios.post(base.baseUrl + base.user.deleteUserById, qs.stringify(params));

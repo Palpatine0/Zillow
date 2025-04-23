@@ -4,8 +4,6 @@ server:
 spring:
   application:
     name: zillow-user
-  profiles:
-    active: redis,mongodb
   cloud:
     config:
       uri: http://percival.services:3355
