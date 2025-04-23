@@ -1,12 +1,12 @@
 <template>
     <div>
-        <FeaturedView v-if="recommendations.length>0" :hotData="recommendations" title="Recommendations"/>
+        <FeaturedView v-if="recommendations.length>0" :itemData="recommendations" title="Recommendations"/>
         <div v-else >
             <div style="padding: 10px;color: gainsboro;" align="center">
                 Loading...
             </div>
         </div>
-        <FeaturedView v-if="trendies.length>0" :hotData="trendies" title="Trendies"/>
+        <FeaturedView v-if="trendies.length>0" :itemData="trendies" title="Trendies"/>
         <div v-else class="test">
             <div style="padding: 10px;color: gainsboro;" align="center">
                 Loading...

@@ -1,7 +1,7 @@
 <template>
 <div class="advise mb-14">
-    <div class="advise_warp">
-        <h4>What to do next</h4>
+    <v-container class="advise_warp">
+        <h3>What to do next</h3>
         <br>
         <div class="box">
             <img src="../../../assets/images/advise-a.png">
@@ -25,6 +25,9 @@
                 <p>learn what services and loan types we offer, and hear from happy customers</p>
             </div>
         </div>
+    </v-container>
+    <div>
+
     </div>
 </div>
 </template>
@@ -33,7 +36,7 @@
 .advise {
 
     .advise_warp {
-        width: 92%;
+        width: 60vw;
         margin: 0 auto;
 
 
@@ -78,6 +81,11 @@
         }
     }
 
+    @media screen and (max-width: 768px) {
+        .advise_warp {
+            width: 90%;
+        }
+    }
 }
 
 </style>

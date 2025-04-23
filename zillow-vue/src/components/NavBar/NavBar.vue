@@ -27,7 +27,7 @@
         <div class="manu-sector" @click="homeRedirect">
             <v-icon size="20" color="primary">fas fa-home</v-icon>
         </div>
-        <div class="manu-sector" @click="shopRedirect">
+        <div class="manu-sector" @click="listingRedirect">
             <v-icon size="18" color="primary">fas fa-list</v-icon>
         </div>
         <div class="manu-sector" @click="mineRedirect">
@@ -60,7 +60,7 @@ export default {
         mineRedirect() {
             this.$router.push("/mine");
         },
-        shopRedirect() {
+        listingRedirect() {
             this.$router.push("/homes");
         },
         cityRedirect() {

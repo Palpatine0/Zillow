@@ -1,5 +1,5 @@
 <template>
-<v-app >
+<v-app>
     <!--header-->
     <div id="home-header" class="clear-fix">
         <div class="container-fluid ">
@@ -80,7 +80,7 @@ export default {
     created() {
         this.$api.file.getBanners()
         .then(data => {
-            if(data.data.status == 200) {
+            if (data.data.status == 200) {
                 this.swiperSlides = data.data.results;
             } else {
                 alert('Banner unavailable')
@@ -93,7 +93,7 @@ export default {
     },
     methods: {
         // Redirects
-        cityRedirect(){
+        cityRedirect() {
             this.$router.push('/city')
         }
     },
@@ -108,7 +108,6 @@ export default {
     width: 100%;
     position: absolute;
     z-index: 1000;
-
 
 
     .top-row {
